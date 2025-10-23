@@ -3,7 +3,6 @@ import InteractiveHero from '../components/homepage/InteractiveHero';
 import WhyChooseSoleScope from '../components/homepage/WhyChooseSoleScope';
 import ServiceSnapshotGrid from '../components/homepage/ServiceSnapshotGrid';
 import ClientResultsShowcase from '../components/homepage/ClientResultsShowcase';
-import AutomationInAction from '../components/homepage/AutomationInAction';
 import TestimonialsStrip from '../components/homepage/TestimonialsStrip';
 import ProcessStepper from '../components/homepage/ProcessStepper';
 import FinalCallToAction from '../components/homepage/FinalCallToAction';
@@ -16,7 +15,6 @@ const PremiumHomePage = () => {
       <WhyChooseSoleScope />
       <ServiceSnapshotGrid />
       <ClientResultsShowcase />
-      <AutomationInAction />
       <TestimonialsStrip />
       <ProcessStepper />
       <FinalCallToAction />
