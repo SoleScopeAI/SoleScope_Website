@@ -210,7 +210,7 @@ const CustomAIAutomationsPage = () => {
   return (
     <main className="pt-24 pb-20 bg-black text-white">
       <section className="relative py-20 md:py-32 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-b from-purple-900/10 to-transparent pointer-events-none" />
+        <div className="absolute inset-0 bg-gradient-to-b from-purple-600/10 to-transparent pointer-events-none" />
 
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
           <div className="grid lg:grid-cols-2 gap-12 items-center">
@@ -269,10 +269,10 @@ const CustomAIAutomationsPage = () => {
                       }}
                       transition={{ duration: 0.3 }}
                     >
-                      <div className={`w-3 h-3 rounded-full ${item.active ? 'bg-white' : 'bg-white/30'}`} />
+                      <div className={`w-3 h-3 rounded-full ${item.active ? 'bg-purple-400' : 'bg-white/30'}`} />
                       <div className="flex-1 h-2 bg-white/10 rounded-full overflow-hidden">
                         <motion.div
-                          className="h-full bg-white"
+                          className="h-full bg-gradient-to-r from-purple-400 to-purple-600"
                           initial={{ width: 0 }}
                           animate={{ width: item.active ? '100%' : '0%' }}
                           transition={{ duration: 0.5 }}
@@ -311,7 +311,7 @@ const CustomAIAutomationsPage = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:bg-white/[0.07] transition-colors"
+                  className="bg-white/5 backdrop-blur-sm rounded-xl border border-white/10 p-6 hover:bg-white/[0.07] hover:border-purple-400/30 transition-all duration-300"
                 >
                   <pillar.icon className="h-8 w-8 text-white mb-3" />
                   <h3 className="text-sm font-semibold text-white mb-1">{pillar.label}</h3>
@@ -437,12 +437,12 @@ const CustomAIAutomationsPage = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: idx * 0.1 }}
-                className={`bg-white/5 backdrop-blur-sm rounded-2xl border p-8 hover:bg-white/[0.07] transition-all ${
-                  pkg.popular ? 'border-white/30 ring-1 ring-white/20' : 'border-white/10'
+                className={`bg-white/5 backdrop-blur-sm rounded-2xl border p-8 hover:bg-white/[0.07] hover:border-purple-400/30 transition-all duration-300 ${
+                  pkg.popular ? 'border-purple-400/30 ring-1 ring-purple-400/20' : 'border-white/10'
                 }`}
               >
                 {pkg.popular && (
-                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 rounded-full mb-4">
+                  <div className="inline-flex items-center gap-2 px-3 py-1 bg-gradient-to-r from-purple-600 to-purple-700 rounded-full mb-4 shadow-lg">
                     <span className="text-xs font-semibold text-white uppercase tracking-wider">Most Popular</span>
                   </div>
                 )}
@@ -461,7 +461,7 @@ const CustomAIAutomationsPage = () => {
 
                 <Link
                   to="/contact"
-                  className="inline-flex items-center justify-center w-full px-6 py-3 bg-white text-black font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+                  className="inline-flex items-center justify-center w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-300 shadow-lg"
                 >
                   {pkg.cta}
                   <ArrowRight className="ml-2 h-4 w-4" />
@@ -658,7 +658,7 @@ const CustomAIAutomationsPage = () => {
 
           <Link
             to="/contact"
-            className="inline-flex items-center justify-center px-8 py-4 bg-white text-black font-semibold rounded-lg hover:bg-slate-100 transition-colors"
+            className="inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-300 shadow-lg"
           >
             Book Discovery Session
             <Calendar className="ml-2 h-5 w-5" />
