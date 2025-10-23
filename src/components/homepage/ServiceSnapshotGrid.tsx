@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { Link } from 'react-router-dom';
-import { Globe, Code, BarChart3, Palette, Bot, ArrowRight, CheckCircle } from 'lucide-react';
+import { Globe, Code, BarChart3, Palette, Bot, ArrowRight, CheckCircle, Sparkles } from 'lucide-react';
 
 const ServiceSnapshotGrid = () => {
   const [ref, inView] = useInView({
@@ -23,7 +23,9 @@ const ServiceSnapshotGrid = () => {
         "Custom AI integrations"
       ],
       color: "from-cyan-400 via-purple-500 to-emerald-400",
-      isAI: true
+      glowColor: "rgba(34, 211, 238, 0.3)",
+      isAI: true,
+      insight: "Automate your lead handling 10× faster"
     },
     {
       icon: Globe,
@@ -34,7 +36,9 @@ const ServiceSnapshotGrid = () => {
         "Fully managed hosting",
         "SEO optimized"
       ],
-      color: "from-purple-600 to-purple-700"
+      color: "from-purple-600 to-purple-700",
+      glowColor: "rgba(168, 85, 247, 0.3)",
+      insight: "Convert visitors into paying customers"
     },
     {
       icon: Code,
@@ -45,7 +49,9 @@ const ServiceSnapshotGrid = () => {
         "Enterprise-grade hosting",
         "Scalable architecture"
       ],
-      color: "from-purple-600 to-purple-700"
+      color: "from-purple-600 to-purple-700",
+      glowColor: "rgba(168, 85, 247, 0.3)",
+      insight: "Build the exact solution your business needs"
     },
     {
       icon: BarChart3,
@@ -56,7 +62,9 @@ const ServiceSnapshotGrid = () => {
         "Predictive insights",
         "Custom data visualizations"
       ],
-      color: "from-purple-600 to-purple-700"
+      color: "from-purple-600 to-purple-700",
+      glowColor: "rgba(168, 85, 247, 0.3)",
+      insight: "Make data-driven decisions instantly"
     },
     {
       icon: Palette,
@@ -67,154 +75,441 @@ const ServiceSnapshotGrid = () => {
         "Logo & visual systems",
         "Marketing materials"
       ],
-      color: "from-purple-600 to-purple-700"
+      color: "from-purple-600 to-purple-700",
+      glowColor: "rgba(168, 85, 247, 0.3)",
+      insight: "Stand out with professional branding"
     }
   ];
 
   return (
     <section
       ref={ref}
-      className="relative py-20 overflow-hidden"
+      className="relative py-24 overflow-hidden"
       aria-labelledby="services-snapshot-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-black to-purple-950/10"></div>
+      {/* Seamless background continuation from hero */}
+      <div className="absolute inset-0 pointer-events-none">
+        {/* Animated gradient nebula clouds */}
+        <motion.div
+          className="absolute inset-0"
+          animate={{
+            background: [
+              'radial-gradient(1200px 800px at 20% 30%, rgba(108, 99, 255, 0.18) 0%, transparent 60%), radial-gradient(1000px 700px at 80% 70%, rgba(108, 99, 255, 0.12) 0%, transparent 60%)',
+              'radial-gradient(1200px 800px at 25% 35%, rgba(108, 99, 255, 0.20) 0%, transparent 60%), radial-gradient(1000px 700px at 75% 65%, rgba(108, 99, 255, 0.14) 0%, transparent 60%)',
+              'radial-gradient(1200px 800px at 20% 30%, rgba(108, 99, 255, 0.18) 0%, transparent 60%), radial-gradient(1000px 700px at 80% 70%, rgba(108, 99, 255, 0.12) 0%, transparent 60%)',
+            ]
+          }}
+          transition={{
+            duration: 20,
+            repeat: Infinity,
+            ease: "easeInOut"
+          }}
+        />
+
+        {/* Floating particles */}
+        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-purple-400 rounded-full blur-sm opacity-60 animate-pulse" />
+        <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-cyan-400 rounded-full blur-sm opacity-50 animate-pulse" style={{ animationDelay: '1s' }} />
+        <div className="absolute bottom-1/4 left-1/2 w-1 h-1 bg-purple-300 rounded-full blur-sm opacity-40 animate-pulse" style={{ animationDelay: '2s' }} />
+      </div>
+
+      {/* Floating AI energy orb */}
+      <motion.div
+        className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full pointer-events-none"
+        style={{
+          background: 'radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 70%)',
+          filter: 'blur(60px)',
+        }}
+        animate={{
+          y: [0, -30, 0],
+          x: [0, 20, 0],
+          scale: [1, 1.1, 1],
+          opacity: [0.3, 0.5, 0.3]
+        }}
+        transition={{
+          duration: 12,
+          repeat: Infinity,
+          ease: "easeInOut"
+        }}
+      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        {/* Enhanced headline with animated gradient */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-16"
         >
-          <p className="text-sm text-purple-400 font-semibold uppercase tracking-wide mb-3">
+          <motion.p
+            className="text-sm font-semibold uppercase tracking-wide mb-3"
+            style={{
+              background: 'linear-gradient(90deg, rgba(168, 85, 247, 0.8), rgba(179, 156, 255, 1), rgba(168, 85, 247, 0.8))',
+              backgroundSize: '200% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+            animate={{
+              backgroundPosition: ['0% center', '200% center', '0% center']
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              ease: "linear"
+            }}
+          >
             Our Services
-          </p>
-          <h2
+          </motion.p>
+
+          <motion.h2
             id="services-snapshot-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 uppercase tracking-wide"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 uppercase tracking-wide"
+            style={{
+              background: 'linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 50%, #FFFFFF 100%)',
+              backgroundSize: '200% auto',
+              WebkitBackgroundClip: 'text',
+              WebkitTextFillColor: 'transparent',
+              backgroundClip: 'text',
+            }}
+            animate={inView ? {
+              backgroundPosition: ['0% center', '200% center', '0% center']
+            } : {}}
+            transition={{
+              duration: 10,
+              repeat: Infinity,
+              ease: "linear"
+            }}
           >
             Explore What We Build
-          </h2>
-          <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
+          </motion.h2>
+
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 1, delay: 0.3 }}
+            className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed"
+          >
             Complete digital solutions designed for service businesses who want to compete and win online.
-          </p>
+          </motion.p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {/* Enhanced service grid with glass morphism */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
           {services.map((service, index) => (
             <motion.div
               key={service.title}
-              initial={{ opacity: 0, scale: 0.9 }}
-              animate={inView ? { opacity: 1, scale: 1 } : {}}
-              transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
+              initial={{ opacity: 0, y: 50, scale: 0.95 }}
+              animate={inView ? { opacity: 1, y: 0, scale: 1 } : {}}
+              transition={{
+                duration: 0.6,
+                delay: 0.2 + index * 0.1,
+                ease: [0.25, 0.46, 0.45, 0.94]
+              }}
               onHoverStart={() => setHoveredService(index)}
               onHoverEnd={() => setHoveredService(null)}
-              className="relative h-full"
+              className="relative h-full group"
             >
               <Link
                 to={service.path}
-                className={`block h-full bg-white/5 backdrop-blur-md border rounded-2xl p-6 transition-all duration-300 relative overflow-hidden group ${
-                  service.isAI
-                    ? 'border-cyan-400/30 hover:border-cyan-400/60 hover:bg-gradient-to-br hover:from-cyan-500/10 hover:via-purple-500/10 hover:to-emerald-500/10'
-                    : 'border-white/10 hover:border-purple-500/40 hover:bg-white/10'
-                }`}
+                className="block h-full relative"
               >
-                {service.isAI && (
+                {/* Glass morphism card */}
+                <motion.div
+                  className={`h-full backdrop-blur-xl border rounded-3xl p-8 transition-all duration-500 relative overflow-hidden ${
+                    service.isAI
+                      ? 'bg-gradient-to-br from-cyan-500/5 via-purple-500/5 to-emerald-500/5 border-cyan-400/20'
+                      : 'bg-white/3 border-white/10'
+                  }`}
+                  whileHover={{
+                    scale: 1.03,
+                    y: -8,
+                    transition: { duration: 0.3 }
+                  }}
+                  style={{
+                    boxShadow: hoveredService === index
+                      ? `0 20px 60px -15px ${service.glowColor}, 0 0 0 1px rgba(255, 255, 255, 0.1)`
+                      : '0 10px 30px -10px rgba(0, 0, 0, 0.3)'
+                  }}
+                >
+                  {/* Luminous border glow */}
                   <motion.div
-                    className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-purple-500/5 to-emerald-400/5"
-                    animate={{
-                      opacity: [0.3, 0.6, 0.3]
-                    }}
-                    transition={{
-                      duration: 3,
-                      repeat: Infinity,
-                      ease: "easeInOut"
+                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
+                    style={{
+                      background: `linear-gradient(135deg, ${service.glowColor}, transparent, ${service.glowColor})`,
+                      filter: 'blur(20px)',
+                      transform: 'scale(1.02)'
                     }}
                   />
-                )}
 
-                <div className="relative z-10">
-                  <motion.div
-                    className={`w-16 h-16 bg-gradient-to-br ${service.color} rounded-xl flex items-center justify-center mb-4 relative overflow-hidden`}
-                    whileHover={{ scale: 1.1, rotate: 5 }}
-                  >
-                    {service.isAI && (
+                  {/* AI service ambient animation */}
+                  {service.isAI && (
+                    <motion.div
+                      className="absolute inset-0 bg-gradient-to-br from-cyan-400/5 via-purple-500/5 to-emerald-400/5 rounded-3xl"
+                      animate={{
+                        opacity: [0.2, 0.5, 0.2]
+                      }}
+                      transition={{
+                        duration: 4,
+                        repeat: Infinity,
+                        ease: "easeInOut"
+                      }}
+                    />
+                  )}
+
+                  <div className="relative z-10">
+                    {/* Enhanced icon with pulsing glow */}
+                    <motion.div
+                      className="relative mb-6"
+                      animate={hoveredService === index ? {
+                        scale: [1, 1.05, 1],
+                      } : {}}
+                      transition={{
+                        duration: 2,
+                        repeat: hoveredService === index ? Infinity : 0,
+                        ease: "easeInOut"
+                      }}
+                    >
                       <motion.div
-                        className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
-                        animate={{
-                          x: ['-100%', '100%']
+                        className={`w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl flex items-center justify-center relative overflow-hidden`}
+                        whileHover={{ rotate: 5 }}
+                        style={{
+                          boxShadow: hoveredService === index
+                            ? `0 0 40px ${service.glowColor}, 0 0 60px ${service.glowColor}`
+                            : `0 0 20px ${service.glowColor}`
                         }}
-                        transition={{
-                          duration: 2,
-                          repeat: Infinity,
-                          ease: "easeInOut"
+                      >
+                        {/* Shimmer effect */}
+                        <motion.div
+                          className="absolute inset-0 bg-gradient-to-r from-transparent via-white/30 to-transparent"
+                          animate={{
+                            x: ['-100%', '200%']
+                          }}
+                          transition={{
+                            duration: 3,
+                            repeat: Infinity,
+                            ease: "easeInOut",
+                            repeatDelay: 1
+                          }}
+                        />
+                        <service.icon className="h-10 w-10 text-white relative z-10 drop-shadow-lg" />
+                      </motion.div>
+
+                      {/* Pulsing glow ring */}
+                      {hoveredService === index && (
+                        <motion.div
+                          className={`absolute inset-0 w-20 h-20 bg-gradient-to-br ${service.color} rounded-2xl`}
+                          initial={{ opacity: 0.5, scale: 1 }}
+                          animate={{
+                            opacity: [0.5, 0, 0.5],
+                            scale: [1, 1.3, 1]
+                          }}
+                          transition={{
+                            duration: 2,
+                            repeat: Infinity,
+                            ease: "easeOut"
+                          }}
+                          style={{ filter: 'blur(15px)' }}
+                        />
+                      )}
+                    </motion.div>
+
+                    {/* Title with luminous divider */}
+                    <div className="mb-5">
+                      <h3 className={`text-2xl font-bold mb-3 transition-all duration-300 ${
+                        service.isAI
+                          ? 'text-white group-hover:text-cyan-300'
+                          : 'text-white group-hover:text-purple-300'
+                      }`}>
+                        {service.title}
+                      </h3>
+
+                      {/* Luminous divider */}
+                      <motion.div
+                        className={`h-0.5 bg-gradient-to-r ${service.color} rounded-full`}
+                        initial={{ width: 0, opacity: 0 }}
+                        animate={hoveredService === index ? {
+                          width: '100%',
+                          opacity: 1
+                        } : {
+                          width: '0%',
+                          opacity: 0
+                        }}
+                        transition={{ duration: 0.4 }}
+                        style={{
+                          boxShadow: hoveredService === index ? `0 0 10px ${service.glowColor}` : 'none'
                         }}
                       />
-                    )}
-                    <service.icon className="h-8 w-8 text-white relative z-10" />
-                  </motion.div>
+                    </div>
 
-                  <h3 className={`text-xl font-bold mb-3 transition-colors ${
-                    service.isAI ? 'text-white' : 'text-white group-hover:text-purple-400'
-                  }`}>
-                    {service.title}
-                  </h3>
+                    {/* Animated bullet highlights */}
+                    <ul className="space-y-3 mb-6">
+                      {service.highlights.map((highlight, idx) => (
+                        <motion.li
+                          key={idx}
+                          initial={{ opacity: 0.7, x: 0 }}
+                          animate={hoveredService === index ? {
+                            opacity: 1,
+                            x: 4
+                          } : {
+                            opacity: 0.7,
+                            x: 0
+                          }}
+                          transition={{
+                            duration: 0.3,
+                            delay: idx * 0.05
+                          }}
+                          className="flex items-start space-x-3 text-sm"
+                        >
+                          <CheckCircle
+                            className={`h-5 w-5 mt-0.5 flex-shrink-0 transition-colors duration-300 ${
+                              service.isAI ? 'text-cyan-400' : 'text-purple-400'
+                            }`}
+                          />
+                          <span className="text-slate-300 leading-relaxed">
+                            {highlight}
+                          </span>
+                        </motion.li>
+                      ))}
+                    </ul>
 
-                  <ul className="space-y-2 mb-4">
-                    {service.highlights.map((highlight, idx) => (
-                      <motion.li
-                        key={idx}
-                        initial={{ opacity: 0, x: -10 }}
-                        animate={hoveredService === index ? { opacity: 1, x: 0 } : { opacity: 0.7, x: 0 }}
-                        transition={{ duration: 0.3, delay: idx * 0.1 }}
-                        className="flex items-start space-x-2 text-sm text-slate-300"
-                      >
-                        <CheckCircle className={`h-4 w-4 mt-0.5 flex-shrink-0 ${
-                          service.isAI ? 'text-cyan-400' : 'text-purple-400'
-                        }`} />
-                        <span>{highlight}</span>
-                      </motion.li>
-                    ))}
-                  </ul>
+                    {/* Hover insight line */}
+                    <AnimatePresence>
+                      {hoveredService === index && (
+                        <motion.div
+                          initial={{ opacity: 0, y: 10 }}
+                          animate={{ opacity: 1, y: 0 }}
+                          exit={{ opacity: 0, y: 10 }}
+                          transition={{ duration: 0.3 }}
+                          className="mb-4 pt-4 border-t border-white/10"
+                        >
+                          <div className="flex items-center space-x-2">
+                            <Sparkles className={`h-4 w-4 ${
+                              service.isAI ? 'text-cyan-400' : 'text-purple-400'
+                            }`} />
+                            <p className={`text-sm italic font-medium ${
+                              service.isAI ? 'text-cyan-300' : 'text-purple-300'
+                            }`}>
+                              {service.insight}
+                            </p>
+                          </div>
+                        </motion.div>
+                      )}
+                    </AnimatePresence>
 
-                  <AnimatePresence>
-                    {hoveredService === index && (
+                    {/* Learn More CTA */}
+                    <motion.div
+                      className={`flex items-center space-x-2 font-semibold text-sm transition-all duration-300 ${
+                        service.isAI ? 'text-cyan-400' : 'text-purple-400'
+                      }`}
+                      animate={hoveredService === index ? { x: 4 } : { x: 0 }}
+                    >
+                      <span>Learn More</span>
                       <motion.div
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: 10 }}
-                        transition={{ duration: 0.2 }}
-                        className={`flex items-center space-x-2 font-semibold text-sm ${
-                          service.isAI ? 'text-cyan-400' : 'text-purple-400'
-                        }`}
+                        animate={hoveredService === index ? {
+                          x: [0, 4, 0]
+                        } : {}}
+                        transition={{
+                          duration: 1,
+                          repeat: hoveredService === index ? Infinity : 0,
+                          ease: "easeInOut"
+                        }}
                       >
-                        <span>Learn More</span>
-                        <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                        <ArrowRight className="h-4 w-4" />
                       </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
+                    </motion.div>
+                  </div>
 
-                <div className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r opacity-0 group-hover:opacity-100 transition-opacity duration-300 ${service.color}`}
-                />
+                  {/* Bottom gradient bar */}
+                  <motion.div
+                    className={`absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r ${service.color} rounded-b-3xl`}
+                    initial={{ opacity: 0 }}
+                    animate={hoveredService === index ? { opacity: 1 } : { opacity: 0 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      boxShadow: hoveredService === index ? `0 0 20px ${service.glowColor}` : 'none'
+                    }}
+                  />
+                </motion.div>
               </Link>
             </motion.div>
           ))}
         </div>
 
+        {/* Enhanced CTA block */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="text-center mt-12"
+          transition={{ duration: 0.8, delay: 1 }}
+          className="text-center mt-16"
         >
-          <Link
-            to="/services"
-            className="inline-flex items-center px-10 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold text-lg rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 uppercase tracking-wide"
+          <motion.div
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.98 }}
           >
-            <span>View All Services</span>
-            <ArrowRight className="ml-2 h-5 w-5" />
-          </Link>
+            <Link
+              to="/services"
+              className="inline-flex items-center relative group"
+            >
+              {/* Button glow aura */}
+              <motion.div
+                className="absolute inset-0 bg-gradient-to-r from-purple-600 to-purple-700 rounded-2xl blur-xl opacity-0 group-hover:opacity-60 transition-opacity duration-500"
+                style={{ transform: 'scale(1.1)' }}
+              />
+
+              {/* Button */}
+              <motion.div
+                className="relative px-12 py-5 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-bold text-lg rounded-2xl uppercase tracking-wide overflow-hidden"
+                animate={{
+                  boxShadow: [
+                    '0 10px 30px rgba(108, 62, 240, 0.3)',
+                    '0 15px 40px rgba(108, 62, 240, 0.5)',
+                    '0 10px 30px rgba(108, 62, 240, 0.3)',
+                  ]
+                }}
+                transition={{
+                  duration: 3,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+              >
+                {/* Gradient slide animation */}
+                <motion.div
+                  className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent"
+                  initial={{ x: '-100%' }}
+                  whileHover={{
+                    x: '200%',
+                    transition: { duration: 1, ease: "easeInOut" }
+                  }}
+                />
+
+                <span className="relative z-10 flex items-center space-x-3">
+                  <span>View All Services</span>
+                  <motion.div
+                    animate={{
+                      x: [0, 4, 0]
+                    }}
+                    transition={{
+                      duration: 1.5,
+                      repeat: Infinity,
+                      ease: "easeInOut"
+                    }}
+                  >
+                    <ArrowRight className="h-6 w-6" />
+                  </motion.div>
+                </span>
+              </motion.div>
+            </Link>
+          </motion.div>
+
+          {/* Supporting text */}
+          <motion.p
+            initial={{ opacity: 0 }}
+            animate={inView ? { opacity: 1 } : {}}
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="mt-6 text-sm text-slate-400"
+          >
+            Discover how SoleScope transforms digital presence for service-based businesses.
+          </motion.p>
         </motion.div>
       </div>
     </section>
