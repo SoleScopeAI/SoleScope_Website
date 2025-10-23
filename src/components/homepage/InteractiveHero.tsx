@@ -190,13 +190,13 @@ const InteractiveHero = () => {
           </div>
 
           <motion.div
-            className="mb-3"
+            className="mt-2"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
-              Boutique AI Web Studio • UK
+              Boutique AI Web & Automation Studio • UK
             </span>
           </motion.div>
 
@@ -204,16 +204,16 @@ const InteractiveHero = () => {
             id="hero-heading"
             className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-white"
           >
-            Human Craft. Advanced AI. Websites That Work.
+            Where Human Design Meets Intelligent Automation.
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-4 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
+            className="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
           >
-            We partner with UK service businesses to design thoughtful, conversion-ready sites and automations—so enquiries, bookings and reviews run smoothly without the chaos.
+            We combine handcrafted web design with advanced automation — connecting bookings, emails, reviews, and workflows into one seamless system. Professional. Personal. Powered by AI.
           </motion.p>
 
           <motion.div
