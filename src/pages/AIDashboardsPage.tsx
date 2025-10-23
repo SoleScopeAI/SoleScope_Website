@@ -75,35 +75,35 @@ const AIDashboardsPage = () => {
     {
       id: 'multi-source-data',
       icon: Database,
-      title: "Multi-Source Data",
-      description: "Combine web, social, and campaign data seamlessly"
+      title: "Connected Systems",
+      description: "Bring all your business data together in one clear view"
     },
     {
       id: 'ai-powered-analytics',
       icon: Zap,
-      title: "AI-Powered Analytics",
-      description: "Smart insights that highlight what matters most"
+      title: "Intelligent Automation",
+      description: "AI-assisted analytics that highlight trends and save you hours"
     },
     {
       id: 'at-glance-insights',
       icon: Eye,
-      title: "At-a-Glance Insights",
-      description: "See all your key metrics in one beautiful dashboard"
+      title: "Crystal-Clear Visuals",
+      description: "No confusing reports — just clear, real-time tracking"
     },
     {
       id: 'custom-visualizations',
       icon: BarChart3,
-      title: "Custom Visualizations",
-      description: "Tailored charts and graphs for your business needs"
+      title: "Built Around Your Business",
+      description: "Every dashboard designed from scratch for your operations"
     }
   ];
 
   const pricingPlans = [
     {
       id: 'basic-package',
-      name: "Basic Package",
+      name: "Starter Package",
       price: "£99",
-      description: "Essential business insights",
+      description: "Perfect for sole traders and small businesses ready to gain visibility over core data",
       features: [
         "1-2 data sources integration",
         "Basic visual dashboard",
@@ -117,9 +117,9 @@ const AIDashboardsPage = () => {
     },
     {
       id: 'standard-package',
-      name: "Standard Package",
+      name: "Professional Package",
       price: "£199",
-      description: "Comprehensive business intelligence",
+      description: "Built for growing SMEs that need connected insights from multiple systems",
       features: [
         "Up to 5 data sources",
         "Advanced visualizations",
@@ -133,9 +133,9 @@ const AIDashboardsPage = () => {
     },
     {
       id: 'premium-package',
-      name: "Premium Package",
+      name: "Advanced Package",
       price: "£299+",
-      description: "Fully custom business intelligence",
+      description: "For established businesses that want AI-driven forecasting and deep analytics",
       features: [
         "Unlimited data sources",
         "Fully custom dashboards",
@@ -176,18 +176,18 @@ const AIDashboardsPage = () => {
   const whyChooseUs = [
     {
       icon: Target,
-      title: "Service-Business Specialist",
-      description: "Built specifically for sole traders and small service businesses who need practical digital solutions."
+      title: "Your Business Command Centre",
+      description: "No confusing reports or cluttered spreadsheets — just clear visuals, real-time tracking, and smart insights built around how your business actually works."
     },
     {
       icon: Zap,
-      title: "AI-Powered Efficiency",
-      description: "Cutting-edge AI technology combined with proven design principles for faster, better results."
+      title: "Intelligent & Automated",
+      description: "Our dashboards use intelligent automation and AI-assisted analytics to highlight trends, predict patterns, and save you hours of manual reporting each week."
     },
     {
       icon: Shield,
-      title: "Complete Support",
-      description: "From initial consultation to ongoing maintenance, we handle all the technical complexity for you."
+      title: "Fully Supported & Secure",
+      description: "Every dashboard is securely hosted, continuously monitored, and fully supported by the same team that built it — giving you enterprise-grade performance scaled for your business."
     }
   ];
 
@@ -199,32 +199,32 @@ const AIDashboardsPage = () => {
     },
     {
       question: "How is this different from Google Analytics?",
-      answer: "While Google Analytics focuses on website data, our dashboards combine multiple data sources into one view. You can see website traffic alongside social media performance, email campaigns, and business metrics all in one place with AI-powered insights.",
+      answer: "While Google Analytics focuses on website data, our dashboards combine multiple data sources into one view. You can see website traffic alongside social media performance, email campaigns, sales, and business metrics all in one place — with intelligent automation that highlights what matters most.",
       tags: ['analytics', 'comparison', 'features']
     },
     {
       question: "Do I need technical knowledge to use the dashboard?",
-      answer: "Not at all! Our dashboards are designed for business owners, not data analysts. Everything is presented in clear, easy-to-understand visuals with plain English explanations of what the data means for your business.",
+      answer: "Not at all! Our dashboards are designed for business owners, not data analysts. Everything is presented in clear, easy-to-understand visuals with straightforward explanations of what the data means for your business. Think of it as your business's command centre — elegant, accurate, and built just for you.",
       tags: ['user-friendly', 'training', 'ease of use']
     },
     {
       question: "How long does it take to set up?",
-      answer: "Basic dashboards can be set up within 1-2 weeks. Standard dashboards typically take 2-3 weeks, and Premium custom dashboards may take 3-4 weeks depending on complexity and the number of integrations required.",
+      answer: "Starter dashboards can be set up within 1-2 weeks. Professional dashboards typically take 2-3 weeks, and Advanced custom dashboards may take 3-4 weeks depending on complexity and the number of integrations required. We work collaboratively with you throughout the entire process.",
       tags: ['timeline', 'setup', 'delivery']
     },
     {
       question: "Can you create custom metrics for my specific business?",
-      answer: "Absolutely! We specialize in creating custom KPIs and metrics that matter to your specific business model. Whether it's tracking customer lifetime value, booking rates, or service-specific metrics, we can build it into your dashboard.",
+      answer: "Absolutely! We specialise in creating custom KPIs and metrics that matter to your specific business model. Whether it's tracking customer lifetime value, booking rates, sales performance, or service-specific metrics — we design every dashboard from scratch, tailored to your operations.",
       tags: ['custom metrics', 'kpis', 'business specific']
     },
     {
       question: "What happens if my data sources change?",
-      answer: "We provide ongoing support for all data source changes and updates. If you switch platforms or add new tools, we can update your dashboard integrations to ensure continuous data flow and accurate reporting.",
+      answer: "We provide ongoing support for all data source changes and updates. If you switch platforms or add new tools, we can update your dashboard integrations to ensure continuous data flow and accurate reporting. Everything is handled by our in-house specialists.",
       tags: ['maintenance', 'updates', 'flexibility']
     },
     {
       question: "Can I access my dashboard on mobile devices?",
-      answer: "Yes! All our dashboards are fully responsive and optimized for mobile devices. You can check your business metrics on the go, receive alerts, and access reports from anywhere with an internet connection.",
+      answer: "Yes! All our dashboards are fully responsive and optimised for mobile devices. You can check your business metrics on the go, receive alerts, and access reports from anywhere with an internet connection — whether you're monitoring sales, leads, customer engagement, or performance.",
       tags: ['mobile', 'responsive', 'accessibility']
     },
     {
@@ -248,7 +248,7 @@ const AIDashboardsPage = () => {
           transition={{ duration: 0.8 }}
         >
           <h1>AI Dashboards & Analytics</h1>
-          <p>Transform complex business data into clear, actionable insights with custom AI-powered dashboards and automated reporting.</p>
+          <p>AI Dashboards — Designed to simplify your business decisions. Custom-built dashboards for sole traders, small businesses, and SMEs. We connect your systems, visualise your data, and deliver insights that help you grow faster.</p>
         </motion.div>
       </header>
 
@@ -263,7 +263,7 @@ const AIDashboardsPage = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
-              Why Choose Our AI Dashboard Services?
+              Why Choose SoleScope for AI Dashboards?
             </h2>
             
             {/* Desktop: Grid Layout */}
@@ -558,10 +558,10 @@ const AIDashboardsPage = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
-                { step: "1", title: "Discover", desc: "Understand your business goals and data requirements" },
-                { step: "2", title: "Design", desc: "Create custom dashboard layouts and visualizations" },
-                { step: "3", title: "Develop", desc: "Build and integrate your AI-powered dashboard" },
-                { step: "4", title: "Deploy", desc: "Launch and provide ongoing support and training" }
+                { step: "1", title: "Discover", desc: "Identify the metrics that matter most to your business" },
+                { step: "2", title: "Design", desc: "Craft custom visuals tailored to your operations and goals" },
+                { step: "3", title: "Develop", desc: "Connect your systems using advanced AI technology" },
+                { step: "4", title: "Deploy", desc: "Launch with full training and ongoing technical support" }
               ].map((process) => (
                 <div key={process.step} className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -643,10 +643,10 @@ const AIDashboardsPage = () => {
           className="services-refined-card text-center"
         >
           <h2 className="text-3xl font-bold text-white mb-6 uppercase tracking-wide">
-            Ready To See Your Business Data Clearly?
+            Ready To See Your Business More Clearly?
           </h2>
           <p className="text-white mb-8 text-lg leading-relaxed max-w-2xl mx-auto opacity-90">
-            Let's create a custom dashboard that gives you the insights you need to grow your business smarter.
+            Let's build an intelligent dashboard that gives you clarity, confidence, and control. Serving sole traders, small businesses, and SMEs across the UK — combining human design with advanced AI insight.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
             <Link
@@ -654,7 +654,7 @@ const AIDashboardsPage = () => {
               className="services-btn-primary"
             >
               <Calendar className="h-5 w-5" />
-              Request Demo
+              Request A Demo
             </Link>
             <a
               href="mailto:contact@solescope.co.uk"
