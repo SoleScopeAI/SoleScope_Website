@@ -1,5 +1,4 @@
 import React from 'react';
-import PremiumNavbar from '../components/PremiumNavbar';
 import PremiumFooter from '../components/PremiumFooter';
 import EnhancedHero from '../components/automations/EnhancedHero';
 import OverviewValue from '../components/automations/OverviewValue';
@@ -15,8 +14,6 @@ import '../styles/services-galaxy.css';
 const CustomAIAutomationsPage = () => {
   return (
     <main className="services-surface pt-24 pb-20">
-      <PremiumNavbar />
-
       <EnhancedHero />
 
       <section className="services-cards-surface">

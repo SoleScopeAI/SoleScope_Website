@@ -83,7 +83,7 @@ const WorkflowExamples = () => {
         </p>
       </div>
 
-      <div className="space-y-6">
+      <div className="space-y-12">
         {workflows.map((workflow, idx) => (
           <motion.div
             key={idx}
@@ -91,50 +91,50 @@ const WorkflowExamples = () => {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: idx * 0.1, duration: 0.5 }}
-            className="services-refined-card"
+            className="space-y-4"
           >
-              <div className="grid md:grid-cols-3 gap-8">
-                <div className="md:col-span-2">
-                  <div className="flex items-start gap-4 mb-5">
-                    <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/30">
-                      <workflow.icon className="h-6 w-6 text-purple-400" />
-                    </div>
-                    <div>
-                      <h3 className="text-lg font-bold text-white mb-2">{workflow.title}</h3>
-                      <p className="text-sm text-slate-300 leading-relaxed line-clamp-2">{workflow.description}</p>
-                    </div>
-                  </div>
-
-                  <div className="grid grid-cols-3 gap-2">
-                    {workflow.features.map((feature, featureIdx) => (
-                      <div key={featureIdx} className="flex items-center gap-2">
-                        <div className="w-1.5 h-1.5 rounded-full bg-purple-400"></div>
-                        <span className="text-sm text-slate-300">{feature}</span>
-                      </div>
-                    ))}
-                  </div>
+            <div className="services-refined-card">
+              <div className="flex items-start gap-4 mb-5">
+                <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/30">
+                  <workflow.icon className="h-6 w-6 text-purple-400" />
                 </div>
-
-                <div className="bg-white/[0.03] rounded-xl border border-white/10 p-4">
-                  <div className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Workflow</div>
-                  <div className="space-y-2">
-                    {workflow.flow.map((step, stepIdx) => (
-                      <div key={stepIdx} className="flex items-center gap-2">
-                        <div className="flex-shrink-0 w-6 h-6 bg-purple-500/20 rounded flex items-center justify-center border border-purple-500/30">
-                          <span className="text-xs font-semibold text-purple-300">{stepIdx + 1}</span>
-                        </div>
-                        <span className="text-sm text-white">{step}</span>
-                        {stepIdx < workflow.flow.length - 1 && (
-                          <ArrowRight className="h-3 w-3 text-purple-400 ml-auto" />
-                        )}
-                      </div>
-                    ))}
-                  </div>
+                <div className="flex-1">
+                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">{workflow.title}</h3>
+                  <p className="text-base text-slate-300 leading-relaxed">{workflow.description}</p>
                 </div>
               </div>
-            </motion.div>
-          ))}
-        </div>
+
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-3">
+                {workflow.features.map((feature, featureIdx) => (
+                  <div key={featureIdx} className="flex items-center gap-2">
+                    <div className="w-2 h-2 rounded-full bg-purple-400"></div>
+                    <span className="text-sm text-slate-300">{feature}</span>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            <div className="services-refined-card">
+              <div className="mb-4">
+                <h4 className="text-sm font-bold text-white uppercase tracking-wider">Workflow</h4>
+              </div>
+              <div className="space-y-3">
+                {workflow.flow.map((step, stepIdx) => (
+                  <div key={stepIdx} className="flex items-center gap-3">
+                    <div className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-lg flex items-center justify-center border border-purple-500/30">
+                      <span className="text-sm font-bold text-purple-300">{stepIdx + 1}</span>
+                    </div>
+                    <span className="text-base text-white flex-1">{step}</span>
+                    {stepIdx < workflow.flow.length - 1 && (
+                      <ArrowRight className="h-4 w-4 text-purple-400 flex-shrink-0" />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          </motion.div>
+        ))}
+      </div>
     </section>
   );
 };
