@@ -1,7 +1,8 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, ArrowRight, Filter, CheckCircle, X } from 'lucide-react';
+import { ExternalLink, ArrowRight, Filter, CheckCircle } from 'lucide-react';
+import BulletproofModal from '../shared/BulletproofModal';
 
 const PortfolioShowcase = () => {
   const [ref, inView] = useInView({
@@ -239,83 +240,69 @@ const PortfolioShowcase = () => {
 
         <AnimatePresence>
           {selectedProject && (
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
-              onClick={() => setSelectedProject(null)}
+            <BulletproofModal
+              isOpen={true}
+              onClose={() => setSelectedProject(null)}
+              title={projects.find(p => p.id === selectedProject)?.title || ''}
+              subtitle={projects.find(p => p.id === selectedProject)?.industry || ''}
+              maxWidth="4xl"
+              ariaLabel={`${projects.find(p => p.id === selectedProject)?.title} case study details`}
             >
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-gradient-to-br from-purple-950/90 to-black/90 border border-white/20 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col"
-                onClick={(e) => e.stopPropagation()}
-              >
-                <div className="sticky top-0 bg-gradient-to-br from-purple-950/95 to-black/95 z-20 px-8 pt-6 pb-4 border-b border-white/10 flex justify-end">
-                  <button
-                    onClick={() => setSelectedProject(null)}
-                    className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-red-600/30 border border-white/10 hover:border-red-500/50 transition-all"
-                    aria-label="Close modal"
-                  >
-                    <X className="h-5 w-5 text-white" />
-                  </button>
-                </div>
-                <div className="overflow-y-auto flex-1 px-8 pb-8">
-                {projects
-                  .filter(p => p.id === selectedProject)
-                  .map(project => (
-                    <div key={project.id}>
-                      <div className="relative h-64 rounded-xl overflow-hidden mb-6">
-                        <img
-                          src={project.image}
-                          alt={project.title}
-                          className="w-full h-full object-cover"
-                        />
-                      </div>
-
-                      <h3 className="text-3xl font-bold text-white mb-2">{project.title}</h3>
-                      <p className="text-purple-400 mb-4">{project.industry}</p>
-                      <p className="text-slate-300 mb-6 leading-relaxed">{project.description}</p>
-
-                      <div className="mb-6">
-                        <h4 className="text-lg font-semibold text-white mb-4">Key Results</h4>
-                        <div className="space-y-3">
-                          {project.results.map((result, idx) => (
-                            <div key={idx} className="flex items-start space-x-3">
-                              <CheckCircle className="h-5 w-5 text-purple-400 mt-0.5 flex-shrink-0" />
-                              <span className="text-slate-300">{result}</span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
-
-                      <div className="mb-6">
-                        <h4 className="text-lg font-semibold text-white mb-4">Technology Stack</h4>
-                        <div className="flex flex-wrap gap-2">
-                          {project.tech.map((tech) => (
-                            <span
-                              key={tech}
-                              className="px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-lg text-sm text-white font-medium"
-                            >
-                              {tech}
-                            </span>
-                          ))}
-                        </div>
-                      </div>
-
-                      <button
-                        onClick={() => setSelectedProject(null)}
-                        className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors mt-4"
-                      >
-                        Close Case Study
-                      </button>
+              {projects
+                .filter(p => p.id === selectedProject)
+                .map(project => (
+                  <div key={project.id}>
+                    <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
+                      <p className="text-sm text-yellow-200">
+                        <span className="font-semibold">Demo Case Study:</span> This example uses modelled data for demonstration purposes.
+                      </p>
                     </div>
-                  ))}
-                </div>
-              </motion.div>
-            </motion.div>
+
+                    <div className="relative h-64 rounded-xl overflow-hidden mb-6 bg-white/5 border border-white/10">
+                      <img
+                        src={project.image}
+                        alt={project.title}
+                        className="w-full h-full object-cover"
+                      />
+                    </div>
+
+                    <p className="text-purple-400 mb-4 font-semibold">{project.category.charAt(0).toUpperCase() + project.category.slice(1)} Project</p>
+                    <p className="text-slate-300 mb-6 leading-relaxed">{project.description}</p>
+
+                    <div className="mb-6">
+                      <h4 className="text-lg font-semibold text-white mb-4 uppercase tracking-wide">Key Results</h4>
+                      <div className="space-y-3">
+                        {project.results.map((result, idx) => (
+                          <div key={idx} className="flex items-start space-x-3 p-3 bg-white/5 border border-white/10 rounded-xl">
+                            <CheckCircle className="h-5 w-5 text-purple-400 mt-0.5 flex-shrink-0" />
+                            <span className="text-slate-300">{result}</span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="mb-8">
+                      <h4 className="text-lg font-semibold text-white mb-4 uppercase tracking-wide">Technology Stack</h4>
+                      <div className="flex flex-wrap gap-2">
+                        {project.tech.map((tech) => (
+                          <span
+                            key={tech}
+                            className="px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-lg text-sm text-white font-medium"
+                          >
+                            {tech}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    <div className="pt-6 border-t border-white/10">
+                      <p className="text-xs text-center text-slate-400">
+                        Figures shown are modelled examples. Actual performance varies by business and implementation.
+                      </p>
+                    </div>
+                  </div>
+                ))}
+            </BulletproofModal>
           )}
         </AnimatePresence>
 

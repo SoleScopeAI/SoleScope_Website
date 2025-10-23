@@ -4,7 +4,6 @@ import { useInView } from 'react-intersection-observer';
 import {
   ChevronLeft,
   ChevronRight,
-  X,
   TrendingUp,
   Users,
   Target,
@@ -20,6 +19,7 @@ import {
   MapPin,
   ArrowUpRight
 } from 'lucide-react';
+import BulletproofModal from '../shared/BulletproofModal';
 import { getLogoForIndustry } from '../logos/ClientLogos';
 import {
   BookingDashboardMockup,
@@ -763,168 +763,151 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
   const MockupComponent = mockupMap[project.industry] || AnalyticsDashboardMockup;
 
   return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/80 backdrop-blur-sm"
-      onClick={onClose}
+    <BulletproofModal
+      isOpen={true}
+      onClose={onClose}
+      title={project.business_name}
+      subtitle={`${project.location} • ${project.industry}`}
+      ariaLabel={`${project.business_name} case study details`}
     >
-      <motion.div
-        initial={{ scale: 0.9, opacity: 0, y: 20 }}
-        animate={{ scale: 1, opacity: 1, y: 0 }}
-        exit={{ scale: 0.9, opacity: 0, y: 20 }}
-        className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl border border-white/20 shadow-2xl flex flex-col"
-        onClick={(e) => e.stopPropagation()}
-      >
-        <div className="sticky top-0 bg-gradient-to-br from-slate-900 to-slate-800 z-20 px-8 pt-6 pb-4 border-b border-white/10 flex justify-end">
-          <button
-            onClick={onClose}
-            className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-red-600/30 border border-white/10 hover:border-red-500/50 transition-all"
-            aria-label="Close modal"
-          >
-            <X className="h-5 w-5 text-white" />
-          </button>
+      <div>
+
+        <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
+          <p className="text-sm text-yellow-200">
+            <span className="font-semibold">Demo Case Study:</span> This case study uses modelled data for demonstration purposes. Results represent typical expected outcomes.
+          </p>
         </div>
-        <div className="overflow-y-auto flex-1">
 
-        <div className="px-8 md:px-12 pb-8 md:pb-12">
-          {/* Demo disclaimer banner */}
-          <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
-            <p className="text-sm text-yellow-200">
-              <span className="font-semibold">Demo Case Study:</span> This case study uses modelled data for demonstration purposes. Results represent typical expected outcomes.
-            </p>
+        <div className="flex items-start gap-6 mb-8">
+          <div
+            className="w-20 h-20 rounded-xl p-3"
+            style={{
+              background: 'rgba(255, 255, 255, 0.10)',
+              border: '1px solid rgba(255, 255, 255, 0.15)'
+            }}
+          >
+            <LogoComponent className="w-full h-full" />
           </div>
-
-          <div className="flex items-start gap-6 mb-8">
-            <div
-              className="w-20 h-20 rounded-xl p-3"
-              style={{
-                background: 'rgba(255, 255, 255, 0.10)',
-                border: '1px solid rgba(255, 255, 255, 0.15)'
-              }}
-            >
-              <LogoComponent className="w-full h-full" />
+          <div className="flex-1">
+            <div className="inline-block px-3 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full mb-2">
+              <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
+                Demo Case Study
+              </span>
             </div>
-            <div className="flex-1">
-              <div className="inline-block px-3 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full mb-2">
-                <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
-                  Demo Case Study
-                </span>
+            <p className="text-xl text-purple-300 mb-3">{project.project_title}</p>
+            <div className="flex flex-wrap gap-3">
+              <div className="flex items-center space-x-2 text-sm text-slate-300">
+                <Calendar className="h-4 w-4" />
+                <span>Completed {new Date(project.completion_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
               </div>
-              <h2 className="text-4xl font-bold text-white mb-2">{project.business_name}</h2>
-              <p className="text-xl text-purple-300 mb-3">{project.project_title}</p>
-              <div className="flex flex-wrap gap-3">
-                <div className="flex items-center space-x-2 text-sm text-slate-300">
-                  <MapPin className="h-4 w-4" />
-                  <span>{project.location}</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-300">
-                  <Calendar className="h-4 w-4" />
-                  <span>Completed {new Date(project.completion_date).toLocaleDateString('en-US', { month: 'short', year: 'numeric' })}</span>
-                </div>
-                <div className="flex items-center space-x-2 text-sm text-slate-300">
-                  <Clock className="h-4 w-4" />
-                  <span>{project.project_duration_weeks} weeks</span>
-                </div>
+              <div className="flex items-center space-x-2 text-sm text-slate-300">
+                <Clock className="h-4 w-4" />
+                <span>{project.project_duration_weeks} weeks</span>
               </div>
             </div>
           </div>
+        </div>
 
-          <div className={`p-8 bg-gradient-to-br ${colors.from} ${colors.to} border border-white/10 rounded-2xl mb-8`}>
-            <div className="text-center">
-              <p className="text-sm text-slate-300 mb-2 uppercase tracking-wide font-semibold">Expected Result:</p>
-              <div className="text-5xl font-bold text-white mb-2">{project.primary_result}</div>
-              <div className="text-xl text-slate-200 mb-4">{project.tagline}</div>
-              {project.website_url && (
-                <a
-                  href={project.website_url}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 rounded-xl text-white hover:bg-white/20 transition-all"
-                  style={{
-                    background: 'rgba(255, 255, 255, 0.10)',
-                    border: '1px solid rgba(255, 255, 255, 0.15)'
-                  }}
-                >
-                  <span>Visit Website</span>
-                  <ExternalLink className="ml-2 h-4 w-4" />
-                </a>
-              )}
-            </div>
+        <div className={`p-8 bg-gradient-to-br ${colors.from} ${colors.to} border border-white/10 rounded-2xl mb-8`}>
+          <div className="text-center">
+            <p className="text-sm text-slate-300 mb-2 uppercase tracking-wide font-semibold">Expected Result:</p>
+            <div className="text-4xl md:text-5xl font-bold text-white mb-2">{project.primary_result}</div>
+            <div className="text-lg md:text-xl text-slate-200 mb-4">{project.tagline}</div>
+            {project.website_url && (
+              <a
+                href={project.website_url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center px-6 py-3 rounded-xl text-white hover:bg-white/20 transition-all focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900"
+                style={{
+                  background: 'rgba(255, 255, 255, 0.10)',
+                  border: '1px solid rgba(255, 255, 255, 0.15)'
+                }}
+              >
+                <span>Visit Website</span>
+                <ExternalLink className="ml-2 h-4 w-4" />
+              </a>
+            )}
           </div>
+        </div>
 
-          <div className="grid md:grid-cols-2 gap-8 mb-8">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">The Challenge</h3>
-              <p className="text-slate-300 leading-relaxed">{project.challenge}</p>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Our Solution</h3>
-              <p className="text-slate-300 leading-relaxed">{project.solution}</p>
-            </div>
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">The Challenge</h3>
+            <p className="text-slate-300 leading-relaxed">{project.challenge}</p>
           </div>
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">Our Solution</h3>
+            <p className="text-slate-300 leading-relaxed">{project.solution}</p>
+          </div>
+        </div>
 
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-white mb-4">Live Dashboard Preview</h3>
+        <div className="mb-8">
+          <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">Live Dashboard Preview</h3>
+          <div className="bg-white/5 border border-white/10 rounded-2xl p-4">
             <MockupComponent className="w-full h-96" />
           </div>
+        </div>
 
-          <div className="mb-8">
-            <h3 className="text-xl font-bold text-white mb-4">Key Results & Metrics</h3>
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
-              {project.metrics?.map((metric, idx) => {
-                const Icon = iconMap[metric.metric_icon] || Target;
-                return (
-                  <div
-                    key={idx}
-                    className={`rounded-xl p-4 ${metric.is_highlighted ? 'ring-2 ring-purple-500/50' : ''}`}
-                    style={{
-                      background: 'rgba(255, 255, 255, 0.05)',
-                      border: '1px solid rgba(255, 255, 255, 0.08)'
-                    }}
-                  >
-                    <Icon className={`h-6 w-6 ${colors.text} mb-2`} />
-                    <div className="text-2xl font-bold text-white mb-1">{metric.display_value}</div>
-                    <div className="text-sm text-slate-400">{metric.metric_label}</div>
-                  </div>
-                );
-              })}
+        <div className="mb-8">
+          <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">Key Results & Metrics</h3>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {project.metrics?.map((metric, idx) => {
+              const Icon = iconMap[metric.metric_icon] || Target;
+              return (
+                <div
+                  key={idx}
+                  className={`rounded-xl p-4 ${metric.is_highlighted ? 'ring-2 ring-purple-500/50' : ''}`}
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.05)',
+                    border: '1px solid rgba(255, 255, 255, 0.08)'
+                  }}
+                >
+                  <Icon className={`h-6 w-6 ${colors.text} mb-2`} />
+                  <div className="text-xl md:text-2xl font-bold text-white mb-1">{metric.display_value}</div>
+                  <div className="text-xs md:text-sm text-slate-400">{metric.metric_label}</div>
+                </div>
+              );
+            })}
+          </div>
+        </div>
+
+        <div className="grid md:grid-cols-2 gap-8 mb-8">
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">Services Provided</h3>
+            <div className="flex flex-wrap gap-2">
+              {project.services_provided.map((service, idx) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-lg text-sm text-purple-200"
+                >
+                  {service}
+                </span>
+              ))}
             </div>
           </div>
-
-          <div className="grid md:grid-cols-2 gap-8">
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Services Provided</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.services_provided.map((service, idx) => (
-                  <span
-                    key={idx}
-                    className="px-4 py-2 bg-purple-600/20 border border-purple-500/30 rounded-lg text-sm text-purple-200"
-                  >
-                    {service}
-                  </span>
-                ))}
-              </div>
-            </div>
-            <div>
-              <h3 className="text-xl font-bold text-white mb-4">Technology Stack</h3>
-              <div className="flex flex-wrap gap-2">
-                {project.tech_stack.map((tech, idx) => (
-                  <span
-                    key={idx}
-                    className="px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-sm text-blue-200"
-                  >
-                    {tech}
-                  </span>
-                ))}
-              </div>
+          <div>
+            <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">Technology Stack</h3>
+            <div className="flex flex-wrap gap-2">
+              {project.tech_stack.map((tech, idx) => (
+                <span
+                  key={idx}
+                  className="px-4 py-2 bg-blue-600/20 border border-blue-500/30 rounded-lg text-sm text-blue-200"
+                >
+                  {tech}
+                </span>
+              ))}
             </div>
           </div>
         </div>
+
+        <div className="pt-6 border-t border-white/10">
+          <p className="text-xs text-center text-slate-400">
+            Figures shown are modelled examples based on comparable service businesses. Actual performance varies.
+          </p>
         </div>
-      </motion.div>
-    </motion.div>
+      </div>
+    </BulletproofModal>
   );
 };
 
