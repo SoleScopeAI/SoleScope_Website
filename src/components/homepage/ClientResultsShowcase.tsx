@@ -192,6 +192,141 @@ const ClientResultsShowcase = () => {
           { metric_key: 'quote_accuracy', metric_label: 'Quote Accuracy', metric_icon: 'Shield', display_value: '99.8%', category: 'quality', is_highlighted: false },
         ]
       },
+      {
+        id: '4',
+        business_name: "Prime Healthcare Analytics",
+        project_title: "Unified Data Intelligence Platform",
+        industry: "Fitness & Wellness",
+        location: "Leeds, UK",
+        featured_image_url: "/assets/carousel/HealthcareAnalytics.png",
+        website_url: "https://primehealthcareanalytics.co.uk",
+        description: "AI-powered dashboard consolidating patient data, appointment metrics, and financial KPIs into one real-time analytics platform for multi-location healthcare practice.",
+        challenge: "Data scattered across 5 different systems making it impossible to get real-time insights. Spending 15+ hours weekly on manual reporting and struggling to identify operational bottlenecks.",
+        solution: "Custom AI dashboard integrating all data sources with machine learning predictions for patient flow, automated reporting, and intelligent alerts for anomalies and opportunities.",
+        tagline: "From Data Chaos to Clear Decisions",
+        services_provided: ['AI Dashboards', 'Multi-Source Integration', 'Predictive Analytics', 'Automated Reporting'],
+        tech_stack: ['React', 'Python', 'TensorFlow', 'Supabase', 'Chart.js', 'REST APIs'],
+        primary_result: "15 hours saved weekly on reporting",
+        result_percentage: 100,
+        is_featured: true,
+        color_theme: "green-teal",
+        completion_date: "2024-08-10",
+        project_duration_weeks: 8,
+        metrics: [
+          { metric_key: 'time_saved', metric_label: 'Time Saved Weekly', metric_icon: 'Clock', display_value: '15hrs', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'data_sources', metric_label: 'Systems Integrated', metric_icon: 'Target', display_value: '5', category: 'features', is_highlighted: false },
+          { metric_key: 'insights_accuracy', metric_label: 'Forecast Accuracy', metric_icon: 'TrendingUp', display_value: '94%', category: 'quality', is_highlighted: true },
+          { metric_key: 'decision_speed', metric_label: 'Decision Time', metric_icon: 'Zap', display_value: '-72%', category: 'efficiency', is_highlighted: false },
+        ]
+      },
+      {
+        id: '5',
+        business_name: "Artisan Coffee Roasters",
+        project_title: "Complete Brand Transformation",
+        industry: "Food & Beverage",
+        location: "Bristol, UK",
+        featured_image_url: "/assets/carousel/ArtisanCoffee.png",
+        website_url: "https://artisancoffeeroasters.co.uk",
+        description: "Full brand identity development including logo design, color systems, packaging design, and comprehensive brand guidelines for premium coffee roasting business.",
+        challenge: "Generic branding making it impossible to stand out in competitive specialty coffee market. Inconsistent visual identity across channels damaging credibility with wholesale clients.",
+        solution: "Strategic brand identity from ground up: custom logo suite, carefully crafted color palette, packaging templates, photography style guide, and complete brand book for consistent application.",
+        tagline: "Crafted Identity, Premium Perception",
+        services_provided: ['Logo Design', 'Brand Strategy', 'Color Systems', 'Packaging Design', 'Brand Guidelines'],
+        tech_stack: ['Adobe Illustrator', 'Figma', 'Adobe Photoshop', 'Brand Templates'],
+        primary_result: "+165% wholesale inquiries",
+        result_percentage: 165,
+        is_featured: true,
+        color_theme: "orange-red",
+        completion_date: "2024-04-15",
+        project_duration_weeks: 5,
+        metrics: [
+          { metric_key: 'wholesale_inquiries', metric_label: 'Wholesale Inquiries', metric_icon: 'TrendingUp', display_value: '+165%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'brand_recognition', metric_label: 'Brand Recognition', metric_icon: 'Award', display_value: '+220%', category: 'satisfaction', is_highlighted: true },
+          { metric_key: 'premium_perception', metric_label: 'Premium Perception', metric_icon: 'Star', display_value: '+89%', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'consistency_score', metric_label: 'Brand Consistency', metric_icon: 'Shield', display_value: '98%', category: 'quality', is_highlighted: false },
+        ]
+      },
+      {
+        id: '6',
+        business_name: "BuildTrack Pro",
+        project_title: "Construction Project Management Portal",
+        industry: "Business Consulting",
+        location: "Glasgow, UK",
+        featured_image_url: "/assets/carousel/BuildTrack.png",
+        website_url: "https://buildtrackpro.co.uk",
+        description: "Custom web application for construction project management with client portals, document management, progress tracking, and automated invoicing for building contractors.",
+        challenge: "Managing 12+ simultaneous projects using spreadsheets and email. Client confusion over project status, missing documents, and payment delays creating cash flow issues.",
+        solution: "Fully custom web app with role-based client portals, automated milestone tracking, integrated document library with version control, and smart invoicing tied to project completion.",
+        tagline: "Build Projects, Not Spreadsheets",
+        services_provided: ['Custom Web App', 'Client Portals', 'Document Management', 'Automated Invoicing', 'Cloud Hosting'],
+        tech_stack: ['React', 'Node.js', 'PostgreSQL', 'AWS S3', 'Stripe', 'Socket.io'],
+        primary_result: "+240% project capacity",
+        result_percentage: 240,
+        is_featured: true,
+        color_theme: "blue-indigo",
+        completion_date: "2024-09-05",
+        project_duration_weeks: 12,
+        metrics: [
+          { metric_key: 'project_capacity', metric_label: 'Project Capacity', metric_icon: 'TrendingUp', display_value: '+240%', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'payment_speed', metric_label: 'Payment Speed', metric_icon: 'Zap', display_value: '-65%', category: 'financial', is_highlighted: true },
+          { metric_key: 'client_satisfaction', metric_label: 'Client Satisfaction', metric_icon: 'Star', display_value: '4.8/5', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'admin_time', metric_label: 'Admin Time Saved', metric_icon: 'Clock', display_value: '20hrs/wk', category: 'efficiency', is_highlighted: false },
+        ]
+      },
+      {
+        id: '7',
+        business_name: "Elite Legal Services",
+        project_title: "Professional Website & SEO Strategy",
+        industry: "Legal Services",
+        location: "Edinburgh, UK",
+        featured_image_url: "/assets/carousel/EliteLegal.png",
+        website_url: "https://elitelegalservices.co.uk",
+        description: "Professional website redesign with advanced SEO optimization, managed hosting, and integrated consultation booking system for family law practice.",
+        challenge: "Outdated website ranking on page 4 of Google. Losing potential clients to competitors with modern online presence. No way for clients to book consultations online.",
+        solution: "Modern, mobile-first website with strategic SEO implementation, local search optimization, integrated booking calendar, and fully managed hosting with 24/7 monitoring.",
+        tagline: "Professional Presence, Premium Results",
+        services_provided: ['Website Design', 'SEO Strategy', 'Managed Hosting', 'Booking Integration', '24/7 Support'],
+        tech_stack: ['React', 'Next.js', 'Tailwind CSS', 'Calendly API', 'Vercel Hosting'],
+        primary_result: "Page 1 Google rankings in 3 months",
+        result_percentage: 100,
+        is_featured: true,
+        color_theme: "slate-gray",
+        completion_date: "2024-06-28",
+        project_duration_weeks: 6,
+        metrics: [
+          { metric_key: 'google_ranking', metric_label: 'Google Ranking', metric_icon: 'TrendingUp', display_value: 'Page 1', category: 'conversion', is_highlighted: true },
+          { metric_key: 'organic_traffic', metric_label: 'Organic Traffic', metric_icon: 'Users', display_value: '+385%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'consultation_bookings', metric_label: 'Online Bookings', metric_icon: 'Target', display_value: '+295%', category: 'conversion', is_highlighted: false },
+          { metric_key: 'page_speed', metric_label: 'Page Load Speed', metric_icon: 'Zap', display_value: '0.8s', category: 'quality', is_highlighted: false },
+        ]
+      },
+      {
+        id: '8',
+        business_name: "CleanSweep Commercial",
+        project_title: "Complete Digital Ecosystem",
+        industry: "Cleaning Services",
+        location: "Manchester, UK",
+        featured_image_url: "/assets/carousel/CleanSweep.png",
+        website_url: "https://cleansweepcommercial.co.uk",
+        description: "Comprehensive multi-service solution including brand identity, professional website, custom booking system, and AI-powered customer service automation for commercial cleaning company.",
+        challenge: "Zero online presence competing against established firms. Manual quote process taking days. No brand identity causing trust issues with corporate clients.",
+        solution: "Full transformation: professional branding, SEO-optimized website, instant quote calculator, automated booking system with SMS confirmations, and AI chatbot for 24/7 customer support.",
+        tagline: "From Invisible to Industry Leader",
+        services_provided: ['Brand Identity', 'Website Design', 'AI Chatbot', 'Booking Automation', 'SEO', 'Managed Hosting'],
+        tech_stack: ['React', 'Node.js', 'OpenAI', 'Twilio', 'Stripe', 'Google Maps API'],
+        primary_result: "+420% monthly revenue",
+        result_percentage: 420,
+        is_featured: true,
+        color_theme: "green-teal",
+        completion_date: "2024-08-25",
+        project_duration_weeks: 10,
+        metrics: [
+          { metric_key: 'revenue_growth', metric_label: 'Revenue Growth', metric_icon: 'TrendingUp', display_value: '+420%', category: 'financial', is_highlighted: true },
+          { metric_key: 'lead_volume', metric_label: 'Lead Volume', metric_icon: 'Users', display_value: '+580%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'quote_speed', metric_label: 'Quote Delivery', metric_icon: 'Zap', display_value: 'Instant', category: 'efficiency', is_highlighted: false },
+          { metric_key: 'customer_rating', metric_label: 'Customer Rating', metric_icon: 'Star', display_value: '4.9/5', category: 'satisfaction', is_highlighted: false },
+        ]
+      },
     ];
 
     setProjects(mockProjects);
@@ -371,8 +506,8 @@ const ClientResultsShowcase = () => {
 
         {viewMode === 'carousel' ? (
           <div className="relative max-w-6xl mx-auto">
-            <div className="relative h-[700px] md:h-[800px]">
-              <AnimatePresence initial={false} custom={direction}>
+            <div className="relative min-h-[700px] md:min-h-[800px]">
+              <AnimatePresence initial={false} custom={direction} mode="wait">
                 <motion.div
                   key={currentSlide}
                   custom={direction}
@@ -385,7 +520,7 @@ const ClientResultsShowcase = () => {
                     opacity: { duration: 0.3 },
                     scale: { duration: 0.3 }
                   }}
-                  className="absolute inset-0"
+                  className="w-full"
                 >
                   <ProjectCard
                     project={filteredProjects[currentSlide]}
@@ -395,21 +530,25 @@ const ClientResultsShowcase = () => {
               </AnimatePresence>
             </div>
 
-            <button
-              onClick={prevSlide}
-              className="absolute left-0 top-1/2 -translate-y-1/2 -translate-x-4 md:-translate-x-12 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
-              aria-label="Previous slide"
-            >
-              <ChevronLeft className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
-            </button>
+            <div className="absolute left-0 right-0 top-[45%] -translate-y-1/2 pointer-events-none">
+              <div className="max-w-7xl mx-auto px-4 flex items-center justify-between pointer-events-auto">
+                <button
+                  onClick={prevSlide}
+                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group z-20"
+                  aria-label="Previous slide"
+                >
+                  <ChevronLeft className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
+                </button>
 
-            <button
-              onClick={nextSlide}
-              className="absolute right-0 top-1/2 -translate-y-1/2 translate-x-4 md:translate-x-12 w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
-              aria-label="Next slide"
-            >
-              <ChevronRight className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
-            </button>
+                <button
+                  onClick={nextSlide}
+                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group z-20"
+                  aria-label="Next slide"
+                >
+                  <ChevronRight className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
+                </button>
+              </div>
+            </div>
 
             <div className="flex justify-center space-x-3 mt-8">
               {filteredProjects.map((_, index) => (
