@@ -2,7 +2,7 @@ import React from 'react';
 import InteractiveHero from '../components/homepage/InteractiveHero';
 import WhyChooseSoleScope from '../components/homepage/WhyChooseSoleScope';
 import ServiceSnapshotGrid from '../components/homepage/ServiceSnapshotGrid';
-import ClientResultsCarousel from '../components/homepage/ClientResultsCarousel';
+import ClientResultsShowcase from '../components/homepage/ClientResultsShowcase';
 import AutomationInAction from '../components/homepage/AutomationInAction';
 import TestimonialsStrip from '../components/homepage/TestimonialsStrip';
 import ProcessStepper from '../components/homepage/ProcessStepper';
@@ -15,7 +15,7 @@ const PremiumHomePage = () => {
       <InteractiveHero />
       <WhyChooseSoleScope />
       <ServiceSnapshotGrid />
-      <ClientResultsCarousel />
+      <ClientResultsShowcase />
       <AutomationInAction />
       <TestimonialsStrip />
       <ProcessStepper />
