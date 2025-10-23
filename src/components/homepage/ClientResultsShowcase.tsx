@@ -535,8 +535,12 @@ const ClientResultsShowcase = () => {
               <div className="max-w-[calc(100%+8rem)] mx-auto px-4 flex items-center justify-between pointer-events-auto">
                 <button
                   onClick={prevSlide}
-                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
-                  style={{ transform: 'translateX(-4rem)' }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
+                  style={{
+                    transform: 'translateX(-4rem)',
+                    background: 'rgba(255, 255, 255, 0.10)',
+                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                  }}
                   aria-label="Previous slide"
                 >
                   <ChevronLeft className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
@@ -544,8 +548,12 @@ const ClientResultsShowcase = () => {
 
                 <button
                   onClick={nextSlide}
-                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
-                  style={{ transform: 'translateX(4rem)' }}
+                  className="w-14 h-14 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
+                  style={{
+                    transform: 'translateX(4rem)',
+                    background: 'rgba(255, 255, 255, 0.10)',
+                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                  }}
                   aria-label="Next slide"
                 >
                   <ChevronRight className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
@@ -569,7 +577,7 @@ const ClientResultsShowcase = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ position: 'relative', isolation: 'isolate' }}>
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
@@ -666,7 +674,13 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
 
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center space-x-4">
-            <div className="w-16 h-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-2">
+            <div
+              className="w-16 h-16 rounded-xl p-2"
+              style={{
+                background: 'rgba(255, 255, 255, 0.10)',
+                border: '1px solid rgba(255, 255, 255, 0.15)'
+              }}
+            >
               <LogoComponent className="w-full h-full" />
             </div>
             <div>
@@ -679,13 +693,23 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
           </div>
           <button
             onClick={onExpand}
-            className="w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all group"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all group"
+            style={{
+              background: 'rgba(255, 255, 255, 0.10)',
+              border: '1px solid rgba(255, 255, 255, 0.15)'
+            }}
           >
             <ArrowUpRight className="h-5 w-5 text-white group-hover:scale-110 transition-transform" />
           </button>
         </div>
 
-        <div className="inline-block px-4 py-2 bg-purple-600/30 backdrop-blur-sm border border-purple-400/30 rounded-full mb-4">
+        <div
+          className="inline-block px-4 py-2 rounded-full mb-4"
+          style={{
+            background: 'rgba(108, 62, 240, 0.30)',
+            border: '1px solid rgba(147, 102, 255, 0.30)'
+          }}
+        >
           <span className="text-sm font-semibold text-purple-200">{project.industry}</span>
         </div>
 
@@ -771,7 +795,11 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
       >
         <button
           onClick={onClose}
-          className="sticky top-4 right-4 float-right w-10 h-10 bg-white/10 backdrop-blur-sm border border-white/20 rounded-full flex items-center justify-center hover:bg-red-600/30 hover:border-red-500/50 transition-all z-10"
+          className="sticky top-4 right-4 float-right w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600/30 hover:border-red-500/50 transition-all z-10"
+          style={{
+            background: 'rgba(255, 255, 255, 0.10)',
+            border: '1px solid rgba(255, 255, 255, 0.15)'
+          }}
         >
           <X className="h-5 w-5 text-white" />
         </button>
@@ -785,7 +813,13 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
           </div>
 
           <div className="flex items-start gap-6 mb-8">
-            <div className="w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3">
+            <div
+              className="w-20 h-20 rounded-xl p-3"
+              style={{
+                background: 'rgba(255, 255, 255, 0.10)',
+                border: '1px solid rgba(255, 255, 255, 0.15)'
+              }}
+            >
               <LogoComponent className="w-full h-full" />
             </div>
             <div className="flex-1">
@@ -823,7 +857,11 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
                   href={project.website_url}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="inline-flex items-center px-6 py-3 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl text-white hover:bg-white/20 transition-all"
+                  className="inline-flex items-center px-6 py-3 rounded-xl text-white hover:bg-white/20 transition-all"
+                  style={{
+                    background: 'rgba(255, 255, 255, 0.10)',
+                    border: '1px solid rgba(255, 255, 255, 0.15)'
+                  }}
                 >
                   <span>Visit Website</span>
                   <ExternalLink className="ml-2 h-4 w-4" />
@@ -854,7 +892,14 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
               {project.metrics?.map((metric, idx) => {
                 const Icon = iconMap[metric.metric_icon] || Target;
                 return (
-                  <div key={idx} className={`bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4 ${metric.is_highlighted ? 'ring-2 ring-purple-500/50' : ''}`}>
+                  <div
+                    key={idx}
+                    className={`rounded-xl p-4 ${metric.is_highlighted ? 'ring-2 ring-purple-500/50' : ''}`}
+                    style={{
+                      background: 'rgba(255, 255, 255, 0.05)',
+                      border: '1px solid rgba(255, 255, 255, 0.08)'
+                    }}
+                  >
                     <Icon className={`h-6 w-6 ${colors.text} mb-2`} />
                     <div className="text-2xl font-bold text-white mb-1">{metric.display_value}</div>
                     <div className="text-sm text-slate-400">{metric.metric_label}</div>

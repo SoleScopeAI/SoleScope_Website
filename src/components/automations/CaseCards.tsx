@@ -164,7 +164,7 @@ const CaseCards = () => {
           </motion.div>
 
           {/* Desktop/Tablet: Grid Layout */}
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ position: 'relative', isolation: 'isolate' }}>
             {cases.map((caseItem, index) => (
               <motion.div
                 key={caseItem.id}
@@ -172,8 +172,9 @@ const CaseCards = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.02 }}
-                className="group relative overflow-visible bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer text-center h-full flex flex-col"
+                whileHover={{ y: -8, scale: 1.01 }}
+                className="group relative overflow-hidden rounded-3xl p-10 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer text-center h-full flex flex-col"
+                style={{ position: 'relative', isolation: 'isolate', zIndex: 0 }}
                 tabIndex={0}
                 role="button"
                 aria-labelledby={`case-title-${caseItem.id}`}
@@ -186,7 +187,29 @@ const CaseCards = () => {
                 }}
                 data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <div className={`w-20 h-20 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
+                {/* L0: Background gradient layer */}
+                <div
+                  className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-black/90 rounded-3xl"
+                  style={{ zIndex: 0, pointerEvents: 'none' }}
+                />
+                <div
+                  className="absolute inset-0 border border-white/10 rounded-3xl"
+                  style={{ zIndex: 0, pointerEvents: 'none' }}
+                />
+
+                {/* L2: Hover sheen layer */}
+                <div
+                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  style={{
+                    zIndex: 2,
+                    pointerEvents: 'none',
+                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+                  }}
+                />
+
+                {/* L1: Content layer */}
+                <div className="relative" style={{ zIndex: 1 }}>
+                  <div className={`w-20 h-20 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
                   <caseItem.icon className="h-10 w-10 text-white drop-shadow-lg" />
                 </div>
                 
@@ -202,12 +225,13 @@ const CaseCards = () => {
                   <span>View Workflow</span>
                   <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
                 </div>
+                </div>
               </motion.div>
             ))}
           </div>
 
           {/* Mobile: Horizontal Carousel */}
-          <div className="md:hidden relative">
+          <div className="md:hidden relative" style={{ isolation: 'isolate' }}>
             <div 
               className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
               style={{ 
@@ -227,8 +251,9 @@ const CaseCards = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -4, scale: 1.02 }}
-                  className="group relative overflow-visible bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center h-full flex flex-col text-center cursor-pointer"
+                  whileHover={{ y: -4, scale: 1.01 }}
+                  className="group relative overflow-hidden rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center h-full flex flex-col text-center cursor-pointer"
+                  style={{ position: 'relative', isolation: 'isolate', zIndex: 0 }}
                   tabIndex={0}
                   role="button"
                   aria-labelledby={`case-title-mobile-${caseItem.id}`}
@@ -245,7 +270,29 @@ const CaseCards = () => {
                   }}
                   data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <div className={`w-16 h-16 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
+                  {/* L0: Background gradient layer */}
+                  <div
+                    className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-black/90 rounded-3xl"
+                    style={{ zIndex: 0, pointerEvents: 'none' }}
+                  />
+                  <div
+                    className="absolute inset-0 border border-white/10 rounded-3xl"
+                    style={{ zIndex: 0, pointerEvents: 'none' }}
+                  />
+
+                  {/* L2: Hover sheen layer */}
+                  <div
+                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    style={{
+                      zIndex: 2,
+                      pointerEvents: 'none',
+                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+                    }}
+                  />
+
+                  {/* L1: Content layer */}
+                  <div className="relative" style={{ zIndex: 1 }}>
+                    <div className={`w-16 h-16 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
                     <caseItem.icon className="h-8 w-8 text-white drop-shadow-lg" />
                   </div>
                   
@@ -260,6 +307,7 @@ const CaseCards = () => {
                   <div className="flex items-center justify-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-medium transition-colors text-sm">
                     <span>View Workflow</span>
                     <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
                   </div>
                 </motion.div>
               ))}
