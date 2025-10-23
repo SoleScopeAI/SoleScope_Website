@@ -33,21 +33,21 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-20">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Let's Start Your AI Journey
           </h2>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-slate-300 max-w-3xl mx-auto">
             Share your requirements and we'll map out your automation opportunities
           </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 space-y-5">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-white mb-2">Full Name *</label>
                   <input
@@ -56,7 +56,7 @@ const ContactSection = () => {
                     value={formData.fullName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
                     placeholder="John Smith"
                   />
                 </div>
@@ -69,13 +69,13 @@ const ContactSection = () => {
                     value={formData.businessName}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
                     placeholder="Acme Corp"
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-white mb-2">Email *</label>
                   <input
@@ -84,7 +84,7 @@ const ContactSection = () => {
                     value={formData.email}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
                     placeholder="john@acme.com"
                   />
                 </div>
@@ -96,13 +96,13 @@ const ContactSection = () => {
                     name="phone"
                     value={formData.phone}
                     onChange={handleChange}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500"
                     placeholder="+44 1234 567890"
                   />
                 </div>
               </div>
 
-              <div className="grid md:grid-cols-2 gap-6">
+              <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-white mb-2">Company Size *</label>
                   <select
@@ -110,7 +110,7 @@ const ContactSection = () => {
                     value={formData.companySize}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all"
                   >
                     <option value="" className="bg-gray-900">Select size</option>
                     <option value="sole-trader" className="bg-gray-900">Sole Trader</option>
@@ -127,7 +127,7 @@ const ContactSection = () => {
                     value={formData.serviceInterest}
                     onChange={handleChange}
                     required
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all"
+                    className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all"
                   >
                     <option value="" className="bg-gray-900">Select service</option>
                     <option value="automation" className="bg-gray-900">Automation</option>
@@ -146,8 +146,8 @@ const ContactSection = () => {
                   value={formData.message}
                   onChange={handleChange}
                   required
-                  rows={5}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500 resize-none"
+                  rows={4}
+                  className="w-full px-4 py-2.5 bg-white/5 border border-white/10 text-white rounded-lg focus:border-purple-500 focus:outline-none transition-all placeholder:text-slate-500 resize-none"
                   placeholder="Tell us about your automation needs..."
                 />
               </div>
@@ -163,7 +163,7 @@ const ContactSection = () => {
                   />
                   <label
                     htmlFor="file-upload"
-                    className="flex items-center justify-center gap-2 w-full px-4 py-3 bg-white/5 border border-white/10 text-slate-300 rounded-lg hover:bg-white/10 cursor-pointer transition-all"
+                    className="flex items-center justify-center gap-2 w-full px-4 py-2.5 bg-white/5 border border-white/10 text-slate-300 rounded-lg hover:bg-white/10 cursor-pointer transition-all"
                   >
                     <Upload className="h-4 w-4" />
                     {fileName || 'Choose file'}
@@ -200,11 +200,11 @@ const ContactSection = () => {
             </form>
           </div>
 
-          <div className="lg:col-span-2 space-y-6">
-            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm rounded-2xl border border-purple-500/20 p-8">
+          <div className="lg:col-span-2 space-y-5">
+            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm rounded-2xl border border-purple-500/20 p-6">
               <Phone className="h-10 w-10 text-purple-400 mb-4" />
-              <h3 className="text-xl font-bold text-white mb-3">Prefer a Call?</h3>
-              <p className="text-slate-300 mb-6 leading-relaxed">
+              <h3 className="text-lg font-bold text-white mb-2">Prefer a Call?</h3>
+              <p className="text-sm text-slate-300 mb-5 leading-relaxed">
                 Book a Discovery Session — we'll map your automation opportunities in real time.
               </p>
               <Link
@@ -215,9 +215,9 @@ const ContactSection = () => {
               </Link>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6">
-              <h4 className="text-sm font-semibold text-white mb-4 uppercase tracking-wider">What Happens Next?</h4>
-              <div className="space-y-4">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5">
+              <h4 className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">What Happens Next?</h4>
+              <div className="space-y-3">
                 {[
                   { step: 1, text: 'We review your requirements within 24 hours' },
                   { step: 2, text: 'Schedule a discovery call to explore opportunities' },

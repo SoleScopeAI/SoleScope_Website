@@ -11,8 +11,7 @@ const WorkflowExamples = () => {
       features: [
         'Smart lead scoring',
         'Automatic routing',
-        'CRM integration',
-        'Follow-up sequences'
+        'CRM integration'
       ],
       flow: ['Lead', 'Scoring', 'Route', 'Follow-Up', 'CRM Updated']
     },
@@ -23,8 +22,7 @@ const WorkflowExamples = () => {
       features: [
         'Document automation',
         'Team notifications',
-        'Progress tracking',
-        'Portal access'
+        'Progress tracking'
       ],
       flow: ['Welcome', 'Documents', 'Access Setup', 'Team Notify', 'Complete']
     },
@@ -35,8 +33,7 @@ const WorkflowExamples = () => {
       features: [
         '24/7 AI support',
         'Smart escalation',
-        'Knowledge routing',
-        'Multi-channel response'
+        'Knowledge routing'
       ],
       flow: ['Inquiry', 'AI Response', 'Resolve/Escalate', 'Team Alert', 'Close']
     },
@@ -47,8 +44,7 @@ const WorkflowExamples = () => {
       features: [
         'Trend forecasting',
         'Pattern detection',
-        'Alert automation',
-        'Dashboard integration'
+        'Alert automation'
       ],
       flow: ['Data Collect', 'AI Analyze', 'Predict', 'Alert', 'Visualize']
     },
@@ -59,8 +55,7 @@ const WorkflowExamples = () => {
       features: [
         'Timing optimization',
         'Multi-platform posting',
-        'Sentiment analysis',
-        'Response automation'
+        'Sentiment analysis'
       ],
       flow: ['Trigger', 'Request', 'Collect', 'Analyze', 'Respond']
     },
@@ -71,26 +66,25 @@ const WorkflowExamples = () => {
       features: [
         'Behavior tracking',
         'Personalized messaging',
-        'Multi-touch sequences',
-        'Conversion monitoring'
+        'Multi-touch sequences'
       ],
       flow: ['Identify', 'Personalize', 'Engage', 'Track', 'Convert']
     }
   ];
 
   return (
-    <section className="py-20 bg-white/[0.02]">
+    <section className="py-16 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Industry & Workflow Examples
           </h2>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-slate-300 max-w-3xl mx-auto">
             Real-world AI automations built for modern businesses
           </p>
         </div>
 
-        <div className="space-y-8">
+        <div className="space-y-6">
           {workflows.map((workflow, idx) => (
             <motion.div
               key={idx}
@@ -98,21 +92,21 @@ const WorkflowExamples = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8 hover:border-purple-400/30 transition-all duration-300"
+              className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:border-purple-400/30 transition-all duration-300"
             >
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
-                  <div className="flex items-start gap-4 mb-6">
-                    <div className="w-14 h-14 bg-purple-500/20 rounded-xl flex items-center justify-center flex-shrink-0 border border-purple-500/30">
-                      <workflow.icon className="h-7 w-7 text-purple-400" />
+                  <div className="flex items-start gap-4 mb-5">
+                    <div className="w-12 h-12 bg-purple-500/20 rounded-lg flex items-center justify-center flex-shrink-0 border border-purple-500/30">
+                      <workflow.icon className="h-6 w-6 text-purple-400" />
                     </div>
                     <div>
-                      <h3 className="text-xl font-bold text-white mb-2">{workflow.title}</h3>
-                      <p className="text-slate-300 leading-relaxed">{workflow.description}</p>
+                      <h3 className="text-lg font-bold text-white mb-2">{workflow.title}</h3>
+                      <p className="text-sm text-slate-300 leading-relaxed line-clamp-2">{workflow.description}</p>
                     </div>
                   </div>
 
-                  <div className="grid grid-cols-2 gap-3">
+                  <div className="grid grid-cols-3 gap-2">
                     {workflow.features.map((feature, featureIdx) => (
                       <div key={featureIdx} className="flex items-center gap-2">
                         <div className="w-1.5 h-1.5 rounded-full bg-purple-400"></div>

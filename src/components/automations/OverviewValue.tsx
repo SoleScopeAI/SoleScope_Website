@@ -25,24 +25,24 @@ const OverviewValue = () => {
   ];
 
   return (
-    <section className="py-20 bg-white/[0.02]">
+    <section className="py-16 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-12 items-center">
+        <div className="grid lg:grid-cols-2 gap-10 items-center">
           <motion.div
             initial={{ opacity: 0, x: -20 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.6 }}
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-white mb-6">
+            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5">
               Every Automation Built Around Your Needs
             </h2>
-            <div className="space-y-4 text-lg text-slate-300 leading-relaxed">
+            <div className="space-y-3 text-base text-slate-300 leading-relaxed">
               <p>
-                Every automation we build is unique — engineered to fit your exact workflows, tools, and goals. From single-task automations for sole traders to fully integrated AI ecosystems for SMEs, our systems save time, cut costs, and eliminate human error.
+                Every automation we build is unique — engineered to fit your exact workflows, tools, and goals. From single-task automations for sole traders to fully integrated AI ecosystems for SMEs.
               </p>
               <p>
-                We don't use templates. We analyze your processes, design intelligent workflows, and build custom solutions that evolve with your business.
+                We analyze your processes, design intelligent workflows, and build custom solutions that evolve with your business.
               </p>
             </div>
           </motion.div>
@@ -54,7 +54,7 @@ const OverviewValue = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-8">
+            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6">
               <svg className="w-full h-64" viewBox="0 0 100 40">
                 <defs>
                   <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">

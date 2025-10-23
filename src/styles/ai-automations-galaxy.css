@@ -1,14 +1,13 @@
 :root {
-  /* AI-specific color tokens */
-  --ai-space-deep: #030014;
-  --ai-space-dark: #0a0520;
-  --ai-nebula-cyan: rgba(34, 211, 238, 0.15);
-  --ai-nebula-emerald: rgba(16, 185, 129, 0.12);
-  --ai-nebula-purple: rgba(168, 85, 247, 0.18);
-  --ai-nebula-orange: rgba(251, 146, 60, 0.10);
-  --ai-stars-bright: rgba(255, 255, 255, 0.8);
-  --ai-stars-medium: rgba(255, 255, 255, 0.6);
-  --ai-stars-dim: rgba(255, 255, 255, 0.4);
+  /* AI-specific color tokens - Purple galaxy theme */
+  --ai-space-deep: #05050c;
+  --ai-space-dark: #0c0816;
+  --ai-nebula-purple: rgba(168, 85, 247, 0.16);
+  --ai-nebula-violet: rgba(124, 58, 237, 0.12);
+  --ai-nebula-magenta: rgba(217, 70, 239, 0.09);
+  --ai-stars-bright: rgba(255, 255, 255, 0.55);
+  --ai-stars-medium: rgba(255, 255, 255, 0.45);
+  --ai-stars-dim: rgba(255, 255, 255, 0.35);
 }
 
 /* PAGE: Deep AI space background (Layer A) */
@@ -26,35 +25,43 @@
   z-index: -10;
   pointer-events: none;
   background:
-    radial-gradient(1400px 900px at 20% 25%, var(--ai-nebula-cyan), transparent 65%),
-    radial-gradient(1200px 800px at 80% 70%, var(--ai-nebula-emerald), transparent 60%),
-    radial-gradient(1000px 700px at 15% 85%, var(--ai-nebula-purple), transparent 55%),
-    radial-gradient(800px 600px at 85% 15%, var(--ai-nebula-orange), transparent 50%);
-  animation: aiTwinkle 15s ease-in-out infinite;
+    radial-gradient(1200px 800px at 18% 22%, var(--ai-nebula-violet), transparent 62%),
+    radial-gradient(1000px 700px at 82% 74%, var(--ai-nebula-magenta), transparent 60%),
+    linear-gradient(135deg, var(--ai-space-deep), var(--ai-space-dark));
+  animation: aiTwinkle 12s ease-in-out infinite;
 }
 
 /* PAGE: AI neural network pattern overlay (Layer B) */
 .ai-automations-surface::after {
   content: "";
   position: fixed;
-  inset: -10%;
+  inset: -5% -5%;
   z-index: -9;
   pointer-events: none;
   background:
-    radial-gradient(2px 2px at 15% 20%, var(--ai-stars-bright), transparent),
-    radial-gradient(1.5px 1.5px at 35% 75%, var(--ai-stars-medium), transparent),
-    radial-gradient(2px 2px at 75% 40%, var(--ai-stars-medium), transparent),
-    radial-gradient(1px 1px at 60% 60%, var(--ai-stars-dim), transparent),
-    radial-gradient(1.5px 1.5px at 90% 20%, var(--ai-stars-dim), transparent);
-  background-size: 200px 200px, 150px 150px, 180px 180px, 120px 120px, 160px 160px;
-  animation: aiNeuralDrift 80s linear infinite;
+    radial-gradient(1400px 900px at 12% 18%, var(--ai-nebula-purple), transparent 65%),
+    radial-gradient(1200px 800px at 88% 80%, var(--ai-nebula-magenta), transparent 62%);
+  -webkit-mask-image:
+    radial-gradient(1.25px 1.25px at 12% 18%, var(--ai-stars-bright) 98%, transparent 100%),
+    radial-gradient(1px 1px at 28% 76%, var(--ai-stars-medium) 98%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 72% 38%, var(--ai-stars-medium) 98%, transparent 100%),
+    radial-gradient(1px 1px at 58% 58%, var(--ai-stars-dim) 98%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 86% 14%, var(--ai-stars-dim) 98%, transparent 100%);
+  mask-image:
+    radial-gradient(1.25px 1.25px at 12% 18%, var(--ai-stars-bright) 98%, transparent 100%),
+    radial-gradient(1px 1px at 28% 76%, var(--ai-stars-medium) 98%, transparent 100%),
+    radial-gradient(1.2px 1.2px at 72% 38%, var(--ai-stars-medium) 98%, transparent 100%),
+    radial-gradient(1px 1px at 58% 58%, var(--ai-stars-dim) 98%, transparent 100%),
+    radial-gradient(1.1px 1.1px at 86% 14%, var(--ai-stars-dim) 98%, transparent 100%);
+  mask-composite: exclude;
+  animation: aiNeuralDrift 60s linear infinite;
   transform: translate3d(0, 0, 0);
 }
 
 /* SECTION: Enhanced AI capabilities surface */
 .ai-capabilities-surface {
   position: relative;
-  padding: 80px 0;
+  padding: 64px 0;
 }
 
 .ai-capabilities-surface::before {
@@ -64,10 +71,10 @@
   z-index: 0;
   pointer-events: none;
   background:
-    radial-gradient(1200px 800px at 18% 25%, rgba(34, 211, 238, 0.2), transparent 65%),
-    radial-gradient(1000px 700px at 82% 75%, rgba(16, 185, 129, 0.15), transparent 60%),
-    radial-gradient(800px 600px at 12% 90%, rgba(168, 85, 247, 0.18), transparent 55%);
-  animation: aiCapabilitiesPulse 12s ease-in-out infinite;
+    radial-gradient(1100px 750px at 16% 22%, rgba(168, 85, 247, 0.18), transparent 62%),
+    radial-gradient(900px 620px at 84% 68%, rgba(217, 70, 239, 0.12), transparent 60%),
+    radial-gradient(700px 520px at 10% 88%, rgba(124, 58, 237, 0.10), transparent 55%);
+  animation: aiCapabilitiesPulse 10s ease-in-out infinite;
 }
 
 .ai-capabilities-surface > * {
@@ -77,13 +84,13 @@
 
 /* Animations */
 @keyframes aiTwinkle {
-  0%, 100% { opacity: 0.95; }
-  50% { opacity: 0.85; }
+  0%, 100% { opacity: 0.985; }
+  50% { opacity: 0.94; }
 }
 
 @keyframes aiNeuralDrift {
-  0% { transform: translate3d(0, 0, 0) rotate(0deg); }
-  100% { transform: translate3d(-5%, -3%, 0) rotate(360deg); }
+  0% { transform: translate3d(0, 0, 0); }
+  100% { transform: translate3d(-2%, -1%, 0); }
 }
 
 @keyframes aiCapabilitiesPulse {

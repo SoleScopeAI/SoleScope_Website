@@ -61,26 +61,26 @@ const CentralDashboard = () => {
   }, [scenario, automationLevel, aiInsight]);
 
   return (
-    <section className="py-20">
+    <section className="py-16">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             Interactive Performance Analytics
           </h2>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-slate-300 max-w-3xl mx-auto">
             Explore how AI automation transforms performance across different business scenarios
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl border border-white/10 p-8 shadow-2xl">
+        <div className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl border border-white/10 p-6 shadow-2xl max-h-[600px]">
           <motion.div
             className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 rounded-3xl blur-3xl"
             animate={{ opacity: [0.1, 0.2, 0.1] }}
             transition={{ duration: 5, repeat: Infinity }}
           />
 
-          <div className="relative z-10 grid lg:grid-cols-3 gap-8">
-            <div className="lg:col-span-1 space-y-6">
+          <div className="relative z-10 grid lg:grid-cols-3 gap-6">
+            <div className="lg:col-span-1 space-y-5">
               <div>
                 <label className="block text-sm font-semibold text-white mb-3">Scenario</label>
                 <select
@@ -95,9 +95,9 @@ const CentralDashboard = () => {
               </div>
 
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-semibold text-white">Automation Level</label>
-                  <span className="text-sm font-bold text-purple-400">{automationLevel}%</span>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-semibold text-white">Automation Level</label>
+                  <span className="text-xs font-bold text-purple-400">{automationLevel}%</span>
                 </div>
                 <input
                   type="range"
@@ -110,9 +110,9 @@ const CentralDashboard = () => {
               </div>
 
               <div>
-                <div className="flex items-center justify-between mb-3">
-                  <label className="text-sm font-semibold text-white">AI Insight</label>
-                  <span className="text-sm font-bold text-purple-400">{aiInsight}%</span>
+                <div className="flex items-center justify-between mb-2">
+                  <label className="text-xs font-semibold text-white">AI Insight</label>
+                  <span className="text-xs font-bold text-purple-400">{aiInsight}%</span>
                 </div>
                 <input
                   type="range"
@@ -124,12 +124,10 @@ const CentralDashboard = () => {
                 />
               </div>
 
-              <div className="grid grid-cols-2 gap-3 pt-4">
+              <div className="grid grid-cols-2 gap-3 pt-3">
                 {[
                   { icon: TrendingUp, label: 'Throughput', value: metrics.throughput },
-                  { icon: Activity, label: 'Efficiency', value: `${metrics.efficiency}%` },
-                  { icon: BarChart, label: 'Error Rate', value: `${metrics.errorRate}%` },
-                  { icon: Users, label: 'Response', value: `${metrics.responseTime}h` }
+                  { icon: Activity, label: 'Efficiency', value: `${metrics.efficiency}%` }
                 ].map((kpi, idx) => (
                   <motion.div
                     key={idx}
@@ -141,20 +139,20 @@ const CentralDashboard = () => {
                       key={String(kpi.value)}
                       initial={{ scale: 1.2, opacity: 0 }}
                       animate={{ scale: 1, opacity: 1 }}
-                      className="text-lg font-bold text-white mb-0.5"
+                      className="text-base font-bold text-white mb-0.5"
                     >
                       {kpi.value}
                     </motion.div>
-                    <div className="text-[10px] text-slate-400 uppercase tracking-wide">{kpi.label}</div>
+                    <div className="text-[9px] text-slate-400 uppercase tracking-wide">{kpi.label}</div>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            <div className="lg:col-span-2 space-y-6">
-              <div className="bg-white/[0.03] rounded-xl border border-white/10 p-6">
-                <h3 className="text-sm font-semibold text-white mb-4">Performance Trend</h3>
-                <div className="h-48 relative">
+            <div className="lg:col-span-2 space-y-5">
+              <div className="bg-white/[0.03] rounded-xl border border-white/10 p-5">
+                <h3 className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">Performance Trend</h3>
+                <div className="h-40 relative">
                   <svg className="w-full h-full" viewBox="0 0 100 40" preserveAspectRatio="none">
                     <defs>
                       <linearGradient id="centralGradient" x1="0%" y1="0%" x2="0%" y2="100%">
@@ -196,9 +194,9 @@ const CentralDashboard = () => {
                 </div>
               </div>
 
-              <div className="bg-white/[0.03] rounded-xl border border-white/10 p-6">
-                <h3 className="text-sm font-semibold text-white mb-4">Comparative Analysis</h3>
-                <div className="grid grid-cols-4 gap-4 h-32">
+              <div className="bg-white/[0.03] rounded-xl border border-white/10 p-5">
+                <h3 className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">Comparative Analysis</h3>
+                <div className="grid grid-cols-4 gap-4 h-28">
                   {barChartData.map((height, idx) => (
                     <div key={idx} className="flex flex-col justify-end items-center">
                       <motion.div

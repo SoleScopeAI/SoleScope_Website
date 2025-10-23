@@ -31,14 +31,14 @@ const UnifiedRoadmap = () => {
   ];
 
   return (
-    <section id="roadmap-section" className="py-20 bg-white/[0.02]">
+    <section id="roadmap-section" className="py-16 bg-white/[0.02]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-12">
-          <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">
+        <div className="text-center mb-10">
+          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
             How It Works
           </h2>
-          <p className="text-lg text-slate-300 max-w-3xl mx-auto">
-            Our proven process takes you from concept to deployment in 2-6 weeks
+          <p className="text-base text-slate-300 max-w-3xl mx-auto">
+            Our proven process takes you from concept to deployment
           </p>
         </div>
 
@@ -59,7 +59,7 @@ const UnifiedRoadmap = () => {
               >
                 <div className="flex flex-col items-center text-center">
                   <motion.div
-                    className="relative w-24 h-24 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border-2 border-purple-500/30 rounded-2xl flex flex-col items-center justify-center mb-6 z-10"
+                    className="relative w-20 h-20 bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm border-2 border-purple-500/30 rounded-xl flex flex-col items-center justify-center mb-5 z-10"
                     whileHover={{ scale: 1.1, borderColor: 'rgba(168, 85, 247, 0.6)' }}
                     transition={{ duration: 0.2 }}
                   >
@@ -74,12 +74,12 @@ const UnifiedRoadmap = () => {
                         delay: idx * 0.5
                       }}
                     />
-                    <step.icon className="h-8 w-8 text-purple-400 mb-1 relative z-10" />
-                    <span className="text-xs font-bold text-purple-300 relative z-10">Step {step.number}</span>
+                    <step.icon className="h-7 w-7 text-purple-400 mb-0.5 relative z-10" />
+                    <span className="text-[10px] font-bold text-purple-300 relative z-10">Step {step.number}</span>
                   </motion.div>
 
-                  <h3 className="text-xl font-bold text-white mb-3">{step.label}</h3>
-                  <p className="text-sm text-slate-300 leading-relaxed max-w-xs">{step.description}</p>
+                  <h3 className="text-lg font-bold text-white mb-2">{step.label}</h3>
+                  <p className="text-sm text-slate-300 leading-relaxed max-w-xs line-clamp-2">{step.description}</p>
                 </div>
 
                 {idx < steps.length - 1 && (
@@ -90,36 +90,6 @@ const UnifiedRoadmap = () => {
           </div>
         </div>
 
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.8, duration: 0.6 }}
-          className="mt-16 bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm rounded-2xl border border-purple-500/20 p-8 text-center"
-        >
-          <h3 className="text-2xl font-bold text-white mb-3">From Concept to Deployment</h3>
-          <p className="text-lg text-slate-300 mb-6 max-w-2xl mx-auto">
-            Typical timeline: 2-6 weeks, with continuous optimization and support post-launch.
-          </p>
-          <div className="flex flex-wrap justify-center gap-6">
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">2-6</div>
-              <div className="text-sm text-slate-400">Weeks to Deploy</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">99.9%</div>
-              <div className="text-sm text-slate-400">Uptime SLA</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">&lt;4h</div>
-              <div className="text-sm text-slate-400">Critical Response</div>
-            </div>
-            <div className="text-center">
-              <div className="text-3xl font-bold text-purple-400 mb-1">24/7</div>
-              <div className="text-sm text-slate-400">Operation</div>
-            </div>
-          </div>
-        </motion.div>
       </div>
     </section>
   );
