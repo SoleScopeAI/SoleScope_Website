@@ -122,7 +122,7 @@ const WhyChooseSoleScope = () => {
   return (
     <section
       ref={ref}
-      className="relative py-12 md:py-16 overflow-hidden"
+      className="relative mt-14 py-12 md:py-16 overflow-hidden"
       aria-labelledby="why-choose-heading"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

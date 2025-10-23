@@ -110,13 +110,13 @@ const InteractiveHero = () => {
 
   const serviceLevelFacts = [
     {
-      label: 'Typical build window',
+      label: 'Build window',
       value: '2–6 weeks',
       tooltip: 'Estimated; varies by scope & assets.',
       icon: Clock
     },
     {
-      label: 'Support response',
+      label: 'Support',
       value: '≤ 1 business day',
       tooltip: 'Business hours; urgent issues prioritized.',
       icon: CheckCircle
@@ -137,7 +137,7 @@ const InteractiveHero = () => {
 
   return (
     <section
-      className="relative flex items-center justify-center overflow-hidden pt-16 md:pt-0 pb-12 md:pb-16"
+      className="relative flex items-center justify-center overflow-hidden pt-20 md:pt-22 lg:pt-24 py-14 md:py-16 lg:py-18"
       aria-labelledby="hero-heading"
       role="region"
     >
@@ -176,54 +176,92 @@ const InteractiveHero = () => {
         </motion.div>
       ))}
 
-      <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
-          className="text-center mb-8 md:mb-12"
+          className="text-center"
         >
+          <div className="mb-5 flex justify-end">
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-purple-600/15 px-3 py-1 text-xs font-medium text-purple-200">
+              Limited capacity: accepting up to 2 new projects this month
+            </span>
+          </div>
+
           <motion.div
-            className="inline-flex items-center space-x-2 px-4 py-2 bg-slate-800/60 border border-slate-600/40 rounded-full mb-6"
+            className="mb-3"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.5, delay: 0.2 }}
           >
-            <span className="text-sm text-slate-300 font-medium">Boutique AI Web Studio • UK</span>
+            <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
+              Boutique AI Web Studio • UK
+            </span>
           </motion.div>
 
           <h1
             id="hero-heading"
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-white"
           >
-            <span className="block text-white">Transform Your Service Business with</span>
-            <span className="block bg-gradient-to-r from-[#B39CFF] to-[#6C3EF0] bg-clip-text text-transparent">
-              Boutique AI-Powered Websites
-            </span>
+            Human Craft. Advanced AI. Websites That Work.
           </h1>
 
           <motion.p
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-4xl mx-auto mb-6 md:mb-8 leading-relaxed"
+            className="mt-4 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
           >
-            We craft high-performing websites and automations for UK service businesses—designed to capture leads,
-            handle bookings, streamline follow-up, and showcase reviews. Premium craft, measurable workflows.
+            We partner with UK service businesses to design thoughtful, conversion-ready sites and automations—so enquiries, bookings and reviews run smoothly without the chaos.
           </motion.p>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.4 }}
-            className="max-w-4xl mx-auto mb-8"
+            transition={{ duration: 0.8, delay: 0.6 }}
+            className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3 justify-center"
           >
-            <div className="rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur shadow-lg overflow-hidden">
-              <ul className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/5 sm:divide-y-0 sm:divide-x sm:divide-white/5">
+            <Link
+              to="/contact"
+              className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-105 transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30"
+            >
+              <span>Book a 15-min Fit Call</span>
+              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+            </Link>
+
+            <Link
+              to="/services"
+              className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center"
+            >
+              View Case Demos
+              <Play className="ml-2 h-5 w-5" />
+            </Link>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="mt-2 text-center"
+          >
+            <p className="text-xs text-white/60">
+              Transparent pricing • Concierge onboarding • No lock-ins
+            </p>
+          </motion.div>
+
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-8 md:mt-9"
+          >
+            <div className="rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur shadow-lg">
+              <ul className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/5 sm:divide-y-0 sm:divide-x sm:divide-white/5 sm:[&>*]:px-5 py-3 sm:py-4 gap-y-2">
                 {serviceLevelFacts.map((fact, index) => (
                   <li
                     key={fact.label}
-                    className="group relative text-center px-4 sm:px-6 py-4 hover:bg-white/5 transition-all duration-300"
+                    className="group relative text-center px-4 sm:px-0 hover:bg-white/5 transition-all duration-300"
                     title={fact.tooltip}
                   >
                     <fact.icon className="h-5 w-5 text-slate-400 mx-auto mb-2" />
@@ -233,32 +271,19 @@ const InteractiveHero = () => {
                   </li>
                 ))}
               </ul>
-              <div className="px-4 pb-4 pt-2">
-                <p className="text-[11px] text-white/50 leading-relaxed">
+              <div className="px-4 pb-3">
+                <p className="text-[11px] text-white/50">
                   *Examples and timelines are indicative and may vary by project. We do not guarantee rankings, traffic, or revenue.
-                  Actual performance depends on many factors including market, competition, and client inputs.
                 </p>
               </div>
             </div>
-
-            <motion.div
-              initial={{ opacity: 0 }}
-              animate={{ opacity: 1 }}
-              transition={{ duration: 0.6, delay: 0.6 }}
-              className="mt-4 text-center"
-            >
-              <div className="inline-flex items-center space-x-2 px-4 py-2 bg-amber-500/10 border border-amber-500/30 rounded-full">
-                <div className="w-2 h-2 bg-amber-400 rounded-full animate-pulse"></div>
-                <span className="text-xs text-amber-200 font-medium">Limited capacity: accepting up to 2 new projects this month</span>
-              </div>
-            </motion.div>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-6xl mx-auto mb-8"
+            transition={{ duration: 0.8, delay: 1.2 }}
+            className="max-w-6xl mx-auto mt-8"
           >
             <p className="text-sm text-slate-400 mb-4 uppercase tracking-wide">Our Services</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -308,40 +333,6 @@ const InteractiveHero = () => {
               ))}
             </div>
           </motion.div>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1 }}
-          className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4 justify-center items-center"
-        >
-          <Link
-            to="/contact"
-            className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-105 transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30"
-          >
-            <span>Book a 15-min Fit Call</span>
-            <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
-          </Link>
-
-          <Link
-            to="/services"
-            className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center"
-          >
-            View Case Demos
-            <Play className="ml-2 h-5 w-5" />
-          </Link>
-        </motion.div>
-
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-6 text-center"
-        >
-          <p className="text-sm text-slate-400">
-            Transparent pricing • Concierge onboarding • No long-term lock-ins
-          </p>
         </motion.div>
       </div>
     </section>
