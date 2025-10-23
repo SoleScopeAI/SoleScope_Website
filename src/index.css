@@ -2133,3 +2133,77 @@ body:not(.page-custom-ai-automations) .dark-card { all: revert; }
     animation: none;
   }
 }
+
+/* Modal Enhancements for Better Scrolling and Visibility */
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+}
+
+[role="dialog"] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  touch-action: pan-y;
+}
+
+[data-modal-body] {
+  -webkit-overflow-scrolling: touch;
+  overscroll-behavior: contain;
+  scroll-behavior: smooth;
+}
+
+[data-modal-body]::-webkit-scrollbar {
+  width: 8px;
+}
+
+[data-modal-body]::-webkit-scrollbar-track {
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 4px;
+}
+
+[data-modal-body]::-webkit-scrollbar-thumb {
+  background: rgba(168, 85, 247, 0.3);
+  border-radius: 4px;
+  transition: background 0.2s ease;
+}
+
+[data-modal-body]::-webkit-scrollbar-thumb:hover {
+  background: rgba(168, 85, 247, 0.5);
+}
+
+/* Safe area support for modals on devices with notches */
+@supports (padding: env(safe-area-inset-top)) {
+  [role="dialog"] {
+    padding-top: max(1rem, env(safe-area-inset-top));
+    padding-bottom: max(1rem, env(safe-area-inset-bottom));
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+}
+
+/* Prevent pull-to-refresh on mobile when modal is open */
+html.modal-open,
+html.modal-open body {
+  overscroll-behavior: none;
+  -webkit-overflow-scrolling: auto;
+}
+
+/* GPU acceleration for modal animations */
+[role="dialog"],
+[role="dialog"] > div {
+  transform: translateZ(0);
+  will-change: transform, opacity;
+}
+
+/* Ensure modal backdrop blocks pointer events properly */
+[role="dialog"][aria-modal="true"] {
+  pointer-events: auto;
+}
+
+/* Smooth transitions for modal content */
+@media (prefers-reduced-motion: no-preference) {
+  [data-modal-body] {
+    scroll-behavior: smooth;
+  }
+}

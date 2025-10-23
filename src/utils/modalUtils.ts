@@ -53,15 +53,39 @@ export const useScrollLock = (isLocked: boolean) => {
     if (!isLocked) return;
 
     const scrollBarWidth = window.innerWidth - document.documentElement.clientWidth;
-    const originalOverflow = document.body.style.overflow;
-    const originalPaddingRight = document.body.style.paddingRight;
+    const originalBodyOverflow = document.body.style.overflow;
+    const originalBodyPaddingRight = document.body.style.paddingRight;
+    const originalHtmlOverflow = document.documentElement.style.overflow;
+    const originalScrollPosition = window.pageYOffset || document.documentElement.scrollTop;
 
     document.body.style.overflow = 'hidden';
     document.body.style.paddingRight = `${scrollBarWidth}px`;
+    document.documentElement.style.overflow = 'hidden';
+
+    const fixedElements = document.querySelectorAll<HTMLElement>('[data-fixed-element]');
+    fixedElements.forEach(el => {
+      el.style.paddingRight = `${scrollBarWidth}px`;
+    });
+
+    if (document.body.scrollHeight > window.innerHeight) {
+      document.body.style.top = `-${originalScrollPosition}px`;
+      document.body.style.position = 'fixed';
+      document.body.style.width = '100%';
+    }
 
     return () => {
-      document.body.style.overflow = originalOverflow;
-      document.body.style.paddingRight = originalPaddingRight;
+      document.body.style.overflow = originalBodyOverflow;
+      document.body.style.paddingRight = originalBodyPaddingRight;
+      document.documentElement.style.overflow = originalHtmlOverflow;
+      document.body.style.position = '';
+      document.body.style.top = '';
+      document.body.style.width = '';
+
+      fixedElements.forEach(el => {
+        el.style.paddingRight = '';
+      });
+
+      window.scrollTo(0, originalScrollPosition);
     };
   }, [isLocked]);
 };
@@ -88,9 +112,13 @@ export const useSwipeToClose = (
 ) => {
   const touchStartY = useRef<number>(0);
   const touchEndY = useRef<number>(0);
+  const scrollTopAtStart = useRef<number>(0);
 
   const handleTouchStart = useCallback((e: TouchEvent) => {
     touchStartY.current = e.touches[0].clientY;
+    const target = e.target as HTMLElement;
+    const scrollableParent = target.closest('[data-modal-body]') as HTMLElement;
+    scrollTopAtStart.current = scrollableParent?.scrollTop || 0;
   }, []);
 
   const handleTouchMove = useCallback((e: TouchEvent) => {
@@ -99,7 +127,7 @@ export const useSwipeToClose = (
 
   const handleTouchEnd = useCallback(() => {
     const swipeDistance = touchEndY.current - touchStartY.current;
-    if (swipeDistance > threshold) {
+    if (swipeDistance > threshold && scrollTopAtStart.current === 0) {
       callback();
     }
   }, [callback, threshold]);
@@ -107,9 +135,10 @@ export const useSwipeToClose = (
   useEffect(() => {
     if (!isActive) return;
 
-    document.addEventListener('touchstart', handleTouchStart);
-    document.addEventListener('touchmove', handleTouchMove);
-    document.addEventListener('touchend', handleTouchEnd);
+    const options: AddEventListenerOptions = { passive: true };
+    document.addEventListener('touchstart', handleTouchStart, options);
+    document.addEventListener('touchmove', handleTouchMove, options);
+    document.addEventListener('touchend', handleTouchEnd, options);
 
     return () => {
       document.removeEventListener('touchstart', handleTouchStart);
@@ -125,6 +154,16 @@ export const clampProgress = (value: number): number => {
 
 export const scrollToTop = (element: HTMLElement | null) => {
   if (element) {
-    element.scrollTo({ top: 0, behavior: 'auto' });
+    requestAnimationFrame(() => {
+      element.scrollTo({ top: 0, behavior: 'auto' });
+    });
+  }
+};
+
+export const preventBackgroundScroll = (e: Event) => {
+  const target = e.target as HTMLElement;
+  const isModalContent = target.closest('[role="dialog"]');
+  if (!isModalContent) {
+    e.preventDefault();
   }
 };
