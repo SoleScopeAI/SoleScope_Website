@@ -738,10 +738,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
         </div>
 
         {/* CTA button in dedicated row */}
-        <div className="flex justify-end">
+        <div className="flex justify-end relative" style={{ zIndex: 10 }}>
           <button
             onClick={onExpand}
-            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 text-sm"
+            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 text-sm relative"
+            style={{ zIndex: 10 }}
           >
             View Case Study
           </button>

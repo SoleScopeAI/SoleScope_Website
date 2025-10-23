@@ -225,10 +225,12 @@ const PortfolioShowcase = () => {
                     ))}
                   </div>
 
-                  <button className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium">
-                    <span>View Case Study</span>
-                    <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
-                  </button>
+                  <div className="relative" style={{ zIndex: 10 }}>
+                    <button className="flex items-center space-x-2 text-purple-400 hover:text-purple-300 transition-colors text-sm font-medium relative" style={{ zIndex: 10 }}>
+                      <span>View Case Study</span>
+                      <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                    </button>
+                  </div>
                 </div>
               </motion.div>
             ))}
