@@ -202,7 +202,7 @@ const CaseCards = () => {
             </p>
           </motion.div>
 
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ position: 'relative', isolation: 'isolate' }}>
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ position: 'relative', isolation: 'isolate' }}>
             {cases.map((caseItem, index) => (
               <motion.div
                 key={caseItem.id}
@@ -210,9 +210,9 @@ const CaseCards = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -8, scale: 1.01 }}
-                className="group relative overflow-hidden rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer flex flex-col min-h-[420px]"
-                style={{ position: 'relative', isolation: 'isolate', zIndex: 0 }}
+                whileHover={{ y: -6, scale: 1.01 }}
+                className="group relative overflow-hidden rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer flex flex-col"
+                style={{ position: 'relative', isolation: 'isolate', zIndex: 0, minHeight: '440px' }}
                 tabIndex={0}
                 role="button"
                 aria-labelledby={`case-title-${caseItem.id}`}
@@ -226,7 +226,7 @@ const CaseCards = () => {
                 data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 <div
-                  className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-black/90 rounded-3xl"
+                  className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-slate-950/95 rounded-3xl"
                   style={{ zIndex: 0, pointerEvents: 'none' }}
                 />
                 <div
@@ -235,11 +235,11 @@ const CaseCards = () => {
                 />
 
                 <div
-                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                   style={{
                     zIndex: 2,
                     pointerEvents: 'none',
-                    background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+                    background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(108, 99, 255, 0.05) 50%, transparent 80%)'
                   }}
                 />
 
@@ -265,40 +265,32 @@ const CaseCards = () => {
                     {caseItem.tagline}
                   </p>
 
-                  <div className="grid grid-cols-3 gap-2 mb-4">
+                  <div className="grid grid-cols-3 gap-3 mb-4">
                     {caseItem.metrics.map((metric, idx) => (
                       <div
                         key={idx}
-                        className="px-2 py-2 bg-white/5 border border-white/10 rounded-lg text-center"
+                        className="px-3 py-3 bg-white/5 border border-white/10 rounded-xl text-center flex flex-col justify-center"
                       >
-                        <div className="text-sm font-bold text-white">{metric.value}</div>
-                        <div className="text-xs text-gray-400 mt-0.5">{metric.label}</div>
+                        <div className="text-base font-bold text-white mb-1">{metric.value}</div>
+                        <div className="text-xs text-gray-400 leading-tight">{metric.label}</div>
                       </div>
                     ))}
                   </div>
 
-                  <div className="relative mb-4 overflow-x-auto scrollbar-hide">
-                    <div
-                      className="flex gap-2 pb-1"
-                      style={{
-                        maskImage: 'linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent)',
-                        WebkitMaskImage: 'linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent)'
-                      }}
-                    >
-                      {caseItem.tags.map((tag, idx) => (
-                        <span
-                          key={idx}
-                          className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs text-purple-200 whitespace-nowrap flex-shrink-0"
-                        >
-                          {tag}
-                        </span>
-                      ))}
-                    </div>
+                  <div className="flex flex-wrap gap-2 mb-4">
+                    {caseItem.tags.map((tag, idx) => (
+                      <span
+                        key={idx}
+                        className="px-3 py-1.5 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs font-medium text-purple-200 whitespace-nowrap"
+                      >
+                        {tag}
+                      </span>
+                    ))}
                   </div>
 
-                  <div className="flex justify-end mt-auto">
+                  <div className="flex justify-end mt-auto pt-4">
                     <button
-                      className="flex items-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-medium transition-colors text-sm"
+                      className="flex items-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-semibold transition-colors text-sm"
                       onClick={(e) => {
                         e.stopPropagation();
                         openModal(caseItem.id);
@@ -334,8 +326,8 @@ const CaseCards = () => {
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
                   whileHover={{ y: -4, scale: 1.01 }}
-                  className="group relative overflow-hidden rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center flex flex-col min-h-[420px] cursor-pointer"
-                  style={{ position: 'relative', isolation: 'isolate', zIndex: 0 }}
+                  className="group relative overflow-hidden rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center flex flex-col cursor-pointer"
+                  style={{ position: 'relative', isolation: 'isolate', zIndex: 0, minHeight: '420px' }}
                   tabIndex={0}
                   role="button"
                   aria-labelledby={`case-title-mobile-${caseItem.id}`}
@@ -352,7 +344,7 @@ const CaseCards = () => {
                   data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
                 >
                   <div
-                    className="absolute inset-0 bg-gradient-to-br from-gray-900/80 to-black/90 rounded-3xl"
+                    className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-slate-950/95 rounded-3xl"
                     style={{ zIndex: 0, pointerEvents: 'none' }}
                   />
                   <div
@@ -361,11 +353,11 @@ const CaseCards = () => {
                   />
 
                   <div
-                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-300"
+                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
                     style={{
                       zIndex: 2,
                       pointerEvents: 'none',
-                      background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+                      background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(108, 99, 255, 0.05) 50%, transparent 80%)'
                     }}
                   />
 
@@ -395,36 +387,28 @@ const CaseCards = () => {
                       {caseItem.metrics.map((metric, idx) => (
                         <div
                           key={idx}
-                          className="px-2 py-2 bg-white/5 border border-white/10 rounded-lg text-center"
+                          className="px-2 py-2.5 bg-white/5 border border-white/10 rounded-lg text-center flex flex-col justify-center"
                         >
-                          <div className="text-xs font-bold text-white">{metric.value}</div>
-                          <div className="text-xs text-gray-400 mt-0.5 truncate">{metric.label}</div>
+                          <div className="text-sm font-bold text-white mb-0.5">{metric.value}</div>
+                          <div className="text-xs text-gray-400 leading-tight truncate">{metric.label}</div>
                         </div>
                       ))}
                     </div>
 
-                    <div className="relative mb-4 overflow-x-auto scrollbar-hide">
-                      <div
-                        className="flex gap-2 pb-1"
-                        style={{
-                          maskImage: 'linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent)',
-                          WebkitMaskImage: 'linear-gradient(to right, transparent, black 8px, black calc(100% - 8px), transparent)'
-                        }}
-                      >
-                        {caseItem.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs text-purple-200 whitespace-nowrap flex-shrink-0"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
+                    <div className="flex flex-wrap gap-2 mb-4">
+                      {caseItem.tags.map((tag, idx) => (
+                        <span
+                          key={idx}
+                          className="px-3 py-1 bg-purple-500/10 border border-purple-500/20 rounded-full text-xs font-medium text-purple-200 whitespace-nowrap"
+                        >
+                          {tag}
+                        </span>
+                      ))}
                     </div>
 
-                    <div className="flex justify-end mt-auto">
+                    <div className="flex justify-end mt-auto pt-2">
                       <button
-                        className="flex items-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-medium transition-colors text-sm"
+                        className="flex items-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-semibold transition-colors text-sm"
                         onClick={(e) => {
                           e.stopPropagation();
                           openModal(caseItem.id);
@@ -523,40 +507,40 @@ const CaseCards = () => {
         ariaLabel={`${selectedCaseData?.title} workflow details`}
       >
         {selectedCaseData && (
-          <div>
-            <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
-              <p className="text-sm text-yellow-200">
-                <span className="font-semibold">Demo Case Study:</span> This workflow uses modelled data for demonstration purposes. Results represent typical expected outcomes.
+          <div className="space-y-6">
+            <div className="p-5 bg-yellow-500/10 border-l-4 border-yellow-500 rounded-lg">
+              <p className="text-sm text-yellow-200 leading-relaxed">
+                <span className="font-bold">Demo Case Study:</span> This workflow uses modelled data for demonstration purposes. Results represent typical expected outcomes.
               </p>
             </div>
 
-            <div className="flex items-center gap-4 mb-6">
-              <div className={`w-16 h-16 bg-gradient-to-r ${selectedCaseData.color} rounded-xl flex items-center justify-center flex-shrink-0`}>
-                <selectedCaseData.icon className="h-8 w-8 text-white" />
+            <div className="flex items-center gap-5">
+              <div className={`w-20 h-20 bg-gradient-to-r ${selectedCaseData.color} rounded-2xl flex items-center justify-center flex-shrink-0 shadow-lg`}>
+                <selectedCaseData.icon className="h-10 w-10 text-white drop-shadow-lg" />
               </div>
               <div className="flex-1">
-                <h3 className="text-2xl font-bold text-white mb-1">{selectedCaseData.title}</h3>
-                <p className="text-slate-300 text-sm">{selectedCaseData.tagline}</p>
+                <h3 className="text-2xl font-bold text-white mb-2 uppercase tracking-wide">{selectedCaseData.title}</h3>
+                <p className="text-slate-300 text-base leading-relaxed">{selectedCaseData.tagline}</p>
               </div>
             </div>
 
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold text-white mb-4 uppercase tracking-wide">Key Metrics</h4>
-              <div className="grid grid-cols-3 gap-4">
+            <div>
+              <h4 className="text-lg font-bold text-white mb-5 uppercase tracking-wide">Key Metrics</h4>
+              <div className="grid grid-cols-1 sm:grid-cols-3 gap-5">
                 {selectedCaseData.metrics.map((metric, idx) => (
                   <div
                     key={idx}
-                    className="p-4 bg-white/5 border border-white/10 rounded-xl text-center"
+                    className="p-6 bg-gradient-to-br from-white/8 to-white/3 border border-white/10 rounded-2xl text-center hover:border-purple-500/30 transition-all duration-300 shadow-lg"
                   >
-                    <div className="text-2xl font-bold text-white mb-1">{metric.value}</div>
-                    <div className="text-sm text-slate-400">{metric.label}</div>
+                    <div className="text-3xl font-bold text-white mb-2">{metric.value}</div>
+                    <div className="text-sm font-medium text-slate-300">{metric.label}</div>
                   </div>
                 ))}
               </div>
             </div>
 
-            <div className="mb-8">
-              <h4 className="text-lg font-semibold text-white mb-4 uppercase tracking-wide">Workflow Steps</h4>
+            <div>
+              <h4 className="text-lg font-bold text-white mb-5 uppercase tracking-wide">Workflow Steps</h4>
               <div className="space-y-4">
                 {selectedCaseData.steps.map((step, index) => (
                   <motion.div
@@ -564,18 +548,18 @@ const CaseCards = () => {
                     initial={{ opacity: 0, x: -20 }}
                     animate={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-start space-x-4 p-4 bg-white/5 border border-white/10 rounded-xl"
+                    className="flex items-start space-x-4 p-5 bg-gradient-to-br from-white/8 to-white/3 border border-white/10 rounded-xl hover:border-purple-500/30 transition-all duration-300"
                   >
-                    <div className="flex-shrink-0 w-8 h-8 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-full flex items-center justify-center text-sm font-bold">
+                    <div className="flex-shrink-0 w-10 h-10 bg-gradient-to-br from-purple-600 to-purple-700 text-white rounded-xl flex items-center justify-center text-base font-bold shadow-lg">
                       {index + 1}
                     </div>
-                    <p className="text-slate-300 leading-relaxed flex-1">{step}</p>
+                    <p className="text-slate-300 leading-relaxed flex-1 text-base">{step}</p>
                   </motion.div>
                 ))}
               </div>
             </div>
 
-            <div className="pt-6 border-t border-white/10">
+            <div className="pt-8 border-t-2 border-white/10">
               <button
                 onClick={() => {
                   closeModal();
@@ -584,13 +568,13 @@ const CaseCards = () => {
                     formElement.scrollIntoView({ behavior: 'smooth' });
                   }
                 }}
-                className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900 flex items-center justify-center"
+                className="w-full px-8 py-4 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-bold text-base rounded-2xl hover:shadow-xl hover:shadow-purple-500/40 transition-all duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900 flex items-center justify-center uppercase tracking-wide"
                 data-analytics={`modal-cta-${selectedCaseData.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
                 Request This Automation
-                <ArrowRight className="ml-2 h-5 w-5" />
+                <ArrowRight className="ml-3 h-5 w-5" />
               </button>
-              <p className="text-xs text-center text-slate-400 mt-4">
+              <p className="text-xs text-center text-slate-400 mt-5 leading-relaxed">
                 Figures shown are modelled examples based on comparable service businesses. Actual performance varies.
               </p>
             </div>
