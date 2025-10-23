@@ -1,15 +1,15 @@
 import React, { useEffect } from 'react';
 import PremiumNavbar from '../components/PremiumNavbar';
 import PremiumFooter from '../components/PremiumFooter';
-import FlagshipHero from '../components/automations/FlagshipHero';
-import Overview from '../components/automations/Overview';
-import ValueSplit from '../components/automations/ValueSplit';
-import DiscoveryProcess from '../components/automations/DiscoveryProcess';
-import InteractiveDashboard from '../components/automations/InteractiveDashboard';
-import SectorUseCases from '../components/automations/SectorUseCases';
-import PackagesTiers from '../components/automations/PackagesTiers';
-import HostingSupport from '../components/automations/HostingSupport';
-import FinalCTA from '../components/automations/FinalCTA';
+import EnhancedHero from '../components/automations/EnhancedHero';
+import OverviewValue from '../components/automations/OverviewValue';
+import AICapabilities from '../components/automations/AICapabilities';
+import WorkflowExamples from '../components/automations/WorkflowExamples';
+import CentralDashboard from '../components/automations/CentralDashboard';
+import UnifiedRoadmap from '../components/automations/UnifiedRoadmap';
+import WhyChoose from '../components/automations/WhyChoose';
+import ContactSection from '../components/automations/ContactSection';
+import FlagshipCTA from '../components/automations/FlagshipCTA';
 
 const CustomAIAutomationsPage = () => {
   useEffect(() => {
@@ -23,23 +23,23 @@ const CustomAIAutomationsPage = () => {
     <div className="dark-theme-page min-h-screen">
       <PremiumNavbar />
 
-      <FlagshipHero />
+      <EnhancedHero />
 
-      <Overview />
+      <OverviewValue />
 
-      <ValueSplit />
+      <AICapabilities />
 
-      <DiscoveryProcess />
+      <WorkflowExamples />
 
-      <InteractiveDashboard />
+      <CentralDashboard />
 
-      <SectorUseCases />
+      <UnifiedRoadmap />
 
-      <PackagesTiers />
+      <WhyChoose />
 
-      <HostingSupport />
+      <ContactSection />
 
-      <FinalCTA />
+      <FlagshipCTA />
 
       <PremiumFooter />
     </div>
