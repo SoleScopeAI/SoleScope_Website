@@ -1,26 +1,24 @@
 import React from 'react';
 import InteractiveHero from '../components/homepage/InteractiveHero';
-import ValueProposition from '../components/ValueProposition';
-import ServicesPreview from '../components/ServicesPreview';
-import TechnologyRoadmap from '../components/homepage/TechnologyRoadmap';
-import PortfolioShowcase from '../components/homepage/PortfolioShowcase';
-import AICapabilitiesShowcase from '../components/homepage/AICapabilitiesShowcase';
-import PricingPackages from '../components/homepage/PricingPackages';
-import ClientSuccessMetrics from '../components/homepage/ClientSuccessMetrics';
-import ComprehensiveCTA from '../components/homepage/ComprehensiveCTA';
+import WhyChooseSoleScope from '../components/homepage/WhyChooseSoleScope';
+import ServiceSnapshotGrid from '../components/homepage/ServiceSnapshotGrid';
+import ClientResultsCarousel from '../components/homepage/ClientResultsCarousel';
+import AutomationInAction from '../components/homepage/AutomationInAction';
+import TestimonialsStrip from '../components/homepage/TestimonialsStrip';
+import ProcessStepper from '../components/homepage/ProcessStepper';
+import FinalCallToAction from '../components/homepage/FinalCallToAction';
 
 const PremiumHomePage = () => {
   return (
     <div className="overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
       <InteractiveHero />
-      <ValueProposition />
-      <ServicesPreview />
-      <TechnologyRoadmap />
-      <PortfolioShowcase />
-      <AICapabilitiesShowcase />
-      <PricingPackages />
-      <ClientSuccessMetrics />
-      <ComprehensiveCTA />
+      <WhyChooseSoleScope />
+      <ServiceSnapshotGrid />
+      <ClientResultsCarousel />
+      <AutomationInAction />
+      <TestimonialsStrip />
+      <ProcessStepper />
+      <FinalCallToAction />
     </div>
   );
 };
