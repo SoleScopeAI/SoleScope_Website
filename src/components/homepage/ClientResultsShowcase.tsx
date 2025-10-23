@@ -125,17 +125,17 @@ const ClientResultsShowcase = () => {
         tagline: "From Fully Booked to Fully Automated",
         services_provided: ['Website Design', 'Booking Automation', 'AI Chatbot', 'CRM Integration'],
         tech_stack: ['React', 'Node.js', 'Supabase', 'Twilio API', 'OpenAI'],
-        primary_result: "+138% increase in bookings",
+        primary_result: "Expected +135-140% increase in bookings",
         result_percentage: 138,
         is_featured: true,
         color_theme: "pink-purple",
         completion_date: "2024-06-15",
         project_duration_weeks: 6,
         metrics: [
-          { metric_key: 'bookings', metric_label: 'Booking Increase', metric_icon: 'TrendingUp', display_value: '+138%', category: 'conversion', is_highlighted: true },
-          { metric_key: 'response_time', metric_label: 'Response Time', metric_icon: 'Clock', display_value: '< 2min', category: 'efficiency', is_highlighted: false },
-          { metric_key: 'customer_satisfaction', metric_label: 'Customer Rating', metric_icon: 'Star', display_value: '4.9/5', category: 'satisfaction', is_highlighted: false },
-          { metric_key: 'automation_hours', metric_label: 'Hours Saved/Month', metric_icon: 'Zap', display_value: '120hrs', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'bookings', metric_label: 'Booking Increase (typical)', metric_icon: 'TrendingUp', display_value: 'Expected +135-140%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'response_time', metric_label: 'Response Time', metric_icon: 'Clock', display_value: 'Approx. < 2min', category: 'efficiency', is_highlighted: false },
+          { metric_key: 'customer_satisfaction', metric_label: 'Customer Rating', metric_icon: 'Star', display_value: '4.8-5.0/5 (avg.)', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'automation_hours', metric_label: 'Hours Saved/Month (est.)', metric_icon: 'Zap', display_value: 'Approx. 115-125hrs', category: 'efficiency', is_highlighted: true },
         ]
       },
       {
@@ -152,17 +152,17 @@ const ClientResultsShowcase = () => {
         tagline: "Training Excellence, Digitally Delivered",
         services_provided: ['Custom Web App', 'Progress Tracking', 'Video Platform', 'Smart Scheduling'],
         tech_stack: ['React', 'TypeScript', 'Supabase', 'AWS S3', 'Stripe'],
-        primary_result: "Fully automated client management",
+        primary_result: "Expected 95-100% automated client management",
         result_percentage: 100,
         is_featured: true,
         color_theme: "blue-indigo",
         completion_date: "2024-05-30",
         project_duration_weeks: 10,
         metrics: [
-          { metric_key: 'client_management', metric_label: 'Client Management', metric_icon: 'Users', display_value: '100% Automated', category: 'automation', is_highlighted: true },
-          { metric_key: 'revenue_increase', metric_label: 'Revenue Growth', metric_icon: 'TrendingUp', display_value: '+95%', category: 'financial', is_highlighted: true },
-          { metric_key: 'progress_tracking', metric_label: 'Progress Reports', metric_icon: 'Target', display_value: '500+ Generated', category: 'features', is_highlighted: false },
-          { metric_key: 'client_retention', metric_label: 'Client Retention', metric_icon: 'Award', display_value: '98%', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'client_management', metric_label: 'Client Management (expected)', metric_icon: 'Users', display_value: '~95-100% Automated', category: 'automation', is_highlighted: true },
+          { metric_key: 'revenue_increase', metric_label: 'Revenue Growth (typical)', metric_icon: 'TrendingUp', display_value: 'Expected +90-100%', category: 'financial', is_highlighted: true },
+          { metric_key: 'progress_tracking', metric_label: 'Progress Reports', metric_icon: 'Target', display_value: 'Approx. 450-550', category: 'features', is_highlighted: false },
+          { metric_key: 'client_retention', metric_label: 'Client Retention (avg.)', metric_icon: 'Award', display_value: '96-99%', category: 'satisfaction', is_highlighted: false },
         ]
       },
       {
@@ -179,17 +179,17 @@ const ClientResultsShowcase = () => {
         tagline: "Sharp Tools, Sharper Results",
         services_provided: ['AI Lead Qualification', 'Website Redesign', 'CRM Integration', 'Quote Calculator'],
         tech_stack: ['React', 'Python', 'OpenAI', 'Zapier', 'SendGrid'],
-        primary_result: "+180% qualified leads",
+        primary_result: "Expected +170-190% qualified leads",
         result_percentage: 180,
         is_featured: true,
         color_theme: "orange-red",
         completion_date: "2024-07-20",
         project_duration_weeks: 7,
         metrics: [
-          { metric_key: 'qualified_leads', metric_label: 'Qualified Leads', metric_icon: 'Target', display_value: '+180%', category: 'conversion', is_highlighted: true },
-          { metric_key: 'lead_response', metric_label: 'Lead Response', metric_icon: 'Zap', display_value: 'Instant', category: 'efficiency', is_highlighted: true },
-          { metric_key: 'conversion_rate', metric_label: 'Conversion Rate', metric_icon: 'TrendingUp', display_value: '+210%', category: 'conversion', is_highlighted: false },
-          { metric_key: 'quote_accuracy', metric_label: 'Quote Accuracy', metric_icon: 'Shield', display_value: '99.8%', category: 'quality', is_highlighted: false },
+          { metric_key: 'qualified_leads', metric_label: 'Qualified Leads (typical)', metric_icon: 'Target', display_value: 'Expected +170-190%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'lead_response', metric_label: 'Lead Response', metric_icon: 'Zap', display_value: 'Near-Instant (est.)', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'conversion_rate', metric_label: 'Conversion Rate (avg.)', metric_icon: 'TrendingUp', display_value: 'Expected +200-220%', category: 'conversion', is_highlighted: false },
+          { metric_key: 'quote_accuracy', metric_label: 'Quote Accuracy', metric_icon: 'Shield', display_value: 'Approx. 99-100%', category: 'quality', is_highlighted: false },
         ]
       },
       {
@@ -206,17 +206,17 @@ const ClientResultsShowcase = () => {
         tagline: "From Data Chaos to Clear Decisions",
         services_provided: ['AI Dashboards', 'Multi-Source Integration', 'Predictive Analytics', 'Automated Reporting'],
         tech_stack: ['React', 'Python', 'TensorFlow', 'Supabase', 'Chart.js', 'REST APIs'],
-        primary_result: "15 hours saved weekly on reporting",
+        primary_result: "Expected 14-16 hours saved weekly on reporting",
         result_percentage: 100,
         is_featured: true,
         color_theme: "green-teal",
         completion_date: "2024-08-10",
         project_duration_weeks: 8,
         metrics: [
-          { metric_key: 'time_saved', metric_label: 'Time Saved Weekly', metric_icon: 'Clock', display_value: '15hrs', category: 'efficiency', is_highlighted: true },
-          { metric_key: 'data_sources', metric_label: 'Systems Integrated', metric_icon: 'Target', display_value: '5', category: 'features', is_highlighted: false },
-          { metric_key: 'insights_accuracy', metric_label: 'Forecast Accuracy', metric_icon: 'TrendingUp', display_value: '94%', category: 'quality', is_highlighted: true },
-          { metric_key: 'decision_speed', metric_label: 'Decision Time', metric_icon: 'Zap', display_value: '-72%', category: 'efficiency', is_highlighted: false },
+          { metric_key: 'time_saved', metric_label: 'Time Saved Weekly (est.)', metric_icon: 'Clock', display_value: 'Approx. 14-16hrs', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'data_sources', metric_label: 'Systems Integrated', metric_icon: 'Target', display_value: '4-6 systems', category: 'features', is_highlighted: false },
+          { metric_key: 'insights_accuracy', metric_label: 'Forecast Accuracy (avg.)', metric_icon: 'TrendingUp', display_value: 'Expected 92-96%', category: 'quality', is_highlighted: true },
+          { metric_key: 'decision_speed', metric_label: 'Decision Time (typical)', metric_icon: 'Zap', display_value: 'Expected -65-75%', category: 'efficiency', is_highlighted: false },
         ]
       },
       {
@@ -233,17 +233,17 @@ const ClientResultsShowcase = () => {
         tagline: "Crafted Identity, Premium Perception",
         services_provided: ['Logo Design', 'Brand Strategy', 'Color Systems', 'Packaging Design', 'Brand Guidelines'],
         tech_stack: ['Adobe Illustrator', 'Figma', 'Adobe Photoshop', 'Brand Templates'],
-        primary_result: "+165% wholesale inquiries",
+        primary_result: "Expected +160-170% wholesale inquiries",
         result_percentage: 165,
         is_featured: true,
         color_theme: "orange-red",
         completion_date: "2024-04-15",
         project_duration_weeks: 5,
         metrics: [
-          { metric_key: 'wholesale_inquiries', metric_label: 'Wholesale Inquiries', metric_icon: 'TrendingUp', display_value: '+165%', category: 'conversion', is_highlighted: true },
-          { metric_key: 'brand_recognition', metric_label: 'Brand Recognition', metric_icon: 'Award', display_value: '+220%', category: 'satisfaction', is_highlighted: true },
-          { metric_key: 'premium_perception', metric_label: 'Premium Perception', metric_icon: 'Star', display_value: '+89%', category: 'satisfaction', is_highlighted: false },
-          { metric_key: 'consistency_score', metric_label: 'Brand Consistency', metric_icon: 'Shield', display_value: '98%', category: 'quality', is_highlighted: false },
+          { metric_key: 'wholesale_inquiries', metric_label: 'Wholesale Inquiries (typical)', metric_icon: 'TrendingUp', display_value: 'Expected +160-170%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'brand_recognition', metric_label: 'Brand Recognition (est.)', metric_icon: 'Award', display_value: 'Expected +210-230%', category: 'satisfaction', is_highlighted: true },
+          { metric_key: 'premium_perception', metric_label: 'Premium Perception (avg.)', metric_icon: 'Star', display_value: 'Expected +85-95%', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'consistency_score', metric_label: 'Brand Consistency', metric_icon: 'Shield', display_value: 'Approx. 96-99%', category: 'quality', is_highlighted: false },
         ]
       },
       {
@@ -260,17 +260,17 @@ const ClientResultsShowcase = () => {
         tagline: "Build Projects, Not Spreadsheets",
         services_provided: ['Custom Web App', 'Client Portals', 'Document Management', 'Automated Invoicing', 'Cloud Hosting'],
         tech_stack: ['React', 'Node.js', 'PostgreSQL', 'AWS S3', 'Stripe', 'Socket.io'],
-        primary_result: "+240% project capacity",
+        primary_result: "Expected +230-250% project capacity",
         result_percentage: 240,
         is_featured: true,
         color_theme: "blue-indigo",
         completion_date: "2024-09-05",
         project_duration_weeks: 12,
         metrics: [
-          { metric_key: 'project_capacity', metric_label: 'Project Capacity', metric_icon: 'TrendingUp', display_value: '+240%', category: 'efficiency', is_highlighted: true },
-          { metric_key: 'payment_speed', metric_label: 'Payment Speed', metric_icon: 'Zap', display_value: '-65%', category: 'financial', is_highlighted: true },
-          { metric_key: 'client_satisfaction', metric_label: 'Client Satisfaction', metric_icon: 'Star', display_value: '4.8/5', category: 'satisfaction', is_highlighted: false },
-          { metric_key: 'admin_time', metric_label: 'Admin Time Saved', metric_icon: 'Clock', display_value: '20hrs/wk', category: 'efficiency', is_highlighted: false },
+          { metric_key: 'project_capacity', metric_label: 'Project Capacity (typical)', metric_icon: 'TrendingUp', display_value: 'Expected +230-250%', category: 'efficiency', is_highlighted: true },
+          { metric_key: 'payment_speed', metric_label: 'Payment Speed (avg.)', metric_icon: 'Zap', display_value: 'Expected -60-70%', category: 'financial', is_highlighted: true },
+          { metric_key: 'client_satisfaction', metric_label: 'Client Satisfaction', metric_icon: 'Star', display_value: 'Approx. 4.7-4.9/5', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'admin_time', metric_label: 'Admin Time Saved (est.)', metric_icon: 'Clock', display_value: 'Approx. 18-22hrs/wk', category: 'efficiency', is_highlighted: false },
         ]
       },
       {
@@ -287,17 +287,17 @@ const ClientResultsShowcase = () => {
         tagline: "Professional Presence, Premium Results",
         services_provided: ['Website Design', 'SEO Strategy', 'Managed Hosting', 'Booking Integration', '24/7 Support'],
         tech_stack: ['React', 'Next.js', 'Tailwind CSS', 'Calendly API', 'Vercel Hosting'],
-        primary_result: "Page 1 Google rankings in 3 months",
+        primary_result: "Expected Page 1-2 Google rankings in 3-4 months",
         result_percentage: 100,
         is_featured: true,
         color_theme: "slate-gray",
         completion_date: "2024-06-28",
         project_duration_weeks: 6,
         metrics: [
-          { metric_key: 'google_ranking', metric_label: 'Google Ranking', metric_icon: 'TrendingUp', display_value: 'Page 1', category: 'conversion', is_highlighted: true },
-          { metric_key: 'organic_traffic', metric_label: 'Organic Traffic', metric_icon: 'Users', display_value: '+385%', category: 'conversion', is_highlighted: true },
-          { metric_key: 'consultation_bookings', metric_label: 'Online Bookings', metric_icon: 'Target', display_value: '+295%', category: 'conversion', is_highlighted: false },
-          { metric_key: 'page_speed', metric_label: 'Page Load Speed', metric_icon: 'Zap', display_value: '0.8s', category: 'quality', is_highlighted: false },
+          { metric_key: 'google_ranking', metric_label: 'Google Ranking (expected)', metric_icon: 'TrendingUp', display_value: 'Page 1-2 (typical)', category: 'conversion', is_highlighted: true },
+          { metric_key: 'organic_traffic', metric_label: 'Organic Traffic (avg.)', metric_icon: 'Users', display_value: 'Expected +370-400%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'consultation_bookings', metric_label: 'Online Bookings (est.)', metric_icon: 'Target', display_value: 'Expected +280-310%', category: 'conversion', is_highlighted: false },
+          { metric_key: 'page_speed', metric_label: 'Page Load Speed', metric_icon: 'Zap', display_value: 'Approx. 0.7-1.0s', category: 'quality', is_highlighted: false },
         ]
       },
       {
@@ -314,17 +314,17 @@ const ClientResultsShowcase = () => {
         tagline: "From Invisible to Industry Leader",
         services_provided: ['Brand Identity', 'Website Design', 'AI Chatbot', 'Booking Automation', 'SEO', 'Managed Hosting'],
         tech_stack: ['React', 'Node.js', 'OpenAI', 'Twilio', 'Stripe', 'Google Maps API'],
-        primary_result: "+420% monthly revenue",
+        primary_result: "Expected +400-440% monthly revenue",
         result_percentage: 420,
         is_featured: true,
         color_theme: "green-teal",
         completion_date: "2024-08-25",
         project_duration_weeks: 10,
         metrics: [
-          { metric_key: 'revenue_growth', metric_label: 'Revenue Growth', metric_icon: 'TrendingUp', display_value: '+420%', category: 'financial', is_highlighted: true },
-          { metric_key: 'lead_volume', metric_label: 'Lead Volume', metric_icon: 'Users', display_value: '+580%', category: 'conversion', is_highlighted: true },
-          { metric_key: 'quote_speed', metric_label: 'Quote Delivery', metric_icon: 'Zap', display_value: 'Instant', category: 'efficiency', is_highlighted: false },
-          { metric_key: 'customer_rating', metric_label: 'Customer Rating', metric_icon: 'Star', display_value: '4.9/5', category: 'satisfaction', is_highlighted: false },
+          { metric_key: 'revenue_growth', metric_label: 'Revenue Growth (typical)', metric_icon: 'TrendingUp', display_value: 'Expected +400-440%', category: 'financial', is_highlighted: true },
+          { metric_key: 'lead_volume', metric_label: 'Lead Volume (avg.)', metric_icon: 'Users', display_value: 'Expected +550-600%', category: 'conversion', is_highlighted: true },
+          { metric_key: 'quote_speed', metric_label: 'Quote Delivery', metric_icon: 'Zap', display_value: 'Near-Instant (est.)', category: 'efficiency', is_highlighted: false },
+          { metric_key: 'customer_rating', metric_label: 'Customer Rating', metric_icon: 'Star', display_value: 'Approx. 4.8-5.0/5', category: 'satisfaction', is_highlighted: false },
         ]
       },
     ];
@@ -427,9 +427,9 @@ const ClientResultsShowcase = () => {
             transition={{ duration: 0.6, delay: 0.2 }}
             className="inline-block mb-4"
           >
-            <div className="px-6 py-2 bg-gradient-to-r from-purple-600/20 to-pink-600/20 border border-purple-500/30 rounded-full">
-              <span className="text-purple-300 font-semibold text-sm uppercase tracking-wider">
-                Portfolio Showcase
+            <div className="px-6 py-2 bg-gradient-to-r from-yellow-600/20 to-amber-600/20 border border-yellow-500/30 rounded-full">
+              <span className="text-yellow-300 font-semibold text-sm uppercase tracking-wider">
+                Demo Projects & Expected Results
               </span>
             </div>
           </motion.div>
@@ -438,10 +438,10 @@ const ClientResultsShowcase = () => {
             id="client-results-heading"
             className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 uppercase tracking-wide"
           >
-            Transformative Client Results
+            Example Case Studies
           </h2>
           <p className="text-lg sm:text-xl text-slate-300 max-w-3xl mx-auto leading-relaxed">
-            Real businesses. Real growth. Real impact. See how we've helped companies across the UK achieve remarkable digital transformation.
+            Example case studies that illustrate the kinds of outcomes clients typically experience after full implementation.
           </p>
         </motion.div>
 
@@ -530,11 +530,13 @@ const ClientResultsShowcase = () => {
               </AnimatePresence>
             </div>
 
-            <div className="absolute left-0 right-0 top-[45%] -translate-y-1/2 pointer-events-none">
-              <div className="max-w-7xl mx-auto px-4 flex items-center justify-between pointer-events-auto">
+            {/* Chevron navigation positioned outside cards */}
+            <div className="absolute left-0 right-0 top-[45%] -translate-y-1/2 pointer-events-none" style={{ zIndex: 30 }}>
+              <div className="max-w-[calc(100%+8rem)] mx-auto px-4 flex items-center justify-between pointer-events-auto">
                 <button
                   onClick={prevSlide}
-                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group z-20"
+                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
+                  style={{ transform: 'translateX(-4rem)' }}
                   aria-label="Previous slide"
                 >
                   <ChevronLeft className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
@@ -542,7 +544,8 @@ const ClientResultsShowcase = () => {
 
                 <button
                   onClick={nextSlide}
-                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group z-20"
+                  className="w-14 h-14 bg-white/10 backdrop-blur-md border border-white/20 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all duration-300 group"
+                  style={{ transform: 'translateX(4rem)' }}
                   aria-label="Next slide"
                 >
                   <ChevronRight className="h-6 w-6 text-white group-hover:scale-125 transition-transform" />
@@ -583,6 +586,18 @@ const ClientResultsShowcase = () => {
             ))}
           </div>
         )}
+
+        {/* Global Disclaimer */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={inView ? { opacity: 1, y: 0 } : {}}
+          transition={{ duration: 0.6, delay: 0.6 }}
+          className="mt-12 pt-8 border-t border-white/10"
+        >
+          <p className="text-sm text-center text-slate-400 max-w-4xl mx-auto leading-relaxed">
+            All figures and visuals are for demonstration purposes only. Actual performance varies by business and implementation.
+          </p>
+        </motion.div>
       </div>
 
       <AnimatePresence>
@@ -610,15 +625,45 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
 
   return (
     <motion.div
-      className={`relative bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md border border-white/10 rounded-3xl overflow-hidden shadow-2xl ${
+      className={`relative rounded-3xl shadow-2xl ${
         compact ? 'h-full' : ''
       }`}
+      style={{ position: 'relative', overflow: 'hidden', isolation: 'isolate' }}
       whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(139, 92, 246, 0.25)' }}
       transition={{ duration: 0.3 }}
     >
-      <div className={`absolute inset-0 bg-gradient-to-br ${colors.from} ${colors.to} opacity-50`} />
+      {/* L0: Background effects layer - positioned absolutely, z-index 0, no pointer events */}
+      <div
+        className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md border border-white/10 rounded-3xl"
+        style={{ zIndex: 0, pointerEvents: 'none' }}
+      />
+      <div
+        className={`absolute inset-0 bg-gradient-to-br ${colors.from} ${colors.to}`}
+        style={{ zIndex: 0, pointerEvents: 'none', opacity: 0.3 }}
+      />
 
-      <div className="relative z-10 p-6 md:p-8">
+      {/* L2: Hover sheen layer - positioned absolutely, z-index 2, opacity controlled by hover */}
+      <motion.div
+        className="absolute inset-0 rounded-3xl"
+        style={{
+          zIndex: 2,
+          pointerEvents: 'none',
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+        }}
+        initial={{ opacity: 0 }}
+        whileHover={{ opacity: 1 }}
+        transition={{ duration: 0.3 }}
+      />
+
+      {/* L1: Content layer - positioned relative, z-index 1 */}
+      <div className="relative p-6 md:p-8" style={{ zIndex: 1 }}>
+        {/* Demo Case Study Badge */}
+        <div className="inline-block px-3 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full mb-4">
+          <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
+            Demo Case Study
+          </span>
+        </div>
+
         <div className="flex items-start justify-between mb-6">
           <div className="flex items-center space-x-4">
             <div className="w-16 h-16 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-2">
@@ -644,36 +689,49 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
           <span className="text-sm font-semibold text-purple-200">{project.industry}</span>
         </div>
 
-        <p className="text-slate-300 mb-6 leading-relaxed">{project.tagline}</p>
+        <p className="text-slate-300 mb-2 leading-relaxed">{project.tagline}</p>
+        <p className="text-xs text-slate-400/80 italic mb-6">
+          Example project — modelled performance metrics
+        </p>
 
         <div className={`mb-6 ${compact ? 'h-48' : 'h-64'}`}>
           <MockupComponent className="w-full h-full" />
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-6">
+        <div className="grid grid-cols-2 gap-3 mb-3">
           {project.metrics?.filter(m => m.is_highlighted).slice(0, 4).map((metric, idx) => {
             const Icon = iconMap[metric.metric_icon] || Target;
             return (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4">
+              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4" style={{ overflow: 'visible' }}>
                 <Icon className={`h-5 w-5 ${colors.text} mb-2`} />
-                <div className="text-2xl font-bold text-white mb-1">{metric.display_value}</div>
-                <div className="text-xs text-slate-400">{metric.metric_label}</div>
+                <div className="text-xl font-bold text-white mb-1" style={{ wordBreak: 'break-word' }}>{metric.display_value}</div>
+                <div className="text-xs text-slate-400 leading-tight">{metric.metric_label}</div>
               </div>
             );
           })}
         </div>
 
-        <div className="flex items-center justify-between">
-          <div className="flex flex-wrap gap-2">
+        {/* Per-card footnote */}
+        <p className="text-xs text-slate-400/70 italic mb-6 text-center">
+          Figures shown are modelled examples based on comparable service businesses.
+        </p>
+
+        {/* Tag pills row with horizontal scroll */}
+        <div className="mb-4 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 pb-2" style={{ minWidth: 'min-content' }}>
             {project.services_provided.slice(0, 3).map((service, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300"
+                className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300 whitespace-nowrap flex-shrink-0"
               >
                 {service}
               </span>
             ))}
           </div>
+        </div>
+
+        {/* CTA button in dedicated row */}
+        <div className="flex justify-end">
           <button
             onClick={onExpand}
             className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 text-sm"
@@ -719,11 +777,23 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
         </button>
 
         <div className="p-8 md:p-12">
+          {/* Demo disclaimer banner */}
+          <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
+            <p className="text-sm text-yellow-200">
+              <span className="font-semibold">Demo Case Study:</span> This case study uses modelled data for demonstration purposes. Results represent typical expected outcomes.
+            </p>
+          </div>
+
           <div className="flex items-start gap-6 mb-8">
             <div className="w-20 h-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-xl p-3">
               <LogoComponent className="w-full h-full" />
             </div>
             <div className="flex-1">
+              <div className="inline-block px-3 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full mb-2">
+                <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
+                  Demo Case Study
+                </span>
+              </div>
               <h2 className="text-4xl font-bold text-white mb-2">{project.business_name}</h2>
               <p className="text-xl text-purple-300 mb-3">{project.project_title}</p>
               <div className="flex flex-wrap gap-3">
@@ -745,6 +815,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
 
           <div className={`p-8 bg-gradient-to-br ${colors.from} ${colors.to} border border-white/10 rounded-2xl mb-8`}>
             <div className="text-center">
+              <p className="text-sm text-slate-300 mb-2 uppercase tracking-wide font-semibold">Expected Result:</p>
               <div className="text-5xl font-bold text-white mb-2">{project.primary_result}</div>
               <div className="text-xl text-slate-200 mb-4">{project.tagline}</div>
               {project.website_url && (
