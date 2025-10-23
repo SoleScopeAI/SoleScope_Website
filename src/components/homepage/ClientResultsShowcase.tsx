@@ -722,23 +722,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
           <MockupComponent className="w-full h-full" />
         </div>
 
-        <div className="grid grid-cols-2 gap-3 mb-3">
-          {project.metrics?.filter(m => m.is_highlighted).slice(0, 4).map((metric, idx) => {
-            const Icon = iconMap[metric.metric_icon] || Target;
-            return (
-              <div key={idx} className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-xl p-4" style={{ overflow: 'visible' }}>
-                <Icon className={`h-5 w-5 ${colors.text} mb-2`} />
-                <div className="text-xl font-bold text-white mb-1" style={{ wordBreak: 'break-word' }}>{metric.display_value}</div>
-                <div className="text-xs text-slate-400 leading-tight">{metric.metric_label}</div>
-              </div>
-            );
-          })}
-        </div>
-
-        {/* Per-card footnote */}
-        <p className="text-xs text-slate-400/70 italic mb-6 text-center">
-          Figures shown are modelled examples based on comparable service businesses.
-        </p>
 
         {/* Tag pills row with horizontal scroll */}
         <div className="mb-4 overflow-x-auto scrollbar-hide">
