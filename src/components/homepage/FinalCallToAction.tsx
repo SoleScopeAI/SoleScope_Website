@@ -18,10 +18,6 @@ const FinalCallToAction = () => {
       className="relative py-24 overflow-hidden"
       aria-labelledby="final-cta-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/20 to-black"></div>
-      <div className="absolute inset-0 opacity-30">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-gradient-to-r from-purple-500 via-pink-500 to-cyan-500 rounded-full filter blur-3xl animate-pulse"></div>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

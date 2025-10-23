@@ -62,9 +62,7 @@ const AutomationInAction = () => {
       className="relative py-20 overflow-hidden"
       aria-labelledby="automation-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/20 to-black"></div>
-
-      <div className="absolute inset-0 overflow-hidden opacity-30">
+      <div className="absolute inset-0 overflow-hidden opacity-20">
         <svg className="w-full h-full" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="100%">

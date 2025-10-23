@@ -7,10 +7,11 @@ import AutomationInAction from '../components/homepage/AutomationInAction';
 import TestimonialsStrip from '../components/homepage/TestimonialsStrip';
 import ProcessStepper from '../components/homepage/ProcessStepper';
 import FinalCallToAction from '../components/homepage/FinalCallToAction';
+import '../styles/homepage-galaxy.css';
 
 const PremiumHomePage = () => {
   return (
-    <div className="overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
+    <div className="homepage-unified-surface overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
       <InteractiveHero />
       <WhyChooseSoleScope />
       <ServiceSnapshotGrid />

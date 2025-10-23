@@ -9,19 +9,20 @@
   --stars-soft:   rgba(255,255,255,.35);
 }
 
-/* Homepage sections deep space background */
-.homepage-section{
-  position:relative;
-  padding: 5rem 0;
-  color:#fff;
+/* UNIFIED HOMEPAGE BACKGROUND - Full page continuous background system */
+.homepage-unified-surface {
+  position: relative;
+  min-height: 100vh;
+  color: #fff;
 }
 
-.homepage-section::before{
-  content:"";
-  position:absolute;
-  inset:0;
-  z-index:0;
-  pointer-events:none;
+/* Layer A: Deep space base gradient - Fixed position for continuous flow */
+.homepage-unified-surface::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -10;
+  pointer-events: none;
   background:
     radial-gradient(1200px 800px at 18% 22%, var(--nebula-3), transparent 62%),
     radial-gradient(1000px 700px at 82% 74%, var(--nebula-2), transparent 60%),
@@ -29,12 +30,13 @@
   animation: homepageTwinkle 12s ease-in-out infinite;
 }
 
-.homepage-section::after{
-  content:"";
-  position:absolute;
-  inset:-5% -5%;
-  z-index:0;
-  pointer-events:none;
+/* Layer B: Nebula ribbons with star field - Fixed position for parallax depth */
+.homepage-unified-surface::after {
+  content: "";
+  position: fixed;
+  inset: -5% -5%;
+  z-index: -9;
+  pointer-events: none;
   background:
     radial-gradient(1400px 900px at 12% 18%, var(--nebula-1), transparent 65%),
     radial-gradient(1200px 800px at 88% 80%, var(--nebula-2), transparent 62%);
@@ -53,6 +55,37 @@
   mask-composite: exclude;
   animation: homepageDrift 60s linear infinite;
   transform: translate3d(0,0,0);
+}
+
+/* Ensure all direct children maintain proper stacking */
+.homepage-unified-surface > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Legacy homepage sections - maintain for backward compatibility but neutralize backgrounds */
+.homepage-section{
+  position:relative;
+  padding: 5rem 0;
+  color:#fff;
+}
+
+.homepage-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background: transparent;
+}
+
+.homepage-section::after{
+  content:"";
+  position:absolute;
+  inset:-5% -5%;
+  z-index:0;
+  pointer-events:none;
+  background: transparent;
 }
 
 .homepage-section > * {

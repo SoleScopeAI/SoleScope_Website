@@ -36,11 +36,6 @@ const WhyChooseSoleScope = () => {
       className="relative py-20 overflow-hidden"
       aria-labelledby="why-choose-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/10 to-black"></div>
-      <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500 rounded-full filter blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-cyan-500 rounded-full filter blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div

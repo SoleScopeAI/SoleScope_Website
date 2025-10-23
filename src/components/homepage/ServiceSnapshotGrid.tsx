@@ -115,50 +115,6 @@ const ServiceSnapshotGrid = () => {
       className="relative py-24 overflow-hidden"
       aria-labelledby="services-snapshot-heading"
     >
-      {/* Seamless background continuation from hero */}
-      <div className="absolute inset-0 pointer-events-none">
-        {/* Animated gradient nebula clouds */}
-        <motion.div
-          className="absolute inset-0"
-          animate={{
-            background: [
-              'radial-gradient(1200px 800px at 20% 30%, rgba(108, 99, 255, 0.18) 0%, transparent 60%), radial-gradient(1000px 700px at 80% 70%, rgba(108, 99, 255, 0.12) 0%, transparent 60%)',
-              'radial-gradient(1200px 800px at 25% 35%, rgba(108, 99, 255, 0.20) 0%, transparent 60%), radial-gradient(1000px 700px at 75% 65%, rgba(108, 99, 255, 0.14) 0%, transparent 60%)',
-              'radial-gradient(1200px 800px at 20% 30%, rgba(108, 99, 255, 0.18) 0%, transparent 60%), radial-gradient(1000px 700px at 80% 70%, rgba(108, 99, 255, 0.12) 0%, transparent 60%)',
-            ]
-          }}
-          transition={{
-            duration: 20,
-            repeat: Infinity,
-            ease: "easeInOut"
-          }}
-        />
-
-        {/* Floating particles */}
-        <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-purple-400 rounded-full blur-sm opacity-60 animate-pulse" />
-        <div className="absolute top-2/3 right-1/3 w-1 h-1 bg-cyan-400 rounded-full blur-sm opacity-50 animate-pulse" style={{ animationDelay: '1s' }} />
-        <div className="absolute bottom-1/4 left-1/2 w-1 h-1 bg-purple-300 rounded-full blur-sm opacity-40 animate-pulse" style={{ animationDelay: '2s' }} />
-      </div>
-
-      {/* Floating AI energy orb */}
-      <motion.div
-        className="absolute top-1/3 right-1/4 w-64 h-64 rounded-full pointer-events-none"
-        style={{
-          background: 'radial-gradient(circle, rgba(34, 211, 238, 0.15) 0%, rgba(168, 85, 247, 0.1) 50%, transparent 70%)',
-          filter: 'blur(60px)',
-        }}
-        animate={{
-          y: [0, -30, 0],
-          x: [0, 20, 0],
-          scale: [1, 1.1, 1],
-          opacity: [0.3, 0.5, 0.3]
-        }}
-        transition={{
-          duration: 12,
-          repeat: Infinity,
-          ease: "easeInOut"
-        }}
-      />
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Enhanced headline with animated gradient */}

@@ -154,13 +154,10 @@ const InteractiveHero = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center premium-bg overflow-hidden pt-20 md:pt-0"
+      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0"
       aria-labelledby="hero-heading"
       role="region"
     >
-      <div className="floating-particles"></div>
-      <div className="pulse-glow pulse-glow-1"></div>
-      <div className="pulse-glow pulse-glow-2"></div>
 
       {portfolioImages.map((example) => (
         <motion.div

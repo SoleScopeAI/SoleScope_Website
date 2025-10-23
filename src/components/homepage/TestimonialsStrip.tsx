@@ -52,10 +52,6 @@ const TestimonialsStrip = () => {
       className="relative py-20 overflow-hidden"
       aria-labelledby="testimonials-heading"
     >
-      <div className="absolute inset-0 bg-gradient-to-b from-black via-purple-950/5 to-black"></div>
-      <div className="absolute inset-0 opacity-10">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-gradient-to-r from-purple-500 to-pink-500 rounded-full filter blur-3xl"></div>
-      </div>
 
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
