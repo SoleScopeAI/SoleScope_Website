@@ -83,8 +83,8 @@ const WebsiteDesignPage = () => {
     {
       id: 'ai-speed',
       icon: Zap,
-      title: "AI-Assisted Speed",
-      description: "Faster development without compromising quality"
+      title: "Smart Technology",
+      description: "Modern tools and intelligent workflows for fast, precise delivery"
     },
     {
       id: 'mobile-responsive',
@@ -95,14 +95,14 @@ const WebsiteDesignPage = () => {
     {
       id: 'seo-optimized',
       icon: Search,
-      title: "SEO Optimized",
-      description: "Built to rank higher on Google from day one"
+      title: "SEO Optimised",
+      description: "Search-ready from day one with expert-led optimisation"
     },
     {
       id: 'strategic-design',
       icon: Palette,
-      title: "Strategic Design",
-      description: "Layouts designed for maximum conversions"
+      title: "Handcrafted Design",
+      description: "Custom layouts tailored to your brand and audience"
     }
   ];
 
@@ -111,7 +111,7 @@ const WebsiteDesignPage = () => {
       id: 'basic-package',
       name: "Basic Package",
       price: "£199",
-      description: "Perfect for getting started online",
+      description: "Perfect for sole traders ready to launch online",
       mostPopular: false,
       features: [
         "One-page landing site",
@@ -126,7 +126,7 @@ const WebsiteDesignPage = () => {
       id: 'three-page-package',
       name: "Three-Page Package",
       price: "£349",
-      description: "Essential pages for your business",
+      description: "Ideal for contractors and small service businesses",
       mostPopular: false,
       features: [
         "Home, Services, Contact pages",
@@ -140,7 +140,7 @@ const WebsiteDesignPage = () => {
       id: 'five-page-package',
       name: "Five-Page Package",
       price: "£599",
-      description: "Complete online presence",
+      description: "Best for growing SMEs needing a scalable website",
       mostPopular: true,
       features: [
         "Home, About, Services, Contact, Gallery",
@@ -154,7 +154,7 @@ const WebsiteDesignPage = () => {
       id: 'custom-package',
       name: "Custom Package",
       price: "From £799",
-      description: "Tailored to your unique needs",
+      description: "Fully bespoke for established small businesses",
       mostPopular: false,
       features: [
         "Unlimited pages",
@@ -171,7 +171,7 @@ const WebsiteDesignPage = () => {
       id: 'basic-tier',
       name: "Basic Tier",
       price: "£69.99",
-      description: "Essential hosting and support",
+      description: "Reliable managed hosting with essential support",
       mostPopular: false,
       features: [
         "Reliable hosting infrastructure",
@@ -186,7 +186,7 @@ const WebsiteDesignPage = () => {
       id: 'standard-tier',
       name: "Standard Tier",
       price: "£129.99",
-      description: "Enhanced performance and support",
+      description: "Complete peace-of-mind hosting and maintenance",
       mostPopular: true,
       features: [
         "Everything in Basic Tier",
@@ -202,7 +202,7 @@ const WebsiteDesignPage = () => {
       id: 'professional-tier',
       name: "Professional Tier",
       price: "£249.99",
-      description: "Premium hosting with full support",
+      description: "Enterprise-grade hosting with personal studio support",
       mostPopular: false,
       features: [
         "Everything in Standard Tier",
@@ -243,35 +243,35 @@ const WebsiteDesignPage = () => {
   const whyChooseUs = [
     {
       icon: Target,
-      title: "Service-Business Specialist",
-      description: "Built specifically for sole traders and small service businesses who need practical digital solutions."
+      title: "Boutique Studio Approach",
+      description: "Every SoleScope website is created in-house by a dedicated specialist — no templates, just custom builds tailored to your business."
     },
     {
       icon: Zap,
-      title: "AI-Powered Efficiency",
-      description: "Cutting-edge AI technology combined with proven design principles for faster, better results."
+      title: "Technology-Enhanced Craftsmanship",
+      description: "We blend hands-on creativity with intelligent automation — ensuring fast delivery, perfect responsiveness, and search-ready performance."
     },
     {
       icon: Shield,
-      title: "Complete Support",
-      description: "From initial consultation to ongoing maintenance, we handle all the technical complexity for you."
+      title: "Personal, Reliable Support",
+      description: "You'll get the reliability of enterprise-grade infrastructure, but the personal support of a small studio that knows your site inside out."
     }
   ];
 
   const faqs = [
     {
       question: "How long does it take to build my website?",
-      answer: "Most websites are completed within 2-3 weeks. Starter packages can be ready in 1 week, while Premium packages may take up to 4 weeks to ensure every detail is perfect.",
+      answer: "Most websites are completed within 2-3 weeks. Basic packages can be ready in 1 week, while Custom packages may take up to 4 weeks to ensure every detail is perfect. We work with you directly throughout the entire process.",
       tags: ['timeline', 'delivery', 'project duration']
     },
     {
       question: "Do I need to provide content for my website?",
-      answer: "You can provide your own content, or we can create it for you. Our Pro and Premium packages include professional copywriting services to ensure your message resonates with your target audience.",
+      answer: "You can provide your own content, or we can create it for you. Our Five-Page and Custom packages include professional copywriting services to ensure your message resonates with your target audience.",
       tags: ['content', 'copywriting', 'text']
     },
     {
       question: "Will my website work on mobile phones?",
-      answer: "Absolutely! All our websites are built mobile-first, meaning they're designed to look and work perfectly on smartphones, tablets, and desktops. We test on multiple devices before launch.",
+      answer: "Absolutely! Every SoleScope website is built mobile-first and tested across multiple devices before launch. Whether your customers visit from their phone, tablet, or desktop, your site will look exceptional and perform flawlessly.",
       tags: ['mobile', 'responsive', 'devices']
     },
     {
@@ -286,12 +286,12 @@ const WebsiteDesignPage = () => {
     },
     {
       question: "Do you provide SEO services?",
-      answer: "All our websites include basic SEO optimization as standard. This includes proper page structure, meta tags, and mobile optimization. We can also provide advanced SEO services for businesses looking to rank higher in search results.",
+      answer: "All our websites include foundational SEO optimisation as standard. This includes proper page structure, meta tags, and mobile optimisation. We can also provide advanced SEO services for businesses looking to rank higher in local and national search results.",
       tags: ['seo', 'optimization', 'google']
     },
     {
       question: "What if I need changes after my website is live?",
-      answer: "We provide ongoing support for all updates and changes. Minor content updates are included in your hosting plan, while larger modifications can be handled through our support system or as separate projects.",
+      answer: "We provide ongoing support for all updates and changes. Minor content updates are included in your hosting plan, while larger modifications can be handled directly with your dedicated specialist or as separate projects.",
       tags: ['updates', 'changes', 'modifications']
     },
     {
@@ -315,7 +315,7 @@ const WebsiteDesignPage = () => {
           transition={{ duration: 0.8 }}
         >
           <h1>Website Design & Hosting</h1>
-          <p>Professional, mobile-responsive websites with fully managed hosting and ongoing support that converts visitors into customers.</p>
+          <p>Bespoke websites for UK sole traders and growing SMEs — built by specialists using the latest design technology to help your business stand out and scale.</p>
         </motion.div>
       </header>
 
@@ -330,7 +330,7 @@ const WebsiteDesignPage = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
-              Why Choose Our Website Design?
+              Why Choose SoleScope for Website Design?
             </h2>
             
             {/* Desktop: Grid Layout */}
@@ -582,7 +582,7 @@ const WebsiteDesignPage = () => {
               Ongoing Hosting & Support Plans
             </h2>
             <p className="text-white text-center mb-8 opacity-80 max-w-3xl mx-auto">
-              After your website is built, we provide fully managed hosting and maintenance. 
+              Our managed hosting keeps your website secure, fast, and always up to date — with zero effort on your end. Hosting and maintenance are fully handled in-house by the same specialists who built your site.
               <strong> These are recurring monthly fees, separate from your one-time website build cost.</strong>
             </p>
             
@@ -833,10 +833,10 @@ const WebsiteDesignPage = () => {
           className="services-refined-card text-center"
         >
           <h2 className="text-3xl font-bold text-white mb-6 uppercase tracking-wide">
-            Ready For A Website That Actually Works?
+            Ready For A Website That Feels Handcrafted Yet Built With Tomorrow's Technology?
           </h2>
           <p className="text-white mb-8 text-lg leading-relaxed max-w-2xl mx-auto opacity-90">
-            Let's discuss your vision and create a website that drives real results for your business.
+            Let's start your project today. Serving sole traders, small businesses, and SMEs across the UK.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
             <Link
@@ -844,7 +844,7 @@ const WebsiteDesignPage = () => {
               className="services-btn-primary"
             >
               <Calendar className="h-5 w-5" />
-              Request Consultation
+              Book A Discovery Call
             </Link>
             <a
               href="mailto:contact@solescope.co.uk"
