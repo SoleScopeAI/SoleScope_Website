@@ -2230,3 +2230,68 @@ html.modal-open body {
 body.modal-open {
   padding-right: var(--scrollbar-width, 0);
 }
+
+/* Mobile-First Utilities (< 768px) */
+@media (max-width: 767px) {
+  .mobile-container {
+    max-width: 720px;
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .mobile-card {
+    border-radius: 1rem;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    background: rgba(15, 14, 21, 0.4);
+    backdrop-filter: blur(12px);
+    box-shadow: 0 10px 30px -12px rgba(0, 0, 0, 0.6);
+    padding: 1rem;
+  }
+
+  .mobile-h1 {
+    font-size: 2.25rem !important;
+    line-height: 2.25rem !important;
+  }
+
+  .mobile-h2 {
+    font-size: 2rem !important;
+    line-height: 2rem !important;
+  }
+
+  .mobile-h3 {
+    font-size: 1.25rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .mobile-body-text {
+    font-size: 0.9375rem !important;
+    line-height: 1.75rem !important;
+  }
+
+  .mobile-touch-target {
+    min-height: 44px !important;
+    min-width: 44px;
+  }
+
+  .mobile-drawer-backdrop {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.7);
+    z-index: 60;
+  }
+
+  .mobile-single-col {
+    grid-template-columns: 1fr !important;
+  }
+
+  .mobile-double-col {
+    grid-template-columns: repeat(2, 1fr) !important;
+  }
+
+  .mobile-centered {
+    text-align: center !important;
+  }
+}

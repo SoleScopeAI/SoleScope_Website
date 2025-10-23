@@ -239,22 +239,22 @@ const ContactPage = () => {
   return (
     <main id="contact" className="contact-surface pt-24 pb-20">
       {/* Compact Header */}
-      <header className="container contact-header">
+      <header className="container contact-header mobile-container">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Contact SoleScope</h1>
-          <p>Tell me what you need and I'll reply with next steps—usually within one business day.</p>
+          <h1 className="mobile-h1">Contact SoleScope</h1>
+          <p className="mobile-body-text">Tell me what you need and I'll reply with next steps—usually within one business day.</p>
         </motion.div>
       </header>
 
       {/* Contact Cards Surface */}
       <section className="contact-cards-surface">
-        <div className="container">
+        <div className="container mobile-container">
           {/* Contact Grid */}
-          <div className="contact-grid">
+          <div className="contact-grid mobile-single-col">
             {/* Contact Form */}
             <motion.div
               initial={{ opacity: 0, x: -50 }}
@@ -292,7 +292,7 @@ const ContactPage = () => {
                       autoComplete="off"
                     />
 
-                    <div className="form-grid">
+                    <div className="form-grid mobile-single-col">
                       <div className="field-group">
                         <label htmlFor="name" className="field-label">Full Name *</label>
                         <input
@@ -302,7 +302,7 @@ const ContactPage = () => {
                           required
                           value={formData.name}
                           onChange={handleChange}
-                          className="field-input"
+                          className="field-input mobile-touch-target"
                           placeholder="Your name"
                         />
                       </div>
@@ -316,13 +316,13 @@ const ContactPage = () => {
                           required
                           value={formData.email}
                           onChange={handleChange}
-                          className="field-input"
+                          className="field-input mobile-touch-target"
                           placeholder="your@email.com"
                         />
                       </div>
                     </div>
 
-                    <div className="form-grid">
+                    <div className="form-grid mobile-single-col">
                       <div className="field-group">
                         <label htmlFor="phone" className="field-label">Phone Number</label>
                         <input
@@ -331,7 +331,7 @@ const ContactPage = () => {
                           name="phone"
                           value={formData.phone}
                           onChange={handleChange}
-                          className="field-input"
+                          className="field-input mobile-touch-target"
                           placeholder="+44 20 1234 5678"
                         />
                       </div>
@@ -344,13 +344,13 @@ const ContactPage = () => {
                           name="company"
                           value={formData.company}
                           onChange={handleChange}
-                          className="field-input"
+                          className="field-input mobile-touch-target"
                           placeholder="Your business name"
                         />
                       </div>
                     </div>
 
-                    <div className="form-grid">
+                    <div className="form-grid mobile-single-col">
                       <div className="field-group">
                         <label htmlFor="projectType" className="field-label">Project Type *</label>
                         <select
@@ -359,7 +359,7 @@ const ContactPage = () => {
                           required
                           value={formData.projectType}
                           onChange={handleChange}
-                          className="field-select"
+                          className="field-select mobile-touch-target"
                         >
                           <option value="">Select project type...</option>
                           {projectTypes.map((type) => (
@@ -375,7 +375,7 @@ const ContactPage = () => {
                           name="budget"
                           value={formData.budget}
                           onChange={handleChange}
-                          className="field-select"
+                          className="field-select mobile-touch-target"
                         >
                           <option value="">Select budget...</option>
                           {budgetRanges.map((range) => (
@@ -392,7 +392,7 @@ const ContactPage = () => {
                         name="timeline"
                         value={formData.timeline}
                         onChange={handleChange}
-                        className="field-select"
+                        className="field-select mobile-touch-target"
                       >
                         <option value="">Select timeline...</option>
                         {timelineOptions.map((option) => (
@@ -410,7 +410,7 @@ const ContactPage = () => {
                         rows={6}
                         value={formData.message}
                         onChange={handleChange}
-                        className="field-input field-textarea"
+                        className="field-input field-textarea mobile-touch-target"
                         placeholder="Tell me about your project, goals, and how I can help transform your business..."
                       />
                     </div>
@@ -471,7 +471,7 @@ const ContactPage = () => {
                     <button
                       type="submit"
                       disabled={isSubmitting || !formData.consent}
-                      className="contact-btn-primary"
+                      className="contact-btn-primary mobile-touch-target"
                     >
                       {isSubmitting ? 'Sending...' : 'Send Message'}
                       <Send className="h-5 w-5" />
@@ -566,7 +566,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="metrics-grid"
+            className="metrics-grid mobile-double-col"
           >
             {metrics.map((metric, index) => (
               <div key={metric.label} className="contact-refined-card metric-card">
@@ -582,7 +582,7 @@ const ContactPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="channels-grid"
+            className="channels-grid mobile-single-col"
           >
             {channels.map((channel, index) => (
               <div key={channel.title} className="contact-refined-card channel-card">

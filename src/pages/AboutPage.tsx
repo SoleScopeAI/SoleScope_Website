@@ -200,17 +200,17 @@ const AboutPage = () => {
     <main id="about" className="about-surface pt-24 pb-20">
       {/* Compact Page Header */}
       <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
             className="text-center"
           >
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight">
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight mobile-h1">
               About SoleScope Studio & Design
             </h1>
-            <p className="text-xl text-white max-w-4xl mx-auto leading-relaxed">
+            <p className="text-xl text-white max-w-4xl mx-auto leading-relaxed mobile-body-text">
               SoleScope is a modern studio for applied AI and high-performance web design. We help under-served UK sole traders and small service businesses deploy right-sized automation and conversion-focused sites—fast, affordable, and actually used day-to-day.
             </p>
           </motion.div>
@@ -219,14 +219,14 @@ const AboutPage = () => {
 
       {/* Business Overview Surface */}
       <section className="about-cards-surface py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container space-y-20">
           
           {/* Quick Facts */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-double-col"
           >
             {quickFacts.map((fact, index) => (
               <div key={fact.title} className="about-refined-card text-center">
@@ -256,7 +256,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-double-col">
               {metrics.map((metric, index) => (
                 <motion.div
                   key={metric.label}
@@ -289,7 +289,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -328,7 +328,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-single-col">
               {differentiators.map((diff, index) => (
                 <motion.div
                   key={diff.title}
@@ -364,7 +364,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-single-col">
               {steps.map((step, index) => (
                 <motion.div
                   key={step.number}
@@ -398,7 +398,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
             
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
               {outcomes.map((outcome, index) => (
                 <motion.div
                   key={index}
@@ -433,15 +433,15 @@ const AboutPage = () => {
 
       {/* Founder Section */}
       <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mobile-single-col"
           >
             {/* Portrait */}
-            <div className="text-center lg:text-left">
+            <div className="text-center lg:text-left mobile-centered">
               <div className="w-64 h-64 mx-auto lg:mx-0 rounded-2xl overflow-hidden border-2 border-white/20 mb-6">
                 <img 
                   src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400"
@@ -480,14 +480,14 @@ const AboutPage = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="/contact"
-                  className="about-btn-primary"
+                  className="about-btn-primary mobile-touch-target"
                 >
                   <Calendar className="h-5 w-5" />
                   Book a Free 15-min Discovery Call
                 </a>
                 <a
                   href="mailto:contact@solescope.co.uk"
-                  className="about-btn-secondary"
+                  className="about-btn-secondary mobile-touch-target"
                 >
                   <Mail className="h-5 w-5" />
                   Email Kevin
@@ -500,7 +500,7 @@ const AboutPage = () => {
 
       {/* FAQ Section */}
       <section ref={ref} className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -523,7 +523,7 @@ const AboutPage = () => {
               >
                 <button
                   onClick={() => toggleFaq(index)}
-                  className="faq-button"
+                  className="faq-button mobile-touch-target"
                   aria-expanded={activeIndex === index}
                 >
                   <span className="font-semibold text-white pr-4">{faq.question}</span>
@@ -552,7 +552,7 @@ const AboutPage = () => {
 
       {/* Final CTA */}
       <section className="py-20">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -565,14 +565,14 @@ const AboutPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
-                className="about-btn-primary"
+                className="about-btn-primary mobile-touch-target"
               >
                 <Calendar className="h-5 w-5" />
                 Start a Discovery Call
               </a>
               <a
                 href="mailto:contact@solescope.co.uk"
-                className="about-btn-secondary"
+                className="about-btn-secondary mobile-touch-target"
               >
                 <Mail className="h-5 w-5" />
                 Email Kevin

@@ -213,20 +213,20 @@ const FAQPage = () => {
   return (
     <main id="faq" className="faq-surface pt-24 pb-20">
       {/* Compact Header */}
-      <header className="container faq-header">
+      <header className="container faq-header mobile-container">
         <motion.div
           initial={{ opacity: 1, y: 0 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Frequently Asked Questions</h1>
-          <p>Everything you need to know about our AI-powered digital solutions and how we help service businesses thrive.</p>
+          <h1 className="mobile-h1">Frequently Asked Questions</h1>
+          <p className="mobile-body-text">Everything you need to know about our AI-powered digital solutions and how we help service businesses thrive.</p>
         </motion.div>
       </header>
 
       {/* FAQ Cards Surface */}
       <section className="faq-cards-surface">
-        <div className="container">
+        <div className="container mobile-container">
           {/* Search Bar */}
           <motion.div
             initial={{ opacity: 1, y: 0 }}
@@ -258,7 +258,7 @@ const FAQPage = () => {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="categories-grid"
+            className="categories-grid mobile-double-col"
           >
             {updatedCategories.map((category) => (
               <div
@@ -290,7 +290,7 @@ const FAQPage = () => {
             initial={{ opacity: 1, y: 0 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="stats-grid"
+            className="stats-grid mobile-double-col"
           >
             {stats.map((stat) => (
               <div key={stat.label} className="faq-refined-card stat-card">
@@ -313,7 +313,7 @@ const FAQPage = () => {
                   <div key={faq.id} className="faq-item">
                     <button
                       onClick={() => toggleFaq(index)}
-                      className="faq-button"
+                      className="faq-button mobile-touch-target"
                       aria-expanded={activeIndex === index}
                       aria-controls={`faq-answer-${index}`}
                     >
@@ -365,7 +365,7 @@ const FAQPage = () => {
                 </p>
                 <button
                   onClick={clearFilters}
-                  className="faq-btn-primary"
+                  className="faq-btn-primary mobile-touch-target"
                 >
                   Clear Filters
                 </button>
@@ -392,14 +392,14 @@ const FAQPage = () => {
             <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
               <a
                 href="/contact"
-                className="faq-btn-primary"
+                className="faq-btn-primary mobile-touch-target"
               >
                 <Calendar className="h-5 w-5" />
                 Get Expert Consultation
               </a>
               <a
                 href="mailto:contact@solescope.co.uk"
-                className="faq-btn-secondary"
+                className="faq-btn-secondary mobile-touch-target"
               >
                 <Mail className="h-5 w-5" />
                 Email Us Directly
