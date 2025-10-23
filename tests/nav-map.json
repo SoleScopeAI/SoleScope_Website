@@ -1,0 +1,135 @@
+{
+  "navigationMap": {
+    "primary": [
+      {
+        "title": "Home",
+        "path": "/",
+        "description": "Homepage with hero section and service overview",
+        "component": "PremiumHomePage"
+      },
+      {
+        "title": "Services",
+        "path": "/services",
+        "description": "Service overview and selection page",
+        "component": "ServicesPage",
+        "children": [
+          {
+            "title": "Website Design & Hosting",
+            "path": "/services/website-design",
+            "description": "Professional website design with managed hosting",
+            "component": "WebsiteDesignPage"
+          },
+          {
+            "title": "Custom WebApps",
+            "path": "/services/custom-webapps",
+            "description": "Custom web application development",
+            "component": "CustomWebAppsPage"
+          },
+          {
+            "title": "AI Dashboards",
+            "path": "/services/ai-dashboards",
+            "description": "Business intelligence and analytics dashboards",
+            "component": "AIDashboardsPage"
+          },
+          {
+            "title": "Brand Identity & Visuals",
+            "path": "/services/brand-identity",
+            "description": "Logo design and brand identity packages",
+            "component": "BrandIdentityPage"
+          },
+          {
+            "title": "AI Automations",
+            "path": "/services/ai-automations",
+            "description": "Custom AI automation solutions",
+            "component": "CustomAIAutomationsPage"
+          }
+        ]
+      },
+      {
+        "title": "About",
+        "path": "/about",
+        "description": "Company information, team, and values",
+        "component": "AboutPage"
+      },
+      {
+        "title": "Resources",
+        "path": "/resources",
+        "description": "Resource hub with blog, case studies, and guides",
+        "component": "ResourcesPage",
+        "children": [
+          {
+            "title": "Blog",
+            "path": "/resources/blog",
+            "description": "Latest insights and industry trends",
+            "component": "BlogPage"
+          },
+          {
+            "title": "Case Studies",
+            "path": "/resources/case-studies",
+            "description": "Client success stories and results",
+            "component": "CaseStudiesPage"
+          },
+          {
+            "title": "Guides",
+            "path": "/resources/guides",
+            "description": "How-to guides and tutorials",
+            "component": "GuidesPage"
+          }
+        ]
+      },
+      {
+        "title": "Pricing",
+        "path": "/pricing",
+        "description": "Service packages and pricing information",
+        "component": "PricingPage"
+      },
+      {
+        "title": "Contact",
+        "path": "/contact",
+        "description": "Contact form and business information",
+        "component": "ContactPage"
+      }
+    ],
+    "secondary": [
+      {
+        "title": "Privacy Policy",
+        "path": "/privacy",
+        "description": "Privacy policy and data protection information",
+        "component": "PrivacyPage"
+      },
+      {
+        "title": "Terms of Service",
+        "path": "/terms",
+        "description": "Terms and conditions of service",
+        "component": "TermsPage"
+      },
+      {
+        "title": "Client Portal",
+        "path": "https://ClientPortal.solescope.co.uk",
+        "external": true,
+        "description": "External client dashboard and portal"
+      }
+    ]
+  },
+  "redirects": {
+    "/website-design": "/services/website-design",
+    "/custom-webapps": "/services/custom-webapps",
+    "/ai-dashboards": "/services/ai-dashboards",
+    "/brand-identity": "/services/brand-identity",
+    "/ai-automations": "/services/ai-automations",
+    "/custom-ai-automations": "/services/ai-automations",
+    "/blog": "/resources/blog",
+    "/case-studies": "/resources/case-studies",
+    "/guides": "/resources/guides",
+    "/seo": "/services/website-design",
+    "/digital-marketing": "/services/ai-automations",
+    "/faq": "/resources/guides"
+  },
+  "metadata": {
+    "totalRoutes": 15,
+    "totalRedirects": 11,
+    "lastUpdated": "2025-01-27",
+    "accessibilityCompliant": true,
+    "keyboardNavigationSupported": true
+  }
+}

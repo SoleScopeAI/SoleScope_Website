@@ -1,0 +1,418 @@
+import React, { useState } from 'react';
+import { useEffect } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
+import { ArrowRight, X, Bot, Calendar, Star, MessageSquare, FileText, BarChart3, ChevronLeft, ChevronRight } from 'lucide-react';
+
+const CaseCards = () => {
+  const [selectedCase, setSelectedCase] = useState<number | null>(null);
+  const [currentSlide, setCurrentSlide] = useState(0);
+
+  // Track scroll position for mobile carousel
+  useEffect(() => {
+    const carousel = document.getElementById('cases-carousel');
+    if (!carousel) return;
+
+    const handleScroll = () => {
+      const cardWidth = 280 + 16; // card width + gap
+      const scrollLeft = carousel.scrollLeft;
+      const newSlide = Math.round(scrollLeft / cardWidth);
+      setCurrentSlide(newSlide);
+    };
+
+    carousel.addEventListener('scroll', handleScroll);
+    return () => carousel.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const goToSlide = (index: number) => {
+    const carousel = document.getElementById('cases-carousel');
+    if (carousel) {
+      const cardWidth = 280 + 16; // card width + gap
+      carousel.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+      setCurrentSlide(index);
+    }
+  };
+
+  const cases = [
+    {
+      id: 1,
+      title: "AI Lead Concierge",
+      description: "Intelligent lead qualification and routing system",
+      icon: Bot,
+      color: "from-blue-500 to-blue-600",
+      steps: [
+        "Lead submits form on website",
+        "AI analyzes lead quality and intent",
+        "Qualified leads routed to sales team",
+        "Follow-up sequences triggered automatically",
+        "Lead scoring updated in CRM",
+        "Performance metrics tracked and reported"
+      ]
+    },
+    {
+      id: 2,
+      title: "Client Onboarding",
+      description: "Automated welcome sequences and setup workflows",
+      icon: Calendar,
+      color: "from-green-500 to-green-600",
+      steps: [
+        "New client signs contract",
+        "Welcome email sequence initiated",
+        "Client portal access created",
+        "Onboarding tasks assigned automatically",
+        "Progress tracked and reported",
+        "Team notifications sent at key milestones"
+      ]
+    },
+    {
+      id: 3,
+      title: "Reviews & Re-activation",
+      description: "Automated review collection and client re-engagement",
+      icon: Star,
+      color: "from-yellow-500 to-yellow-600",
+      steps: [
+        "Project completion detected",
+        "Review request sent via preferred channel",
+        "Positive reviews directed to public platforms",
+        "Negative feedback routed for internal resolution",
+        "Follow-up campaigns triggered for inactive clients",
+        "Review analytics compiled monthly"
+      ]
+    },
+    {
+      id: 4,
+      title: "Quote→Invoice",
+      description: "Streamlined proposal to payment workflow",
+      icon: FileText,
+      color: "from-purple-500 to-purple-600",
+      steps: [
+        "Quote request received and logged",
+        "AI generates initial quote based on parameters",
+        "Quote sent for approval and client review",
+        "Accepted quotes converted to invoices",
+        "Payment reminders sent automatically",
+        "Revenue tracking updated in real-time"
+      ]
+    },
+    {
+      id: 5,
+      title: "AI Helpdesk",
+      description: "Intelligent customer support automation",
+      icon: MessageSquare,
+      color: "from-indigo-500 to-indigo-600",
+      steps: [
+        "Customer inquiry received via any channel",
+        "AI categorizes and prioritizes the request",
+        "Common issues resolved automatically",
+        "Complex issues escalated to human agents",
+        "Resolution tracked and customer notified",
+        "Support metrics analyzed for improvements"
+      ]
+    },
+    {
+      id: 6,
+      title: "KPI & Anomaly Alerts",
+      description: "Proactive business intelligence and monitoring",
+      icon: BarChart3,
+      color: "from-red-500 to-red-600",
+      steps: [
+        "Business metrics monitored continuously",
+        "AI detects unusual patterns or anomalies",
+        "Alerts sent via preferred communication method",
+        "Trend analysis and predictions generated",
+        "Actionable insights delivered weekly",
+        "Performance dashboards updated in real-time"
+      ]
+    }
+  ];
+
+  const openModal = (caseId: number) => {
+    setSelectedCase(caseId);
+    document.body.style.overflow = 'hidden';
+  };
+
+  const closeModal = () => {
+    setSelectedCase(null);
+    document.body.style.overflow = 'unset';
+  };
+
+  const selectedCaseData = cases.find(c => c.id === selectedCase);
+
+  return (
+    <>
+      <section id="case-studies" className="py-20 premium-bg relative overflow-hidden">
+        <div className="floating-particles"></div>
+        <div className="pulse-glow pulse-glow-1"></div>
+        <div className="pulse-glow pulse-glow-2"></div>
+        
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.6 }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl sm:text-5xl font-bold dark-text-primary mb-6">
+              Real Automation Examples
+            </h2>
+            <p className="text-xl dark-text-body max-w-3xl mx-auto">
+              See how we've helped businesses automate their most time-consuming tasks
+            </p>
+          </motion.div>
+
+          {/* Desktop/Tablet: Grid Layout */}
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {cases.map((caseItem, index) => (
+              <motion.div
+                key={caseItem.id}
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ duration: 0.6, delay: index * 0.1 }}
+                whileHover={{ y: -8, scale: 1.02 }}
+                className="group relative overflow-visible bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm border border-white/10 rounded-3xl p-10 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer text-center h-full flex flex-col"
+                tabIndex={0}
+                role="button"
+                aria-labelledby={`case-title-${caseItem.id}`}
+                onClick={() => openModal(caseItem.id)}
+                onKeyDown={(e) => {
+                  if (e.key === 'Enter' || e.key === ' ') {
+                    e.preventDefault();
+                    openModal(caseItem.id);
+                  }
+                }}
+                data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
+              >
+                <div className={`w-20 h-20 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-8 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
+                  <caseItem.icon className="h-10 w-10 text-white drop-shadow-lg" />
+                </div>
+                
+                <h3 id={`case-title-${caseItem.id}`} className="text-2xl font-bold text-white mb-6 group-hover:text-purple-300 group-focus:text-purple-300 transition-colors text-center uppercase tracking-wide leading-tight">
+                  {caseItem.title}
+                </h3>
+                
+                <p className="text-gray-300 text-lg mb-8 leading-relaxed text-center flex-grow">
+                  {caseItem.description}
+                </p>
+                
+                <div className="flex items-center justify-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-medium transition-colors">
+                  <span>View Workflow</span>
+                  <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Mobile: Horizontal Carousel */}
+          <div className="md:hidden relative">
+            <div 
+              className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
+              style={{ 
+                scrollbarWidth: 'none',
+                msOverflowStyle: 'none',
+                WebkitOverflowScrolling: 'touch'
+              }}
+              id="cases-carousel"
+              role="region"
+              aria-roledescription="carousel"
+              aria-label="Automation case studies"
+            >
+              {cases.map((caseItem, index) => (
+                <motion.div
+                  key={caseItem.id}
+                  initial={{ opacity: 0, x: 50 }}
+                  whileInView={{ opacity: 1, x: 0 }}
+                  viewport={{ once: true }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  whileHover={{ y: -4, scale: 1.02 }}
+                  className="group relative overflow-visible bg-gradient-to-br from-gray-900/80 to-black/90 backdrop-blur-sm border border-white/10 rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center h-full flex flex-col text-center cursor-pointer"
+                  tabIndex={0}
+                  role="button"
+                  aria-labelledby={`case-title-mobile-${caseItem.id}`}
+                  onClick={() => openModal(caseItem.id)}
+                  role="group"
+                  aria-roledescription="slide"
+                  aria-label={`${index + 1} of ${cases.length}: ${caseItem.title}`}
+                  aria-current={currentSlide === index ? 'true' : 'false'}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      e.preventDefault();
+                      openModal(caseItem.id);
+                    }
+                  }}
+                  data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  <div className={`w-16 h-16 bg-gradient-to-r ${caseItem.color} rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 group-focus:scale-110 transition-transform duration-300 mx-auto`}>
+                    <caseItem.icon className="h-8 w-8 text-white drop-shadow-lg" />
+                  </div>
+                  
+                  <h3 id={`case-title-mobile-${caseItem.id}`} className="text-xl font-bold text-white mb-4 group-hover:text-purple-300 group-focus:text-purple-300 transition-colors text-center uppercase tracking-wide leading-tight">
+                    {caseItem.title}
+                  </h3>
+                  
+                  <p className="text-gray-300 mb-6 leading-relaxed text-center text-base flex-grow">
+                    {caseItem.description}
+                  </p>
+                  
+                  <div className="flex items-center justify-center text-purple-400 group-hover:text-purple-300 group-focus:text-purple-300 font-medium transition-colors text-sm">
+                    <span>View Workflow</span>
+                    <ArrowRight className="ml-2 h-4 w-4 group-hover:translate-x-1 transition-transform" />
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+
+            {/* Cases Pagination Icons */}
+            <div className="flex justify-center mt-6 space-x-3 flex-wrap">
+              {cases.map((caseItem, index) => (
+                <motion.button
+                  key={caseItem.id}
+                  onClick={() => goToSlide(index)}
+                  className={`pagination-icon group relative p-3 rounded-xl transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-[#6C3EF0] focus:ring-offset-2 focus:ring-offset-black ${
+                    currentSlide === index
+                      ? 'bg-[#6C3EF0]/20 border-2 border-[#6C3EF0] scale-110'
+                      : 'bg-white/5 border border-white/20 opacity-60 hover:opacity-100 hover:border-[#6C3EF0]/50'
+                  }`}
+                  aria-label={caseItem.title}
+                  aria-current={currentSlide === index ? 'true' : 'false'}
+                  whileHover={{ scale: currentSlide === index ? 1.1 : 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                >
+                  {currentSlide === index && (
+                    <motion.div
+                      initial={{ opacity: 0, scale: 0.8 }}
+                      animate={{ opacity: 1, scale: 1 }}
+                      className="absolute inset-0 bg-[#6C3EF0]/30 rounded-xl blur-sm"
+                    />
+                  )}
+                  
+                  <caseItem.icon 
+                    className={`relative h-5 w-5 transition-all duration-300 ${
+                      currentSlide === index
+                        ? 'text-[#6C3EF0] drop-shadow-lg'
+                        : 'text-white/70 group-hover:text-[#B39CFF]'
+                    }`}
+                  />
+                </motion.button>
+              ))}
+            </div>
+
+            {/* Cases Navigation Chevrons */}
+            <div className="flex justify-center mt-4 space-x-4">
+              <button
+                onClick={() => currentSlide > 0 && goToSlide(currentSlide - 1)}
+                disabled={currentSlide === 0}
+                className={`p-2 rounded-lg transition-all duration-300 ${
+                  currentSlide === 0
+                    ? 'opacity-30 cursor-not-allowed'
+                    : 'bg-white/10 hover:bg-white/20 text-white'
+                }`}
+                aria-label="Previous case study"
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </button>
+              <button
+                onClick={() => currentSlide < cases.length - 1 && goToSlide(currentSlide + 1)}
+                disabled={currentSlide === cases.length - 1}
+                className={`p-2 rounded-lg transition-all duration-300 ${
+                  currentSlide === cases.length - 1
+                    ? 'opacity-30 cursor-not-allowed'
+                    : 'bg-white/10 hover:bg-white/20 text-white'
+                }`}
+                aria-label="Next case study"
+              >
+                <ChevronRight className="h-5 w-5" />
+              </button>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Modal */}
+      <AnimatePresence>
+        {selectedCase && selectedCaseData && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 bg-black/50 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            onClick={closeModal}
+          >
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 20 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className="dark-card max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between mb-6">
+                <div className="flex items-center space-x-4">
+                  <div className={`w-12 h-12 bg-gradient-to-r ${selectedCaseData.color} rounded-lg flex items-center justify-center`}>
+                    <selectedCaseData.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-2xl font-bold dark-text-primary">
+                    {selectedCaseData.title}
+                  </h3>
+                </div>
+                <button
+                  onClick={closeModal}
+                  className="p-2 hover:bg-gray-700/30 rounded-lg transition-colors"
+                  aria-label="Close modal"
+                >
+                  <X className="h-6 w-6 dark-text-muted" />
+                </button>
+              </div>
+
+              <p className="dark-text-body mb-8 text-lg">
+                {selectedCaseData.description}
+              </p>
+
+              <div className="space-y-4">
+                <h4 className="text-lg font-semibold dark-text-primary mb-4">
+                  Workflow Steps:
+                </h4>
+                {selectedCaseData.steps.map((step, index) => (
+                  <motion.div
+                    key={index}
+                    initial={{ opacity: 0, x: -20 }}
+                    animate={{ opacity: 1, x: 0 }}
+                    transition={{ duration: 0.4, delay: index * 0.1 }}
+                    className="flex items-start space-x-4 p-4 dark-surface-alt"
+                  >
+                    <div className="flex-shrink-0 w-8 h-8 bg-accent-primary text-white rounded-full flex items-center justify-center text-sm font-bold">
+                      {index + 1}
+                    </div>
+                    <p className="dark-text-body leading-relaxed">{step}</p>
+                  </motion.div>
+                ))}
+              </div>
+
+              <div className="mt-8 pt-6 border-t border-white/10">
+                <button
+                  onClick={() => {
+                    closeModal();
+                    const formElement = document.getElementById('proposal-form');
+                    if (formElement) {
+                      formElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                  }}
+                  className="w-full dark-btn-primary px-6 py-3 font-semibold transition-all duration-300 flex items-center justify-center"
+                  data-analytics={`modal-cta-${selectedCaseData.title.toLowerCase().replace(/\s+/g, '-')}`}
+                >
+                  Request This Automation
+                  <ArrowRight className="ml-2 h-5 w-5" />
+                </button>
+              </div>
+            </motion.div>
+          </motion.div>
+        )}
+      </AnimatePresence>
+    </>
+  );
+};
+
+export default CaseCards;

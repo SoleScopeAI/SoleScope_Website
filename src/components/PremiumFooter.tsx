@@ -1,0 +1,136 @@
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+
+const PremiumFooter = () => {
+  const currentYear = new Date().getFullYear();
+
+  return (
+    <footer className="dark-theme-page border-t border-white/10" style={{ backgroundColor: 'var(--surface)' }}>
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-12">
+          {/* Logo & Tagline */}
+          <div className="col-span-1">
+            <div className="flex items-center space-x-3 mb-6">
+              <div className="w-10 h-10 relative">
+                <img
+                  src="/edited-photo.png"
+                  alt="SoleScope AI Owl Logo"
+                  className="w-full h-full object-contain"
+                />
+              </div>
+              <span className="text-2xl font-bold text-white tracking-tight">
+                SoleScope Studio & Design
+              </span>
+            </div>
+            <p className="dark-text-body mb-6 max-w-md leading-relaxed">
+              AI-powered websites, apps, and dashboards that help service businesses win more clients and grow sustainably.
+            </p>
+            <div className="space-y-3 dark-text-body">
+              <div className="flex items-center space-x-3">
+                <Mail className="h-5 w-5 text-accent-primary" />
+                <a href="mailto:contact@solescope.co.uk" className="dark-link">
+                  contact@solescope.co.uk
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <Phone className="h-5 w-5 text-accent-primary" />
+                <a href="tel:+442012345678" className="dark-link">
+                  +44 20 1234 5678
+                </a>
+              </div>
+              <div className="flex items-center space-x-3">
+                <MapPin className="h-5 w-5 text-accent-primary" />
+                <span>London, United Kingdom</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Navigation Links */}
+          <div className="col-span-1 md:col-span-2">
+            <div className="grid grid-cols-2 gap-8">
+              <div>
+                <h3 className="text-lg font-semibold dark-text-primary mb-6 tracking-wide uppercase">
+                  Services
+                </h3>
+                <ul className="space-y-3 dark-text-body">
+                  <li>
+                    <Link to="/services/website-design" className="dark-link">
+                      Website Design & Hosting
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/services/custom-webapps" className="dark-link">
+                      Custom WebApps & Hosting
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/services/ai-dashboards" className="dark-link">
+                      AI Dashboards & Analytics
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/services/brand-identity" className="dark-link">
+                      Brand Identity & Visuals
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/services/custom-ai-automations" className="dark-link">
+                      Custom AI Automations
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+
+              <div>
+                <h3 className="text-lg font-semibold dark-text-primary mb-6 tracking-wide uppercase">
+                  Company
+                </h3>
+                <ul className="space-y-3 dark-text-body">
+                  <li>
+                    <Link to="/about" className="dark-link">
+                      About Us
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/contact" className="dark-link">
+                      Contact
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/faq" className="dark-link">
+                      FAQs
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/blog" className="dark-link">
+                      Blog
+                    </Link>
+                  </li>
+                  <li>
+                    <a 
+                      href="https://ClientPortal.solescope.co.uk" 
+                      target="_blank" 
+                      rel="noopener noreferrer" 
+                      className="dark-link inline-flex items-center"
+                    >
+                      Client Portal
+                      <ExternalLink className="ml-1 h-4 w-4" />
+                    </a>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="border-t border-white/10 mt-12 pt-8 text-center dark-text-muted">
+          <p>&copy; {currentYear} SoleScope Studio & Design. All rights reserved. Proudly serving businesses across the UK.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default PremiumFooter;

@@ -1,0 +1,684 @@
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
+import { motion, AnimatePresence } from 'framer-motion';
+import { 
+  BarChart3, 
+  Eye, 
+  Zap, 
+  Database, 
+  Check, 
+  ArrowRight,
+  ChevronDown,
+  ChevronUp,
+  Calendar,
+  Mail,
+  ChevronLeft,
+  ChevronRight,
+  Star,
+  Crown,
+  Gem,
+  Target,
+  Shield
+} from 'lucide-react';
+import '../styles/services-galaxy.css';
+
+const AIDashboardsPage = () => {
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
+  const [benefitsSlide, setBenefitsSlide] = useState(0);
+  const [pricingSlide, setPricingSlide] = useState(0);
+
+  // Add page class for scoped styling
+  useEffect(() => {
+    document.body.classList.add('page-ai-dashboards');
+    return () => {
+      document.body.classList.remove('page-ai-dashboards');
+    };
+  }, []);
+
+  // Track scroll position for mobile carousels
+  useEffect(() => {
+    const setupCarouselTracking = (carouselId: string, setSlide: (slide: number) => void, cardWidth: number) => {
+      const carousel = document.getElementById(carouselId);
+      if (!carousel) return;
+
+      const handleScroll = () => {
+        const scrollLeft = carousel.scrollLeft;
+        const newSlide = Math.round(scrollLeft / cardWidth);
+        setSlide(newSlide);
+      };
+
+      carousel.addEventListener('scroll', handleScroll);
+      return () => carousel.removeEventListener('scroll', handleScroll);
+    };
+
+    const cleanupBenefits = setupCarouselTracking('benefits-carousel', setBenefitsSlide, 280);
+    const cleanupPricing = setupCarouselTracking('pricing-carousel', setPricingSlide, 300);
+
+    return () => {
+      cleanupBenefits?.();
+      cleanupPricing?.();
+    };
+  }, []);
+
+  const goToSlide = (carouselId: string, index: number, cardWidth: number, setSlide: (slide: number) => void) => {
+    const carousel = document.getElementById(carouselId);
+    if (carousel) {
+      carousel.scrollTo({
+        left: index * cardWidth,
+        behavior: 'smooth'
+      });
+      setSlide(index);
+    }
+  };
+
+  const benefits = [
+    {
+      id: 'multi-source-data',
+      icon: Database,
+      title: "Multi-Source Data",
+      description: "Combine web, social, and campaign data seamlessly"
+    },
+    {
+      id: 'ai-powered-analytics',
+      icon: Zap,
+      title: "AI-Powered Analytics",
+      description: "Smart insights that highlight what matters most"
+    },
+    {
+      id: 'at-glance-insights',
+      icon: Eye,
+      title: "At-a-Glance Insights",
+      description: "See all your key metrics in one beautiful dashboard"
+    },
+    {
+      id: 'custom-visualizations',
+      icon: BarChart3,
+      title: "Custom Visualizations",
+      description: "Tailored charts and graphs for your business needs"
+    }
+  ];
+
+  const pricingPlans = [
+    {
+      id: 'basic-package',
+      name: "Basic Package",
+      price: "£99",
+      description: "Essential business insights",
+      features: [
+        "1-2 data sources integration",
+        "Basic visual dashboard",
+        "Weekly automated reports",
+        "Standard metrics tracking",
+        "Mobile-responsive design",
+        "Email support"
+      ],
+      popular: false,
+      mostPopular: false
+    },
+    {
+      id: 'standard-package',
+      name: "Standard Package",
+      price: "£199",
+      description: "Comprehensive business intelligence",
+      features: [
+        "Up to 5 data sources",
+        "Advanced visualizations",
+        "Daily automated reports",
+        "Custom KPI tracking",
+        "Goal tracking & alerts",
+        "Priority support"
+      ],
+      popular: true,
+      mostPopular: false
+    },
+    {
+      id: 'premium-package',
+      name: "Premium Package",
+      price: "£299+",
+      description: "Fully custom business intelligence",
+      features: [
+        "Unlimited data sources",
+        "Fully custom dashboards",
+        "Real-time data updates",
+        "Advanced AI insights",
+        "Custom integrations",
+        "Dedicated account manager",
+        "Monthly strategy calls"
+      ],
+      popular: false,
+      mostPopular: true
+    }
+  ];
+
+  const metrics = [
+    {
+      value: "2-4 weeks",
+      label: "Delivery Time",
+      description: "from start to live"
+    },
+    {
+      value: "99.9%",
+      label: "Uptime SLA",
+      description: "hosting guarantee"
+    },
+    {
+      value: "< 24h",
+      label: "Response Time",
+      description: "for all inquiries"
+    },
+    {
+      value: "100%",
+      label: "Custom Built",
+      description: "tailored solutions"
+    }
+  ];
+
+  const whyChooseUs = [
+    {
+      icon: Target,
+      title: "Service-Business Specialist",
+      description: "Built specifically for sole traders and small service businesses who need practical digital solutions."
+    },
+    {
+      icon: Zap,
+      title: "AI-Powered Efficiency",
+      description: "Cutting-edge AI technology combined with proven design principles for faster, better results."
+    },
+    {
+      icon: Shield,
+      title: "Complete Support",
+      description: "From initial consultation to ongoing maintenance, we handle all the technical complexity for you."
+    }
+  ];
+
+  const faqs = [
+    {
+      question: "What data sources can you integrate?",
+      answer: "We can integrate with Google Analytics, Google Ads, Facebook Ads, Instagram, LinkedIn, email marketing platforms (Mailchimp, ConvertKit), CRM systems (HubSpot, Salesforce), and many other business tools. If you have a specific platform, just ask!",
+      tags: ['integrations', 'data sources', 'platforms']
+    },
+    {
+      question: "How is this different from Google Analytics?",
+      answer: "While Google Analytics focuses on website data, our dashboards combine multiple data sources into one view. You can see website traffic alongside social media performance, email campaigns, and business metrics all in one place with AI-powered insights.",
+      tags: ['analytics', 'comparison', 'features']
+    },
+    {
+      question: "Do I need technical knowledge to use the dashboard?",
+      answer: "Not at all! Our dashboards are designed for business owners, not data analysts. Everything is presented in clear, easy-to-understand visuals with plain English explanations of what the data means for your business.",
+      tags: ['user-friendly', 'training', 'ease of use']
+    },
+    {
+      question: "How long does it take to set up?",
+      answer: "Basic dashboards can be set up within 1-2 weeks. Standard dashboards typically take 2-3 weeks, and Premium custom dashboards may take 3-4 weeks depending on complexity and the number of integrations required.",
+      tags: ['timeline', 'setup', 'delivery']
+    },
+    {
+      question: "Can you create custom metrics for my specific business?",
+      answer: "Absolutely! We specialize in creating custom KPIs and metrics that matter to your specific business model. Whether it's tracking customer lifetime value, booking rates, or service-specific metrics, we can build it into your dashboard.",
+      tags: ['custom metrics', 'kpis', 'business specific']
+    },
+    {
+      question: "What happens if my data sources change?",
+      answer: "We provide ongoing support for all data source changes and updates. If you switch platforms or add new tools, we can update your dashboard integrations to ensure continuous data flow and accurate reporting.",
+      tags: ['maintenance', 'updates', 'flexibility']
+    },
+    {
+      question: "Can I access my dashboard on mobile devices?",
+      answer: "Yes! All our dashboards are fully responsive and optimized for mobile devices. You can check your business metrics on the go, receive alerts, and access reports from anywhere with an internet connection.",
+      tags: ['mobile', 'responsive', 'accessibility']
+    },
+    {
+      question: "Do you provide training on how to use the dashboard?",
+      answer: "Absolutely! All packages include comprehensive training sessions to ensure you and your team can effectively use the dashboard. We also provide documentation and ongoing support for any questions that arise.",
+      tags: ['training', 'support', 'documentation']
+    }
+  ];
+
+  const toggleFaq = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
+
+  return (
+    <main id="services" className="services-surface pt-24 pb-20">
+      {/* Compact Header */}
+      <header className="container services-header">
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8 }}
+        >
+          <h1>AI Dashboards & Analytics</h1>
+          <p>Transform complex business data into clear, actionable insights with custom AI-powered dashboards and automated reporting.</p>
+        </motion.div>
+      </header>
+
+      {/* Services Cards Surface */}
+      <section className="services-cards-surface">
+        <div className="container">
+          {/* Benefits Section */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+              Why Choose Our AI Dashboard Services?
+            </h2>
+            
+            {/* Desktop: Grid Layout */}
+            <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {benefits.map((benefit, index) => (
+                <div key={benefit.id} className="services-refined-card feature-card">
+                  <div className="feature-icon">
+                    <benefit.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="feature-title">{benefit.title}</h3>
+                  <p className="feature-description">{benefit.description}</p>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile: Carousel */}
+            <div className="md:hidden relative">
+              <div 
+                className="flex gap-4 overflow-x-auto scrollbar-hide pb-4 snap-x snap-mandatory scroll-smooth"
+                style={{ 
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+                id="benefits-carousel"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="AI dashboard benefits"
+              >
+                {benefits.map((benefit, index) => (
+                  <div
+                    key={benefit.id}
+                    className="services-refined-card feature-card flex-shrink-0 w-80 snap-center"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${index + 1} of ${benefits.length}: ${benefit.title}`}
+                    aria-current={benefitsSlide === index ? 'true' : 'false'}
+                  >
+                    <div className="feature-icon">
+                      <benefit.icon className="h-8 w-8 text-white" />
+                    </div>
+                    <h3 className="feature-title">{benefit.title}</h3>
+                    <p className="feature-description">{benefit.description}</p>
+                  </div>
+                ))}
+              </div>
+
+              {/* Benefits Navigation */}
+              <div className="flex justify-center mt-8 space-x-4">
+                <button
+                  onClick={() => benefitsSlide > 0 && goToSlide('benefits-carousel', benefitsSlide - 1, 280, setBenefitsSlide)}
+                  disabled={benefitsSlide === 0}
+                  className={`p-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 ${
+                    benefitsSlide === 0 ? 'opacity-30 cursor-not-allowed' : ''
+                  }`}
+                  aria-label="Previous benefit"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => benefitsSlide < benefits.length - 1 && goToSlide('benefits-carousel', benefitsSlide + 1, 280, setBenefitsSlide)}
+                  disabled={benefitsSlide === benefits.length - 1}
+                  className={`p-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 ${
+                    benefitsSlide === benefits.length - 1 ? 'opacity-30 cursor-not-allowed' : ''
+                  }`}
+                  aria-label="Next benefit"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Dot Indicators */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {benefits.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide('benefits-carousel', index, 280, setBenefitsSlide)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      benefitsSlide === index
+                        ? 'bg-purple-400 scale-125'
+                        : 'bg-white/30 hover:bg-white/60'
+                    }`}
+                    aria-label={`Go to benefit ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* AI Dashboard Packages */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+              AI Dashboard Packages
+            </h2>
+            
+            {/* Desktop: Grid Layout */}
+            <div className="hidden md:grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {pricingPlans.map((plan, index) => (
+                <div
+                  key={plan.id}
+                  className="services-refined-card h-full flex flex-col text-center"
+                >
+                  {plan.mostPopular && (
+                    <span className="wdh-featured-badge-2025" aria-hidden="true">
+                      Most Popular
+                    </span>
+                  )}
+                  <div className="text-center mb-8 pt-2">
+                    <h3 className="text-2xl font-bold text-white mb-3 uppercase tracking-wide">{plan.name}</h3>
+                    <p className="text-white mb-6 leading-relaxed opacity-80">{plan.description}</p>
+                    <div className="flex items-end justify-center space-x-1">
+                      <span className="text-5xl font-bold text-white">{plan.price}</span>
+                      <span className="text-white mb-2 text-sm opacity-60">+ VAT</span>
+                    </div>
+                    <p className="text-white text-sm opacity-60">/month</p>
+                  </div>
+
+                  <ul className="space-y-4 mb-8 flex-grow">
+                    {plan.features.map((feature, featureIndex) => (
+                      <li key={featureIndex} className="flex items-center space-x-3">
+                        <div className="w-5 h-5 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                          <Check className="h-3 w-3 text-white" />
+                        </div>
+                        <span className="text-white font-normal leading-relaxed">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <button className={`w-full mt-auto services-btn-primary ${
+                    plan.popular ? '' : 'services-btn-secondary'
+                  }`}>
+                    GET STARTED
+                    <ArrowRight className="ml-2 h-5 w-5" />
+                  </button>
+                </div>
+              ))}
+            </div>
+
+            {/* Mobile: Pricing Carousel */}
+            <div className="md:hidden relative">
+              <div 
+                className="flex gap-4 overflow-x-auto scrollbar-hide pt-4 pb-4 snap-x snap-mandatory scroll-smooth"
+                style={{ 
+                  scrollbarWidth: 'none',
+                  msOverflowStyle: 'none',
+                  WebkitOverflowScrolling: 'touch'
+                }}
+                id="pricing-carousel"
+                role="region"
+                aria-roledescription="carousel"
+                aria-label="AI dashboard pricing packages"
+              >
+                {pricingPlans.map((plan, index) => (
+                  <div
+                    key={plan.id}
+                    className="services-refined-card flex-shrink-0 w-72 snap-center h-full flex flex-col text-center"
+                    role="group"
+                    aria-roledescription="slide"
+                    aria-label={`${index + 1} of ${pricingPlans.length}: ${plan.name} - ${plan.price}/month`}
+                    aria-current={pricingSlide === index ? 'true' : 'false'}
+                  >
+                    {plan.mostPopular && (
+                      <span className="wdh-featured-badge-2025" aria-hidden="true">
+                        Most Popular
+                      </span>
+                    )}
+                    <div className="text-center mb-6 pt-6">
+                      <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-wide">{plan.name}</h3>
+                      <p className="text-white mb-4 text-sm leading-relaxed opacity-80">{plan.description}</p>
+                      <div className="flex items-end justify-center space-x-1">
+                        <span className="text-4xl font-bold text-white">{plan.price}</span>
+                        <span className="text-white mb-2 text-sm opacity-60">+ VAT</span>
+                      </div>
+                      <p className="text-white text-sm opacity-60">/month</p>
+                    </div>
+
+                    <ul className="space-y-3 mb-6 flex-grow">
+                      {plan.features.map((feature, featureIndex) => (
+                        <li key={featureIndex} className="flex items-center space-x-2">
+                          <div className="w-4 h-4 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0">
+                            <Check className="h-2.5 w-2.5 text-white" />
+                          </div>
+                          <span className="text-white text-sm font-normal leading-relaxed">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+
+                    <button className={`w-full mt-auto services-btn-primary text-sm ${
+                      'services-btn-secondary'
+                    }`}>
+                      GET STARTED
+                      <ArrowRight className="ml-2 h-4 w-4" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+
+              {/* Pricing Navigation */}
+              <div className="flex justify-center mt-8 space-x-4">
+                <button
+                  onClick={() => pricingSlide > 0 && goToSlide('pricing-carousel', pricingSlide - 1, 300, setPricingSlide)}
+                  disabled={pricingSlide === 0}
+                  className={`p-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 ${
+                    pricingSlide === 0 ? 'opacity-30 cursor-not-allowed' : ''
+                  }`}
+                  aria-label="Previous pricing package"
+                >
+                  <ChevronLeft className="h-5 w-5" />
+                </button>
+                <button
+                  onClick={() => pricingSlide < pricingPlans.length - 1 && goToSlide('pricing-carousel', pricingSlide + 1, 300, setPricingSlide)}
+                  disabled={pricingSlide === pricingPlans.length - 1}
+                  className={`p-3 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-all duration-300 ${
+                    pricingSlide === pricingPlans.length - 1 ? 'opacity-30 cursor-not-allowed' : ''
+                  }`}
+                  aria-label="Next pricing package"
+                >
+                  <ChevronRight className="h-5 w-5" />
+                </button>
+              </div>
+
+              {/* Dot Indicators */}
+              <div className="flex justify-center mt-4 space-x-2">
+                {pricingPlans.map((_, index) => (
+                  <button
+                    key={index}
+                    onClick={() => goToSlide('pricing-carousel', index, 300, setPricingSlide)}
+                    className={`w-3 h-3 rounded-full transition-all duration-300 ${
+                      pricingSlide === index
+                        ? 'bg-purple-400 scale-125'
+                        : 'bg-white/30 hover:bg-white/60'
+                    }`}
+                    aria-label={`Go to package ${index + 1}`}
+                  />
+                ))}
+              </div>
+            </div>
+          </motion.div>
+
+          {/* Performance Metrics */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="metrics-grid"
+          >
+            {metrics.map((metric, index) => (
+              <div key={metric.label} className="services-refined-card metric-card">
+                <div className="metric-value">{metric.value}</div>
+                <div className="metric-label">{metric.label}</div>
+                <div className="metric-description">{metric.description}</div>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Why Choose Us */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+              Why Choose SoleScope
+            </h2>
+            <div className="features-grid">
+              {whyChooseUs.map((feature, index) => (
+                <div key={feature.title} className="services-refined-card feature-card">
+                  <div className="feature-icon">
+                    <feature.icon className="h-8 w-8 text-white" />
+                  </div>
+                  <h3 className="feature-title">{feature.title}</h3>
+                  <p className="feature-description">{feature.description}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* Process Overview */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.8 }}
+            className="services-refined-card"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+              How We Work
+            </h2>
+            <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+              {[
+                { step: "1", title: "Discover", desc: "Understand your business goals and data requirements" },
+                { step: "2", title: "Design", desc: "Create custom dashboard layouts and visualizations" },
+                { step: "3", title: "Develop", desc: "Build and integrate your AI-powered dashboard" },
+                { step: "4", title: "Deploy", desc: "Launch and provide ongoing support and training" }
+              ].map((process) => (
+                <div key={process.step} className="text-center">
+                  <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <span className="text-2xl font-bold text-white">{process.step}</span>
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">{process.title}</h3>
+                  <p className="text-white text-sm">{process.desc}</p>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* FAQ Section */}
+          <motion.div
+            initial={{ opacity: 1, y: 0 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 1.0 }}
+            className="mb-16"
+          >
+            <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
+              Frequently Asked Questions
+            </h2>
+            <div className="space-y-4 max-w-4xl mx-auto">
+              {faqs.map((faq, index) => (
+                <div key={index} className="faq-item">
+                  <button
+                    onClick={() => toggleFaq(index)}
+                    className="faq-button"
+                    aria-expanded={activeIndex === index}
+                    aria-controls={`faq-answer-${index}`}
+                  >
+                    <div className="flex-1 pr-6">
+                      <h3 className="text-xl font-semibold text-white mb-2 uppercase tracking-wide" id={`faq-question-${index}`}>
+                        {faq.question}
+                      </h3>
+                      <div className="flex flex-wrap gap-2">
+                        {faq.tags.map((tag) => (
+                          <span key={tag} className="tag">
+                            {tag}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+                    {activeIndex === index ? (
+                      <ChevronUp className="h-5 w-5 text-white" />
+                    ) : (
+                      <ChevronDown className="h-5 w-5 text-white/60" />
+                    )}
+                  </button>
+                  <AnimatePresence>
+                    {activeIndex === index && (
+                      <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        transition={{ duration: 0.3 }}
+                        className="overflow-hidden"
+                      >
+                        <div className="faq-content" id={`faq-answer-${index}`} role="region" aria-labelledby={`faq-question-${index}`}>
+                          <div className="w-full h-px bg-gradient-to-r from-transparent via-white/20 to-transparent mb-6"></div>
+                          <p>{faq.answer}</p>
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+              ))}
+            </div>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Final CTA */}
+      <section className="container">
+        <motion.div
+          initial={{ opacity: 1, y: 0 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 1.2 }}
+          className="services-refined-card text-center"
+        >
+          <h2 className="text-3xl font-bold text-white mb-6 uppercase tracking-wide">
+            Ready To See Your Business Data Clearly?
+          </h2>
+          <p className="text-white mb-8 text-lg leading-relaxed max-w-2xl mx-auto opacity-90">
+            Let's create a custom dashboard that gives you the insights you need to grow your business smarter.
+          </p>
+          <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
+            <Link
+              to="/contact"
+              className="services-btn-primary"
+            >
+              <Calendar className="h-5 w-5" />
+              Request Demo
+            </Link>
+            <a
+              href="mailto:contact@solescope.co.uk"
+              className="services-btn-secondary"
+            >
+              <Mail className="h-5 w-5" />
+              Email Us Directly
+            </a>
+          </div>
+          <div className="mt-8 flex items-center justify-center space-x-6 text-white/60 text-sm">
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <span>Free consultation</span>
+            </div>
+            <div className="w-px h-4 bg-white/10"></div>
+            <div className="flex items-center space-x-2">
+              <div className="w-2 h-2 bg-purple-400 rounded-full"></div>
+              <span>Response within 24 hours</span>
+            </div>
+          </div>
+        </motion.div>
+      </section>
+    </main>
+  );
+};
+
+export default AIDashboardsPage;
