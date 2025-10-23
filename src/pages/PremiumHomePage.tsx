@@ -1,20 +1,26 @@
 import React from 'react';
-import PremiumHeroSection from '../components/PremiumHeroSection';
-import QuickStats from '../components/QuickStats';
+import InteractiveHero from '../components/homepage/InteractiveHero';
 import ValueProposition from '../components/ValueProposition';
 import ServicesPreview from '../components/ServicesPreview';
-import PremiumTestimonials from '../components/PremiumTestimonials';
-import FinalCTA from '../components/FinalCTA';
+import TechnologyRoadmap from '../components/homepage/TechnologyRoadmap';
+import PortfolioShowcase from '../components/homepage/PortfolioShowcase';
+import AICapabilitiesShowcase from '../components/homepage/AICapabilitiesShowcase';
+import PricingPackages from '../components/homepage/PricingPackages';
+import ClientSuccessMetrics from '../components/homepage/ClientSuccessMetrics';
+import ComprehensiveCTA from '../components/homepage/ComprehensiveCTA';
 
 const PremiumHomePage = () => {
   return (
     <div className="overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
-      <PremiumHeroSection />
-      <QuickStats />
+      <InteractiveHero />
       <ValueProposition />
       <ServicesPreview />
-      <PremiumTestimonials />
-      <FinalCTA />
+      <TechnologyRoadmap />
+      <PortfolioShowcase />
+      <AICapabilitiesShowcase />
+      <PricingPackages />
+      <ClientSuccessMetrics />
+      <ComprehensiveCTA />
     </div>
   );
 };
