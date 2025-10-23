@@ -100,29 +100,29 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'neural-processing',
       icon: Brain,
-      title: "Neural Processing",
-      description: "Advanced AI models that understand context and make intelligent decisions",
+      title: "Intelligent Decision Making",
+      description: "AI systems that understand context, learn patterns, and make smart decisions based on your business logic",
       color: "from-cyan-400 to-blue-500"
     },
     {
       id: 'real-time-learning',
       icon: Cpu,
-      title: "Real-Time Learning",
-      description: "Systems that adapt and improve based on your business patterns",
+      title: "Adaptive Systems",
+      description: "Automation that learns from your data and continuously improves performance over time",
       color: "from-emerald-400 to-teal-500"
     },
     {
       id: 'intelligent-routing',
       icon: Network,
-      title: "Intelligent Routing",
-      description: "Smart decision trees that route tasks to the right place every time",
+      title: "Seamless Integration",
+      description: "Connect your CRM, databases, email, and business tools into one intelligent ecosystem",
       color: "from-purple-400 to-indigo-500"
     },
     {
       id: 'predictive-analytics',
       icon: TrendingUp,
-      title: "Predictive Analytics",
-      description: "AI that forecasts trends and suggests proactive business actions",
+      title: "Predictive Intelligence",
+      description: "AI-driven insights that forecast trends, identify opportunities, and recommend actions before issues arise",
       color: "from-orange-400 to-red-500"
     }
   ];
@@ -131,8 +131,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'lead-qualification',
       icon: Target,
-      title: "AI Lead Qualification",
-      description: "Intelligent lead scoring and routing that identifies your best prospects automatically",
+      title: "Lead Management Systems",
+      description: "Intelligent lead scoring, qualification, and routing — automatically connecting your best prospects to the right sales team",
       features: ["Smart lead scoring", "Automatic routing", "CRM integration", "Follow-up sequences"],
       color: "from-blue-500 to-cyan-500",
       demoSteps: [
@@ -144,8 +144,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'client-onboarding',
       icon: Users,
-      title: "Intelligent Onboarding",
-      description: "Automated welcome sequences and setup workflows that create professional first impressions",
+      title: "Client Onboarding Automation",
+      description: "Streamlined welcome sequences, document automation, and progress tracking — creating seamless first impressions",
       features: ["Welcome sequences", "Document automation", "Progress tracking", "Team notifications"],
       color: "from-emerald-500 to-teal-500",
       demoSteps: [
@@ -157,8 +157,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'customer-support',
       icon: MessageSquare,
-      title: "AI Customer Support",
-      description: "24/7 intelligent helpdesk that handles inquiries and escalates complex issues seamlessly",
+      title: "AI Support Systems",
+      description: "24/7 intelligent customer support that handles common inquiries and seamlessly escalates complex issues to your team",
       features: ["24/7 AI support", "Smart escalation", "Knowledge base", "Multi-channel support"],
       color: "from-purple-500 to-indigo-500",
       demoSteps: [
@@ -170,8 +170,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'business-intelligence',
       icon: BarChart3,
-      title: "Predictive Analytics",
-      description: "Automated reporting and analytics that track KPIs and provide actionable insights",
+      title: "Business Intelligence Dashboards",
+      description: "Real-time data dashboards with automated reporting, anomaly detection, and predictive analytics for manufacturing, logistics, and operations",
       features: ["Automated reports", "Anomaly detection", "KPI tracking", "Predictive insights"],
       color: "from-orange-500 to-red-500",
       demoSteps: [
@@ -183,8 +183,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'review-management',
       icon: Bell,
-      title: "Smart Review System",
-      description: "Automated review collection and reputation management across all platforms",
+      title: "Reputation Management",
+      description: "Automated review collection, response management, and reputation monitoring — keeping your brand image positive",
       features: ["Review requests", "Response automation", "Reputation monitoring", "Platform integration"],
       color: "from-yellow-500 to-orange-500",
       demoSteps: [
@@ -196,8 +196,8 @@ const CustomAIAutomationsPage = () => {
     {
       id: 'reactivation-campaigns',
       icon: RefreshCw,
-      title: "AI Reactivation Engine",
-      description: "Smart re-engagement campaigns that automatically win back inactive customers",
+      title: "Customer Reactivation Systems",
+      description: "Smart re-engagement campaigns with AI-powered segmentation that automatically win back inactive customers",
       features: ["Customer segmentation", "Automated campaigns", "Engagement tracking", "Win-back sequences"],
       color: "from-pink-500 to-rose-500",
       demoSteps: [
@@ -211,29 +211,29 @@ const CustomAIAutomationsPage = () => {
   const metrics = [
     {
       value: "2-6 weeks",
-      label: "AI Development",
-      description: "from concept to deployment",
+      label: "Development Time",
+      description: "from discovery to deployment",
       icon: Rocket,
       color: "from-blue-400 to-cyan-400"
     },
     {
       value: "99.9%",
-      label: "AI Uptime",
-      description: "intelligent monitoring",
+      label: "System Uptime",
+      description: "with enterprise monitoring",
       icon: Activity,
       color: "from-emerald-400 to-teal-400"
     },
     {
       value: "< 4h",
-      label: "AI Response",
-      description: "for critical issues",
+      label: "Support Response",
+      description: "for critical system issues",
       icon: Clock,
       color: "from-purple-400 to-indigo-400"
     },
     {
       value: "24/7",
-      label: "AI Operation",
-      description: "never sleeps",
+      label: "Automation",
+      description: "working for your business",
       icon: Globe,
       color: "from-orange-400 to-red-400"
     }
@@ -242,63 +242,63 @@ const CustomAIAutomationsPage = () => {
   const whyChooseUs = [
     {
       icon: Brain,
-      title: "AI-First Approach",
-      description: "We don't just add AI to existing processes - we redesign workflows around intelligent automation from the ground up.",
+      title: "Discovery-Driven Design",
+      description: "We start every project with a deep dive into your business goals, workflows, and pain points — ensuring every AI feature serves a purpose and solves real problems.",
       color: "from-cyan-400 to-blue-500"
     },
     {
       icon: Code2,
-      title: "Custom AI Development",
-      description: "Bespoke AI solutions built specifically for your business needs, not generic templates or one-size-fits-all tools.",
+      title: "Built In-House, Designed For You",
+      description: "Every automation and system is custom-built by our specialists — no outsourced code, no cookie-cutter tools. Just solutions engineered around how your business works.",
       color: "from-emerald-400 to-teal-500"
     },
     {
       icon: Database,
-      title: "Enterprise-Grade Infrastructure",
-      description: "Scalable, secure AI systems with enterprise-level monitoring, backup, and disaster recovery protocols.",
+      title: "Secure, Managed, Scalable",
+      description: "Every system we build is securely hosted and fully managed by us — with monitoring, updates, and long-term support as your business evolves.",
       color: "from-purple-400 to-indigo-500"
     }
   ];
 
   const faqs = [
     {
-      question: "What types of AI automations can you build for my business?",
-      answer: "We develop custom AI solutions including intelligent lead qualification, automated customer support, predictive analytics, smart review management, client onboarding workflows, and business intelligence systems. Each solution is tailored to your specific industry and business model.",
-      tags: ['ai types', 'custom development', 'business solutions']
+      question: "What types of AI systems can you build for my business?",
+      answer: "We design and build custom AI automations for daily tasks (email sequences, lead follow-up, data entry), business intelligence dashboards (production tracking, KPIs, analytics), and full-scale AI software (CRM integrations, workflow management, predictive systems). Every solution is tailored to your industry — from manufacturing and logistics to marketing and service-based businesses.",
+      tags: ['custom systems', 'automation types', 'business solutions']
     },
     {
-      question: "How advanced is your AI technology compared to basic chatbots?",
-      answer: "Our AI systems use advanced machine learning models, natural language processing, and predictive analytics - far beyond simple rule-based chatbots. We build intelligent systems that learn, adapt, and make complex decisions based on context and business logic.",
-      tags: ['ai technology', 'machine learning', 'advanced systems']
+      question: "How is this different from generic automation tools?",
+      answer: "We don't use templates or one-size-fits-all platforms. Every system is custom-built from scratch around your specific workflows, data sources, and business goals. We combine intelligent AI decision-making with bespoke integrations — creating systems that feel like they were designed exclusively for you (because they were).",
+      tags: ['custom vs generic', 'bespoke development', 'tailored solutions']
     },
     {
-      question: "How long does it take to develop custom AI automations?",
-      answer: "Development timelines vary based on complexity. Simple AI automations take 2-3 weeks, standard business intelligence systems require 4-6 weeks, while complex multi-system AI solutions may need 6-8+ weeks. We provide detailed project timelines during planning.",
+      question: "How long does it take to build a custom AI system?",
+      answer: "Timelines depend on complexity. Simple automations for sole traders (email sequences, CRM updates) take 2-3 weeks. Business systems for SMEs (dashboards, reporting, multi-tool integration) take 4-6 weeks. Enterprise AI solutions (full-scale platforms, predictive analytics) take 6-8+ weeks. We provide detailed timelines during your discovery session.",
       tags: ['timeline', 'development', 'project duration']
     },
     {
-      question: "Will your AI systems integrate with our existing business tools?",
-      answer: "Absolutely! Our AI solutions are designed to seamlessly integrate with your existing CRM, email platforms, databases, and business tools. We use advanced API development and custom connectors to ensure smooth data flow between all systems.",
-      tags: ['integrations', 'existing tools', 'api development']
+      question: "Can you integrate with our existing business tools?",
+      answer: "Yes! We specialise in creating seamless integrations between your CRM, email platforms, databases, project management tools, and operational software. Whether it's HubSpot, Salesforce, Xero, Asana, or custom internal systems — we connect everything into one intelligent workflow.",
+      tags: ['integrations', 'existing tools', 'system connectivity']
     },
     {
-      question: "How do you ensure AI reliability and prevent system failures?",
-      answer: "We implement multiple layers of reliability including error handling, automatic retries, fallback procedures, real-time monitoring, and 24/7 system health checks. Our AI systems are designed with enterprise-grade reliability standards.",
-      tags: ['reliability', 'monitoring', 'enterprise grade']
+      question: "How do you ensure system reliability and uptime?",
+      answer: "Every system we build includes error handling, automatic retries, fallback procedures, real-time monitoring, and 24/7 health checks. We host and manage everything securely — handling updates, scaling, and performance optimisation so your automation runs smoothly without interruption.",
+      tags: ['reliability', 'monitoring', 'managed hosting']
     },
     {
-      question: "Can your AI systems learn and improve over time?",
-      answer: "Yes! Our AI systems include machine learning capabilities that continuously improve performance based on your business data and outcomes. The systems become more accurate and efficient as they process more information.",
-      tags: ['machine learning', 'continuous improvement', 'adaptive systems']
+      question: "Do your AI systems learn and improve over time?",
+      answer: "Yes. We build intelligent systems that learn from your data patterns and outcomes. As your business grows, the AI adapts — becoming more accurate with lead scoring, better at detecting anomalies, and smarter about recommending actions. The longer it runs, the more valuable it becomes.",
+      tags: ['machine learning', 'continuous improvement', 'adaptive intelligence']
     },
     {
-      question: "What level of AI customization do you provide?",
-      answer: "We provide fully custom AI development from the ground up. This includes custom machine learning models, bespoke decision logic, tailored user interfaces, and integration architectures designed specifically for your business requirements.",
-      tags: ['customization', 'bespoke development', 'tailored solutions']
+      question: "What industries do you specialise in?",
+      answer: "We work extensively with manufacturing, logistics, FMCG, distribution, marketing agencies, and service-based businesses. Our AI systems are particularly valuable for SMEs needing production tracking, route optimisation, predictive maintenance, staff scheduling, or performance analytics — and for sole traders wanting to automate repetitive admin tasks.",
+      tags: ['industries', 'sectors', 'specialisation']
     },
     {
-      question: "How do you handle AI system security and data protection?",
-      answer: "We implement military-grade encryption, secure API protocols, GDPR compliance, regular security audits, and isolated processing environments. All AI systems are designed with security-first architecture and data protection by design.",
+      question: "How do you handle data security and compliance?",
+      answer: "All systems are designed with security-first architecture. We implement encrypted data transfer, secure API protocols, GDPR compliance, regular backups, and isolated processing environments. Your data is protected, monitored, and managed with enterprise-grade security standards.",
       tags: ['security', 'data protection', 'compliance']
     }
   ];
@@ -375,9 +375,9 @@ const CustomAIAutomationsPage = () => {
             className="ai-title-container"
           >
             <h1 className="ai-main-title">
-              <span className="ai-title-line-1">Custom AI</span>
-              <span className="ai-title-line-2">Automations</span>
-              <span className="ai-title-line-3">& AIOS</span>
+              <span className="ai-title-line-1">Custom AI Automations,</span>
+              <span className="ai-title-line-2">Systems</span>
+              <span className="ai-title-line-3">& Software</span>
             </h1>
           </motion.div>
           
@@ -387,8 +387,7 @@ const CustomAIAutomationsPage = () => {
             transition={{ duration: 0.8, delay: 0.6 }}
             className="ai-subtitle"
           >
-            Intelligent automation systems that work 24/7 to grow your business while you focus on serving customers. 
-            Built with cutting-edge AI technology and custom business logic.
+            From one-click automations to full-scale AI platforms — we design intelligent systems that transform how your business works. Built for sole traders and SMEs that want to automate smarter, operate faster, and grow confidently through AI-powered technology.
           </motion.p>
 
           {/* AI Demo Visualization */}
@@ -454,6 +453,34 @@ const CustomAIAutomationsPage = () => {
         </motion.div>
       </header>
 
+      {/* Value Proposition Overview */}
+      <section className="container">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.2 }}
+          className="ai-automation-card mb-16 text-center max-w-4xl mx-auto"
+        >
+          <h2 className="text-2xl font-bold text-white mb-6 uppercase tracking-wide">
+            Practical AI That Delivers Real Results
+          </h2>
+          <div className="space-y-4 text-white text-lg leading-relaxed opacity-90">
+            <p>
+              Every business runs on repeated actions — we turn those into intelligent automations. From managing leads and reporting to production tracking or performance analytics, our AI systems make work simpler, faster, and more accurate.
+            </p>
+            <p>
+              We design around your business, not generic tools. Every automation, workflow, and dashboard is custom-built — connecting your data, systems, and people into one streamlined ecosystem.
+            </p>
+            <p>
+              For SMEs, that means AI-driven business software. For sole traders, it means smart, time-saving automations that run behind the scenes.
+            </p>
+            <p className="text-cyan-400 font-semibold">
+              We specialise in creating practical, real-world AI — the kind that delivers measurable time savings, efficiency gains, and insight you can act on.
+            </p>
+          </div>
+        </motion.div>
+      </section>
+
       {/* AI Capabilities Surface */}
       <section className="ai-capabilities-surface">
         <div className="container">
@@ -465,7 +492,7 @@ const CustomAIAutomationsPage = () => {
             className="mb-16"
           >
             <h2 className="ai-section-title">
-              Advanced AI Capabilities
+              What Makes Our AI Systems Different
             </h2>
             
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
@@ -508,7 +535,7 @@ const CustomAIAutomationsPage = () => {
             className="mb-16"
           >
             <h2 className="ai-section-title">
-              AI Automation Solutions We Build
+              Custom AI Solutions We Build
             </h2>
             
             {/* Desktop: Grid Layout */}
@@ -714,7 +741,7 @@ const CustomAIAutomationsPage = () => {
             className="mb-16"
           >
             <h2 className="ai-section-title">
-              Why Choose Our AI Solutions
+              Why Choose SoleScope For AI Systems
             </h2>
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {whyChooseUs.map((feature, index) => (
@@ -756,14 +783,14 @@ const CustomAIAutomationsPage = () => {
             className="ai-process-container"
           >
             <h2 className="ai-section-title">
-              Our AI Development Process
+              How We Build Your AI Systems
             </h2>
             <div className="ai-process-grid">
               {[
-                { step: "1", title: "AI Discovery", desc: "Map workflows and identify AI opportunities", icon: Eye, color: "cyan" },
-                { step: "2", title: "AI Architecture", desc: "Design intelligent system architecture", icon: Layers, color: "emerald" },
-                { step: "3", title: "AI Development", desc: "Build and train custom AI models", icon: Code2, color: "purple" },
-                { step: "4", title: "AI Deployment", desc: "Launch with monitoring and optimization", icon: Rocket, color: "orange" }
+                { step: "1", title: "Discovery", desc: "Deep dive into your business goals, workflows, and pain points", icon: Eye, color: "cyan" },
+                { step: "2", title: "Design", desc: "Blueprint the automation or system architecture tailored to your needs", icon: Layers, color: "emerald" },
+                { step: "3", title: "Build", desc: "Develop custom AI systems with integrations and intelligent logic", icon: Code2, color: "purple" },
+                { step: "4", title: "Support", desc: "Deploy, monitor, and evolve your systems as your business grows", icon: Rocket, color: "orange" }
               ].map((process, index) => (
                 <motion.div
                   key={process.step}
@@ -803,7 +830,7 @@ const CustomAIAutomationsPage = () => {
             className="mb-16"
           >
             <h2 className="ai-section-title">
-              AI Automation Questions
+              Frequently Asked Questions
             </h2>
             <div className="space-y-4 max-w-4xl mx-auto">
               {faqs.map((faq, index) => (
@@ -915,32 +942,32 @@ const CustomAIAutomationsPage = () => {
             </motion.div>
             
             <h2 className="ai-cta-title">
-              Ready To Deploy Custom AI For Your Business?
+              Ready To Design Your Next Evolution?
             </h2>
             <p className="ai-cta-description">
-              Let's discuss your workflows and create intelligent automation systems that transform your business operations and drive sustainable growth.
+              Let's build the systems that will power your business for years to come. Serving sole traders and SMEs across the UK — combining deep industry insight with advanced AI automation and custom software design.
             </p>
             
             <div className="ai-cta-buttons">
               <Link to="/contact" className="ai-btn-primary">
                 <Calendar className="h-5 w-5" />
-                Request AI Consultation
+                Start My Discovery Session
               </Link>
               <a href="mailto:contact@solescope.co.uk" className="ai-btn-secondary">
                 <Mail className="h-5 w-5" />
-                Email Our AI Team
+                Email Our Team
               </a>
             </div>
             
             <div className="ai-cta-features">
               <div className="ai-cta-feature">
                 <div className="ai-cta-feature-dot"></div>
-                <span>Free AI consultation</span>
+                <span>Free discovery consultation</span>
               </div>
               <div className="ai-cta-divider"></div>
               <div className="ai-cta-feature">
                 <div className="ai-cta-feature-dot"></div>
-                <span>Custom AI proposal within 24 hours</span>
+                <span>Custom proposal within 24 hours</span>
               </div>
             </div>
           </div>
