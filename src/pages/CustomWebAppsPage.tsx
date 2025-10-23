@@ -79,35 +79,35 @@ const CustomWebAppsPage = () => {
     {
       id: 'custom-development',
       icon: Code,
-      title: "Custom Development",
-      description: "Tailored web applications built specifically for your business needs"
+      title: "Bespoke Development",
+      description: "Each solution built around your workflows, brand, and growth goals"
     },
     {
       id: 'database-integration',
       icon: Database,
-      title: "Database Integration",
-      description: "Seamless data management with secure database solutions"
+      title: "Intelligent Data Systems",
+      description: "Secure, scalable databases optimised with AI-enhanced workflows"
     },
     {
       id: 'cloud-hosting',
       icon: Cloud,
-      title: "Cloud Hosting",
-      description: "Reliable, scalable hosting infrastructure that grows with you"
+      title: "Enterprise-Grade Hosting",
+      description: "Modern cloud infrastructure for peak performance and uptime"
     },
     {
       id: 'full-management',
       icon: Server,
-      title: "Full Management",
-      description: "Complete server management and technical support included"
+      title: "Fully Managed Support",
+      description: "Seamless technical support from the team that built your app"
     }
   ];
 
   const pricingPlans = [
     {
       id: 'mvp-package',
-      name: "MVP Package",
+      name: "Starter Package",
       price: "From £1,500",
-      description: "A lean, testable version of your idea",
+      description: "Ideal for growing small businesses ready to add secure client portals or online tools",
       timeline: "Delivery in 2–3 weeks",
       features: [
         "1–3 core features",
@@ -122,7 +122,7 @@ const CustomWebAppsPage = () => {
       id: 'business-package',
       name: "Business Package",
       price: "From £3,000",
-      description: "Custom web app for internal systems or client platforms",
+      description: "Best for SMEs that need robust, scalable systems — customer portals, booking platforms, or multi-user tools",
       timeline: "Delivery in 3–5 weeks",
       features: [
         "Full UI/UX design",
@@ -135,15 +135,15 @@ const CustomWebAppsPage = () => {
     },
     {
       id: 'scalable-package',
-      name: "Scalable Package",
+      name: "Enterprise Package",
       price: "From £5,000",
-      description: "Advanced custom apps, SaaS, or high-performance tools",
+      description: "Custom-engineered solutions for established businesses requiring advanced functionality and dedicated support",
       timeline: "Delivery 5–8+ weeks",
       features: [
         "Multi-user authentication & permissions",
         "Complex database architecture",
         "Real-time data synchronization",
-        "Multiple API/AI automations",
+        "Multiple API integrations & AI-enhanced automation",
         "Custom dashboards",
         "Long-term launch & scaling support"
       ],
@@ -156,7 +156,7 @@ const CustomWebAppsPage = () => {
       id: 'basic-tier',
       name: "Basic Tier",
       price: "£149.99",
-      description: "Essential hosting & core maintenance",
+      description: "Secure, reliable hosting with essential managed support",
       features: [
         "VPS or shared hosting infrastructure",
         "SSL certificate included",
@@ -171,7 +171,7 @@ const CustomWebAppsPage = () => {
       id: 'standard-tier',
       name: "Standard Tier",
       price: "£399.99",
-      description: "Professional-grade support for growing apps",
+      description: "Complete peace-of-mind hosting for scaling SME platforms",
       features: [
         "Everything in Basic Tier",
         "Cloud-based hosting (AWS, Vercel, DigitalOcean)",
@@ -188,7 +188,7 @@ const CustomWebAppsPage = () => {
       id: 'premium-tier',
       name: "Premium Tier",
       price: "£999.99",
-      description: "Enterprise-level infrastructure & support",
+      description: "Enterprise-grade infrastructure with full accountability and seamless support",
       features: [
         "Everything in Standard Tier",
         "High-availability multi-server setup",
@@ -229,60 +229,60 @@ const CustomWebAppsPage = () => {
   const whyChooseUs = [
     {
       icon: Target,
-      title: "Service-Business Specialist",
-      description: "Built specifically for sole traders and small service businesses who need practical digital solutions."
+      title: "Your Digital Development Partner",
+      description: "From customer portals and booking systems to internal dashboards — our web apps are built to match how your company actually works. No templates, just bespoke solutions."
     },
     {
       icon: Zap,
-      title: "AI-Powered Efficiency",
-      description: "Cutting-edge AI technology combined with proven design principles for faster, better results."
+      title: "Modern Automation & AI Optimisation",
+      description: "Our use of advanced automation and AI-enhanced workflows means your app stays efficient, scalable, and secure as your business evolves."
     },
     {
       icon: Shield,
-      title: "Complete Support",
-      description: "From initial consultation to ongoing maintenance, we handle all the technical complexity for you."
+      title: "Enterprise Results, SME Accessibility",
+      description: "We deliver enterprise-level results without the enterprise red tape. Built and supported in the UK by specialists who understand your business."
     }
   ];
 
   const faqs = [
     {
       question: "What types of web applications can you build?",
-      answer: "We develop a wide range of custom web applications including client portals, booking systems, inventory management tools, CRM systems, e-commerce platforms, and data visualization dashboards. Each application is tailored to your specific business requirements.",
+      answer: "We develop fully customised web applications including client portals, booking and scheduling systems, inventory management tools, internal dashboards, business management platforms, and e-commerce solutions. Every application is engineered specifically for your business workflows and growth objectives.",
       tags: ['applications', 'custom development', 'business tools']
     },
     {
       question: "How long does it take to develop a custom web application?",
-      answer: "Development timelines vary based on complexity. MVP packages typically take 2-3 weeks, Business packages require 3-5 weeks, while Scalable packages may need 5-8+ weeks. We provide detailed project timelines during the planning phase and keep you updated throughout development.",
+      answer: "Development timelines vary based on complexity. Starter packages typically take 2-3 weeks, Business packages require 3-5 weeks, while Enterprise packages may need 5-8+ weeks. We work collaboratively with you throughout the entire process and provide transparent project timelines from the start.",
       tags: ['timeline', 'development', 'project duration']
     },
     {
       question: "Do you provide ongoing maintenance and support?",
-      answer: "Yes! All our hosting packages include ongoing maintenance, security updates, backups, and technical support. We monitor your applications 24/7 and handle all server management so you can focus on your business.",
+      answer: "Yes! All our hosting packages include ongoing maintenance, security updates, backups, and dedicated technical support. We monitor your applications continuously and handle all infrastructure management — giving you full accountability and seamless support from the team that built your system.",
       tags: ['maintenance', 'support', 'hosting']
     },
     {
       question: "Can you integrate with our existing business systems?",
-      answer: "Absolutely! We specialize in creating seamless integrations with existing CRM systems, accounting software, payment processors, and other business tools. Our API development expertise ensures smooth data flow between systems.",
+      answer: "Absolutely! We specialise in creating seamless integrations with your existing CRM systems, accounting software, payment processors, and other business tools. Our API development expertise ensures smooth, secure data flow between all your systems.",
       tags: ['integrations', 'api', 'business systems']
     },
     {
       question: "What hosting infrastructure do you use?",
-      answer: "We use enterprise-grade cloud hosting with redundant servers, automatic scaling, and global content delivery networks. This ensures your web applications are fast, reliable, and available 24/7 with 99.9% uptime guarantee.",
+      answer: "We use modern cloud infrastructure including AWS, Vercel, and DigitalOcean — optimised for uptime, speed, and data protection. This gives SMEs enterprise-grade reliability without enterprise overheads, backed by our 99.9% uptime guarantee.",
       tags: ['hosting', 'infrastructure', 'cloud']
     },
     {
       question: "Do I need technical knowledge to manage my web application?",
-      answer: "Not at all! We design user-friendly admin interfaces and provide comprehensive training. All technical maintenance is handled by our team, so you can focus on using the application to grow your business.",
+      answer: "Not at all! We design intuitive, user-friendly interfaces and provide comprehensive training. All technical complexity is handled by our specialists, so you can focus on using your platform to scale your business.",
       tags: ['user-friendly', 'training', 'management']
     },
     {
       question: "Can you add features after the application is built?",
-      answer: "Yes! We design applications with scalability in mind. New features can be added through our development services, and we provide ongoing enhancement options to help your application evolve with your business needs.",
+      answer: "Yes! We design all applications with scalability in mind. New features and enhancements can be added as your business grows — we provide ongoing development support to ensure your platform evolves with your needs.",
       tags: ['scalability', 'features', 'enhancements']
     },
     {
       question: "What security measures do you implement?",
-      answer: "We implement enterprise-grade security including SSL encryption, secure authentication, regular security audits, automated backups, and compliance with GDPR and other relevant regulations. Your data and your customers' data are fully protected.",
+      answer: "We implement enterprise-grade security including SSL encryption, secure authentication, regular security audits, automated backups, and compliance with GDPR and other relevant UK regulations. Your data and your customers' data are fully protected at all times.",
       tags: ['security', 'encryption', 'compliance']
     }
   ];
@@ -301,7 +301,7 @@ const CustomWebAppsPage = () => {
           transition={{ duration: 0.8 }}
         >
           <h1>Custom WebApps & Hosting</h1>
-          <p>Tailored web applications with database integration and enterprise-grade hosting. Complete technical support included.</p>
+          <p>Powerful, scalable web apps — designed for ambitious SMEs. We design and host fully customised web applications for businesses that have outgrown basic websites. Each build is engineered for performance, reliability, and effortless user experience.</p>
         </motion.div>
       </header>
 
@@ -316,7 +316,7 @@ const CustomWebAppsPage = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
-              Why Choose Our Custom WebApp Services?
+              Why Choose SoleScope for Web App Design & Hosting?
             </h2>
             
             {/* Desktop: Grid Layout */}
@@ -564,7 +564,7 @@ const CustomWebAppsPage = () => {
               Ongoing Hosting & Support Plans
             </h2>
             <p className="text-white text-center mb-8 opacity-80 max-w-3xl mx-auto">
-              After your web application is built, we provide fully managed hosting and maintenance. 
+              Our managed hosting keeps your web app running at peak performance — secure, backed up, and continuously monitored. We use modern cloud infrastructure optimised for uptime, speed, and data protection. Everything is managed by the same team that built your application.
               <strong> These are recurring monthly fees, separate from your one-time webapp development cost.</strong>
             </p>
             
@@ -754,10 +754,10 @@ const CustomWebAppsPage = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
-                { step: "1", title: "Discover", desc: "Understand your business goals and requirements" },
-                { step: "2", title: "Design", desc: "Create tailored solutions that fit your needs" },
-                { step: "3", title: "Develop", desc: "Build and test your web applications" },
-                { step: "4", title: "Deploy", desc: "Launch and provide ongoing support" }
+                { step: "1", title: "Discover", desc: "We plan, discuss, and map your exact requirements" },
+                { step: "2", title: "Design", desc: "Hand-crafted design with your workflows and brand in mind" },
+                { step: "3", title: "Develop", desc: "Built using the latest design technology and AI-optimised workflows" },
+                { step: "4", title: "Deploy", desc: "Fully managed launch with ongoing technical partnership" }
               ].map((process) => (
                 <div key={process.step} className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -839,10 +839,10 @@ const CustomWebAppsPage = () => {
           className="services-refined-card text-center"
         >
           <h2 className="text-3xl font-bold text-white mb-6 uppercase tracking-wide">
-            Ready To Build Your Custom Web Application?
+            Ready To Bring Your Next Idea To Life?
           </h2>
           <p className="text-white mb-8 text-lg leading-relaxed max-w-2xl mx-auto opacity-90">
-            Let's discuss your project requirements and create a powerful web application that transforms your business operations.
+            Let's build a system that evolves with your business. Designed for SMEs across the UK — built with precision, performance, and personal care.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
             <Link
@@ -850,7 +850,7 @@ const CustomWebAppsPage = () => {
               className="services-btn-primary"
             >
               <Calendar className="h-5 w-5" />
-              Request Consultation
+              Book A Discovery Call
             </Link>
             <a
               href="mailto:contact@solescope.co.uk"
