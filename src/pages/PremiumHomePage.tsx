@@ -3,7 +3,6 @@ import InteractiveHero from '../components/homepage/InteractiveHero';
 import WhyChooseSoleScope from '../components/homepage/WhyChooseSoleScope';
 import ServiceSnapshotGrid from '../components/homepage/ServiceSnapshotGrid';
 import ClientResultsShowcase from '../components/homepage/ClientResultsShowcase';
-import TestimonialsStrip from '../components/homepage/TestimonialsStrip';
 import ProcessStepper from '../components/homepage/ProcessStepper';
 import FinalCallToAction from '../components/homepage/FinalCallToAction';
 import '../styles/homepage-galaxy.css';
@@ -15,7 +14,6 @@ const PremiumHomePage = () => {
       <WhyChooseSoleScope />
       <ServiceSnapshotGrid />
       <ClientResultsShowcase />
-      <TestimonialsStrip />
       <ProcessStepper />
       <FinalCallToAction />
     </div>
