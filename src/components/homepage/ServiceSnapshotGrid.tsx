@@ -112,7 +112,7 @@ const ServiceSnapshotGrid = () => {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       aria-labelledby="services-snapshot-heading"
     >
 
@@ -122,10 +122,10 @@ const ServiceSnapshotGrid = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.p
-            className="text-sm font-semibold uppercase tracking-wide mb-3"
+            className="text-sm font-semibold uppercase tracking-wide mb-2"
             style={{
               background: 'linear-gradient(90deg, rgba(168, 85, 247, 0.8), rgba(179, 156, 255, 1), rgba(168, 85, 247, 0.8))',
               backgroundSize: '200% auto',
@@ -147,7 +147,7 @@ const ServiceSnapshotGrid = () => {
 
           <motion.h2
             id="services-snapshot-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-5 uppercase tracking-wide"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 uppercase tracking-wide"
             style={{
               background: 'linear-gradient(135deg, #FFFFFF 0%, #E5E7EB 50%, #FFFFFF 100%)',
               backgroundSize: '200% auto',
@@ -660,7 +660,7 @@ const ServiceSnapshotGrid = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1 }}
-          className="text-center mt-16"
+          className="text-center mt-10"
         >
           <motion.div
             whileHover={{ scale: 1.05 }}
@@ -726,7 +726,7 @@ const ServiceSnapshotGrid = () => {
             initial={{ opacity: 0 }}
             animate={inView ? { opacity: 1 } : {}}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="mt-6 text-sm text-slate-400"
+            className="mt-4 text-sm text-slate-400"
           >
             Discover how SoleScope transforms digital presence for service-based businesses.
           </motion.p>

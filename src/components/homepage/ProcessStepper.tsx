@@ -49,7 +49,7 @@ const ProcessStepper = () => {
   return (
     <section
       ref={ref}
-      className="relative py-20 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       aria-labelledby="process-heading"
     >
 
@@ -58,11 +58,11 @@ const ProcessStepper = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <h2
             id="process-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 uppercase tracking-wide"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-3 uppercase tracking-wide"
           >
             Our Process — Simplicity with Intelligence
           </h2>
@@ -177,7 +177,7 @@ const ProcessStepper = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-16 text-center"
+          className="mt-10 text-center"
         >
           <div className="inline-block bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 max-w-3xl">
             <h3 className="text-xl font-bold text-white mb-4">

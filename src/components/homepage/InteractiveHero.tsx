@@ -154,7 +154,7 @@ const InteractiveHero = () => {
 
   return (
     <section
-      className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0"
+      className="relative flex items-center justify-center overflow-hidden pt-16 md:pt-0 pb-12 md:pb-16"
       aria-labelledby="hero-heading"
       role="region"
     >
@@ -214,7 +214,7 @@ const InteractiveHero = () => {
 
           <h1
             id="hero-heading"
-            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-4 leading-tight"
           >
             <span className="block text-white">Transform Your Business With</span>
             <span className="block bg-gradient-to-r from-[#B39CFF] to-[#6C3EF0] bg-clip-text text-transparent">
@@ -226,7 +226,7 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed"
+            className="text-base sm:text-lg md:text-xl lg:text-2xl text-slate-300 max-w-4xl mx-auto mb-6 md:mb-8 leading-relaxed"
           >
             Complete digital solutions for service businesses who want to compete and win online.
             From AI automations to custom web apps, we deliver results that matter.
@@ -236,7 +236,7 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-12"
+            className="grid grid-cols-2 lg:grid-cols-4 gap-4 max-w-4xl mx-auto mb-8"
           >
             {[
               { icon: CheckCircle, label: 'Projects', value: liveMetrics.projectsDelivered, suffix: '+' },
@@ -264,7 +264,7 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="max-w-6xl mx-auto mb-12"
+            className="max-w-6xl mx-auto mb-8"
           >
             <p className="text-sm text-slate-400 mb-4 uppercase tracking-wide">Our Services</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
@@ -343,7 +343,7 @@ const InteractiveHero = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 0.8, delay: 1.2 }}
-          className="mt-12 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-400"
+          className="mt-8 flex flex-wrap items-center justify-center gap-4 text-sm text-slate-400"
         >
           <div className="flex items-center space-x-2">
             <CheckCircle className="h-4 w-4 text-purple-400" />

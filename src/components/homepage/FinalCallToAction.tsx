@@ -15,7 +15,7 @@ const FinalCallToAction = () => {
   return (
     <section
       ref={ref}
-      className="relative py-24 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       aria-labelledby="final-cta-heading"
     >
 
@@ -24,10 +24,10 @@ const FinalCallToAction = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-12"
+          className="text-center mb-8"
         >
           <motion.div
-            className="inline-block mb-6"
+            className="inline-block mb-4"
             animate={{
               y: [0, -10, 0]
             }}
@@ -55,7 +55,7 @@ const FinalCallToAction = () => {
 
           <h2
             id="final-cta-heading"
-            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight"
+            className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-4 leading-tight"
           >
             Let's Build Something
             <br />
@@ -110,7 +110,7 @@ const FinalCallToAction = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.6 }}
-          className="mt-12 flex flex-wrap justify-center gap-8 text-sm text-slate-400"
+          className="mt-8 flex flex-wrap justify-center gap-8 text-sm text-slate-400"
         >
           <div className="flex items-center space-x-2">
             <motion.div
@@ -165,7 +165,7 @@ const FinalCallToAction = () => {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={inView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="mt-16 relative"
+          className="mt-10 relative"
         >
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-purple-500/20 to-transparent blur-xl"></div>
           <div className="relative bg-white/5 backdrop-blur-md border border-white/10 rounded-2xl p-8 md:p-12 max-w-4xl mx-auto">
@@ -225,7 +225,7 @@ const FinalCallToAction = () => {
         </motion.div>
 
         <motion.div
-          className="relative mt-12"
+          className="relative mt-8"
           onMouseEnter={() => setHoveredButton('chat')}
           onMouseLeave={() => setHoveredButton(null)}
         >

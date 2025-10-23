@@ -122,7 +122,7 @@ const WhyChooseSoleScope = () => {
   return (
     <section
       ref={ref}
-      className="relative py-20 md:py-32 overflow-hidden"
+      className="relative py-12 md:py-16 overflow-hidden"
       aria-labelledby="why-choose-heading"
     >
       <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -130,12 +130,12 @@ const WhyChooseSoleScope = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="text-center mb-16"
+          className="text-center mb-10"
         >
           <motion.h2
             variants={itemVariants}
             id="why-choose-heading"
-            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6 uppercase tracking-wide"
+            className="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-4 uppercase tracking-wide"
           >
             Why Businesses Choose SoleScope
           </motion.h2>
@@ -151,7 +151,7 @@ const WhyChooseSoleScope = () => {
           initial="hidden"
           animate={inView ? "visible" : "hidden"}
           variants={containerVariants}
-          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-12"
+          className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 mb-8"
         >
           {values.map((value, index) => (
             <motion.div
@@ -220,7 +220,7 @@ const WhyChooseSoleScope = () => {
           initial={{ opacity: 0, y: prefersReducedMotion ? 0 : 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: prefersReducedMotion ? 0 : 0.6 }}
-          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-10 max-w-5xl mx-auto"
+          className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6 max-w-5xl mx-auto"
         >
           <div className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-xl p-4 text-center">
             <div className="flex items-center justify-center mb-2">
@@ -259,7 +259,7 @@ const WhyChooseSoleScope = () => {
           initial={{ opacity: 0 }}
           animate={inView ? { opacity: 1 } : {}}
           transition={{ duration: prefersReducedMotion ? 0 : 0.8, delay: prefersReducedMotion ? 0 : 0.8 }}
-          className="flex justify-end mb-8 max-w-5xl mx-auto"
+          className="flex justify-end mb-6 max-w-5xl mx-auto"
         >
           <div className="bg-white/[0.02] backdrop-blur-sm border border-white/[0.06] rounded-lg px-6 py-3 max-w-md">
             <p className="text-sm text-slate-300 italic">
