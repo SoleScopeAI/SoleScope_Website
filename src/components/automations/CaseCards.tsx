@@ -202,7 +202,7 @@ const CaseCards = () => {
             </p>
           </motion.div>
 
-          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8" style={{ position: 'relative', isolation: 'isolate' }}>
+          <div className="hidden md:grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {cases.map((caseItem, index) => (
               <motion.div
                 key={caseItem.id}
@@ -210,9 +210,9 @@ const CaseCards = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.6, delay: index * 0.1 }}
-                whileHover={{ y: -6, scale: 1.01 }}
-                className="group relative overflow-hidden rounded-3xl p-8 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 cursor-pointer flex flex-col"
-                style={{ position: 'relative', isolation: 'isolate', zIndex: 0, minHeight: '440px' }}
+                whileHover={{ y: -6 }}
+                className="group relative rounded-2xl bg-slate-800/60 border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 cursor-pointer flex flex-col p-8"
+                style={{ minHeight: '440px' }}
                 tabIndex={0}
                 role="button"
                 aria-labelledby={`case-title-${caseItem.id}`}
@@ -225,25 +225,7 @@ const CaseCards = () => {
                 }}
                 data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
               >
-                <div
-                  className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-slate-950/95 rounded-3xl"
-                  style={{ zIndex: 0, pointerEvents: 'none' }}
-                />
-                <div
-                  className="absolute inset-0 border border-white/10 rounded-3xl"
-                  style={{ zIndex: 0, pointerEvents: 'none' }}
-                />
-
-                <div
-                  className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                  style={{
-                    zIndex: 2,
-                    pointerEvents: 'none',
-                    background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(108, 99, 255, 0.05) 50%, transparent 80%)'
-                  }}
-                />
-
-                <div className="relative flex flex-col flex-1" style={{ zIndex: 1 }}>
+                <div className="flex flex-col flex-1">
                   <div className="inline-block self-start px-3 py-1 mb-3 bg-yellow-600/20 border border-yellow-500/30 rounded-full">
                     <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
                       Demo Case Study
@@ -325,9 +307,9 @@ const CaseCards = () => {
                   whileInView={{ opacity: 1, x: 0 }}
                   viewport={{ once: true }}
                   transition={{ duration: 0.6, delay: index * 0.1 }}
-                  whileHover={{ y: -4, scale: 1.01 }}
-                  className="group relative overflow-hidden rounded-3xl p-6 shadow-2xl hover:shadow-purple-500/20 hover:border-purple-400/30 focus-within:border-purple-400/50 focus-within:shadow-purple-500/30 transition-all duration-500 flex-shrink-0 w-80 snap-center flex flex-col cursor-pointer"
-                  style={{ position: 'relative', isolation: 'isolate', zIndex: 0, minHeight: '420px' }}
+                  whileHover={{ y: -4 }}
+                  className="group relative rounded-2xl bg-slate-800/60 border border-white/10 shadow-lg hover:shadow-xl transition-all duration-300 flex-shrink-0 w-80 snap-center flex flex-col cursor-pointer p-6"
+                  style={{ minHeight: '420px' }}
                   tabIndex={0}
                   role="button"
                   aria-labelledby={`case-title-mobile-${caseItem.id}`}
@@ -343,25 +325,7 @@ const CaseCards = () => {
                   }}
                   data-analytics={`case-card-${caseItem.title.toLowerCase().replace(/\s+/g, '-')}`}
                 >
-                  <div
-                    className="absolute inset-0 bg-gradient-to-br from-slate-900/90 to-slate-950/95 rounded-3xl"
-                    style={{ zIndex: 0, pointerEvents: 'none' }}
-                  />
-                  <div
-                    className="absolute inset-0 border border-white/10 rounded-3xl"
-                    style={{ zIndex: 0, pointerEvents: 'none' }}
-                  />
-
-                  <div
-                    className="absolute inset-0 rounded-3xl opacity-0 group-hover:opacity-100 transition-opacity duration-500"
-                    style={{
-                      zIndex: 2,
-                      pointerEvents: 'none',
-                      background: 'linear-gradient(135deg, rgba(168, 85, 247, 0.1) 0%, rgba(108, 99, 255, 0.05) 50%, transparent 80%)'
-                    }}
-                  />
-
-                  <div className="relative flex flex-col flex-1" style={{ zIndex: 1 }}>
+                  <div className="flex flex-col flex-1">
                     <div className="inline-block self-start px-3 py-1 mb-3 bg-yellow-600/20 border border-yellow-500/30 rounded-full">
                       <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
                         Demo Case Study

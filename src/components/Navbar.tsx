@@ -122,7 +122,7 @@ const Navbar = () => {
               target="_blank"
               rel="noopener noreferrer"
               aria-label="Open SoleScope Marketing client portal in a new tab"
-              className="bg-white text-rich-black-0 px-6 py-2 text-sm font-medium tracking-wide uppercase hover:bg-rich-black-0 hover:text-white hover:border hover:border-white hover:shadow-lg transition-all duration-300 rounded-lg shadow-md"
+              className="inline-flex items-center gap-2 h-9 px-4 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] hover:shadow-[0_0_0_3px_rgba(168,85,247,0.35)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70 focus:ring-offset-2 focus:ring-offset-black"
             >
               Client Portal
             </a>
@@ -185,7 +185,7 @@ const Navbar = () => {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Open SoleScope Marketing client portal in a new tab"
-                className="block w-full text-center bg-white px-3 py-2 text-rich-black-0 text-sm font-medium tracking-wide uppercase rounded-lg shadow-md"
+                className="block w-full text-center h-10 px-5 py-2 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70"
               >
                 Client Portal
               </a>

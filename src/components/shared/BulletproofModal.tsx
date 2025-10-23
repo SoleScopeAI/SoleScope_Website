@@ -19,7 +19,7 @@ const BulletproofModal: React.FC<BulletproofModalProps> = ({
   title,
   subtitle,
   children,
-  maxWidth = '6xl',
+  maxWidth = '4xl',
   ariaLabel
 }) => {
   const focusTrapRef = useFocusTrap(isOpen);
@@ -70,79 +70,74 @@ const BulletproofModal: React.FC<BulletproofModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[9999] flex items-center justify-center overflow-y-auto overflow-x-hidden bg-black/90 backdrop-blur-md"
-          style={{
-            paddingTop: 'clamp(1rem, 4vh, 3rem)',
-            paddingBottom: 'clamp(1rem, 4vh, 3rem)',
-            paddingLeft: 'max(1rem, env(safe-area-inset-left))',
-            paddingRight: 'max(1rem, env(safe-area-inset-right))'
-          }}
+          className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
           onClick={handleOverlayClick}
-          role="dialog"
-          aria-modal="true"
-          aria-labelledby="modal-title"
-          aria-label={ariaLabel || title}
         >
-          <motion.div
-            ref={focusTrapRef}
-            initial={{ scale: 0.95, opacity: 0, y: 20 }}
-            animate={{ scale: 1, opacity: 1, y: 0 }}
-            exit={{ scale: 0.95, opacity: 0, y: 20 }}
-            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-            className={`relative w-full max-w-${maxWidth} flex flex-col bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl border border-white/20 shadow-2xl my-8`}
-            style={{
-              isolation: 'isolate',
-              maxHeight: 'calc(100vh - 4rem)',
-              paddingTop: 'env(safe-area-inset-top)',
-              paddingBottom: 'env(safe-area-inset-bottom)'
-            }}
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div
-              className="sticky top-0 z-20 px-6 sm:px-8 pt-6 pb-4 bg-gradient-to-br from-slate-900/98 to-slate-800/98 backdrop-blur-xl border-b border-white/20 rounded-t-3xl flex items-center justify-between gap-4 shadow-lg"
+          <div className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            <motion.div
+              ref={focusTrapRef}
+              initial={{ scale: 0.95, opacity: 0, y: 20 }}
+              animate={{ scale: 1, opacity: 1, y: 0 }}
+              exit={{ scale: 0.95, opacity: 0, y: 20 }}
+              transition={{ type: "spring", stiffness: 300, damping: 30 }}
+              className={`relative w-full max-w-${maxWidth} rounded-2xl bg-slate-900 border border-white/10 shadow-2xl overflow-hidden`}
               style={{
-                backdropFilter: 'blur(16px)',
-                WebkitBackdropFilter: 'blur(16px)'
+                isolation: 'isolate',
+                maxHeight: '80vh',
+                display: 'flex',
+                flexDirection: 'column'
               }}
+              onClick={(e) => e.stopPropagation()}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="modal-title"
+              aria-label={ariaLabel || title}
             >
-              <div className="flex-1 min-w-0">
-                <h2
-                  id="modal-title"
-                  className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide truncate"
-                >
-                  {title}
-                </h2>
-                {subtitle && (
-                  <p className="text-sm text-slate-300 mt-1 truncate">{subtitle}</p>
-                )}
-              </div>
-              <button
-                onClick={onClose}
-                className="flex-shrink-0 w-12 h-12 rounded-xl flex items-center justify-center bg-slate-800/80 hover:bg-red-600/40 border-2 border-white/20 hover:border-red-500/60 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-red-500 focus:ring-offset-2 focus:ring-offset-slate-900 shadow-md hover:shadow-lg hover:shadow-red-500/20"
-                style={{ minWidth: '48px', minHeight: '48px' }}
-                aria-label="Close modal (Escape key)"
-                type="button"
+              <div
+                className="sticky top-0 z-10 bg-slate-900/95 backdrop-blur supports-[backdrop-filter]:bg-slate-900/75 border-b border-white/10 px-5 py-3 flex items-center justify-between"
+                style={{
+                  backdropFilter: 'blur(16px)',
+                  WebkitBackdropFilter: 'blur(16px)'
+                }}
               >
-                <X className="h-6 w-6 text-white drop-shadow-lg" />
-              </button>
-            </div>
+                <div className="flex-1 min-w-0">
+                  <h2
+                    id="modal-title"
+                    className="text-xl sm:text-2xl font-bold text-white uppercase tracking-wide truncate"
+                  >
+                    {title}
+                  </h2>
+                  {subtitle && (
+                    <p className="text-sm text-slate-300 mt-1 truncate">{subtitle}</p>
+                  )}
+                </div>
+                <button
+                  onClick={onClose}
+                  className="shrink-0 inline-flex h-9 w-9 items-center justify-center rounded-full border border-white/10 hover:bg-white/5 active:scale-95 transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:ring-offset-2 focus:ring-offset-slate-900"
+                  style={{ minWidth: '36px', minHeight: '36px' }}
+                  aria-label="Close modal (Escape key)"
+                  type="button"
+                >
+                  <X className="h-5 w-5 text-white" />
+                </button>
+              </div>
 
-            <div
-              ref={modalBodyRef}
-              data-modal-body
-              className="flex-1 overflow-y-auto overflow-x-hidden px-6 sm:px-8 py-8"
-              style={{
-                scrollbarWidth: 'thin',
-                scrollbarColor: 'rgba(168, 85, 247, 0.4) rgba(255, 255, 255, 0.08)',
-                WebkitOverflowScrolling: 'touch',
-                overscrollBehavior: 'contain',
-                scrollPaddingTop: '1rem',
-                scrollPaddingBottom: '1rem'
-              }}
-            >
-              {children}
-            </div>
-          </motion.div>
+              <div
+                ref={modalBodyRef}
+                data-modal-body
+                className="flex-1 overflow-y-auto overflow-x-hidden px-6 sm:px-8 py-8"
+                style={{
+                  maxHeight: 'calc(80vh - 64px)',
+                  scrollbarWidth: 'thin',
+                  scrollbarColor: 'rgba(168, 85, 247, 0.4) rgba(255, 255, 255, 0.08)',
+                  WebkitOverflowScrolling: 'touch',
+                  overscrollBehavior: 'contain'
+                }}
+              >
+                {children}
+              </div>
+            </motion.div>
+          </div>
         </motion.div>
       )}
     </AnimatePresence>

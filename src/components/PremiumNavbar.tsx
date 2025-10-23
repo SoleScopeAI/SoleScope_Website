@@ -184,14 +184,13 @@ const PremiumNavbar = () => {
               </div>
             ))}
             
-            {/* Client Portal Button */}
             <a
               href="https://ClientPortal.solescope.co.uk"
               target="_blank"
               rel="noopener noreferrer"
               role="button"
               aria-label="Open client portal in new tab"
-              className="btn-secondary text-sm px-6 py-2 focus:outline-none rounded-lg"
+              className="inline-flex items-center gap-2 h-9 px-4 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] hover:shadow-[0_0_0_3px_rgba(168,85,247,0.35)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70 focus:ring-offset-2 focus:ring-offset-black"
             >
               Client Portal
             </a>
@@ -265,7 +264,7 @@ const PremiumNavbar = () => {
                   rel="noopener noreferrer"
                   role="button"
                   aria-label="Open client portal in new tab"
-                  className="block w-full text-center bg-transparent border-2 border-purple-500 text-purple-400 px-3 py-2 text-sm font-medium rounded-lg mt-4 hover:bg-purple-600 hover:text-white transition-colors focus:outline-none"
+                  className="block w-full text-center h-10 px-5 py-2 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70 mt-4"
                 >
                   Client Portal
                 </a>
