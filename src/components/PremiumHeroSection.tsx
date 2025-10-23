@@ -159,8 +159,8 @@ const PremiumHeroSection = () => {
   ];
 
   return (
-    <section 
-      className="relative min-h-screen flex items-center justify-center premium-bg overflow-hidden pt-20 md:pt-0"
+    <section
+      className="relative min-h-screen flex items-center justify-center premium-bg overflow-hidden pt-16 pb-8 md:pt-20 md:pb-0"
       aria-labelledby="hero-heading"
       role="region"
     >
@@ -213,9 +213,9 @@ const PremiumHeroSection = () => {
           className="mb-6 md:mb-12 text-center"
         >
           {/* Hero Heading */}
-          <h1 
+          <h1
             id="hero-heading"
-            className="text-center text-2xl sm:text-3xl md:text-6xl font-bold mt-2 mb-4 md:mb-12 leading-tight md:leading-normal pb-6 md:pb-0 pt-20 md:pt-0"
+            className="text-center text-3xl md:text-6xl font-bold mt-2 mb-4 md:mb-12 leading-9 md:leading-normal pb-6 md:pb-0 pt-8 md:pt-0"
           >
             <span className="block text-white">Transform Your Business With</span>
             <span className="block bg-gradient-to-r from-[#B39CFF] to-[#6C3EF0] bg-clip-text text-transparent">
@@ -228,7 +228,7 @@ const PremiumHeroSection = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
-            className="text-sm sm:text-base md:text-xl text-slate-300 max-w-[32ch] md:max-w-4xl mx-auto mb-8 md:mb-12 leading-relaxed"
+            className="text-[15px] leading-7 md:text-xl text-slate-300 max-w-[36rem] mx-auto mb-8 md:mb-12 px-4 text-center"
           >
             Complete digital solutions for service businesses who want to compete and win online.
           </motion.p>
@@ -388,7 +388,7 @@ const PremiumHeroSection = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.8 }}
-          className="flex flex-col sm:flex-row space-y-3 sm:space-y-0 sm:space-x-3 justify-center items-center px-4 sm:px-0"
+          className="flex flex-col sm:flex-row gap-3 sm:gap-3 justify-center items-center px-4 sm:px-0 w-full sm:w-auto"
           role="group"
           aria-label="Call to action buttons"
         >

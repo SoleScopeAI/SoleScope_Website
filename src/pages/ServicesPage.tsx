@@ -257,10 +257,10 @@ const ServicesPage = () => {
   return (
     <main id="services" className="services-surface pt-24 pb-20">
       {/* Compact Header */}
-      <header className="container services-header">
-        <div>
-          <h1>Our Services</h1>
-          <p>Complete digital solutions designed specifically for service-based businesses who want to compete and win online.</p>
+      <header className="container services-header px-4 md:px-6">
+        <div className="max-w-[720px] md:max-w-none mx-auto">
+          <h1 className="text-3xl md:text-4xl leading-9 md:leading-tight">Our Services</h1>
+          <p className="text-[15px] leading-7 md:text-base">Complete digital solutions designed specifically for service-based businesses who want to compete and win online.</p>
         </div>
       </header>
 

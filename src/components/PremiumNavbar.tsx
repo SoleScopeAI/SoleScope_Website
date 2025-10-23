@@ -48,7 +48,7 @@ const PremiumNavbar = () => {
       }`}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 md:h-auto h-14">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 relative">
@@ -197,79 +197,112 @@ const PremiumNavbar = () => {
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-3">
+            <a
+              href="https://ClientPortal.solescope.co.uk"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1 h-7 px-3 text-xs font-medium rounded-full bg-purple-600/80 hover:bg-purple-600 text-white border border-white/10 transition-all duration-300"
+            >
+              Client Portal
+            </a>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
               aria-controls="mobile-menu"
               aria-label="Toggle mobile menu"
-              className="text-gray-300 hover:text-white transition-colors p-2 focus:outline-none"
+              className="text-gray-300 hover:text-white transition-colors p-2 focus:outline-none min-h-[44px] min-w-[44px] flex items-center justify-center"
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation Drawer */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              id="mobile-menu"
-              role="menu"
-              aria-label="Mobile navigation menu"
-              className="lg:hidden bg-black/95 backdrop-blur-lg border-t border-gray-800 rounded-b-lg"
-            >
-              <div className="px-2 pt-2 pb-3 space-y-1">
-                {navItems.map((item) => (
-                  <div key={item.name}>
-                    <Link
-                      to={item.path}
-                      role="menuitem"
-                      onClick={() => setIsOpen(false)}
-                      className={`block px-3 py-2 text-sm font-medium tracking-wide uppercase transition-colors focus:outline-none ${
-                        location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
-                          ? 'text-purple-400 bg-purple-600/20'
-                          : 'text-gray-300 hover:text-white hover:bg-gray-800/50'
-                      } rounded-lg`}
-                    >
-                      {item.name}
-                    </Link>
-                    {item.submenu && (
-                      <div className="ml-4 mt-2 space-y-1" role="group" aria-label={`${item.name} submenu`}>
-                        {item.submenu.map((subItem) => (
-                          <Link
-                            key={subItem.name}
-                            to={subItem.path}
-                            role="menuitem"
-                            onClick={() => setIsOpen(false)}
-                            className={`block px-3 py-2 text-sm font-medium transition-colors focus:outline-none ${
-                              location.pathname === subItem.path
-                                ? 'text-purple-400 bg-purple-600/20'
-                                : 'text-gray-400 hover:text-white hover:bg-gray-800/50'
-                            } rounded-lg`}
-                          >
-                            {subItem.name}
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsOpen(false)}
+                className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
+              />
+
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'tween', duration: 0.3 }}
+                id="mobile-menu"
+                role="menu"
+                aria-label="Mobile navigation menu"
+                className="lg:hidden fixed inset-y-0 right-0 w-[86%] bg-black/98 backdrop-blur-xl border-l border-white/10 z-70 overflow-y-auto"
+              >
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between p-4 border-b border-white/10">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8">
+                      <img
+                        src="/edited-photo.png"
+                        alt="SoleScope Logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-base font-bold text-white">SoleScope</span>
                   </div>
-                ))}
-                <a
-                  href="https://ClientPortal.solescope.co.uk"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  role="button"
-                  aria-label="Open client portal in new tab"
-                  className="block w-full text-center h-10 px-5 py-2 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70 mt-4"
-                >
-                  Client Portal
-                </a>
-              </div>
-            </motion.div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                    className="p-2 text-gray-300 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center"
+                  >
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Drawer Navigation Items */}
+                <div className="py-2">
+                  {navItems.map((item) => (
+                    <div key={item.name}>
+                      <Link
+                        to={item.path}
+                        role="menuitem"
+                        onClick={() => setIsOpen(false)}
+                        className={`flex items-center h-12 px-6 text-sm font-medium tracking-wide uppercase transition-colors border-b border-white/5 ${
+                          location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
+                            ? 'text-purple-400 bg-purple-600/20'
+                            : 'text-gray-300 hover:text-white hover:bg-white/5'
+                        }`}
+                      >
+                        {item.name}
+                      </Link>
+                      {item.submenu && (
+                        <div className="bg-black/40" role="group" aria-label={`${item.name} submenu`}>
+                          {item.submenu.map((subItem) => (
+                            <Link
+                              key={subItem.name}
+                              to={subItem.path}
+                              role="menuitem"
+                              onClick={() => setIsOpen(false)}
+                              className={`flex items-center h-12 px-10 text-xs font-medium transition-colors border-b border-white/5 ${
+                                location.pathname === subItem.path
+                                  ? 'text-purple-400 bg-purple-600/20'
+                                  : 'text-gray-400 hover:text-white hover:bg-white/5'
+                              }`}
+                            >
+                              {subItem.name}
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </div>
+                  ))}
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

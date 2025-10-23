@@ -1,9 +1,11 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Mail, Phone, MapPin, ExternalLink } from 'lucide-react';
+import { Mail, Phone, MapPin, ExternalLink, ChevronDown, ChevronUp } from 'lucide-react';
 
 const PremiumFooter = () => {
   const currentYear = new Date().getFullYear();
+  const [servicesOpen, setServicesOpen] = useState(false);
+  const [companyOpen, setCompanyOpen] = useState(false);
 
   return (
     <footer className="dark-theme-page border-t border-white/10" style={{ backgroundColor: 'var(--surface)' }}>
@@ -48,7 +50,8 @@ const PremiumFooter = () => {
 
           {/* Navigation Links */}
           <div className="col-span-1 md:col-span-2">
-            <div className="grid grid-cols-2 gap-8">
+            {/* Desktop: Grid Layout */}
+            <div className="hidden md:grid grid-cols-2 gap-8">
               <div>
                 <h3 className="text-lg font-semibold dark-text-primary mb-6 tracking-wide uppercase">
                   Services
@@ -108,10 +111,10 @@ const PremiumFooter = () => {
                     </Link>
                   </li>
                   <li>
-                    <a 
-                      href="https://ClientPortal.solescope.co.uk" 
-                      target="_blank" 
-                      rel="noopener noreferrer" 
+                    <a
+                      href="https://ClientPortal.solescope.co.uk"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="dark-link inline-flex items-center"
                     >
                       Client Portal
@@ -119,6 +122,77 @@ const PremiumFooter = () => {
                     </a>
                   </li>
                 </ul>
+              </div>
+            </div>
+
+            {/* Mobile: Accordion Layout */}
+            <div className="md:hidden space-y-3">
+              {/* Services Accordion */}
+              <div className="mobile-footer-accordion">
+                <button
+                  onClick={() => setServicesOpen(!servicesOpen)}
+                  className="mobile-footer-accordion-trigger"
+                  aria-expanded={servicesOpen}
+                >
+                  <span>Services</span>
+                  {servicesOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </button>
+                {servicesOpen && (
+                  <div className="mobile-footer-accordion-content space-y-3">
+                    <Link to="/services/website-design" className="block dark-link text-sm">
+                      Website Design & Hosting
+                    </Link>
+                    <Link to="/services/custom-webapps" className="block dark-link text-sm">
+                      Custom WebApps & Hosting
+                    </Link>
+                    <Link to="/services/ai-dashboards" className="block dark-link text-sm">
+                      AI Dashboards & Analytics
+                    </Link>
+                    <Link to="/services/brand-identity" className="block dark-link text-sm">
+                      Brand Identity & Visuals
+                    </Link>
+                    <Link to="/services/custom-ai-automations" className="block dark-link text-sm">
+                      Custom AI Automations
+                    </Link>
+                  </div>
+                )}
+              </div>
+
+              {/* Company Accordion */}
+              <div className="mobile-footer-accordion">
+                <button
+                  onClick={() => setCompanyOpen(!companyOpen)}
+                  className="mobile-footer-accordion-trigger"
+                  aria-expanded={companyOpen}
+                >
+                  <span>Company</span>
+                  {companyOpen ? <ChevronUp className="h-4 w-4" /> : <ChevronDown className="h-4 w-4" />}
+                </button>
+                {companyOpen && (
+                  <div className="mobile-footer-accordion-content space-y-3">
+                    <Link to="/about" className="block dark-link text-sm">
+                      About Us
+                    </Link>
+                    <Link to="/contact" className="block dark-link text-sm">
+                      Contact
+                    </Link>
+                    <Link to="/faq" className="block dark-link text-sm">
+                      FAQs
+                    </Link>
+                    <Link to="/blog" className="block dark-link text-sm">
+                      Blog
+                    </Link>
+                    <a
+                      href="https://ClientPortal.solescope.co.uk"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block dark-link inline-flex items-center text-sm"
+                    >
+                      Client Portal
+                      <ExternalLink className="ml-1 h-3 w-3" />
+                    </a>
+                  </div>
+                )}
               </div>
             </div>
           </div>
