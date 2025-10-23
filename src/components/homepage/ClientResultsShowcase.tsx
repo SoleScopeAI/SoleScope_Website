@@ -123,7 +123,7 @@ const ClientResultsShowcase = () => {
         challenge: "Manual booking process causing missed appointments and frustrated customers. No online presence limiting growth potential.",
         solution: "Custom website with integrated booking system, automated SMS reminders, customer portal, and AI chatbot for 24/7 customer support.",
         tagline: "From Fully Booked to Fully Automated",
-        services_provided: ['Website Design', 'Booking Automation', 'AI Chatbot', 'CRM Integration'],
+        services_provided: ['Website Design & Hosting', 'Custom AI Automations', 'AI Dashboards & Analytics', 'CRM Integration'],
         tech_stack: ['React', 'Node.js', 'Supabase', 'Twilio API', 'OpenAI'],
         primary_result: "Expected +135-140% increase in bookings",
         result_percentage: 138,
@@ -150,7 +150,7 @@ const ClientResultsShowcase = () => {
         challenge: "Paper-based client records and manual scheduling creating inefficiencies. No way to track long-term training progress.",
         solution: "Custom web app with client dashboard, progress tracking system, video training modules, and intelligent scheduling engine.",
         tagline: "Training Excellence, Digitally Delivered",
-        services_provided: ['Custom Web App', 'Progress Tracking', 'Video Platform', 'Smart Scheduling'],
+        services_provided: ['Custom WebApps & Hosting', 'AI Dashboards & Analytics', 'Website Design & Hosting', 'Payment Integration'],
         tech_stack: ['React', 'TypeScript', 'Supabase', 'AWS S3', 'Stripe'],
         primary_result: "Expected 95-100% automated client management",
         result_percentage: 100,
@@ -177,7 +177,7 @@ const ClientResultsShowcase = () => {
         challenge: "Leads coming in but no efficient way to qualify and prioritize them. Lost opportunities due to slow response times.",
         solution: "AI chatbot for instant lead qualification, automated email sequences, custom quote generator, and Zapier CRM integration.",
         tagline: "Sharp Tools, Sharper Results",
-        services_provided: ['AI Lead Qualification', 'Website Redesign', 'CRM Integration', 'Quote Calculator'],
+        services_provided: ['Custom AI Automations', 'Website Design & Hosting', 'AI Dashboards & Analytics', 'CRM Integration'],
         tech_stack: ['React', 'Python', 'OpenAI', 'Zapier', 'SendGrid'],
         primary_result: "Expected +170-190% qualified leads",
         result_percentage: 180,
@@ -204,7 +204,7 @@ const ClientResultsShowcase = () => {
         challenge: "Data scattered across 5 different systems making it impossible to get real-time insights. Spending 15+ hours weekly on manual reporting and struggling to identify operational bottlenecks.",
         solution: "Custom AI dashboard integrating all data sources with machine learning predictions for patient flow, automated reporting, and intelligent alerts for anomalies and opportunities.",
         tagline: "From Data Chaos to Clear Decisions",
-        services_provided: ['AI Dashboards', 'Multi-Source Integration', 'Predictive Analytics', 'Automated Reporting'],
+        services_provided: ['AI Dashboards & Analytics', 'Custom AI Automations', 'Custom WebApps & Hosting', 'Data Integration'],
         tech_stack: ['React', 'Python', 'TensorFlow', 'Supabase', 'Chart.js', 'REST APIs'],
         primary_result: "Expected 14-16 hours saved weekly on reporting",
         result_percentage: 100,
@@ -231,7 +231,7 @@ const ClientResultsShowcase = () => {
         challenge: "Generic branding making it impossible to stand out in competitive specialty coffee market. Inconsistent visual identity across channels damaging credibility with wholesale clients.",
         solution: "Strategic brand identity from ground up: custom logo suite, carefully crafted color palette, packaging templates, photography style guide, and complete brand book for consistent application.",
         tagline: "Crafted Identity, Premium Perception",
-        services_provided: ['Logo Design', 'Brand Strategy', 'Color Systems', 'Packaging Design', 'Brand Guidelines'],
+        services_provided: ['Brand Identity & Visuals', 'Website Design & Hosting', 'Marketing Materials', 'Brand Strategy'],
         tech_stack: ['Adobe Illustrator', 'Figma', 'Adobe Photoshop', 'Brand Templates'],
         primary_result: "Expected +160-170% wholesale inquiries",
         result_percentage: 165,
@@ -258,7 +258,7 @@ const ClientResultsShowcase = () => {
         challenge: "Managing 12+ simultaneous projects using spreadsheets and email. Client confusion over project status, missing documents, and payment delays creating cash flow issues.",
         solution: "Fully custom web app with role-based client portals, automated milestone tracking, integrated document library with version control, and smart invoicing tied to project completion.",
         tagline: "Build Projects, Not Spreadsheets",
-        services_provided: ['Custom Web App', 'Client Portals', 'Document Management', 'Automated Invoicing', 'Cloud Hosting'],
+        services_provided: ['Custom WebApps & Hosting', 'AI Dashboards & Analytics', 'Custom AI Automations', 'Document Management'],
         tech_stack: ['React', 'Node.js', 'PostgreSQL', 'AWS S3', 'Stripe', 'Socket.io'],
         primary_result: "Expected +230-250% project capacity",
         result_percentage: 240,
@@ -285,7 +285,7 @@ const ClientResultsShowcase = () => {
         challenge: "Outdated website ranking on page 4 of Google. Losing potential clients to competitors with modern online presence. No way for clients to book consultations online.",
         solution: "Modern, mobile-first website with strategic SEO implementation, local search optimization, integrated booking calendar, and fully managed hosting with 24/7 monitoring.",
         tagline: "Professional Presence, Premium Results",
-        services_provided: ['Website Design', 'SEO Strategy', 'Managed Hosting', 'Booking Integration', '24/7 Support'],
+        services_provided: ['Website Design & Hosting', 'Custom WebApps & Hosting', 'SEO Optimization', '24/7 Support'],
         tech_stack: ['React', 'Next.js', 'Tailwind CSS', 'Calendly API', 'Vercel Hosting'],
         primary_result: "Expected Page 1-2 Google rankings in 3-4 months",
         result_percentage: 100,
@@ -312,7 +312,7 @@ const ClientResultsShowcase = () => {
         challenge: "Zero online presence competing against established firms. Manual quote process taking days. No brand identity causing trust issues with corporate clients.",
         solution: "Full transformation: professional branding, SEO-optimized website, instant quote calculator, automated booking system with SMS confirmations, and AI chatbot for 24/7 customer support.",
         tagline: "From Invisible to Industry Leader",
-        services_provided: ['Brand Identity', 'Website Design', 'AI Chatbot', 'Booking Automation', 'SEO', 'Managed Hosting'],
+        services_provided: ['Brand Identity & Visuals', 'Website Design & Hosting', 'Custom AI Automations', 'AI Dashboards & Analytics', 'SEO Optimization'],
         tech_stack: ['React', 'Node.js', 'OpenAI', 'Twilio', 'Stripe', 'Google Maps API'],
         primary_result: "Expected +400-440% monthly revenue",
         result_percentage: 420,
@@ -773,21 +773,21 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
         initial={{ scale: 0.9, opacity: 0, y: 20 }}
         animate={{ scale: 1, opacity: 1, y: 0 }}
         exit={{ scale: 0.9, opacity: 0, y: 20 }}
-        className="relative w-full max-w-6xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl border border-white/20 shadow-2xl"
+        className="relative w-full max-w-6xl max-h-[90vh] overflow-hidden bg-gradient-to-br from-slate-900 to-slate-800 rounded-3xl border border-white/20 shadow-2xl flex flex-col"
         onClick={(e) => e.stopPropagation()}
       >
-        <button
-          onClick={onClose}
-          className="sticky top-4 right-4 float-right w-10 h-10 rounded-full flex items-center justify-center hover:bg-red-600/30 hover:border-red-500/50 transition-all z-10"
-          style={{
-            background: 'rgba(255, 255, 255, 0.10)',
-            border: '1px solid rgba(255, 255, 255, 0.15)'
-          }}
-        >
-          <X className="h-5 w-5 text-white" />
-        </button>
+        <div className="sticky top-0 bg-gradient-to-br from-slate-900 to-slate-800 z-20 px-8 pt-6 pb-4 border-b border-white/10 flex justify-end">
+          <button
+            onClick={onClose}
+            className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-red-600/30 border border-white/10 hover:border-red-500/50 transition-all"
+            aria-label="Close modal"
+          >
+            <X className="h-5 w-5 text-white" />
+          </button>
+        </div>
+        <div className="overflow-y-auto flex-1">
 
-        <div className="p-8 md:p-12">
+        <div className="px-8 md:px-12 pb-8 md:pb-12">
           {/* Demo disclaimer banner */}
           <div className="mb-6 p-4 bg-yellow-500/10 border-l-4 border-yellow-500 rounded">
             <p className="text-sm text-yellow-200">
@@ -920,6 +920,7 @@ const ProjectDetailModal: React.FC<ProjectDetailModalProps> = ({ project, onClos
               </div>
             </div>
           </div>
+        </div>
         </div>
       </motion.div>
     </motion.div>

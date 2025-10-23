@@ -38,92 +38,92 @@ const CaseCards = () => {
   const cases = [
     {
       id: 1,
-      title: "AI Lead Concierge",
-      description: "Intelligent lead qualification and routing system",
+      title: "AI Lead Qualification",
+      description: "Intelligent lead scoring and routing that captures high-value prospects 24/7",
       icon: Bot,
       color: "from-blue-500 to-blue-600",
       steps: [
-        "Lead submits form on website",
-        "AI analyzes lead quality and intent",
-        "Qualified leads routed to sales team",
-        "Follow-up sequences triggered automatically",
-        "Lead scoring updated in CRM",
-        "Performance metrics tracked and reported"
+        "Lead submits inquiry via website, email, or chat",
+        "AI instantly analyzes lead quality, intent, and fit",
+        "High-value leads automatically routed to your team",
+        "Personalized follow-up sequences triggered immediately",
+        "Lead scores and interactions synced to your CRM",
+        "Performance analytics tracked and reported weekly"
       ]
     },
     {
       id: 2,
-      title: "Client Onboarding",
-      description: "Automated welcome sequences and setup workflows",
+      title: "Intelligent Client Onboarding",
+      description: "Automated welcome workflows that create seamless first impressions",
       icon: Calendar,
       color: "from-green-500 to-green-600",
       steps: [
-        "New client signs contract",
-        "Welcome email sequence initiated",
-        "Client portal access created",
-        "Onboarding tasks assigned automatically",
-        "Progress tracked and reported",
-        "Team notifications sent at key milestones"
+        "New client contract signed - onboarding triggers",
+        "Personalized welcome email sequence sent automatically",
+        "Client portal access credentials created and delivered",
+        "Required documents and forms sent with tracking",
+        "Progress milestones monitored and team notified",
+        "Completion metrics compiled for continuous improvement"
       ]
     },
     {
       id: 3,
-      title: "Reviews & Re-activation",
-      description: "Automated review collection and client re-engagement",
+      title: "Smart Review & Reactivation Engine",
+      description: "Automated reputation building and dormant customer re-engagement",
       icon: Star,
       color: "from-yellow-500 to-yellow-600",
       steps: [
-        "Project completion detected",
-        "Review request sent via preferred channel",
-        "Positive reviews directed to public platforms",
-        "Negative feedback routed for internal resolution",
-        "Follow-up campaigns triggered for inactive clients",
-        "Review analytics compiled monthly"
+        "Project completion or purchase event detected",
+        "Timed review request sent via optimal channel",
+        "Positive reviews directed to Google, Trustpilot, etc.",
+        "Negative feedback captured privately for resolution",
+        "Dormant customers identified and re-engagement campaigns triggered",
+        "Review metrics and reactivation rates tracked monthly"
       ]
     },
     {
       id: 4,
-      title: "Quote→Invoice",
-      description: "Streamlined proposal to payment workflow",
+      title: "Quote-to-Invoice Automation",
+      description: "Streamlined proposal generation and payment collection workflow",
       icon: FileText,
       color: "from-purple-500 to-purple-600",
       steps: [
-        "Quote request received and logged",
-        "AI generates initial quote based on parameters",
-        "Quote sent for approval and client review",
-        "Accepted quotes converted to invoices",
-        "Payment reminders sent automatically",
-        "Revenue tracking updated in real-time"
+        "Quote request received and automatically logged",
+        "AI generates accurate quote using your pricing rules",
+        "Professional quote sent to client for approval",
+        "Accepted quotes instantly converted to invoices",
+        "Automated payment reminders sent at scheduled intervals",
+        "Revenue pipeline updated in real-time with analytics"
       ]
     },
     {
       id: 5,
-      title: "AI Helpdesk",
-      description: "Intelligent customer support automation",
+      title: "24/7 AI Customer Support",
+      description: "Always-on intelligent helpdesk that handles inquiries and escalations",
       icon: MessageSquare,
       color: "from-indigo-500 to-indigo-600",
       steps: [
-        "Customer inquiry received via any channel",
-        "AI categorizes and prioritizes the request",
-        "Common issues resolved automatically",
-        "Complex issues escalated to human agents",
-        "Resolution tracked and customer notified",
-        "Support metrics analyzed for improvements"
+        "Customer inquiry received via website, email, or chat",
+        "AI instantly categorizes and prioritizes the request",
+        "Common questions answered automatically with accuracy",
+        "Complex issues escalated to your team with full context",
+        "Resolution tracked and confirmation sent to customer",
+        "Support metrics analyzed for continuous improvement"
       ]
     },
     {
       id: 6,
-      title: "KPI & Anomaly Alerts",
-      description: "Proactive business intelligence and monitoring",
+      title: "Business Intelligence & Alerts",
+      description: "Proactive monitoring that surfaces insights and flags anomalies",
       icon: BarChart3,
       color: "from-red-500 to-red-600",
       steps: [
-        "Business metrics monitored continuously",
-        "AI detects unusual patterns or anomalies",
-        "Alerts sent via preferred communication method",
-        "Trend analysis and predictions generated",
-        "Actionable insights delivered weekly",
-        "Performance dashboards updated in real-time"
+        "Key business metrics monitored continuously",
+        "AI detects unusual patterns, trends, and opportunities",
+        "Instant alerts sent via SMS, email, or Slack",
+        "Predictive trend analysis and forecasting generated",
+        "Actionable recommendations delivered weekly",
+        "Real-time dashboards updated with visual insights"
       ]
     }
   ];
@@ -397,22 +397,24 @@ const CaseCards = () => {
               className="dark-card max-w-2xl w-full max-h-[90vh] overflow-y-auto"
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="flex items-center justify-between mb-6">
-                <div className="flex items-center space-x-4">
-                  <div className={`w-12 h-12 bg-gradient-to-r ${selectedCaseData.color} rounded-lg flex items-center justify-center`}>
-                    <selectedCaseData.icon className="h-6 w-6 text-white" />
+              <div className="sticky top-0 bg-gradient-to-br from-gray-900 to-black z-10 pb-4 mb-2 border-b border-white/10">
+                <div className="flex items-center justify-between">
+                  <div className="flex items-center space-x-4">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${selectedCaseData.color} rounded-lg flex items-center justify-center`}>
+                      <selectedCaseData.icon className="h-6 w-6 text-white" />
+                    </div>
+                    <h3 className="text-2xl font-bold dark-text-primary">
+                      {selectedCaseData.title}
+                    </h3>
                   </div>
-                  <h3 className="text-2xl font-bold dark-text-primary">
-                    {selectedCaseData.title}
-                  </h3>
+                  <button
+                    onClick={closeModal}
+                    className="p-2 hover:bg-red-600/30 rounded-xl transition-all border border-white/10 hover:border-red-500/50"
+                    aria-label="Close modal"
+                  >
+                    <X className="h-6 w-6 text-white" />
+                  </button>
                 </div>
-                <button
-                  onClick={closeModal}
-                  className="p-2 hover:bg-gray-700/30 rounded-lg transition-colors"
-                  aria-label="Close modal"
-                >
-                  <X className="h-6 w-6 dark-text-muted" />
-                </button>
               </div>
 
               <p className="dark-text-body mb-8 text-lg">

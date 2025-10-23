@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { ExternalLink, ArrowRight, Filter, CheckCircle } from 'lucide-react';
+import { ExternalLink, ArrowRight, Filter, CheckCircle, X } from 'lucide-react';
 
 const PortfolioShowcase = () => {
   const [ref, inView] = useInView({
@@ -27,13 +27,13 @@ const PortfolioShowcase = () => {
       category: 'website',
       industry: 'Pet Services',
       image: '/assets/carousel/JodiesPamperedPoochesWebsite.png',
-      description: 'Complete website redesign with online booking system and customer management',
+      description: 'Professional website with booking automation and customer management system',
       results: [
-        '300% increase in online bookings',
-        '2-hour average response time reduced to 15 minutes',
-        '95% customer satisfaction rating'
+        'Expected 200-250% increase in online bookings',
+        'Automated booking confirmations and reminders',
+        'Customer portal for appointment management'
       ],
-      tech: ['React', 'Tailwind CSS', 'Supabase', 'Stripe'],
+      tech: ['React', 'Tailwind CSS', 'Supabase', 'Twilio'],
       color: 'from-blue-500 to-cyan-500'
     },
     {
@@ -42,13 +42,13 @@ const PortfolioShowcase = () => {
       category: 'webapp',
       industry: 'Training Services',
       image: '/assets/carousel/Design K9 Home Page.png',
-      description: 'Custom training management platform with client progress tracking and scheduling',
+      description: 'Custom web application for training management with progress tracking and scheduling',
       results: [
-        '250+ active clients managed efficiently',
-        '40 hours/month saved on administration',
-        '99.9% uptime since launch'
+        'Automated client progress tracking and reporting',
+        'Expected 30-40 hours/month saved on admin tasks',
+        'Integrated video training modules and scheduling'
       ],
-      tech: ['React', 'TypeScript', 'Node.js', 'PostgreSQL'],
+      tech: ['React', 'TypeScript', 'Supabase', 'AWS S3'],
       color: 'from-purple-500 to-pink-500'
     },
     {
@@ -57,58 +57,58 @@ const PortfolioShowcase = () => {
       category: 'automation',
       industry: 'Equipment Services',
       image: '/assets/carousel/UKBladeSharpening.png',
-      description: 'AI-powered lead qualification system with automated email sequences and CRM integration',
+      description: 'AI-powered lead qualification and automated follow-up system with CRM integration',
       results: [
-        '60% reduction in response time',
-        '180% increase in qualified leads',
-        '£25k+ additional revenue per quarter'
+        'Instant lead response with AI qualification',
+        'Expected 150-200% increase in qualified leads',
+        'Automated quote generation and email sequences'
       ],
-      tech: ['OpenAI', 'Zapier', 'HubSpot', 'Custom APIs'],
+      tech: ['OpenAI', 'Python', 'Zapier', 'SendGrid'],
       color: 'from-orange-500 to-red-500'
     },
     {
       id: 4,
       title: 'Local Trades Hub',
       category: 'dashboard',
-      industry: 'Marketplace',
+      industry: 'Healthcare Analytics',
       image: '/assets/carousel/JodiesPamperedPoochesWebsite.png',
-      description: 'Real-time analytics dashboard for marketplace performance tracking and insights',
+      description: 'AI-powered analytics dashboard consolidating multiple data sources with real-time insights',
       results: [
-        'Real-time monitoring of 500+ listings',
-        'Predictive analytics for demand forecasting',
-        '45% improvement in decision-making speed'
+        'Multi-source data integration and visualization',
+        'AI-powered trend detection and forecasting',
+        'Expected 12-16 hours/week saved on reporting'
       ],
-      tech: ['React', 'D3.js', 'Python', 'TensorFlow'],
+      tech: ['React', 'Chart.js', 'Python', 'TensorFlow'],
       color: 'from-green-500 to-emerald-500'
     },
     {
       id: 5,
       title: 'Elite Fitness Studio',
       category: 'website',
-      industry: 'Fitness',
+      industry: 'Legal Services',
       image: '/assets/carousel/Design K9 Home Page.png',
-      description: 'Modern website with membership portal, class booking, and payment processing',
+      description: 'Professional website with SEO optimization and integrated consultation booking',
       results: [
-        '400+ members signed up in 3 months',
-        '85% reduction in admin workload',
-        '£120k annual revenue increase'
+        'Modern, mobile-responsive design',
+        'SEO optimization for local search visibility',
+        'Integrated booking system for consultations'
       ],
-      tech: ['React', 'Stripe', 'Supabase', 'Tailwind'],
+      tech: ['React', 'Next.js', 'Tailwind CSS', 'Calendly API'],
       color: 'from-cyan-500 to-blue-500'
     },
     {
       id: 6,
       title: 'Smart Home Solutions',
       category: 'automation',
-      industry: 'Home Services',
+      industry: 'Cleaning Services',
       image: '/assets/carousel/UKBladeSharpening.png',
-      description: 'Automated quote generation and project management system with AI assistance',
+      description: 'Complete automation suite with instant quotes, booking, and customer support chatbot',
       results: [
-        '90% faster quote generation',
-        '50+ projects managed simultaneously',
-        '98% client satisfaction score'
+        'Instant quote generation with AI pricing',
+        '24/7 AI chatbot for customer inquiries',
+        'Automated booking confirmations and reminders'
       ],
-      tech: ['Claude AI', 'React', 'Node.js', 'AWS'],
+      tech: ['OpenAI', 'React', 'Node.js', 'Twilio'],
       color: 'from-purple-500 to-indigo-500'
     }
   ];
@@ -248,9 +248,19 @@ const PortfolioShowcase = () => {
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-gradient-to-br from-purple-950/90 to-black/90 border border-white/20 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+                className="bg-gradient-to-br from-purple-950/90 to-black/90 border border-white/20 rounded-2xl max-w-2xl w-full max-h-[90vh] overflow-hidden flex flex-col"
                 onClick={(e) => e.stopPropagation()}
               >
+                <div className="sticky top-0 bg-gradient-to-br from-purple-950/95 to-black/95 z-20 px-8 pt-6 pb-4 border-b border-white/10 flex justify-end">
+                  <button
+                    onClick={() => setSelectedProject(null)}
+                    className="w-10 h-10 rounded-xl flex items-center justify-center hover:bg-red-600/30 border border-white/10 hover:border-red-500/50 transition-all"
+                    aria-label="Close modal"
+                  >
+                    <X className="h-5 w-5 text-white" />
+                  </button>
+                </div>
+                <div className="overflow-y-auto flex-1 px-8 pb-8">
                 {projects
                   .filter(p => p.id === selectedProject)
                   .map(project => (
@@ -295,12 +305,13 @@ const PortfolioShowcase = () => {
 
                       <button
                         onClick={() => setSelectedProject(null)}
-                        className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors"
+                        className="w-full px-6 py-3 bg-purple-600 text-white font-semibold rounded-xl hover:bg-purple-700 transition-colors mt-4"
                       >
-                        Close
+                        Close Case Study
                       </button>
                     </div>
                   ))}
+                </div>
               </motion.div>
             </motion.div>
           )}

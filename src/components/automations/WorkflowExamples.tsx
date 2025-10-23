@@ -26,68 +26,68 @@ const WorkflowExamples = () => {
     {
       icon: Target,
       title: 'AI Lead Qualification',
-      description: 'Intelligent scoring and routing that finds your best prospects automatically.',
+      description: 'Intelligent lead scoring and routing that captures high-value prospects 24/7.',
       features: [
-        'Smart lead scoring',
-        'Automatic routing',
+        'Instant lead scoring',
+        'Smart routing rules',
         'CRM integration'
       ],
-      flow: ['Lead', 'Scoring', 'Route', 'Follow-Up', 'CRM Updated']
+      flow: ['Lead Capture', 'AI Scoring', 'Route to Team', 'Auto Follow-Up', 'CRM Sync']
     },
     {
       icon: UserPlus,
-      title: 'Intelligent Onboarding',
-      description: 'Automated welcomes and workflows for seamless client experiences.',
+      title: 'Client Onboarding Automation',
+      description: 'Automated welcome sequences and setup workflows that create great first impressions.',
       features: [
-        'Document automation',
-        'Team notifications',
+        'Welcome automation',
+        'Document delivery',
         'Progress tracking'
       ],
-      flow: ['Welcome', 'Documents', 'Access Setup', 'Team Notify', 'Complete']
+      flow: ['Contract Signed', 'Welcome Email', 'Portal Setup', 'Team Notified', 'Onboarding Complete']
     },
     {
       icon: Headphones,
-      title: 'AI Customer Support',
-      description: 'Always-on helpdesk that handles inquiries and escalations.',
+      title: '24/7 AI Customer Support',
+      description: 'Always-on intelligent helpdesk that handles inquiries and escalates complex issues.',
       features: [
-        '24/7 AI support',
+        '24/7 availability',
         'Smart escalation',
-        'Knowledge routing'
+        'Multi-channel support'
       ],
-      flow: ['Inquiry', 'AI Response', 'Resolve/Escalate', 'Team Alert', 'Close']
+      flow: ['Inquiry Received', 'AI Analysis', 'Auto-Resolve or Escalate', 'Team Alert', 'Close Ticket']
     },
     {
       icon: BarChart,
-      title: 'Predictive Analytics',
-      description: 'Forecast trends, identify patterns, and surface actionable insights.',
+      title: 'Business Intelligence & Alerts',
+      description: 'AI-powered monitoring that detects trends, anomalies, and opportunities in real-time.',
       features: [
+        'Anomaly detection',
         'Trend forecasting',
-        'Pattern detection',
-        'Alert automation'
+        'Instant alerts'
       ],
-      flow: ['Data Collect', 'AI Analyze', 'Predict', 'Alert', 'Visualize']
+      flow: ['Monitor Metrics', 'AI Analysis', 'Detect Patterns', 'Send Alerts', 'Dashboard Update']
     },
     {
       icon: Star,
-      title: 'Smart Review System',
-      description: 'Automated review requests that boost reputation and gather feedback.',
+      title: 'Review Collection & Management',
+      description: 'Automated review requests that build reputation and gather valuable feedback.',
       features: [
-        'Timing optimization',
-        'Multi-platform posting',
-        'Sentiment analysis'
+        'Optimal timing',
+        'Platform routing',
+        'Response tracking'
       ],
-      flow: ['Trigger', 'Request', 'Collect', 'Analyze', 'Respond']
+      flow: ['Event Trigger', 'Send Request', 'Collect Review', 'Route Feedback', 'Track Results']
     },
     {
       icon: RefreshCw,
-      title: 'AI Reactivation Engine',
-      description: 'Re-engage dormant customers with personalized, intelligent campaigns.',
+      title: 'Customer Reactivation Engine',
+      description: 'AI-driven campaigns that re-engage dormant customers with personalized messaging.',
       features: [
-        'Behavior tracking',
-        'Personalized messaging',
-        'Multi-touch sequences'
+        'Activity monitoring',
+        'Smart segmentation',
+        'Multi-touch campaigns'
       ],
-      flow: ['Identify', 'Personalize', 'Engage', 'Track', 'Convert']
+      flow: ['Identify Dormant', 'AI Personalization', 'Launch Campaign', 'Track Engagement', 'Convert']
     }
   ];
 
@@ -95,10 +95,10 @@ const WorkflowExamples = () => {
     <section className="mb-16">
       <div className="text-center mb-10">
         <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
-          Industry & Workflow Examples
+          Automation Workflow Examples
         </h2>
         <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
-          Real-world AI automations built for modern businesses
+          See how AI automations work step-by-step to transform your business operations
         </p>
       </div>
 
