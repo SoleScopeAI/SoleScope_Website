@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import PremiumNavbar from '../components/PremiumNavbar';
 import PremiumFooter from '../components/PremiumFooter';
 import EnhancedHero from '../components/automations/EnhancedHero';
@@ -10,39 +10,37 @@ import UnifiedRoadmap from '../components/automations/UnifiedRoadmap';
 import WhyChoose from '../components/automations/WhyChoose';
 import ContactSection from '../components/automations/ContactSection';
 import FlagshipCTA from '../components/automations/FlagshipCTA';
+import '../styles/services-galaxy.css';
 
 const CustomAIAutomationsPage = () => {
-  useEffect(() => {
-    document.body.classList.add('page-custom-ai-automations');
-    return () => {
-      document.body.classList.remove('page-custom-ai-automations');
-    };
-  }, []);
-
   return (
-    <div className="dark-theme-page min-h-screen">
+    <main className="services-surface pt-24 pb-20">
       <PremiumNavbar />
 
       <EnhancedHero />
 
-      <OverviewValue />
+      <section className="services-cards-surface">
+        <div className="container">
+          <OverviewValue />
 
-      <AICapabilities />
+          <AICapabilities />
 
-      <WorkflowExamples />
+          <WorkflowExamples />
 
-      <CentralDashboard />
+          <CentralDashboard />
 
-      <UnifiedRoadmap />
+          <UnifiedRoadmap />
 
-      <WhyChoose />
+          <WhyChoose />
 
-      <ContactSection />
+          <ContactSection />
 
-      <FlagshipCTA />
+          <FlagshipCTA />
+        </div>
+      </section>
 
       <PremiumFooter />
-    </div>
+    </main>
   );
 };
 

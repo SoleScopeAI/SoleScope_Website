@@ -22,13 +22,13 @@ const WhyChoose = () => {
   ];
 
   return (
-    <section className="py-16 bg-white/[0.02]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="mb-16">
+      <div>
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
             Why Choose SoleScope
           </h2>
-          <p className="text-base text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
             We combine technical excellence with business understanding
           </p>
         </div>
@@ -41,13 +41,13 @@ const WhyChoose = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-sm rounded-xl border border-white/10 p-6 text-center hover:border-purple-400/30 transition-all duration-300 h-full flex flex-col"
+              className="services-refined-card feature-card"
             >
-              <div className="w-12 h-12 bg-gradient-to-br from-purple-500/20 to-purple-600/20 rounded-lg flex items-center justify-center mx-auto mb-3 border border-purple-500/30">
-                <reason.icon className="h-6 w-6 text-purple-400" />
+              <div className="feature-icon">
+                <reason.icon className="h-8 w-8 text-white" />
               </div>
-              <h3 className="text-lg font-bold text-white mb-2">{reason.title}</h3>
-              <p className="text-sm text-slate-300 leading-relaxed line-clamp-3">{reason.description}</p>
+              <h3 className="feature-title">{reason.title}</h3>
+              <p className="feature-description">{reason.description}</p>
             </motion.div>
           ))}
         </div>
@@ -57,7 +57,7 @@ const WhyChoose = () => {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm rounded-2xl border border-purple-500/20 p-6"
+          className="services-refined-card"
         >
           <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
             {[

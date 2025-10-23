@@ -46,19 +46,15 @@ const EnhancedHero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center premium-bg overflow-hidden pt-24 md:pt-0">
-      <div className="floating-particles"></div>
-      <div className="pulse-glow pulse-glow-1"></div>
-      <div className="pulse-glow pulse-glow-2"></div>
-
-      <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden pt-20 md:pt-0">
+      <div className="relative z-10 container py-16">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight">
+            <h1 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-5 leading-tight uppercase tracking-wide">
               Intelligent Automation,
               <span className="block bg-gradient-to-r from-purple-400 via-purple-500 to-purple-600 bg-clip-text text-transparent mt-2">
                 Custom-Built for Your Business
@@ -94,11 +90,11 @@ const EnhancedHero = () => {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl border border-white/10 p-5 shadow-2xl max-h-[500px]">
+            <div className="services-refined-card max-h-[500px]">
               <motion.div
                 className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 rounded-3xl blur-2xl"
                 animate={{
-                  opacity: [0.2, 0.4, 0.2],
+                  opacity: [0.1, 0.2, 0.1],
                 }}
                 transition={{
                   duration: 4,

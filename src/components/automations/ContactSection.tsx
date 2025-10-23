@@ -33,20 +33,20 @@ const ContactSection = () => {
   };
 
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="mb-16">
+      <div>
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
             Let's Start Your AI Journey
           </h2>
-          <p className="text-base text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
             Share your requirements and we'll map out your automation opportunities
           </p>
         </div>
 
         <div className="grid lg:grid-cols-5 gap-8">
           <div className="lg:col-span-3">
-            <form onSubmit={handleSubmit} className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 space-y-5">
+            <form onSubmit={handleSubmit} className="services-refined-card space-y-5">
               <div className="grid md:grid-cols-2 gap-5">
                 <div>
                   <label className="block text-sm font-semibold text-white mb-2">Full Name *</label>
@@ -201,7 +201,7 @@ const ContactSection = () => {
           </div>
 
           <div className="lg:col-span-2 space-y-5">
-            <div className="bg-gradient-to-br from-purple-500/10 to-purple-600/5 backdrop-blur-sm rounded-2xl border border-purple-500/20 p-6">
+            <div className="services-refined-card">
               <Phone className="h-10 w-10 text-purple-400 mb-4" />
               <h3 className="text-lg font-bold text-white mb-2">Prefer a Call?</h3>
               <p className="text-sm text-slate-300 mb-5 leading-relaxed">
@@ -215,7 +215,7 @@ const ContactSection = () => {
               </Link>
             </div>
 
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-5">
+            <div className="services-refined-card">
               <h4 className="text-xs font-semibold text-white mb-3 uppercase tracking-wider">What Happens Next?</h4>
               <div className="space-y-3">
                 {[

@@ -61,18 +61,18 @@ const CentralDashboard = () => {
   }, [scenario, automationLevel, aiInsight]);
 
   return (
-    <section className="py-16">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section className="mb-16">
+      <div>
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
             Interactive Performance Analytics
           </h2>
-          <p className="text-base text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
             Explore how AI automation transforms performance across different business scenarios
           </p>
         </div>
 
-        <div className="bg-gradient-to-br from-white/[0.08] to-white/[0.02] backdrop-blur-xl rounded-3xl border border-white/10 p-6 shadow-2xl max-h-[600px]">
+        <div className="services-refined-card max-h-[600px]">
           <motion.div
             className="absolute -inset-1 bg-gradient-to-r from-purple-600 via-purple-500 to-purple-700 rounded-3xl blur-3xl"
             animate={{ opacity: [0.1, 0.2, 0.1] }}

@@ -31,13 +31,13 @@ const UnifiedRoadmap = () => {
   ];
 
   return (
-    <section id="roadmap-section" className="py-16 bg-white/[0.02]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <section id="roadmap-section" className="services-refined-card mb-16">
+      <div>
         <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
+          <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
             How It Works
           </h2>
-          <p className="text-base text-slate-300 max-w-3xl mx-auto">
+          <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
             Our proven process takes you from concept to deployment
           </p>
         </div>

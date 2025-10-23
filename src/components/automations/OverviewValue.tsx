@@ -25,36 +25,35 @@ const OverviewValue = () => {
   ];
 
   return (
-    <section className="py-16 bg-white/[0.02]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid lg:grid-cols-2 gap-10 items-center">
-          <motion.div
-            initial={{ opacity: 0, x: -20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6 }}
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-5">
-              Every Automation Built Around Your Needs
-            </h2>
-            <div className="space-y-3 text-base text-slate-300 leading-relaxed">
-              <p>
-                Every automation we build is unique — engineered to fit your exact workflows, tools, and goals. From single-task automations for sole traders to fully integrated AI ecosystems for SMEs.
-              </p>
-              <p>
-                We analyze your processes, design intelligent workflows, and build custom solutions that evolve with your business.
-              </p>
-            </div>
-          </motion.div>
+    <section className="mb-16">
+      <div className="grid lg:grid-cols-2 gap-10 items-center">
+        <motion.div
+          initial={{ opacity: 0, x: -20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+        >
+          <h2 className="text-3xl font-bold text-white mb-5 uppercase tracking-wide">
+            Every Automation Built Around Your Needs
+          </h2>
+          <div className="space-y-3 text-base text-white opacity-80 leading-relaxed">
+            <p>
+              Every automation we build is unique — engineered to fit your exact workflows, tools, and goals. From single-task automations for sole traders to fully integrated AI ecosystems for SMEs.
+            </p>
+            <p>
+              We analyze your processes, design intelligent workflows, and build custom solutions that evolve with your business.
+            </p>
+          </div>
+        </motion.div>
 
-          <motion.div
-            initial={{ opacity: 0, x: 20 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="relative"
-          >
-            <div className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6">
+        <motion.div
+          initial={{ opacity: 0, x: 20 }}
+          whileInView={{ opacity: 1, x: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="relative"
+        >
+          <div className="services-refined-card">
               <svg className="w-full h-64" viewBox="0 0 100 40">
                 <defs>
                   <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
@@ -120,17 +119,16 @@ const OverviewValue = () => {
               <div className="mt-6 flex items-center justify-center gap-4">
                 <div className="flex items-center gap-2">
                   <div className="w-3 h-3 rounded-full bg-purple-500/30 border border-purple-500"></div>
-                  <span className="text-xs text-slate-400">Data Flow</span>
+                  <span className="text-xs text-white opacity-60">Data Flow</span>
                 </div>
                 <div className="flex items-center gap-2">
                   <ArrowRight className="h-3 w-3 text-purple-400" />
-                  <span className="text-xs text-slate-400">Processing Path</span>
+                  <span className="text-xs text-white opacity-60">Processing Path</span>
                 </div>
               </div>
             </div>
           </motion.div>
         </div>
-      </div>
     </section>
   );
 };

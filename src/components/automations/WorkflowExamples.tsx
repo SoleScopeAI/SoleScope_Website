@@ -73,27 +73,26 @@ const WorkflowExamples = () => {
   ];
 
   return (
-    <section className="py-16 bg-white/[0.02]">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="text-center mb-10">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-3">
-            Industry & Workflow Examples
-          </h2>
-          <p className="text-base text-slate-300 max-w-3xl mx-auto">
-            Real-world AI automations built for modern businesses
-          </p>
-        </div>
+    <section className="mb-16">
+      <div className="text-center mb-10">
+        <h2 className="text-3xl font-bold text-white mb-3 uppercase tracking-wide">
+          Industry & Workflow Examples
+        </h2>
+        <p className="text-base text-white opacity-80 max-w-3xl mx-auto">
+          Real-world AI automations built for modern businesses
+        </p>
+      </div>
 
-        <div className="space-y-6">
-          {workflows.map((workflow, idx) => (
-            <motion.div
-              key={idx}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: idx * 0.1, duration: 0.5 }}
-              className="bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10 p-6 hover:border-purple-400/30 transition-all duration-300"
-            >
+      <div className="space-y-6">
+        {workflows.map((workflow, idx) => (
+          <motion.div
+            key={idx}
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ delay: idx * 0.1, duration: 0.5 }}
+            className="services-refined-card"
+          >
               <div className="grid md:grid-cols-3 gap-8">
                 <div className="md:col-span-2">
                   <div className="flex items-start gap-4 mb-5">
@@ -117,7 +116,7 @@ const WorkflowExamples = () => {
                 </div>
 
                 <div className="bg-white/[0.03] rounded-xl border border-white/10 p-4">
-                  <div className="text-xs font-semibold text-purple-300 uppercase tracking-wider mb-4">Workflow</div>
+                  <div className="text-xs font-semibold text-white uppercase tracking-wider mb-4">Workflow</div>
                   <div className="space-y-2">
                     {workflow.flow.map((step, stepIdx) => (
                       <div key={stepIdx} className="flex items-center gap-2">
@@ -136,7 +135,6 @@ const WorkflowExamples = () => {
             </motion.div>
           ))}
         </div>
-      </div>
     </section>
   );
 };
