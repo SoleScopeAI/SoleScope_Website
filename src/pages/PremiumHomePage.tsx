@@ -1,5 +1,6 @@
 import React from 'react';
 import PremiumHeroSection from '../components/PremiumHeroSection';
+import QuickStats from '../components/QuickStats';
 import ValueProposition from '../components/ValueProposition';
 import ServicesPreview from '../components/ServicesPreview';
 import PremiumTestimonials from '../components/PremiumTestimonials';
@@ -9,6 +10,7 @@ const PremiumHomePage = () => {
   return (
     <div className="overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
       <PremiumHeroSection />
+      <QuickStats />
       <ValueProposition />
       <ServicesPreview />
       <PremiumTestimonials />

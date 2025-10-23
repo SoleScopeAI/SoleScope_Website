@@ -1,0 +1,333 @@
+:root{
+  --space-deep:#05050c;
+  --space-dark:#0c0816;
+  --nebula-1: rgba(168,85,247,.16);
+  --nebula-2: rgba(217,70,239,.11);
+  --nebula-3: rgba(124,58,237,.09);
+  --stars-strong: rgba(255,255,255,.55);
+  --stars-mid:    rgba(255,255,255,.45);
+  --stars-soft:   rgba(255,255,255,.35);
+}
+
+/* Homepage sections deep space background */
+.homepage-section{
+  position:relative;
+  padding: 5rem 0;
+  color:#fff;
+}
+
+.homepage-section::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1200px 800px at 18% 22%, var(--nebula-3), transparent 62%),
+    radial-gradient(1000px 700px at 82% 74%, var(--nebula-2), transparent 60%),
+    linear-gradient(135deg, var(--space-deep), var(--space-dark));
+  animation: homepageTwinkle 12s ease-in-out infinite;
+}
+
+.homepage-section::after{
+  content:"";
+  position:absolute;
+  inset:-5% -5%;
+  z-index:0;
+  pointer-events:none;
+  background:
+    radial-gradient(1400px 900px at 12% 18%, var(--nebula-1), transparent 65%),
+    radial-gradient(1200px 800px at 88% 80%, var(--nebula-2), transparent 62%);
+  -webkit-mask-image:
+    radial-gradient(1.25px 1.25px at 12% 18%, var(--stars-strong) 98%, transparent 100%),
+    radial-gradient(1px 1px       at 28% 76%, var(--stars-mid)    98%, transparent 100%),
+    radial-gradient(1.2px 1.2px   at 72% 38%, var(--stars-mid)    98%, transparent 100%),
+    radial-gradient(1px 1px       at 58% 58%, var(--stars-soft)   98%, transparent 100%),
+    radial-gradient(1.1px 1.1px   at 86% 14%, var(--stars-soft)   98%, transparent 100%);
+  mask-image:
+    radial-gradient(1.25px 1.25px at 12% 18%, var(--stars-strong) 98%, transparent 100%),
+    radial-gradient(1px 1px       at 28% 76%, var(--stars-mid)    98%, transparent 100%),
+    radial-gradient(1.2px 1.2px   at 72% 38%, var(--stars-mid)    98%, transparent 100%),
+    radial-gradient(1px 1px       at 58% 58%, var(--stars-soft)   98%, transparent 100%),
+    radial-gradient(1.1px 1.1px   at 86% 14%, var(--stars-soft)   98%, transparent 100%);
+  mask-composite: exclude;
+  animation: homepageDrift 60s linear infinite;
+  transform: translate3d(0,0,0);
+}
+
+.homepage-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+/* Refined card system matching Services/About pages */
+.homepage-refined-card {
+  background: rgba(255, 255, 255, 0.03);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 24px;
+  padding: 32px;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  overflow: visible;
+  isolation: isolate;
+  height: 100%;
+}
+
+.homepage-refined-card::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.02) 0%, transparent 50%);
+  border-radius: inherit;
+  pointer-events: none;
+}
+
+.homepage-refined-card:hover {
+  transform: translateY(-4px);
+  border-color: rgba(168, 85, 247, 0.3);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.3), 0 0 0 1px rgba(168, 85, 247, 0.1);
+}
+
+/* Value cards */
+.value-card {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.value-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(124, 58, 237, 0.3));
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  transition: all 0.3s ease;
+}
+
+.homepage-refined-card:hover .value-icon {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(124, 58, 237, 0.5));
+  border-color: rgba(168, 85, 247, 0.6);
+  transform: scale(1.1);
+}
+
+.value-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.value-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+/* Metric cards */
+.homepage-metric-card {
+  text-align: center;
+}
+
+.homepage-metric-value {
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 8px;
+  line-height: 1;
+}
+
+.homepage-metric-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.homepage-metric-description {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.75rem;
+  margin-top: 4px;
+}
+
+/* Service preview cards */
+.homepage-service-card {
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+}
+
+.homepage-service-card:hover {
+  transform: translateY(-8px);
+  border-color: rgba(168, 85, 247, 0.4);
+  box-shadow: 0 25px 50px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(168, 85, 247, 0.2);
+}
+
+.homepage-service-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(124, 58, 237, 0.3));
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+  transition: all 0.3s ease;
+}
+
+.homepage-service-card:hover .homepage-service-icon {
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.5), rgba(124, 58, 237, 0.5));
+  border-color: rgba(168, 85, 247, 0.6);
+  transform: scale(1.1);
+}
+
+.homepage-service-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 600;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.homepage-service-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  margin-bottom: 24px;
+  line-height: 1.6;
+  flex-grow: 1;
+}
+
+.homepage-service-cta {
+  color: rgba(168, 85, 247, 0.9);
+  font-weight: 600;
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: all 0.3s ease;
+}
+
+.homepage-service-card:hover .homepage-service-cta {
+  color: #ffffff;
+  transform: translateX(4px);
+}
+
+/* Testimonial card */
+.homepage-testimonial-card {
+  text-align: center;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.homepage-quote-icon {
+  width: 80px;
+  height: 80px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(124, 58, 237, 0.3));
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+}
+
+/* Process step cards */
+.process-step-card {
+  text-align: center;
+}
+
+.process-step-number {
+  width: 64px;
+  height: 64px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.4), rgba(124, 58, 237, 0.4));
+  border: 2px solid rgba(168, 85, 247, 0.5);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px auto;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffffff;
+}
+
+.process-step-title {
+  color: #ffffff;
+  font-size: 1.25rem;
+  font-weight: 600;
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.process-step-description {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+/* CTA card */
+.homepage-cta-card {
+  text-align: center;
+  padding: 48px 32px;
+}
+
+.homepage-cta-icon {
+  width: 96px;
+  height: 96px;
+  background: linear-gradient(135deg, rgba(168, 85, 247, 0.3), rgba(124, 58, 237, 0.3));
+  border: 2px solid rgba(168, 85, 247, 0.4);
+  border-radius: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 24px auto;
+}
+
+/* Animations */
+@keyframes homepageTwinkle {
+  0%,100%{opacity:.985}
+  50%{opacity:.94}
+}
+
+@keyframes homepageDrift {
+  0%{transform:translate3d(0,0,0)}
+  100%{transform:translate3d(-2%, -1%, 0)}
+}
+
+@media (prefers-reduced-motion: reduce){
+  .homepage-section::before,
+  .homepage-section::after {
+    animation:none;
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .homepage-section {
+    padding: 3rem 0;
+  }
+
+  .homepage-refined-card {
+    padding: 24px;
+  }
+
+  .homepage-metric-value {
+    font-size: 2rem;
+  }
+}
