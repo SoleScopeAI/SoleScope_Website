@@ -56,21 +56,11 @@ const ClientCard: React.FC<ClientCardProps> = ({ project }) => {
         </div>
         
         {/* CTA - Shows on hover */}
-        <motion.div
-          className="flex items-center space-x-2 text-white font-medium tracking-wide uppercase"
-          initial={{ opacity: 0, y: 10 }}
-          whileHover={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.3 }}
-        >
+        <div className="flex items-center space-x-2 text-white font-medium tracking-wide uppercase opacity-0 group-hover:opacity-100 transform translate-y-2 group-hover:translate-y-0 transition-all duration-300">
           <span>{project.cta}</span>
           <ExternalLink className="h-4 w-4" />
-        </motion.div>
+        </div>
       </div>
-      
-      {/* Hover overlay for better CTA visibility */}
-      <motion.div
-        className="absolute inset-0 bg-black bg-opacity-20 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"
-      />
     </motion.div>
   );
 };
