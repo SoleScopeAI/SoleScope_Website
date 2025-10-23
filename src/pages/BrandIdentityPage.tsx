@@ -77,93 +77,93 @@ const BrandIdentityPage = () => {
     {
       id: 'professional-logos',
       icon: Palette,
-      title: "Professional Logos",
-      description: "Custom-designed logos that represent your brand perfectly"
+      title: "Built By Hand",
+      description: "Every identity is personally crafted — no templates, just real creative work"
     },
     {
       id: 'cohesive-colors',
       icon: Eye,
-      title: "Cohesive Color Systems",
-      description: "Strategic color palettes that work across all platforms"
+      title: "Strategically Designed",
+      description: "Colour palettes, typography, and tone — all working together to tell your story"
     },
     {
       id: 'social-ready',
       icon: Sparkles,
-      title: "Social-Ready Visuals",
-      description: "Consistent branding for all your social media channels"
+      title: "Consistent Everywhere",
+      description: "From business cards to social media — your brand looks cohesive across every touchpoint"
     },
     {
       id: 'premium-mockups',
       icon: Image,
-      title: "Premium Mockups",
-      description: "Professional presentations of your brand in action"
+      title: "Future-Ready",
+      description: "Designed to grow with you — scalable, flexible, and built to last"
     }
   ];
 
   const pricingPlans = [
     {
       id: 'logo-only',
-      name: "Logo Only",
-      price: "£49–£99",
-      description: "Perfect for getting started with a professional logo",
+      name: "Brand Essentials",
+      price: "£149–£249",
+      description: "Perfect for startups and sole traders building their first professional image",
       features: [
-        "One custom logo concept",
-        "Transparent PNG version",
-        "Basic color variations",
-        "Standard file formats",
-        "1 revision round",
-        "Commercial usage rights"
+        "Custom logo design",
+        "Colour system foundation",
+        "Brand typography selection",
+        "All file formats included",
+        "2 revision rounds",
+        "Full commercial rights"
       ],
       popular: false,
       mostPopular: false
     },
     {
       id: 'mini-kit',
-      name: "Mini Kit",
-      price: "£149–£249",
-      description: "Essential branding elements for your business",
+      name: "Rebrand Package",
+      price: "£349–£549",
+      description: "Ideal for growing small businesses ready to refresh their identity",
       features: [
-        "Custom logo design",
-        "Professional color palette",
-        "Social media avatars",
-        "Business card template",
-        "Brand guidelines document",
-        "2 revision rounds",
-        "All file formats included"
+        "Complete logo redesign",
+        "Comprehensive brand guidelines",
+        "Digital asset suite",
+        "Social media templates",
+        "Business card design",
+        "3 revision rounds",
+        "Brand strategy consultation"
       ],
       popular: true,
       mostPopular: false
     },
     {
       id: 'full-pack',
-      name: "Full Pack",
-      price: "£299–£499",
-      description: "Complete brand identity system",
+      name: "Full Brand System",
+      price: "£649–£899",
+      description: "Comprehensive branding for businesses expanding their reach",
       features: [
-        "Everything in Mini Kit",
-        "Comprehensive brand sheet",
-        "Custom icon set",
-        "Hero image design",
-        "Professional mockups",
-        "Letterhead template",
-        "3 revision rounds",
-        "Brand strategy consultation"
+        "Full visual identity system",
+        "Tone of voice guidelines",
+        "Branded collateral suite",
+        "Multi-platform templates",
+        "Custom iconography",
+        "Stationery system",
+        "Unlimited revisions",
+        "Dedicated brand specialist"
       ],
       popular: false,
       mostPopular: true
     },
     {
       id: 'hero-photo-pack',
-      name: "Hero Photo Pack",
-      price: "£99–£149",
-      description: "Custom visuals for your website and ads",
+      name: "Visual Assets Pack",
+      price: "£199–£349",
+      description: "Custom marketing visuals to complement your brand identity",
       features: [
-        "2-3 custom hero header visuals",
-        "Homepage banner designs",
-        "Ad-ready graphics",
-        "Multiple size variations",
-        "Web-optimized formats",
-        "1 revision round"
+        "3-5 custom hero visuals",
+        "Social media graphics",
+        "Ad-ready templates",
+        "Multiple format variations",
+        "Brand-aligned design",
+        "2 revision rounds"
       ],
       popular: false,
       mostPopular: false
@@ -196,60 +196,60 @@ const BrandIdentityPage = () => {
   const whyChooseUs = [
     {
       icon: Target,
-      title: "Service-Business Specialist",
-      description: "Built specifically for sole traders and small service businesses who need practical digital solutions."
+      title: "Strategic & Personal",
+      description: "We believe great design comes from collaboration. You'll work directly with a brand specialist who understands your vision and guides you through every step."
     },
     {
       icon: Zap,
-      title: "AI-Powered Efficiency",
-      description: "Cutting-edge AI technology combined with proven design principles for faster, better results."
+      title: "Modern Creative Process",
+      description: "Using the latest design tools and intelligent automation, we explore concepts faster without losing the human creative touch that makes your brand unique."
     },
     {
       icon: Shield,
-      title: "Complete Support",
-      description: "From initial consultation to ongoing maintenance, we handle all the technical complexity for you."
+      title: "Built To Last",
+      description: "From discovery to final delivery — we craft identities with meaning, purpose, and visual impact that grows with your business for years to come."
     }
   ];
 
   const faqs = [
     {
       question: "How long does it take to create my brand identity?",
-      answer: "Logo Only packages are completed within 3-5 business days. Mini Kit takes 1-2 weeks, Full Pack takes 2-3 weeks, and Hero Photo Pack is ready within 1 week.",
+      answer: "Brand Essentials packages are completed within 1-2 weeks. Rebrand Package takes 2-3 weeks, Full Brand System takes 3-4 weeks, and Visual Assets Pack is ready within 1-2 weeks. Every project is personally managed to ensure quality over speed.",
       tags: ['timeline', 'delivery', 'project duration']
     },
     {
       question: "What if I don't like the initial design concepts?",
-      answer: "All packages include revision rounds to ensure you're completely satisfied. We work closely with you to refine the design until it perfectly represents your brand vision.",
+      answer: "Every package includes multiple revision rounds, and we work collaboratively with you throughout the entire process. From moodboards to final brand files — you're involved every step of the way until it feels absolutely right.",
       tags: ['revisions', 'satisfaction', 'design process']
     },
     {
       question: "Do I own the rights to my brand designs?",
-      answer: "Yes! Once the project is complete and payment is made, you own full commercial rights to all brand assets. We provide you with all source files and usage guidelines.",
+      answer: "Absolutely. Once the project is complete and payment is made, you own full commercial rights to all brand assets. We provide comprehensive brand guidelines and all source files — everything is yours to use as you grow.",
       tags: ['ownership', 'rights', 'files']
     },
     {
-      question: "Can you match my existing brand colors or style?",
-      answer: "Absolutely! If you have existing brand elements you'd like to incorporate or build upon, we can work with your current style while enhancing and professionalizing your overall brand identity.",
-      tags: ['existing brand', 'style matching', 'enhancement']
+      question: "Can you refresh my existing brand without starting from scratch?",
+      answer: "Yes! If you have existing brand elements you'd like to build upon, we can refine and evolve your current identity — enhancing what works while bringing fresh strategic clarity and modern design thinking to your brand.",
+      tags: ['existing brand', 'rebranding', 'enhancement']
     },
     {
       question: "What file formats will I receive?",
-      answer: "You'll receive your brand assets in all commonly used formats including PNG, JPG, SVG, PDF, and AI/PSD source files. Everything is provided in high resolution for both print and digital use.",
+      answer: "You'll receive your brand assets in all commonly used formats including PNG, JPG, SVG, PDF, and AI/PSD source files. Everything is provided in high resolution and optimised for both print and digital use — ready for any application.",
       tags: ['file formats', 'source files', 'resolution']
     },
     {
-      question: "Can you create brand guidelines for my team?",
-      answer: "Yes! Our Mini Kit and Full Pack include comprehensive brand guidelines that show your team exactly how to use your new brand identity consistently across all materials and platforms.",
+      question: "Will I receive brand guidelines for my team?",
+      answer: "Yes! Our Rebrand Package and Full Brand System include comprehensive brand guidelines covering logo usage, colour systems, typography, tone of voice, and application examples — ensuring everyone represents your brand consistently.",
       tags: ['brand guidelines', 'team', 'consistency']
     },
     {
       question: "Do you provide social media templates?",
-      answer: "Our Mini Kit and Full Pack include social media avatars and templates. We can also create custom social media templates for specific platforms as part of our Full Pack or as an add-on service.",
+      answer: "Yes! Our Rebrand Package and Full Brand System include social media templates designed to keep your brand consistent across all platforms. We can also create custom platform-specific templates tailored to your marketing needs.",
       tags: ['social media', 'templates', 'platforms']
     },
     {
-      question: "Can you help with business cards and stationery?",
-      answer: "Absolutely! Our packages include business card templates, and our Full Pack includes letterhead templates. We can also create additional stationery items like invoices, brochures, and marketing materials.",
+      question: "Can you design business cards and stationery?",
+      answer: "Absolutely! Business card design is included in our Rebrand Package, and the Full Brand System includes a complete stationery suite — letterheads, invoices, email signatures, and more. Everything branded and print-ready.",
       tags: ['business cards', 'stationery', 'marketing materials']
     }
   ];
@@ -267,8 +267,8 @@ const BrandIdentityPage = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8 }}
         >
-          <h1>Brand Identity & Visuals</h1>
-          <p>Professional logos, strategic color systems, and brand materials that make your business stand out and build trust with customers.</p>
+          <h1>Brand Identity & Rebranding</h1>
+          <p>Stand out with a brand that feels like you. We craft distinctive, timeless brand identities for startups, sole traders, and growing businesses — designed to make your audience remember you.</p>
         </motion.div>
       </header>
 
@@ -283,7 +283,7 @@ const BrandIdentityPage = () => {
             className="mb-16"
           >
             <h2 className="text-3xl font-bold text-white mb-8 text-center uppercase tracking-wide">
-              Why Choose Our Brand Identity Services?
+              Your Brand Is More Than A Logo
             </h2>
             
             {/* Desktop: Grid Layout */}
@@ -578,10 +578,10 @@ const BrandIdentityPage = () => {
             </h2>
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
               {[
-                { step: "1", title: "Discover", desc: "Understand your brand vision and business goals" },
-                { step: "2", title: "Design", desc: "Create custom brand concepts and visual identity" },
-                { step: "3", title: "Develop", desc: "Refine and finalize your brand assets" },
-                { step: "4", title: "Deliver", desc: "Provide all files and brand guidelines" }
+                { step: "1", title: "Discovery", desc: "Understand your story, audience, and ambitions" },
+                { step: "2", title: "Creative Development", desc: "Explore concepts, moodboards, and visual directions" },
+                { step: "3", title: "Refinement", desc: "Collaborate to perfect every detail of your identity" },
+                { step: "4", title: "Delivery", desc: "Receive complete brand files and comprehensive guidelines" }
               ].map((process) => (
                 <div key={process.step} className="text-center">
                   <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-700 rounded-full flex items-center justify-center mx-auto mb-4">
@@ -663,10 +663,10 @@ const BrandIdentityPage = () => {
           className="services-refined-card text-center"
         >
           <h2 className="text-3xl font-bold text-white mb-6 uppercase tracking-wide">
-            Ready To Build Your Professional Brand?
+            Your Business Deserves A Brand That Feels As Confident As You Do
           </h2>
           <p className="text-white mb-8 text-lg leading-relaxed max-w-2xl mx-auto opacity-90">
-            Let's create a brand identity that makes your business stand out and builds trust with your ideal customers.
+            Let's create a visual identity that captures who you are — and where you're going. Helping startups, sole traders, and small businesses across the UK build brands that last.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center max-w-lg mx-auto">
             <Link
@@ -674,7 +674,7 @@ const BrandIdentityPage = () => {
               className="services-btn-primary"
             >
               <Calendar className="h-5 w-5" />
-              Request Consultation
+              Start My Brand Project
             </Link>
             <a
               href="mailto:contact@solescope.co.uk"
