@@ -262,3 +262,142 @@
   border-color: rgba(255, 255, 255, 0.4);
   transform: translateY(-2px);
 }
+
+/* Expandable insight card specific styling */
+.expandable-insight-card {
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.expandable-insight-card:hover {
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.4), 0 0 0 1px rgba(168, 85, 247, 0.2);
+}
+
+/* Pillar cards with enhanced interaction */
+.pillar-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.pillar-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 48px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(168, 85, 247, 0.3);
+}
+
+.pillar-card:active {
+  transform: translateY(-2px);
+}
+
+/* Timeline cards with depth */
+.timeline-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.timeline-card:hover {
+  transform: translateY(-8px) scale(1.02);
+  box-shadow: 0 28px 56px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(168, 85, 247, 0.4);
+  border-color: rgba(168, 85, 247, 0.5);
+}
+
+/* Mobile touch targets */
+.mobile-touch-target {
+  min-height: 44px;
+  min-width: 44px;
+}
+
+/* Mobile container adjustments */
+.mobile-container {
+  padding-left: 1rem;
+  padding-right: 1rem;
+}
+
+@media (min-width: 640px) {
+  .mobile-container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+}
+
+/* Ensure smooth animations on mobile */
+@media (max-width: 768px) {
+  .about-refined-card:hover {
+    transform: translateY(-2px);
+  }
+
+  .pillar-card:hover,
+  .timeline-card:hover {
+    transform: translateY(-3px);
+  }
+}
+
+/* Focus states for accessibility */
+.about-btn-primary:focus,
+.about-btn-secondary:focus {
+  outline: 2px solid rgba(168, 85, 247, 0.8);
+  outline-offset: 2px;
+}
+
+button:focus-visible {
+  outline: 2px solid rgba(168, 85, 247, 0.8);
+  outline-offset: 2px;
+}
+
+/* Smooth height transitions for accordions */
+.faq-content,
+[class*="motion"] {
+  overflow: hidden;
+}
+
+/* Typography refinements */
+.mobile-h1 {
+  font-size: clamp(2rem, 5vw, 3rem);
+}
+
+.mobile-body-text {
+  font-size: clamp(1rem, 2.5vw, 1.25rem);
+}
+
+/* Responsive grid adjustments */
+.mobile-single-col {
+  grid-template-columns: 1fr;
+}
+
+.mobile-double-col {
+  grid-template-columns: 1fr;
+}
+
+@media (min-width: 640px) {
+  .mobile-double-col {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (min-width: 1024px) {
+  .mobile-single-col {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  .about-refined-card,
+  .pillar-card,
+  .timeline-card,
+  .about-btn-primary,
+  .about-btn-secondary {
+    transition: none;
+  }
+
+  .about-refined-card:hover,
+  .pillar-card:hover,
+  .timeline-card:hover {
+    transform: none;
+  }
+}
