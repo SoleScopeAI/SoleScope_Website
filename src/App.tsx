@@ -23,7 +23,9 @@ import CustomAIAutomationsPage from './pages/CustomAIAutomationsPage';
 import ClientPortalPage from './pages/ClientPortalPage';
 
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
+import { ClientAuthProvider } from './contexts/ClientAuthContext';
 import ProtectedAdminRoute from './components/admin/ProtectedAdminRoute';
+import ProtectedClientRoute from './components/client/ProtectedClientRoute';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
@@ -32,11 +34,14 @@ import ProjectsPage from './pages/admin/ProjectsPage';
 import InvoicesPage from './pages/admin/InvoicesPage';
 import AnalyticsPage from './pages/admin/AnalyticsPage';
 import SettingsPage from './pages/admin/SettingsPage';
+import ClientLayout from './components/client/ClientLayout';
+import ClientDashboardPage from './pages/client/ClientDashboardPage';
 
 const App = () => {
   return (
     <AdminAuthProvider>
-      <Routes>
+      <ClientAuthProvider>
+        <Routes>
         <Route path="/admin/login" element={<AdminLoginPage />} />
 
         <Route
@@ -53,6 +58,17 @@ const App = () => {
           <Route path="invoices" element={<InvoicesPage />} />
           <Route path="analytics" element={<AnalyticsPage />} />
           <Route path="settings" element={<SettingsPage />} />
+        </Route>
+
+        <Route
+          path="/client/*"
+          element={
+            <ProtectedClientRoute>
+              <ClientLayout />
+            </ProtectedClientRoute>
+          }
+        >
+          <Route path="dashboard" element={<ClientDashboardPage />} />
         </Route>
 
         <Route
@@ -93,7 +109,8 @@ const App = () => {
             </div>
           }
         />
-      </Routes>
+        </Routes>
+      </ClientAuthProvider>
     </AdminAuthProvider>
   );
 };

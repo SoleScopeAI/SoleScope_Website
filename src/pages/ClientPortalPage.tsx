@@ -1,7 +1,11 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Lock, Eye, EyeOff, Shield, CheckCircle2, ArrowRight } from 'lucide-react';
+import React, { useState, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Mail, Lock, Eye, EyeOff, Shield, CheckCircle2, ArrowRight, AlertCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { useClientAuth } from '../contexts/ClientAuthContext';
+import { useAdminAuth } from '../contexts/AdminAuthContext';
+import { adminAuth } from '../lib/adminAuth';
+import { clientAuth } from '../lib/clientAuth';
 
 const ClientPortalPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -9,13 +13,50 @@ const ClientPortalPage = () => {
   const [password, setPassword] = useState('');
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState('');
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const { clientUser } = useClientAuth();
+  const { adminUser } = useAdminAuth();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (clientUser) {
+      navigate('/client/dashboard');
+    } else if (adminUser) {
+      navigate('/admin/dashboard');
+    }
+  }, [clientUser, adminUser, navigate]);
+
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
     setIsLoading(true);
-    setTimeout(() => {
+
+    try {
+      const adminResponse = await adminAuth.login(email, password);
+
+      if (adminResponse.success && adminResponse.user) {
+        adminAuth.saveUserToStorage(adminResponse.user);
+        localStorage.setItem('userType', 'admin');
+        navigate('/admin/dashboard');
+        return;
+      }
+
+      const clientResponse = await clientAuth.login(email, password);
+
+      if (clientResponse.success && clientResponse.user) {
+        clientAuth.saveUserToStorage(clientResponse.user);
+        navigate('/client/dashboard');
+        return;
+      }
+
+      setError('Invalid email or password');
+    } catch (err) {
+      console.error('Login error:', err);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -100,8 +141,19 @@ const ClientPortalPage = () => {
 
               <div className="mb-8">
                 <h2 className="text-3xl font-bold text-white mb-2">Sign In</h2>
-                <p className="text-gray-400">Access your client dashboard</p>
+                <p className="text-gray-400">Access your dashboard</p>
               </div>
+
+              {error && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="mb-6 p-4 bg-red-500/10 border border-red-500/20 rounded-xl flex items-start space-x-3"
+                >
+                  <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
+                  <p className="text-red-400 text-sm">{error}</p>
+                </motion.div>
+              )}
 
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div>

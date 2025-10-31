@@ -101,6 +101,25 @@ export interface Database {
         Insert: Omit<Database['public']['Tables']['invoices']['Row'], 'id' | 'created_at' | 'updated_at'>;
         Update: Partial<Database['public']['Tables']['invoices']['Insert']>;
       };
+      client_users: {
+        Row: {
+          id: string;
+          client_id: string;
+          email: string;
+          password_hash: string;
+          full_name: string;
+          is_active: boolean;
+          email_verified: boolean;
+          verification_token: string | null;
+          reset_token: string | null;
+          reset_token_expires: string | null;
+          last_login: string | null;
+          created_at: string;
+          updated_at: string;
+        };
+        Insert: Omit<Database['public']['Tables']['client_users']['Row'], 'id' | 'created_at' | 'updated_at'>;
+        Update: Partial<Database['public']['Tables']['client_users']['Insert']>;
+      };
     };
   };
 }
