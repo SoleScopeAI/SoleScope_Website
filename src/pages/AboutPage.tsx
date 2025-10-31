@@ -39,8 +39,8 @@ const AboutPage = () => {
     },
     {
       icon: Users,
-      title: "Who we serve",
-      description: "Sole traders & small local services."
+      title: "Our focus",
+      description: "UK-based groomers, trades, trainers & local service pros."
     },
     {
       icon: Clock,
@@ -196,80 +196,229 @@ const AboutPage = () => {
     setActiveIndex(activeIndex === index ? null : index);
   };
 
+  const portfolioImages = [
+    {
+      id: 1,
+      image: "/assets/carousel/JodiesPamperedPoochesWebsite.png",
+      title: "Jodie's Pampered Pooches",
+      position: { top: '12%', left: '6%' },
+      rotation: '-8deg',
+      size: 'w-24 h-16 sm:w-32 sm:h-20 md:w-40 md:h-28',
+      delay: 0
+    },
+    {
+      id: 2,
+      image: "/assets/carousel/Design K9 Home Page.png",
+      title: "Design K9 Training",
+      position: { top: '18%', right: '8%' },
+      rotation: '12deg',
+      size: 'w-28 h-18 sm:w-36 sm:h-24 md:w-44 md:h-32',
+      delay: 2
+    },
+    {
+      id: 3,
+      image: "/assets/carousel/UKBladeSharpening.png",
+      title: "UK Blade Sharpening",
+      position: { bottom: '25%', left: '4%' },
+      rotation: '6deg',
+      size: 'w-20 h-12 sm:w-28 sm:h-18 md:w-36 md:h-24',
+      delay: 4
+    },
+    {
+      id: 4,
+      image: "/assets/carousel/JodiesPamperedPoochesWebsite.png",
+      title: "Client Work",
+      position: { bottom: '35%', right: '6%' },
+      rotation: '-10deg',
+      size: 'w-22 h-14 sm:w-26 sm:h-18 md:w-40 md:h-28',
+      delay: 1
+    },
+    {
+      id: 5,
+      image: "/assets/carousel/Design K9 Home Page.png",
+      title: "Portfolio Example",
+      position: { top: '50%', left: '10%' },
+      rotation: '-5deg',
+      size: 'w-18 h-12 sm:w-24 sm:h-16 md:w-32 md:h-22',
+      delay: 3
+    }
+  ];
+
   return (
     <main id="about" className="about-surface pt-24 pb-20">
-      {/* Compact Page Header */}
-      <section className="py-16">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+      {/* Engaging Integrated Hero Section */}
+      <section className="relative py-20 md:py-28 overflow-hidden">
+        {/* Floating Portfolio Background */}
+        {portfolioImages.map((example) => (
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center"
+            key={example.id}
+            className={`absolute ${example.size} opacity-15 pointer-events-none z-0`}
+            style={{
+              ...example.position,
+              transform: `rotate(${example.rotation})`,
+            }}
+            aria-hidden="true"
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{
+              opacity: [0.15, 0.22, 0.15],
+              scale: [0.95, 1.05, 0.95],
+              y: [0, -15, 0]
+            }}
+            transition={{
+              duration: 8,
+              repeat: Infinity,
+              delay: example.delay,
+              ease: "easeInOut"
+            }}
           >
-            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight mobile-h1">
-              About SoleScope Studio & Design
-            </h1>
-            <p className="text-xl text-white max-w-4xl mx-auto leading-relaxed mobile-body-text">
-              SoleScope is a modern studio for applied AI and high-performance web design. We help under-served UK sole traders and small service businesses deploy right-sized automation and conversion-focused sites—fast, affordable, and actually used day-to-day.
-            </p>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Founder Section */}
-      <section className="py-20">
-        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mobile-single-col"
-          >
-            {/* Portrait */}
-            <div className="text-center lg:text-left mobile-centered">
-              <div className="w-64 h-64 mx-auto lg:mx-0 rounded-2xl overflow-hidden border-2 border-white/20 mb-6">
-                <img 
-                  src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400"
-                  alt="Kevin Hannah, CMgr - Founder of SoleScope Studio & Design"
-                  className="w-full h-full object-cover"
-                />
-              </div>
+            <div className="relative w-full h-full rounded-lg overflow-hidden border border-white/10 shadow-2xl">
+              <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+              <img
+                src={example.image}
+                alt={example.title}
+                className="w-full h-full object-cover filter blur-[2px]"
+              />
             </div>
+          </motion.div>
+        ))}
 
-            {/* Bio Content */}
-            <div>
-              <h2 className="text-3xl font-bold text-white mb-2 uppercase tracking-wide">
-                Kevin Hannah, CMgr
-              </h2>
-              <p className="text-xl text-white mb-6 opacity-80">
-                Chartered Manager
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mobile-single-col">
+
+            {/* Left Column - Profile & Visual */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="relative order-2 lg:order-1"
+            >
+              <div className="relative max-w-md mx-auto lg:mx-0">
+                {/* Glow Effect Behind Photo */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-teal-500/20 to-emerald-500/30 blur-3xl opacity-60 animate-pulse"></div>
+
+                {/* Profile Photo Container */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                  className="relative"
+                >
+                  <div className="relative w-full aspect-square rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
+                    <img
+                      src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      alt="Kevin Hannah, CMgr - Founder of SoleScope Studio & Design"
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Subtle Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  </div>
+
+                  {/* Floating Badge */}
+                  <motion.div
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.8, delay: 0.6 }}
+                    className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-full max-w-sm"
+                  >
+                    <div className="about-refined-card text-center py-4 px-6 shadow-xl">
+                      <p className="text-sm font-semibold text-white mb-1">
+                        Kevin Hannah, CMgr
+                      </p>
+                      <p className="text-xs text-white/70">
+                        Chartered Manager • Founder
+                      </p>
+                    </div>
+                  </motion.div>
+                </motion.div>
+
+                {/* Quick Value Indicators */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="mt-16 grid grid-cols-3 gap-4"
+                >
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">7yrs</div>
+                    <div className="text-xs text-white/70">FMCG Lead</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">6×</div>
+                    <div className="text-xs text-white/70">Businesses</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">CMgr</div>
+                    <div className="text-xs text-white/70">Chartered</div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+
+            {/* Right Column - Content & CTA */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="order-1 lg:order-2"
+            >
+              {/* Availability Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.4 }}
+                className="mb-6"
+              >
+                <span className="inline-flex items-center rounded-full border border-emerald-400/30 bg-emerald-500/10 px-4 py-2 text-sm font-medium text-emerald-200">
+                  <span className="mr-2 h-2 w-2 rounded-full bg-emerald-400 animate-pulse"></span>
+                  Taking new projects for Q4
+                </span>
+              </motion.div>
+
+              <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
+                Real Solutions for Real Businesses
+              </h1>
+
+              <p className="text-xl sm:text-2xl text-white/90 mb-8 leading-relaxed font-light">
+                Serving <span className="font-semibold text-white">sole traders</span>, <span className="font-semibold text-white">small businesses</span>, and <span className="font-semibold text-white">SMEs</span> across the UK
               </p>
-              <p className="text-lg text-white mb-2 font-medium">
-                Founder, SoleScope Studio & Design
+
+              <p className="text-lg text-white/80 mb-6 leading-relaxed">
+                SoleScope is a modern studio for applied AI and high-performance web design. We help under-served UK service businesses—groomers, trades, trainers, and local pros—deploy right-sized automation and conversion-focused sites.
               </p>
-              
-              <p className="text-white mb-8 leading-relaxed">
-                I'm a Chartered Manager (CMgr) with 7 years' FMCG leadership, and I've run 6 small businesses. I specialise in AI application and web design for sole traders and small service teams—combining operational discipline with hands-on build skills to deliver solutions that actually get used.
+
+              <p className="text-base text-white/70 mb-8 leading-relaxed">
+                I'm a Chartered Manager (CMgr) with 7 years' FMCG leadership and I've run 6 small businesses. I specialize in combining operational discipline with hands-on build skills to deliver solutions that actually get used day-to-day.
               </p>
 
               {/* Credential Chips */}
-              <div className="mb-8">
-                {['AI Solutions', 'Web Design', 'Automation & CRM-lite', 'Chartered Manager', '7 yrs FMCG', '6× Founder'].map((credential) => (
-                  <span key={credential} className="credential-chip">
+              <div className="mb-10">
+                {['AI Automation', 'Web Design', 'CRM Integration', 'Chartered Manager', 'FMCG Leader', '6× Founder'].map((credential, index) => (
+                  <motion.span
+                    key={credential}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.6 + index * 0.1 }}
+                    className="credential-chip"
+                  >
                     {credential}
-                  </span>
+                  </motion.span>
                 ))}
               </div>
 
-              {/* CTAs */}
-              <div className="flex flex-col sm:flex-row gap-4">
+              {/* CTA Buttons */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.8 }}
+                className="flex flex-col sm:flex-row gap-4"
+              >
                 <a
                   href="/contact"
-                  className="about-btn-primary mobile-touch-target"
+                  className="about-btn-primary mobile-touch-target group"
                 >
                   <Calendar className="h-5 w-5" />
                   Book a Free 15-min Discovery Call
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
                 </a>
                 <a
                   href="mailto:contact@solescope.co.uk"
@@ -278,9 +427,30 @@ const AboutPage = () => {
                   <Mail className="h-5 w-5" />
                   Email Kevin
                 </a>
-              </div>
-            </div>
-          </motion.div>
+              </motion.div>
+
+              {/* Trust Indicators */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                transition={{ duration: 0.8, delay: 1 }}
+                className="mt-8 flex flex-wrap items-center gap-6 text-sm text-white/60"
+              >
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-emerald-400" />
+                  <span>Fast, affordable delivery</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-emerald-400" />
+                  <span>Transparent pricing</span>
+                </div>
+                <div className="flex items-center gap-2">
+                  <CheckCircle className="h-4 w-4 text-emerald-400" />
+                  <span>UK-based support</span>
+                </div>
+              </motion.div>
+            </motion.div>
+          </div>
         </div>
       </section>
 
