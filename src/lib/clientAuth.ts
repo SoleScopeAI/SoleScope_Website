@@ -8,6 +8,8 @@ export interface ClientUser {
   full_name: string;
   is_active: boolean;
   email_verified: boolean;
+  requires_password_change: boolean;
+  temporary_password_expires: string | null;
   last_login: string | null;
   client_data?: {
     company_name: string;
@@ -21,6 +23,7 @@ export interface ClientLoginResponse {
   user?: ClientUser;
   error?: string;
   userType?: 'client' | 'admin';
+  requiresPasswordChange?: boolean;
 }
 
 export const clientAuth = {
@@ -49,6 +52,16 @@ export const clientAuth = {
         return { success: false, error: 'Invalid email or password' };
       }
 
+      if (clientUser.temporary_password_expires) {
+        const expiresAt = new Date(clientUser.temporary_password_expires);
+        if (expiresAt < new Date()) {
+          return {
+            success: false,
+            error: 'Temporary password has expired. Please contact support for a new password.',
+          };
+        }
+      }
+
       const isPasswordValid = await bcrypt.compare(password, clientUser.password_hash);
 
       if (!isPasswordValid) {
@@ -67,13 +80,20 @@ export const clientAuth = {
         full_name: clientUser.full_name,
         is_active: clientUser.is_active,
         email_verified: clientUser.email_verified,
+        requires_password_change: clientUser.requires_password_change || false,
+        temporary_password_expires: clientUser.temporary_password_expires || null,
         last_login: clientUser.last_login,
         client_data: Array.isArray(clientUser.client_data) && clientUser.client_data.length > 0
           ? clientUser.client_data[0]
           : undefined,
       };
 
-      return { success: true, user, userType: 'client' };
+      return {
+        success: true,
+        user,
+        userType: 'client',
+        requiresPasswordChange: clientUser.requires_password_change || false,
+      };
     } catch (error) {
       console.error('Login error:', error);
       return { success: false, error: 'An error occurred during login' };
@@ -106,6 +126,8 @@ export const clientAuth = {
           full_name,
           is_active,
           email_verified,
+          requires_password_change,
+          temporary_password_expires,
           last_login,
           client_data:clients (
             company_name,

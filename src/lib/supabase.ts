@@ -116,6 +116,8 @@ export interface Database {
           full_name: string;
           is_active: boolean;
           email_verified: boolean;
+          requires_password_change: boolean;
+          temporary_password_expires: string | null;
           verification_token: string | null;
           reset_token: string | null;
           reset_token_expires: string | null;

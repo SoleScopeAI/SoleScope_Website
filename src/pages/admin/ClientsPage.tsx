@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Plus, Search, Filter, Mail, Phone, Building, MoreVertical, Edit, Trash2, Eye, Package, X } from 'lucide-react';
+import { Users, Plus, Search, Filter, Mail, Phone, Building, MoreVertical, Edit, Trash2, Eye, Package, X, Copy, Check, UserPlus } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
+import { clientUserService } from '../../lib/passwordUtils';
 
 interface Client {
   id: string;
@@ -70,6 +71,12 @@ const ClientsPage = () => {
     notes: '',
     status: 'prospect',
   });
+
+  const [createPortalUser, setCreatePortalUser] = useState(false);
+  const [portalUserEmail, setPortalUserEmail] = useState('');
+  const [portalUserName, setPortalUserName] = useState('');
+  const [generatedPassword, setGeneratedPassword] = useState<string | null>(null);
+  const [passwordCopied, setPasswordCopied] = useState(false);
 
   const [error, setError] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
@@ -226,28 +233,72 @@ const ClientsPage = () => {
       }
 
       console.log('Client added successfully:', data);
-      setShowAddModal(false);
-      setError('');
-      await fetchClients();
 
-      setNewClient({
-        company_name: '',
-        contact_name: '',
-        email: '',
-        phone: '',
-        website: '',
-        address: '',
-        industry: '',
-        company_size: '',
-        notes: '',
-        status: 'prospect',
-      });
+      if (createPortalUser && data && data[0]) {
+        const clientId = data[0].id;
+        const userEmail = portalUserEmail || newClient.email;
+        const userName = portalUserName || newClient.contact_name;
+
+        const userResult = await clientUserService.createClientUser({
+          clientId,
+          email: userEmail,
+          fullName: userName,
+          createdBy: adminUser.id,
+        });
+
+        if (userResult.success && userResult.temporaryPassword) {
+          setGeneratedPassword(userResult.temporaryPassword);
+        } else {
+          setError(`Client created but portal user failed: ${userResult.error}`);
+        }
+      } else {
+        setShowAddModal(false);
+        await fetchClients();
+        resetForm();
+      }
+
+      if (!createPortalUser) {
+        setError('');
+      }
+      await fetchClients();
     } catch (error) {
       console.error('Error adding client:', error);
       setError('An unexpected error occurred. Please try again.');
     } finally {
       setSubmitting(false);
     }
+  };
+
+  const resetForm = () => {
+    setNewClient({
+      company_name: '',
+      contact_name: '',
+      email: '',
+      phone: '',
+      website: '',
+      address: '',
+      industry: '',
+      company_size: '',
+      notes: '',
+      status: 'prospect',
+    });
+    setCreatePortalUser(false);
+    setPortalUserEmail('');
+    setPortalUserName('');
+    setGeneratedPassword(null);
+    setPasswordCopied(false);
+    setError('');
+  };
+
+  const handleCloseModal = () => {
+    setShowAddModal(false);
+    resetForm();
+  };
+
+  const copyToClipboard = (text: string) => {
+    navigator.clipboard.writeText(text);
+    setPasswordCopied(true);
+    setTimeout(() => setPasswordCopied(false), 2000);
   };
 
   const getStatusColor = (status: string) => {
@@ -485,22 +536,122 @@ const ClientsPage = () => {
                 </div>
               )}
 
-              <div className="flex justify-end space-x-4 mt-6">
-                <button
-                  type="button"
-                  onClick={() => setShowAddModal(false)}
-                  className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-all"
-                >
-                  Cancel
-                </button>
-                <button
-                  type="submit"
-                  disabled={submitting}
-                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl hover:from-purple-500 hover:to-violet-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {submitting ? 'Adding Client...' : 'Add Client'}
-                </button>
+              <div className="border-t border-white/10 pt-6 mt-6">
+                <div className="flex items-center justify-between mb-4">
+                  <div className="flex items-center space-x-3">
+                    <UserPlus className="w-5 h-5 text-purple-400" />
+                    <div>
+                      <h3 className="text-white font-semibold">Create Portal Access</h3>
+                      <p className="text-sm text-gray-400">Allow client to access their portal</p>
+                    </div>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={() => {
+                      setCreatePortalUser(!createPortalUser);
+                      if (!createPortalUser) {
+                        setPortalUserEmail(newClient.email);
+                        setPortalUserName(newClient.contact_name);
+                      }
+                    }}
+                    className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                      createPortalUser ? 'bg-purple-600' : 'bg-gray-600'
+                    }`}
+                  >
+                    <span
+                      className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                        createPortalUser ? 'translate-x-6' : 'translate-x-1'
+                      }`}
+                    />
+                  </button>
+                </div>
+
+                {createPortalUser && (
+                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Email</label>
+                      <input
+                        type="email"
+                        value={portalUserEmail}
+                        onChange={(e) => setPortalUserEmail(e.target.value)}
+                        placeholder={newClient.email || 'Enter email'}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      />
+                    </div>
+                    <div>
+                      <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Name</label>
+                      <input
+                        type="text"
+                        value={portalUserName}
+                        onChange={(e) => setPortalUserName(e.target.value)}
+                        placeholder={newClient.contact_name || 'Enter name'}
+                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                      />
+                    </div>
+                  </div>
+                )}
               </div>
+
+              {generatedPassword && (
+                <div className="bg-green-500/10 border border-green-500/30 rounded-xl p-6 mt-6">
+                  <div className="flex items-start space-x-3 mb-4">
+                    <Check className="w-6 h-6 text-green-400 flex-shrink-0 mt-1" />
+                    <div>
+                      <h3 className="text-green-400 font-semibold text-lg mb-1">Client Created Successfully!</h3>
+                      <p className="text-gray-300 text-sm">Portal access has been created with a temporary password.</p>
+                    </div>
+                  </div>
+                  <div className="bg-black/30 rounded-lg p-4">
+                    <p className="text-sm text-gray-400 mb-2">Temporary Password (copy and share with client):</p>
+                    <div className="flex items-center space-x-2">
+                      <code className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-lg text-white font-mono text-lg">
+                        {generatedPassword}
+                      </code>
+                      <button
+                        type="button"
+                        onClick={() => copyToClipboard(generatedPassword)}
+                        className="p-3 bg-purple-600 hover:bg-purple-500 rounded-lg transition-colors"
+                        title="Copy to clipboard"
+                      >
+                        {passwordCopied ? (
+                          <Check className="w-5 h-5 text-white" />
+                        ) : (
+                          <Copy className="w-5 h-5 text-white" />
+                        )}
+                      </button>
+                    </div>
+                    <p className="text-xs text-yellow-400 mt-3">
+                      ⚠️ This password will only be shown once. The client will be required to change it on first login.
+                    </p>
+                  </div>
+                  <button
+                    type="button"
+                    onClick={handleCloseModal}
+                    className="w-full mt-4 px-6 py-3 bg-purple-600 hover:bg-purple-500 text-white rounded-xl transition-all"
+                  >
+                    Close
+                  </button>
+                </div>
+              )}
+
+              {!generatedPassword && (
+                <div className="flex justify-end space-x-4 mt-6">
+                  <button
+                    type="button"
+                    onClick={handleCloseModal}
+                    className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-all"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    type="submit"
+                    disabled={submitting}
+                    className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl hover:from-purple-500 hover:to-violet-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {submitting ? 'Adding Client...' : 'Add Client'}
+                  </button>
+                </div>
+              )}
             </form>
           </motion.div>
         </div>

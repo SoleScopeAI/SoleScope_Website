@@ -14,6 +14,7 @@ import {
 import { motion } from 'framer-motion';
 import { useClientAuth } from '../../contexts/ClientAuthContext';
 import { supabase } from '../../lib/supabase';
+import { ChangePasswordModal } from '../../components/client/ChangePasswordModal';
 
 interface Project {
   id: string;
@@ -32,16 +33,28 @@ interface Invoice {
 }
 
 const ClientDashboardPage = () => {
-  const { clientUser } = useClientAuth();
+  const { clientUser, refreshUser } = useClientAuth();
   const [projects, setProjects] = useState<Project[]>([]);
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [loading, setLoading] = useState(true);
+  const [showPasswordModal, setShowPasswordModal] = useState(false);
+  const [requiresPasswordChange, setRequiresPasswordChange] = useState(false);
 
   useEffect(() => {
     if (clientUser?.client_id) {
       loadDashboardData();
+      if (clientUser.requires_password_change) {
+        setRequiresPasswordChange(true);
+        setShowPasswordModal(true);
+      }
     }
-  }, [clientUser?.client_id]);
+  }, [clientUser?.client_id, clientUser?.requires_password_change]);
+
+  const handlePasswordChangeSuccess = async () => {
+    setShowPasswordModal(false);
+    setRequiresPasswordChange(false);
+    await refreshUser();
+  };
 
   const loadDashboardData = async () => {
     if (!clientUser?.client_id) return;
@@ -348,6 +361,14 @@ const ClientDashboardPage = () => {
           </div>
         </div>
       </motion.div>
+
+      <ChangePasswordModal
+        userId={clientUser?.id || ''}
+        isOpen={showPasswordModal}
+        onClose={() => !requiresPasswordChange && setShowPasswordModal(false)}
+        onSuccess={handlePasswordChangeSuccess}
+        requiresChange={requiresPasswordChange}
+      />
     </div>
   );
 };
