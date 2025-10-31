@@ -19,7 +19,11 @@ export interface AdminLoginResponse {
 export const adminAuth = {
   async login(email: string, password: string): Promise<AdminLoginResponse> {
     try {
+      console.log('=== ADMIN LOGIN DEBUG START ===');
       console.log('Admin login attempt for:', email);
+      console.log('Password received (length):', password?.length);
+      console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
+      console.log('Supabase key exists:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
 
       const { data: adminUser, error } = await supabase
         .from('admin_users')
@@ -27,6 +31,9 @@ export const adminAuth = {
         .eq('email', email)
         .eq('is_active', true)
         .maybeSingle();
+
+      console.log('Query result - error:', error);
+      console.log('Query result - data:', adminUser ? 'User found' : 'No user');
 
       if (error) {
         console.error('Database query error during login:', {
@@ -43,9 +50,20 @@ export const adminAuth = {
         return { success: false, error: 'Invalid email or password' };
       }
 
-      console.log('Admin user found, verifying password...');
+      console.log('Admin user found:', {
+        id: adminUser.id,
+        email: adminUser.email,
+        full_name: adminUser.full_name,
+        role: adminUser.role,
+        is_active: adminUser.is_active,
+        has_password_hash: !!adminUser.password_hash,
+        password_hash_length: adminUser.password_hash?.length
+      });
+      console.log('Verifying password with bcrypt...');
 
       const isPasswordValid = await bcrypt.compare(password, adminUser.password_hash);
+
+      console.log('Password validation result:', isPasswordValid);
 
       if (!isPasswordValid) {
         console.warn('Login failed: Invalid password for email:', email);
