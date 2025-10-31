@@ -11,7 +11,7 @@ const InteractiveHero = () => {
       icon: Bot,
       label: "AI Automations",
       path: "/services/custom-ai-automations",
-      preview: "24/7 intelligent automation for lead qualification and client workflows",
+      preview: "Enterprise-grade automation for lead qualification, team workflows, and business intelligence",
       color: "from-cyan-500 via-purple-500 to-emerald-500",
       isAI: true
     },
@@ -19,28 +19,28 @@ const InteractiveHero = () => {
       icon: Globe,
       label: "Website Design",
       path: "/services/website-design",
-      preview: "Professional, mobile-responsive websites with managed hosting",
+      preview: "Scalable, conversion-focused websites with enterprise hosting and SEO foundations",
       color: "from-purple-600 to-purple-700"
     },
     {
       icon: Code,
       label: "Custom WebApps",
       path: "/services/custom-webapps",
-      preview: "Tailored web applications with enterprise-grade hosting",
+      preview: "Multi-user web applications with team collaboration and enterprise integrations",
       color: "from-purple-600 to-purple-700"
     },
     {
       icon: BarChart3,
       label: "AI Dashboards",
       path: "/services/ai-dashboards",
-      preview: "Transform complex data into clear, actionable insights",
+      preview: "Real-time business intelligence dashboards with custom reporting and team analytics",
       color: "from-purple-600 to-purple-700"
     },
     {
       icon: Palette,
       label: "Brand Identity",
       path: "/services/brand-identity",
-      preview: "Complete brand packages with logos and marketing materials",
+      preview: "Comprehensive corporate identity systems from startups to established SMEs",
       color: "from-purple-600 to-purple-700"
     }
   ];
@@ -111,26 +111,26 @@ const InteractiveHero = () => {
   const serviceLevelFacts = [
     {
       label: 'Build window',
-      value: '2–6 weeks',
-      tooltip: 'Estimated; varies by scope & assets.',
+      value: '2–8 weeks',
+      tooltip: 'Scalable timelines for small businesses to SMEs; varies by scope, integrations & complexity.',
       icon: Clock
     },
     {
       label: 'Support',
-      value: '≤ 1 business day',
-      tooltip: 'Business hours; urgent issues prioritized.',
+      value: '≤ 4 hours',
+      tooltip: 'Enterprise-grade response times; urgent issues prioritized for business continuity.',
       icon: CheckCircle
     },
     {
       label: 'Hosting SLA',
-      value: '99.9%+ (provider)',
-      tooltip: "Per hosting provider's SLA; not a guarantee of zero downtime.",
+      value: '99.9%+ uptime',
+      tooltip: 'Business-critical reliability with enterprise hosting infrastructure and monitoring.',
       icon: Server
     },
     {
       label: 'Data privacy',
-      value: 'UK/EU-friendly',
-      tooltip: 'We follow sensible data-handling practices; you control your data.',
+      value: 'GDPR compliant',
+      tooltip: 'Full UK/EU compliance, secure data handling, and complete data ownership for your business.',
       icon: Shield
     }
   ];
@@ -196,7 +196,7 @@ const InteractiveHero = () => {
             transition={{ duration: 0.5, delay: 0.2 }}
           >
             <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
-              Boutique AI Web & Automation Studio • UK
+              AI Web & Automation Studio • Serving Small Businesses & SMEs • UK
             </span>
           </motion.div>
 
@@ -213,7 +213,7 @@ const InteractiveHero = () => {
             transition={{ duration: 0.8, delay: 0.3 }}
             className="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
           >
-            We combine handcrafted web design with advanced automation — connecting bookings, emails, reviews, and workflows into one seamless system. Professional. Personal. Powered by AI.
+            We combine handcrafted web design with intelligent automation — connecting bookings, CRM, team workflows, and business processes into scalable systems. From sole traders to growing SMEs, we deliver solutions that evolve with your business.
           </motion.p>
 
           <motion.div

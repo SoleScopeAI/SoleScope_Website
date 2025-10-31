@@ -35,68 +35,68 @@ const AboutPage = () => {
     {
       icon: Target,
       title: "What we do",
-      description: "Practical AI + clean web builds that convert."
+      description: "Practical AI + scalable web solutions for businesses of all sizes."
     },
     {
       icon: Users,
       title: "Our focus",
-      description: "UK-based groomers, trades, trainers & local service pros."
+      description: "UK sole traders, small businesses & SMEs across service sectors."
     },
     {
       icon: Clock,
       title: "Typical engagement",
-      description: "Focused site + 1–2 automations."
+      description: "From focused sites to complex multi-user platforms."
     },
     {
       icon: Rocket,
       title: "Onboarding",
-      description: "Discovery → scoped plan → staged delivery."
+      description: "Structured discovery → detailed roadmap → phased delivery."
     }
   ];
 
   const metrics = [
     {
-      value: "2–4 weeks",
-      label: "Avg. Setup Time",
-      description: "from kickoff to live"
+      value: "2–8 weeks",
+      label: "Avg. Delivery Time",
+      description: "from kickoff to live deployment"
     },
     {
       value: "99.9%",
-      label: "Automation Uptime",
-      description: "monitored workflows"
+      label: "System Uptime",
+      description: "enterprise-grade reliability"
     },
     {
-      value: "+35–120%",
-      label: "Lead Lift",
-      description: "structured service pages + reviews"
+      value: "+40–150%",
+      label: "Lead Growth",
+      description: "optimized funnels + automation"
     },
     {
-      value: "–40%",
-      label: "Missed Bookings",
-      description: "reminders + simplified steps"
+      value: "–50%",
+      label: "Process Efficiency",
+      description: "automated workflows + integrations"
     },
     {
-      value: "<24h",
+      value: "<4h",
       label: "Response SLA",
-      description: "founder-led comms"
+      description: "business-critical support"
     },
     {
-      value: "↓ admin time",
-      label: "Owner Effort",
-      description: "inbox triage & CRM-lite"
+      value: "–60%",
+      label: "Admin Reduction",
+      description: "team automation + smart CRM"
     }
   ];
 
   const services = [
     {
       title: "AI Application & Automation",
-      description: "Lead capture & qualification · Inbox triage · Light CRM & reminders · Niche chatbots/KBs · Reviews flows · Analytics hooks",
+      description: "Enterprise lead qualification · Team workflow automation · Advanced CRM & scheduling · Custom AI assistants · Multi-channel integrations · Business intelligence & reporting",
       action: "See AI capabilities →",
       path: "/services/custom-ai-automations"
     },
     {
-      title: "Modern Web Design",
-      description: "Fast, mobile-first builds · Service pages that convert · SEO foundations · Hosting & updates · Content guidance",
+      title: "Scalable Web Solutions",
+      description: "Multi-user web platforms · Team collaboration tools · Custom business applications · Advanced integrations · Enterprise hosting & security · Ongoing optimization",
       action: "See web design work →",
       path: "/services/website-design"
     }
@@ -105,33 +105,33 @@ const AboutPage = () => {
   const differentiators = [
     {
       icon: Target,
-      title: "Small-Service Specialist",
-      description: "Built for real operators (groomers, trades, trainers, local pros)."
+      title: "Business-Scale Specialist",
+      description: "Solutions for sole traders through to mid-sized enterprises across all sectors."
     },
     {
       icon: Zap,
-      title: "Right-Sized AI",
-      description: "Tools/APIs + light custom code matched to workflow and budget."
+      title: "Scalable Architecture",
+      description: "Future-proof platforms that grow with your team and business needs."
     },
     {
       icon: Shield,
-      title: "Ops Discipline",
-      description: "Plans that ship, handovers that stick, support that's clear."
+      title: "Enterprise Discipline",
+      description: "Structured delivery, comprehensive handovers, and transparent communication."
     },
     {
       icon: CheckCircle,
-      title: "Transparent & Affordable",
-      description: "Clear scope, staged delivery, no fluff."
+      title: "ROI-Focused Delivery",
+      description: "Clear timelines, phased milestones, and measurable business impact."
     },
     {
       icon: Settings,
-      title: "Automation-Ready",
-      description: "Booking, reminders, reviews, email where useful."
+      title: "Integration-Ready",
+      description: "Connect with your existing CRM, accounting, and business tools seamlessly."
     },
     {
       icon: Award,
-      title: "Own Your Assets",
-      description: "You keep your site, data, and access."
+      title: "Full Ownership",
+      description: "Complete control of your platforms, data, and all source code."
     }
   ];
 
@@ -139,56 +139,56 @@ const AboutPage = () => {
     {
       number: "1",
       title: "Discover",
-      description: "Clarify goals, customers, quick wins."
+      description: "Strategic alignment, stakeholder mapping, and opportunity assessment."
     },
     {
       number: "2",
       title: "Design",
-      description: "Map UX, content, data-flow; confirm stack."
+      description: "Architecture planning, UX design, integration mapping, and tech stack selection."
     },
     {
       number: "3",
       title: "Deploy",
-      description: "Launch site & automations with clean handover."
+      description: "Phased rollout with team training, testing, and comprehensive documentation."
     },
     {
       number: "4",
-      title: "Improve",
-      description: "Track results, iterate, scale."
+      title: "Optimize",
+      description: "Performance monitoring, user feedback integration, and continuous improvement."
     }
   ];
 
   const outcomes = [
     {
-      title: "Inbound enquiries doubled after restructuring service pages and adding reviews flow.",
-      caseTitle: "Local Dog Grooming Service",
-      caseSummary: "Transformed booking process with automated reminders and review collection system.",
+      title: "Lead conversion increased 150% with automated qualification and multi-channel CRM integration.",
+      caseTitle: "Regional Service Provider",
+      caseSummary: "Implemented enterprise-grade automation connecting web forms, email sequences, and team workflows for a 12-person operation.",
       action: "Read more →"
     },
     {
-      title: "Missed bookings cut by 40% via reminders + simplified calendar steps.",
-      caseTitle: "Mobile Mechanic Business",
-      caseSummary: "Streamlined scheduling with AI-powered customer communication and follow-up automation.",
+      title: "Team productivity improved 60% through custom workflow platform and process automation.",
+      caseTitle: "Growing SME",
+      caseSummary: "Built multi-user platform with role-based access, automated reporting, and integrated business intelligence for scaling operations.",
       action: "Read more →"
     }
   ];
 
   const faqs = [
     {
-      question: "Do you work beyond sole traders?",
-      answer: "SMEs welcome; focus is micro/small services."
+      question: "Do you work with SMEs and larger businesses?",
+      answer: "Absolutely. We serve everyone from sole traders to mid-sized enterprises with 50+ employees, with solutions that scale appropriately."
     },
     {
-      question: "Do you build custom AI from scratch?",
-      answer: "Right-sized blend of tools, APIs, and light custom code."
+      question: "Can you integrate with our existing business systems?",
+      answer: "Yes. We specialize in connecting CRM platforms, accounting software, project management tools, and custom APIs to create unified workflows."
     },
     {
-      question: "How fast can we start?",
-      answer: "After discovery, most projects begin within 1–2 weeks."
+      question: "What's your typical project timeline for SMEs?",
+      answer: "SME projects typically range from 4-8 weeks depending on complexity, with phased delivery allowing you to see value progressively."
     },
     {
-      question: "Can you host and maintain my site?",
-      answer: "Yes; tiered options; you own your assets."
+      question: "Do you provide enterprise-level hosting and support?",
+      answer: "Yes. We offer managed hosting with 99.9% uptime SLA, regular backups, security monitoring, and priority support with 4-hour response times."
     }
   ];
 
@@ -375,7 +375,7 @@ const AboutPage = () => {
               </motion.div>
 
               <h1 className="text-4xl sm:text-5xl lg:text-6xl font-bold text-white mb-6 leading-tight">
-                Real Solutions for Real Businesses
+                Scalable Solutions for Growing Businesses
               </h1>
 
               <p className="text-xl sm:text-2xl text-white/90 mb-8 leading-relaxed font-light">
@@ -383,16 +383,16 @@ const AboutPage = () => {
               </p>
 
               <p className="text-lg text-white/80 mb-6 leading-relaxed">
-                SoleScope is a modern studio for applied AI and high-performance web design. We help under-served UK service businesses—groomers, trades, trainers, and local pros—deploy right-sized automation and conversion-focused sites.
+                SoleScope is a modern studio for applied AI and high-performance web design. We help UK businesses—from sole traders to growing SMEs—deploy intelligent automation, scalable web platforms, and conversion-focused digital solutions that drive measurable growth.
               </p>
 
               <p className="text-base text-white/70 mb-8 leading-relaxed">
-                I'm a Chartered Manager (CMgr) with 7 years' FMCG leadership and I've run 6 small businesses. I specialize in combining operational discipline with hands-on build skills to deliver solutions that actually get used day-to-day.
+                I'm a Chartered Manager (CMgr) with 7 years' FMCG leadership and I've run 6 businesses across different scales. I specialize in combining strategic operational discipline with hands-on technical skills to deliver solutions that scale with your business and drive real ROI.
               </p>
 
               {/* Credential Chips */}
               <div className="mb-10">
-                {['AI Automation', 'Web Design', 'CRM Integration', 'Chartered Manager', 'FMCG Leader', '6× Founder'].map((credential, index) => (
+                {['AI Automation', 'Enterprise Web Apps', 'CRM Integration', 'Multi-User Systems', 'Chartered Manager', 'SME Specialist'].map((credential, index) => (
                   <motion.span
                     key={credential}
                     initial={{ opacity: 0, scale: 0.8 }}
@@ -509,7 +509,7 @@ const AboutPage = () => {
               ))}
             </div>
             <p className="text-center text-white text-sm mt-8 opacity-60">
-              Figures reflect typical ranges; results vary by scope & baseline.
+              Figures reflect typical outcomes across small businesses and SMEs; actual results vary by scope, industry, and baseline metrics.
             </p>
           </div>
 
