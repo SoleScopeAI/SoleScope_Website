@@ -309,7 +309,7 @@ const ServiceSnapshotGrid = () => {
                     </motion.div>
 
                     {/* Title with luminous divider */}
-                    <div className="mb-5">
+                    <div className="mb-5 text-center">
                       <h3 className={`text-2xl font-bold mb-3 transition-all duration-300 ${
                         service.isAI
                           ? 'text-white group-hover:text-cyan-300'
@@ -322,7 +322,7 @@ const ServiceSnapshotGrid = () => {
 
                       {/* Luminous divider */}
                       <motion.div
-                        className={`h-0.5 bg-gradient-to-r ${service.color} rounded-full`}
+                        className={`h-0.5 bg-gradient-to-r ${service.color} rounded-full mx-auto`}
                         initial={{ width: 0, opacity: 0 }}
                         animate={hoveredService === index ? {
                           width: '100%',
@@ -339,7 +339,7 @@ const ServiceSnapshotGrid = () => {
                     </div>
 
                     {/* Animated bullet highlights */}
-                    <ul className="space-y-3 mb-6">
+                    <ul className="space-y-3 mb-6 text-left">
                       {service.highlights.map((highlight, idx) => (
                         <motion.li
                           key={idx}
@@ -533,7 +533,7 @@ const ServiceSnapshotGrid = () => {
                       </motion.div>
 
                       {/* Title with luminous divider */}
-                      <div className="mb-5">
+                      <div className="mb-5 text-center">
                         <h3 className={`text-2xl font-bold mb-3 transition-all duration-300 ${
                           service.isAI
                             ? 'text-white group-hover:text-cyan-300'
@@ -544,7 +544,7 @@ const ServiceSnapshotGrid = () => {
 
                         {/* Luminous divider */}
                         <motion.div
-                          className={`h-0.5 bg-gradient-to-r ${service.color} rounded-full`}
+                          className={`h-0.5 bg-gradient-to-r ${service.color} rounded-full mx-auto`}
                           initial={{ width: 0, opacity: 0 }}
                           animate={hoveredService === index ? {
                             width: '100%',
@@ -561,7 +561,7 @@ const ServiceSnapshotGrid = () => {
                       </div>
 
                       {/* Animated bullet highlights */}
-                      <ul className="space-y-3 mb-6">
+                      <ul className="space-y-3 mb-6 text-left">
                         {service.highlights.map((highlight, idx) => (
                           <motion.li
                             key={idx}
