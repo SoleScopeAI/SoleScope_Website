@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { 
-  Heart, 
-  Users, 
-  Zap, 
-  Target, 
-  Award, 
+import {
+  Heart,
+  Users,
+  Zap,
+  Target,
+  Award,
   Clock,
   ChevronDown,
   ChevronUp,
@@ -21,6 +21,7 @@ import {
   Settings,
   Rocket
 } from 'lucide-react';
+import CollapsibleSection from '../components/CollapsibleSection';
 import '../styles/about-galaxy.css';
 
 const AboutPage = () => {
@@ -283,7 +284,7 @@ const AboutPage = () => {
         ))}
 
         <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center mobile-single-col">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
 
             {/* Left Column - Profile & Visual */}
             <motion.div
@@ -463,7 +464,7 @@ const AboutPage = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-double-col"
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6"
           >
             {quickFacts.map((fact, index) => (
               <div key={fact.title} className="about-refined-card text-center">
@@ -493,7 +494,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-double-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {metrics.map((metric, index) => (
                 <motion.div
                   key={metric.label}
@@ -526,7 +527,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {services.map((service, index) => (
                 <motion.div
                   key={service.title}
@@ -565,7 +566,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-single-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {differentiators.map((diff, index) => (
                 <motion.div
                   key={diff.title}
@@ -601,7 +602,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-single-col">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {steps.map((step, index) => (
                 <motion.div
                   key={step.number}
@@ -635,7 +636,7 @@ const AboutPage = () => {
               </h2>
             </motion.div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
               {outcomes.map((outcome, index) => (
                 <motion.div
                   key={index}

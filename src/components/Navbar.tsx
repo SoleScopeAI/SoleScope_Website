@@ -132,7 +132,9 @@ const Navbar = () => {
           <div className="md:hidden">
             <button
               onClick={() => setIsOpen(!isOpen)}
-              className="text-gray-400 hover:text-white transition-colors"
+              className="text-gray-400 hover:text-white transition-colors z-50 relative p-2"
+              aria-label="Toggle mobile menu"
+              aria-expanded={isOpen}
             >
               {isOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
@@ -144,7 +146,9 @@ const Navbar = () => {
           <motion.div
             initial={{ opacity: 0, y: -20 }}
             animate={{ opacity: 1, y: 0 }}
-            className="md:hidden bg-rich-black-0 border-t border-gray-800 rounded-lg"
+            exit={{ opacity: 0, y: -20 }}
+            transition={{ duration: 0.2 }}
+            className="md:hidden bg-rich-black-0 border-t border-gray-800 rounded-lg shadow-2xl z-40 relative"
           >
             <div className="px-2 pt-2 pb-3 space-y-1">
               {navItems.map((item) => (
