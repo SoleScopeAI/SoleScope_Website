@@ -223,9 +223,9 @@ const AdminDashboardPage = () => {
               >
                 <div className="flex items-start justify-between mb-4">
                   <div
-                    className={`p-3 bg-gradient-to-r from-${card.color}-500/20 to-${card.color}-600/20 rounded-xl border border-${card.color}-500/30`}
+                    className={`p-3 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-xl border border-purple-500/30`}
                   >
-                    <Icon className={`w-6 h-6 text-${card.color}-400`} />
+                    <Icon className={`w-6 h-6 text-purple-400`} />
                   </div>
                   <div
                     className={`flex items-center space-x-1 text-sm ${
@@ -266,8 +266,8 @@ const AdminDashboardPage = () => {
                     key={activity.id}
                     className="flex items-start space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
                   >
-                    <div className={`p-2 bg-${activity.color}-500/20 rounded-lg`}>
-                      <Icon className={`w-5 h-5 text-${activity.color}-400`} />
+                    <div className={`p-2 bg-purple-500/20 rounded-lg`}>
+                      <Icon className={`w-5 h-5 text-purple-400`} />
                     </div>
                     <div className="flex-1">
                       <p className="text-white font-medium">{activity.description}</p>
@@ -289,42 +289,42 @@ const AdminDashboardPage = () => {
             <div className="space-y-3">
               <Link
                 to="/admin/clients?action=new"
-                className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/30 rounded-xl hover:bg-blue-500/20 transition-colors group"
-              >
-                <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-blue-400" />
-                  <span className="text-white font-medium">Add Client</span>
-                </div>
-                <ArrowUpRight className="w-5 h-5 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
-              </Link>
-
-              <Link
-                to="/admin/projects?action=new"
                 className="flex items-center justify-between p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl hover:bg-purple-500/20 transition-colors group"
               >
                 <div className="flex items-center space-x-3">
-                  <FolderKanban className="w-5 h-5 text-purple-400" />
-                  <span className="text-white font-medium">New Project</span>
+                  <Users className="w-5 h-5 text-purple-400" />
+                  <span className="text-white font-medium">Add Client</span>
                 </div>
                 <ArrowUpRight className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
 
               <Link
-                to="/admin/invoices?action=new"
-                className="flex items-center justify-between p-3 bg-green-500/10 border border-green-500/30 rounded-xl hover:bg-green-500/20 transition-colors group"
+                to="/admin/projects?action=new"
+                className="flex items-center justify-between p-3 bg-violet-500/10 border border-violet-500/30 rounded-xl hover:bg-violet-500/20 transition-colors group"
               >
                 <div className="flex items-center space-x-3">
-                  <FileText className="w-5 h-5 text-green-400" />
+                  <FolderKanban className="w-5 h-5 text-violet-400" />
+                  <span className="text-white font-medium">New Project</span>
+                </div>
+                <ArrowUpRight className="w-5 h-5 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+              </Link>
+
+              <Link
+                to="/admin/invoices?action=new"
+                className="flex items-center justify-between p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl hover:bg-emerald-500/20 transition-colors group"
+              >
+                <div className="flex items-center space-x-3">
+                  <FileText className="w-5 h-5 text-emerald-400" />
                   <span className="text-white font-medium">Create Invoice</span>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-green-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight className="w-5 h-5 text-emerald-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
             </div>
           </div>
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <Clock className="w-5 h-5 text-orange-400" />
+              <Clock className="w-5 h-5 text-purple-400" />
               <h3 className="text-lg font-semibold text-white">Upcoming Deadlines</h3>
             </div>
             <p className="text-gray-400 text-sm">No upcoming deadlines</p>

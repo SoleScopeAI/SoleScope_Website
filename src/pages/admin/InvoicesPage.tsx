@@ -40,7 +40,7 @@ const InvoicesPage = () => {
       case 'paid':
         return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'sent':
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+        return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
       case 'draft':
         return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
       case 'overdue':
@@ -85,7 +85,7 @@ const InvoicesPage = () => {
       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
         {loading ? (
           <div className="text-center py-12">
-            <div className="w-12 h-12 border-4 border-green-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-gray-400">Loading invoices...</p>
           </div>
         ) : invoices.length === 0 ? (

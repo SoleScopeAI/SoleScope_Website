@@ -12,8 +12,8 @@ const AnalyticsPage = () => {
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-blue-500/20 rounded-xl">
-              <Users className="w-6 h-6 text-blue-400" />
+            <div className="p-3 bg-purple-500/20 rounded-xl">
+              <Users className="w-6 h-6 text-purple-400" />
             </div>
             <span className="text-green-400 text-sm flex items-center">
               <TrendingUp className="w-4 h-4 mr-1" />
@@ -54,8 +54,8 @@ const AnalyticsPage = () => {
 
         <div className="bg-white/5 border border-white/10 rounded-2xl p-6">
           <div className="flex items-center justify-between mb-4">
-            <div className="p-3 bg-orange-500/20 rounded-xl">
-              <BarChart3 className="w-6 h-6 text-orange-400" />
+            <div className="p-3 bg-violet-500/20 rounded-xl">
+              <BarChart3 className="w-6 h-6 text-violet-400" />
             </div>
             <span className="text-green-400 text-sm flex items-center">
               <TrendingUp className="w-4 h-4 mr-1" />

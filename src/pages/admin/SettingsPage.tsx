@@ -33,7 +33,7 @@ const SettingsPage = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-blue-600/20 to-cyan-600/20 text-white border border-blue-500/30'
+                      ? 'bg-gradient-to-r from-purple-600/20 to-violet-600/20 text-white border border-purple-500/30'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -57,7 +57,7 @@ const SettingsPage = () => {
                     <input
                       type="text"
                       defaultValue={adminUser?.full_name}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -66,7 +66,7 @@ const SettingsPage = () => {
                     <input
                       type="email"
                       defaultValue={adminUser?.email}
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -81,7 +81,7 @@ const SettingsPage = () => {
                   </div>
 
                   <div className="pt-4">
-                    <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all">
+                    <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all">
                       Save Changes
                     </button>
                   </div>
@@ -130,7 +130,7 @@ const SettingsPage = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Current Password</label>
                     <input
                       type="password"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -138,7 +138,7 @@ const SettingsPage = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">New Password</label>
                     <input
                       type="password"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
@@ -146,12 +146,12 @@ const SettingsPage = () => {
                     <label className="block text-sm font-medium text-gray-300 mb-2">Confirm New Password</label>
                     <input
                       type="password"
-                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                      className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
                     />
                   </div>
 
                   <div className="pt-4">
-                    <button className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all">
+                    <button className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all">
                       Update Password
                     </button>
                   </div>
@@ -181,7 +181,7 @@ const SettingsPage = () => {
                         <h3 className="text-lg font-semibold text-white">Stripe</h3>
                         <p className="text-sm text-gray-400">Payment processing and invoicing</p>
                       </div>
-                      <button className="px-4 py-2 bg-blue-600 hover:bg-blue-500 text-white rounded-lg transition-all">
+                      <button className="px-4 py-2 bg-purple-600 hover:bg-purple-500 text-white rounded-lg transition-all">
                         Connect
                       </button>
                     </div>

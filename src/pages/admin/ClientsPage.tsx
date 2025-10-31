@@ -120,7 +120,7 @@ const ClientsPage = () => {
       case 'active':
         return 'bg-green-500/20 text-green-400 border-green-500/30';
       case 'lead':
-        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+        return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
       case 'inactive':
         return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
       case 'archived':
@@ -139,7 +139,7 @@ const ClientsPage = () => {
         </div>
         <button
           onClick={() => setShowAddModal(true)}
-          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all shadow-lg"
+          className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all shadow-lg"
         >
           <Plus className="w-5 h-5" />
           <span>Add Client</span>
@@ -173,7 +173,7 @@ const ClientsPage = () => {
 
         {loading ? (
           <div className="text-center py-12">
-            <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+            <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-gray-400">Loading clients...</p>
           </div>
         ) : filteredClients.length === 0 ? (
@@ -199,7 +199,7 @@ const ClientsPage = () => {
                   <tr key={client.id} className="border-b border-white/5 hover:bg-white/5 transition-colors">
                     <td className="py-4 px-4">
                       <div className="flex items-center space-x-3">
-                        <div className="w-10 h-10 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center">
+                        <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-violet-500 rounded-lg flex items-center justify-center">
                           <Building className="w-5 h-5 text-white" />
                         </div>
                         <div>
@@ -330,7 +330,7 @@ const ClientsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-blue-600 to-cyan-600 text-white rounded-xl hover:from-blue-500 hover:to-cyan-500 transition-all"
+                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl hover:from-purple-500 hover:to-violet-500 transition-all"
                 >
                   Add Client
                 </button>

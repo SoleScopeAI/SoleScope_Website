@@ -19,8 +19,10 @@ export interface AdminLoginResponse {
 export const adminAuth = {
   async login(email: string, password: string): Promise<AdminLoginResponse> {
     try {
+      const normalizedEmail = email.toLowerCase().trim();
+
       console.log('=== ADMIN LOGIN DEBUG START ===');
-      console.log('Admin login attempt for:', email);
+      console.log('Admin login attempt for:', normalizedEmail);
       console.log('Password received (length):', password?.length);
       console.log('Supabase URL:', import.meta.env.VITE_SUPABASE_URL);
       console.log('Supabase key exists:', !!import.meta.env.VITE_SUPABASE_ANON_KEY);
@@ -28,7 +30,7 @@ export const adminAuth = {
       const { data: adminUser, error } = await supabase
         .from('admin_users')
         .select('*')
-        .eq('email', email)
+        .ilike('email', normalizedEmail)
         .eq('is_active', true)
         .maybeSingle();
 
@@ -46,7 +48,7 @@ export const adminAuth = {
       }
 
       if (!adminUser) {
-        console.warn('Login failed: No active admin user found with email:', email);
+        console.warn('Login failed: No active admin user found with email:', normalizedEmail);
         return { success: false, error: 'Invalid email or password' };
       }
 
@@ -66,7 +68,7 @@ export const adminAuth = {
       console.log('Password validation result:', isPasswordValid);
 
       if (!isPasswordValid) {
-        console.warn('Login failed: Invalid password for email:', email);
+        console.warn('Login failed: Invalid password for email:', normalizedEmail);
         return { success: false, error: 'Invalid email or password' };
       }
 

@@ -47,8 +47,9 @@ const AdminLoginPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c] relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[15%] left-[5%] w-[700px] h-[700px] bg-blue-600/10 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] bg-cyan-600/10 rounded-full blur-3xl animate-pulse" style={{ animationDelay: '1s' }}></div>
+        <div className="absolute top-[15%] left-[5%] w-[700px] h-[700px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(168, 85, 247, 0.16)' }}></div>
+        <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(217, 70, 239, 0.11)', animationDelay: '1s' }}></div>
+        <div className="absolute top-[50%] right-[20%] w-[500px] h-[500px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(124, 58, 237, 0.09)', animationDelay: '2s' }}></div>
       </div>
 
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
@@ -66,7 +67,7 @@ const AdminLoginPage = () => {
                   alt="SoleScope Admin"
                   className="w-full h-full object-contain"
                 />
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-full flex items-center justify-center">
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full flex items-center justify-center">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -99,7 +100,7 @@ const AdminLoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@solescope.co.uk"
                     required
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                 </div>
               </div>
@@ -117,7 +118,7 @@ const AdminLoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     required
-                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                   <button
                     type="button"
@@ -136,7 +137,7 @@ const AdminLoginPage = () => {
                     type="checkbox"
                     checked={rememberMe}
                     onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-blue-600 focus:ring-2 focus:ring-blue-500 focus:ring-offset-0 cursor-pointer"
+                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-purple-600 focus:ring-2 focus:ring-purple-500 focus:ring-offset-0 cursor-pointer"
                   />
                   <span className="ml-2 text-sm text-gray-300 group-hover:text-white transition-colors">
                     Remember me
@@ -147,7 +148,7 @@ const AdminLoginPage = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 bg-gradient-to-r from-blue-600 to-cyan-600 hover:from-blue-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-blue-500/50 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full py-3.5 px-6 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 {isLoading ? (
                   <>
@@ -176,7 +177,7 @@ const AdminLoginPage = () => {
             <div className="mt-6 text-center">
               <a
                 href="/"
-                className="text-sm text-blue-400 hover:text-blue-300 transition-colors font-medium"
+                className="text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium"
               >
                 Return to main website
               </a>
