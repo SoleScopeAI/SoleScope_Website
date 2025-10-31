@@ -86,9 +86,9 @@ const Navigation: React.FC<NavigationProps> = ({
       },
       {
         title: 'Client Portal',
-        path: 'https://ClientPortal.solescope.co.uk',
-        external: true,
-        description: 'External client dashboard and portal'
+        path: '/client-portal',
+        external: false,
+        description: 'Client dashboard and portal'
       }
     ]
   };
@@ -363,17 +363,14 @@ const Navigation: React.FC<NavigationProps> = ({
             ))}
             
             {/* Client Portal Button */}
-            <a
-              href="https://ClientPortal.solescope.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/client-portal"
               role="button"
-              aria-label="Open client portal in new tab"
+              aria-label="Go to client portal"
               className="btn-secondary text-sm px-6 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black rounded-lg flex items-center space-x-2 ml-4 min-h-[44px]"
             >
               <span>Client Portal</span>
-              <ExternalLink className="h-3 w-3" aria-hidden="true" />
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}

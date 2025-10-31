@@ -111,15 +111,9 @@ const PremiumFooter = () => {
                     </Link>
                   </li>
                   <li>
-                    <a
-                      href="https://ClientPortal.solescope.co.uk"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="dark-link inline-flex items-center"
-                    >
+                    <Link to="/client-portal" className="dark-link">
                       Client Portal
-                      <ExternalLink className="ml-1 h-4 w-4" />
-                    </a>
+                    </Link>
                   </li>
                 </ul>
               </div>
@@ -182,15 +176,9 @@ const PremiumFooter = () => {
                     <Link to="/blog" className="block dark-link text-sm">
                       Blog
                     </Link>
-                    <a
-                      href="https://ClientPortal.solescope.co.uk"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block dark-link inline-flex items-center text-sm"
-                    >
+                    <Link to="/client-portal" className="block dark-link text-sm">
                       Client Portal
-                      <ExternalLink className="ml-1 h-3 w-3" />
-                    </a>
+                    </Link>
                   </div>
                 )}
               </div>

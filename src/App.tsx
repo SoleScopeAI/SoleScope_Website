@@ -20,6 +20,7 @@ import CustomWebAppsPage from './pages/CustomWebAppsPage';
 import AIDashboardsPage from './pages/AIDashboardsPage';
 import BrandIdentityPage from './pages/BrandIdentityPage';
 import CustomAIAutomationsPage from './pages/CustomAIAutomationsPage';
+import ClientPortalPage from './pages/ClientPortalPage';
 
 const App = () => {
   return (
@@ -40,6 +41,7 @@ const App = () => {
           <Route path="/faq" element={<FAQPage />} />
           <Route path="/blog" element={<BlogPage />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/client-portal" element={<ClientPortalPage />} />
           <Route path="/services/ai-website-design" element={<AIWebsiteDesignPage />} />
           <Route path="/services/website-design" element={<WebsiteDesignPage />} />
           <Route path="/services/custom-webapps" element={<CustomWebAppsPage />} />

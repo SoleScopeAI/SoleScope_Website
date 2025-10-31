@@ -184,28 +184,24 @@ const PremiumNavbar = () => {
               </div>
             ))}
             
-            <a
-              href="https://ClientPortal.solescope.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/client-portal"
               role="button"
-              aria-label="Open client portal in new tab"
+              aria-label="Go to client portal"
               className="inline-flex items-center gap-2 h-9 px-4 text-sm font-medium tracking-tight rounded-full bg-purple-600/80 hover:bg-purple-600 active:bg-purple-700 text-white border border-white/10 shadow-[0_0_0_2px_rgba(168,85,247,0.25)] hover:shadow-[0_0_0_3px_rgba(168,85,247,0.35)] transition-all duration-300 focus:outline-none focus:ring-2 focus:ring-purple-300/70 focus:ring-offset-2 focus:ring-offset-black"
             >
               Client Portal
-            </a>
+            </Link>
           </div>
 
           {/* Mobile menu button */}
           <div className="lg:hidden flex items-center gap-3">
-            <a
-              href="https://ClientPortal.solescope.co.uk"
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              to="/client-portal"
               className="inline-flex items-center gap-1 h-7 px-3 text-xs font-medium rounded-full bg-purple-600/80 hover:bg-purple-600 text-white border border-white/10 transition-all duration-300"
             >
               Client Portal
-            </a>
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}

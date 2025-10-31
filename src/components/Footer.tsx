@@ -51,7 +51,7 @@ const Footer = () => {
               <li><Link to="/about" className="hover:text-white transition-colors font-light">About Us</Link></li>
               <li><Link to="/contact" className="hover:text-white transition-colors font-light">Contact</Link></li>
               <li><Link to="/faq" className="hover:text-white transition-colors font-light">FAQs</Link></li>
-              <li><a href="https://ClientPortal.solescope.co.uk" target="_blank" rel="noopener noreferrer" aria-label="Open SoleScope Marketing client portal in a new tab" className="hover:text-white transition-colors font-light">Client Portal</a></li>
+              <li><Link to="/client-portal" className="hover:text-white transition-colors font-light">Client Portal</Link></li>
               <li><Link to="/blog" className="hover:text-white transition-colors font-light">Blog</Link></li>
             </ul>
           </div>
