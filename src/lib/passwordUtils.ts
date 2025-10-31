@@ -82,6 +82,7 @@ export interface ClientUserData {
   email: string;
   fullName: string;
   createdBy: string;
+  customTemporaryPassword?: string;
 }
 
 export const clientUserService = {
@@ -92,7 +93,26 @@ export const clientUserService = {
     error?: string;
   }> {
     try {
-      const tempPassword = await passwordUtils.createTemporaryPassword();
+      let tempPassword: TemporaryPassword;
+
+      if (data.customTemporaryPassword) {
+        const validation = passwordUtils.validatePasswordStrength(data.customTemporaryPassword);
+        if (!validation.valid) {
+          return { success: false, error: validation.errors.join(', ') };
+        }
+
+        const hashedPassword = await passwordUtils.hashPassword(data.customTemporaryPassword);
+        const expiresAt = new Date();
+        expiresAt.setDate(expiresAt.getDate() + 7);
+
+        tempPassword = {
+          password: data.customTemporaryPassword,
+          hashedPassword,
+          expiresAt: expiresAt.toISOString(),
+        };
+      } else {
+        tempPassword = await passwordUtils.createTemporaryPassword();
+      }
 
       const { data: existingUser, error: checkError } = await supabase
         .from('client_users')

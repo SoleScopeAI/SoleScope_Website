@@ -75,8 +75,12 @@ const ClientsPage = () => {
   const [createPortalUser, setCreatePortalUser] = useState(false);
   const [portalUserEmail, setPortalUserEmail] = useState('');
   const [portalUserName, setPortalUserName] = useState('');
+  const [customTempPassword, setCustomTempPassword] = useState('');
+  const [useCustomPassword, setUseCustomPassword] = useState(false);
   const [generatedPassword, setGeneratedPassword] = useState<string | null>(null);
   const [passwordCopied, setPasswordCopied] = useState(false);
+  const [clientCreatedSuccess, setClientCreatedSuccess] = useState(false);
+  const [createdClientName, setCreatedClientName] = useState('');
 
   const [error, setError] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
@@ -232,7 +236,8 @@ const ClientsPage = () => {
         return;
       }
 
-      console.log('Client added successfully:', data);
+      setClientCreatedSuccess(true);
+      setCreatedClientName(data[0].company_name);
 
       if (createPortalUser && data && data[0]) {
         const clientId = data[0].id;
@@ -244,22 +249,21 @@ const ClientsPage = () => {
           email: userEmail,
           fullName: userName,
           createdBy: adminUser.id,
+          customTemporaryPassword: useCustomPassword ? customTempPassword : undefined,
         });
 
         if (userResult.success && userResult.temporaryPassword) {
           setGeneratedPassword(userResult.temporaryPassword);
         } else {
-          setError(`Client created but portal user failed: ${userResult.error}`);
+          setError(`Client created successfully, but portal user failed: ${userResult.error}`);
         }
       } else {
-        setShowAddModal(false);
-        await fetchClients();
-        resetForm();
+        setTimeout(() => {
+          setShowAddModal(false);
+          resetForm();
+        }, 2000);
       }
 
-      if (!createPortalUser) {
-        setError('');
-      }
       await fetchClients();
     } catch (error) {
       console.error('Error adding client:', error);
@@ -285,8 +289,12 @@ const ClientsPage = () => {
     setCreatePortalUser(false);
     setPortalUserEmail('');
     setPortalUserName('');
+    setCustomTempPassword('');
+    setUseCustomPassword(false);
     setGeneratedPassword(null);
     setPasswordCopied(false);
+    setClientCreatedSuccess(false);
+    setCreatedClientName('');
     setError('');
   };
 
@@ -506,16 +514,16 @@ const ClientsPage = () => {
                   <select
                     value={newClient.status}
                     onChange={(e) => setNewClient({ ...newClient, status: e.target.value })}
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 [&>option]:bg-gray-900 [&>option]:text-white"
                   >
-                    <option value="prospect">Prospect</option>
-                    <option value="lead">Lead</option>
-                    <option value="onboarding">Onboarding</option>
-                    <option value="active">Active</option>
-                    <option value="trial">Trial</option>
-                    <option value="inactive">Inactive</option>
-                    <option value="churned">Churned</option>
-                    <option value="archived">Archived</option>
+                    <option value="prospect" className="bg-gray-900 text-white">Prospect</option>
+                    <option value="lead" className="bg-gray-900 text-white">Lead</option>
+                    <option value="onboarding" className="bg-gray-900 text-white">Onboarding</option>
+                    <option value="active" className="bg-gray-900 text-white">Active</option>
+                    <option value="trial" className="bg-gray-900 text-white">Trial</option>
+                    <option value="inactive" className="bg-gray-900 text-white">Inactive</option>
+                    <option value="churned" className="bg-gray-900 text-white">Churned</option>
+                    <option value="archived" className="bg-gray-900 text-white">Archived</option>
                   </select>
                 </div>
               </div>
@@ -529,6 +537,22 @@ const ClientsPage = () => {
                   className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                 ></textarea>
               </div>
+
+              {clientCreatedSuccess && !generatedPassword && !error && (
+                <div className="p-4 bg-green-500/10 border border-green-500/30 rounded-xl">
+                  <div className="flex items-center space-x-2">
+                    <Check className="w-5 h-5 text-green-400" />
+                    <p className="text-green-400 font-medium">
+                      Client "{createdClientName}" created successfully!
+                    </p>
+                  </div>
+                  {!createPortalUser && (
+                    <p className="text-gray-300 text-sm mt-2">
+                      Closing modal in a moment...
+                    </p>
+                  )}
+                </div>
+              )}
 
               {error && (
                 <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
@@ -567,26 +591,70 @@ const ClientsPage = () => {
                 </div>
 
                 {createPortalUser && (
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4">
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Email</label>
-                      <input
-                        type="email"
-                        value={portalUserEmail}
-                        onChange={(e) => setPortalUserEmail(e.target.value)}
-                        placeholder={newClient.email || 'Enter email'}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      />
+                  <div className="space-y-4 mt-4">
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Email</label>
+                        <input
+                          type="email"
+                          value={portalUserEmail}
+                          onChange={(e) => setPortalUserEmail(e.target.value)}
+                          placeholder={newClient.email || 'Enter email'}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        />
+                      </div>
+                      <div>
+                        <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Name</label>
+                        <input
+                          type="text"
+                          value={portalUserName}
+                          onChange={(e) => setPortalUserName(e.target.value)}
+                          placeholder={newClient.contact_name || 'Enter name'}
+                          className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
+                        />
+                      </div>
                     </div>
-                    <div>
-                      <label className="block text-sm font-medium text-gray-300 mb-2">Portal User Name</label>
-                      <input
-                        type="text"
-                        value={portalUserName}
-                        onChange={(e) => setPortalUserName(e.target.value)}
-                        placeholder={newClient.contact_name || 'Enter name'}
-                        className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
-                      />
+
+                    <div className="border-t border-white/10 pt-4">
+                      <div className="flex items-center justify-between mb-3">
+                        <label className="text-sm font-medium text-gray-300">Set Custom Temporary Password</label>
+                        <button
+                          type="button"
+                          onClick={() => {
+                            setUseCustomPassword(!useCustomPassword);
+                            if (useCustomPassword) setCustomTempPassword('');
+                          }}
+                          className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
+                            useCustomPassword ? 'bg-purple-600' : 'bg-gray-600'
+                          }`}
+                        >
+                          <span
+                            className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
+                              useCustomPassword ? 'translate-x-6' : 'translate-x-1'
+                            }`}
+                          />
+                        </button>
+                      </div>
+                      {useCustomPassword ? (
+                        <div>
+                          <input
+                            type="text"
+                            value={customTempPassword}
+                            onChange={(e) => setCustomTempPassword(e.target.value)}
+                            placeholder="Enter temporary password (min 8 chars)"
+                            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 placeholder-gray-500"
+                          />
+                          <p className="text-xs text-gray-400 mt-2">
+                            Password must be at least 8 characters with uppercase, lowercase, number, and symbol
+                          </p>
+                        </div>
+                      ) : (
+                        <div className="p-3 bg-blue-500/10 border border-blue-500/30 rounded-lg">
+                          <p className="text-sm text-blue-300">
+                            A secure temporary password will be auto-generated and shown after client creation
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </div>
                 )}
