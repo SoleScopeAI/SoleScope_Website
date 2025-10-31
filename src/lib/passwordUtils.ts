@@ -149,18 +149,34 @@ export const clientUserService = {
         return { success: false, error: insertError.message };
       }
 
-      await supabase.from('activity_logs').insert({
-        admin_user_id: data.createdBy,
-        action_type: 'client_user_created',
-        entity_type: 'client_user',
-        entity_id: newUser.id,
-        description: `Created client portal user: ${data.email}`,
-        metadata: {
-          client_id: data.clientId,
-          email: data.email,
-          full_name: data.fullName,
-        },
-      });
+      // Log activity (non-blocking - don't fail user creation if logging fails)
+      try {
+        // Verify admin user exists before logging
+        const { data: adminExists } = await supabase
+          .from('admin_users')
+          .select('id')
+          .eq('id', data.createdBy)
+          .maybeSingle();
+
+        if (adminExists) {
+          await supabase.from('activity_logs').insert({
+            admin_user_id: data.createdBy,
+            action_type: 'client_user_created',
+            entity_type: 'client_user',
+            entity_id: newUser.id,
+            description: `Created client portal user: ${data.email}`,
+            metadata: {
+              client_id: data.clientId,
+              email: data.email,
+              full_name: data.fullName,
+            },
+          });
+        } else {
+          console.warn('Activity log skipped: admin user not found');
+        }
+      } catch (logError) {
+        console.error('Failed to log activity (non-critical):', logError);
+      }
 
       return {
         success: true,
@@ -202,17 +218,30 @@ export const clientUserService = {
         .single();
 
       if (user) {
-        await supabase.from('activity_logs').insert({
-          admin_user_id: adminUserId,
-          action_type: 'client_password_reset',
-          entity_type: 'client_user',
-          entity_id: userId,
-          description: `Reset password for client user: ${user.email}`,
-          metadata: {
-            client_id: user.client_id,
-            email: user.email,
-          },
-        });
+        // Log activity (non-blocking)
+        try {
+          const { data: adminExists } = await supabase
+            .from('admin_users')
+            .select('id')
+            .eq('id', adminUserId)
+            .maybeSingle();
+
+          if (adminExists) {
+            await supabase.from('activity_logs').insert({
+              admin_user_id: adminUserId,
+              action_type: 'client_password_reset',
+              entity_type: 'client_user',
+              entity_id: userId,
+              description: `Reset password for client user: ${user.email}`,
+              metadata: {
+                client_id: user.client_id,
+                email: user.email,
+              },
+            });
+          }
+        } catch (logError) {
+          console.error('Failed to log activity (non-critical):', logError);
+        }
       }
 
       return {
@@ -294,13 +323,26 @@ export const clientUserService = {
         .single();
 
       if (user) {
-        await supabase.from('activity_logs').insert({
-          admin_user_id: adminUserId,
-          action_type: isActive ? 'client_user_activated' : 'client_user_deactivated',
-          entity_type: 'client_user',
-          entity_id: userId,
-          description: `${isActive ? 'Activated' : 'Deactivated'} client user: ${user.email}`,
-        });
+        // Log activity (non-blocking)
+        try {
+          const { data: adminExists } = await supabase
+            .from('admin_users')
+            .select('id')
+            .eq('id', adminUserId)
+            .maybeSingle();
+
+          if (adminExists) {
+            await supabase.from('activity_logs').insert({
+              admin_user_id: adminUserId,
+              action_type: isActive ? 'client_user_activated' : 'client_user_deactivated',
+              entity_type: 'client_user',
+              entity_id: userId,
+              description: `${isActive ? 'Activated' : 'Deactivated'} client user: ${user.email}`,
+            });
+          }
+        } catch (logError) {
+          console.error('Failed to log activity (non-critical):', logError);
+        }
       }
 
       return { success: true };

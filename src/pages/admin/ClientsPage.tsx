@@ -222,15 +222,20 @@ const ClientsPage = () => {
         return;
       }
 
+      // Log activity (non-blocking)
       if (adminUser?.id) {
-        await supabase.from('activity_logs').insert({
-          admin_user_id: adminUser.id,
-          action_type: 'client_updated',
-          entity_type: 'client',
-          entity_id: selectedClient.id,
-          description: `Updated client: ${editClient.company_name}`,
-          metadata: { client_name: editClient.company_name },
-        });
+        try {
+          await supabase.from('activity_logs').insert({
+            admin_user_id: adminUser.id,
+            action_type: 'client_updated',
+            entity_type: 'client',
+            entity_id: selectedClient.id,
+            description: `Updated client: ${editClient.company_name}`,
+            metadata: { client_name: editClient.company_name },
+          });
+        } catch (logError) {
+          console.error('Failed to log activity (non-critical):', logError);
+        }
       }
 
       await fetchClients();
@@ -268,15 +273,20 @@ const ClientsPage = () => {
         return;
       }
 
+      // Log activity (non-blocking)
       if (adminUser?.id) {
-        await supabase.from('activity_logs').insert({
-          admin_user_id: adminUser.id,
-          action_type: 'client_deleted',
-          entity_type: 'client',
-          entity_id: selectedClient.id,
-          description: `Deleted client: ${selectedClient.company_name}`,
-          metadata: { client_name: selectedClient.company_name, client_email: selectedClient.email },
-        });
+        try {
+          await supabase.from('activity_logs').insert({
+            admin_user_id: adminUser.id,
+            action_type: 'client_deleted',
+            entity_type: 'client',
+            entity_id: selectedClient.id,
+            description: `Deleted client: ${selectedClient.company_name}`,
+            metadata: { client_name: selectedClient.company_name, client_email: selectedClient.email },
+          });
+        } catch (logError) {
+          console.error('Failed to log activity (non-critical):', logError);
+        }
       }
 
       setDeleteSuccess(true);
