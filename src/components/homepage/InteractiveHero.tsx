@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Link } from 'react-router-dom';
-import { ArrowRight, Play, Globe, Code, BarChart3, Palette, Bot, CheckCircle, Clock, Shield, Server } from 'lucide-react';
+import { ArrowRight, Play, Globe, Code, BarChart3, Palette, Bot, CheckCircle, Clock, Shield, Server, FileText, BookOpen, Calendar } from 'lucide-react';
 
 const InteractiveHero = () => {
   const [activeService, setActiveService] = useState<number | null>(null);
@@ -108,30 +108,44 @@ const InteractiveHero = () => {
     }
   ];
 
-  const serviceLevelFacts = [
+  const trustChips = [
     {
-      label: 'Build window',
-      value: '2–6 weeks',
-      tooltip: 'Estimated; varies by scope & assets.',
+      text: 'Build window: 2–6 weeks',
       icon: Clock
     },
     {
-      label: 'Support',
-      value: '≤ 1 business day',
-      tooltip: 'Business hours; urgent issues prioritized.',
+      text: 'Support: ≤ 1 business day',
       icon: CheckCircle
     },
     {
-      label: 'Hosting SLA',
-      value: '99.9%+ (provider)',
-      tooltip: "Per hosting provider's SLA; not a guarantee of zero downtime.",
+      text: 'Hosting SLA: 99.9%+ (provider)',
       icon: Server
     },
     {
-      label: 'Data privacy',
-      value: 'UK/EU-friendly',
-      tooltip: 'We follow sensible data-handling practices; you control your data.',
+      text: 'Data privacy: UK/EU-friendly',
       icon: Shield
+    },
+    {
+      text: 'Boutique capacity: 2 new builds/month',
+      icon: Bot
+    }
+  ];
+
+  const resourceLinks = [
+    {
+      label: 'Brand Deck (PDF)',
+      icon: FileText,
+      path: '/files/solescope-brand.pdf'
+    },
+    {
+      label: 'Service Catalog (PDF)',
+      icon: BookOpen,
+      path: '/files/solescope-catalog.pdf'
+    },
+    {
+      label: 'Process & Timelines (PDF)',
+      icon: Calendar,
+      path: '/files/solescope-process.pdf'
     }
   ];
 
@@ -142,10 +156,16 @@ const InteractiveHero = () => {
       role="region"
     >
 
+      {/* Subtle vignette overlay for text legibility */}
+      <div className="absolute inset-0 z-0 pointer-events-none">
+        <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/10"></div>
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[80%] h-[70%] bg-black/5 blur-3xl rounded-full"></div>
+      </div>
+
       {portfolioImages.map((example) => (
         <motion.div
           key={example.id}
-          className={`absolute ${example.size} opacity-20 pointer-events-none z-0`}
+          className={`absolute ${example.size} opacity-15 pointer-events-none z-0`}
           style={{
             ...example.position,
             transform: `rotate(${example.rotation})`,
@@ -153,7 +173,7 @@ const InteractiveHero = () => {
           aria-hidden="true"
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{
-            opacity: [0.20, 0.25, 0.20],
+            opacity: [0.15, 0.20, 0.15],
             scale: [0.95, 1.05, 0.95],
             y: [0, -20, 0]
           }}
@@ -183,56 +203,54 @@ const InteractiveHero = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <div className="mb-5 flex justify-end">
-            <span className="inline-flex items-center rounded-full border border-white/10 bg-purple-600/15 px-3 py-1 text-xs font-medium text-purple-200">
-              Limited capacity: accepting up to 2 new projects this month
-            </span>
-          </div>
-
           <motion.div
-            className="mt-2"
+            className="mb-8"
             initial={{ opacity: 0, scale: 0.9 }}
             animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.5, delay: 0.2 }}
+            transition={{ duration: 0.5, delay: 0.1 }}
           >
             <span className="inline-flex items-center rounded-full border border-white/10 bg-white/5 px-3 py-1 text-xs font-medium text-white/80">
               Boutique AI Web & Automation Studio • UK
             </span>
           </motion.div>
 
-          <h1
+          <motion.h1
             id="hero-heading"
-            className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-[1.05] tracking-tight text-white"
+            className="text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight md:leading-tight tracking-tight text-white mb-6"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.2 }}
           >
             Where Human Design Meets Intelligent Automation.
-          </h1>
+          </motion.h1>
 
           <motion.p
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
+            transition={{ duration: 0.8, delay: 0.35 }}
+            className="mt-6 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg leading-relaxed text-white/80 mb-8"
           >
-            We combine handcrafted web design with advanced automation — connecting bookings, emails, reviews, and workflows into one seamless system. Professional. Personal. Powered by AI.
+            Handcrafted websites with concierge automation—bookings, emails, reviews, and workflows—woven into one seamless experience. Professional. Personal. Quietly powerful.
           </motion.p>
 
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3 justify-center"
+            transition={{ duration: 0.8, delay: 0.5 }}
+            className="mt-10 flex flex-col sm:flex-row sm:items-center gap-4 justify-center"
           >
             <Link
               to="/contact"
-              className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-105 transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30"
+              aria-label="Book a 15-minute fit call with SoleScope"
+              className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-[1.02] transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30 focus:outline-none focus:ring-2 focus:ring-[#6C3EF0] focus:ring-offset-2 focus:ring-offset-black"
             >
-              <span>Book a 15-min Fit Call</span>
-              <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
+              <span>Book a 15-min Fit Call →</span>
             </Link>
 
             <Link
               to="/services"
-              className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center"
+              aria-label="View our case demos and portfolio"
+              className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white hover:scale-[1.02] transition-all duration-300 flex items-center justify-center focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-black"
             >
               View Case Demos
               <Play className="ml-2 h-5 w-5" />
@@ -242,48 +260,80 @@ const InteractiveHero = () => {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            transition={{ duration: 0.8, delay: 0.8 }}
-            className="mt-2 text-center"
+            transition={{ duration: 0.8, delay: 0.65 }}
+            className="mt-4 text-center"
           >
             <p className="text-xs text-white/60">
-              Transparent pricing • Concierge onboarding • No lock-ins
+              No hard sells. Transparent pricing and concierge onboarding.
+            </p>
+          </motion.div>
+
+          {/* Resource Links */}
+          <motion.div
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.75 }}
+            className="mt-6 flex flex-wrap items-center justify-center gap-6"
+          >
+            {resourceLinks.map((link, index) => (
+              <a
+                key={link.label}
+                href={link.path}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="group flex items-center gap-2 text-xs text-white/50 hover:text-white/80 transition-colors duration-300"
+                aria-label={link.label}
+              >
+                <link.icon className="h-3.5 w-3.5" />
+                <span>{link.label}</span>
+              </a>
+            ))}
+          </motion.div>
+
+          {/* Trust Chips */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="mt-12 mb-8"
+          >
+            <div className="flex flex-wrap items-center justify-center gap-3 md:gap-4 overflow-x-auto snap-x snap-mandatory md:overflow-visible px-4 md:px-0">
+              {trustChips.map((chip, index) => (
+                <motion.div
+                  key={chip.text}
+                  initial={{ opacity: 0, scale: 0.9 }}
+                  animate={{ opacity: 1, scale: 1 }}
+                  transition={{ duration: 0.5, delay: 0.85 + index * 0.05 }}
+                  className="flex-shrink-0 snap-center"
+                >
+                  <div className="flex items-center gap-2 px-4 py-2.5 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm hover:bg-white/8 hover:border-white/20 transition-all duration-300">
+                    <chip.icon className="h-4 w-4 text-slate-400" />
+                    <span className="text-sm font-medium text-white/80 whitespace-nowrap">
+                      {chip.text}
+                    </span>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </motion.div>
+
+          {/* AI Disclosure */}
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ duration: 0.8, delay: 1 }}
+            className="mt-4 text-center"
+          >
+            <p className="text-xs text-white/50 italic">
+              Discreetly enhanced by modern AI to save you time, not your brand voice.
             </p>
           </motion.div>
 
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1 }}
-            className="mt-8 md:mt-9"
-          >
-            <div className="rounded-2xl border border-white/10 bg-slate-900/40 backdrop-blur shadow-lg">
-              <ul className="grid grid-cols-2 sm:grid-cols-4 divide-y divide-white/5 sm:divide-y-0 sm:divide-x sm:divide-white/5 sm:[&>*]:px-5 py-3 sm:py-4 gap-y-2">
-                {serviceLevelFacts.map((fact, index) => (
-                  <li
-                    key={fact.label}
-                    className="group relative text-center px-4 sm:px-0 hover:bg-white/5 transition-all duration-300"
-                    title={fact.tooltip}
-                  >
-                    <fact.icon className="h-5 w-5 text-slate-400 mx-auto mb-2" />
-                    <p className="text-xs text-white/60 mb-1">{fact.label}</p>
-                    <p className="text-sm sm:text-base font-semibold text-white leading-tight">{fact.value}</p>
-                    <span className="sr-only">{fact.tooltip}</span>
-                  </li>
-                ))}
-              </ul>
-              <div className="px-4 pb-3">
-                <p className="text-[11px] text-white/50">
-                  *Examples and timelines are indicative and may vary by project. We do not guarantee rankings, traffic, or revenue.
-                </p>
-              </div>
-            </div>
-          </motion.div>
-
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 1.2 }}
-            className="max-w-6xl mx-auto mt-8"
+            transition={{ duration: 0.8, delay: 1.1 }}
+            className="max-w-6xl mx-auto mt-16"
           >
             <p className="text-sm text-slate-400 mb-4 uppercase tracking-wide">Our Services</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
