@@ -521,11 +521,64 @@ const ContactPage = () => {
                 </h2>
               </div>
 
-              <p className="text-white mb-8 leading-relaxed">
-                Specialising in practical AI and modern web design for UK sole traders and small service businesses.
+              <p className="text-white/90 mb-6 leading-relaxed">
+                Founder of SoleScope, specialising in practical AI and modern web design for UK sole traders and small service businesses.
               </p>
 
-              <div className="space-y-6">
+              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                  <Target className="h-5 w-5 text-purple-400 mr-2" />
+                  My Approach
+                </h3>
+                <p className="text-white/80 text-sm leading-relaxed mb-3">
+                  I work directly with you to understand your unique business challenges and create tailored digital solutions that deliver real results. No sales teams, no middlemen—just straightforward expertise and honest guidance.
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  With a background in software engineering and a passion for emerging AI technologies, I help small businesses leverage modern tools without the complexity or enterprise-level costs.
+                </p>
+              </div>
+
+              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                  <Zap className="h-5 w-5 text-purple-400 mr-2" />
+                  What I Bring
+                </h3>
+                <ul className="space-y-2 text-white/80 text-sm">
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    <span>Hands-on technical expertise in web development and AI integration</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    <span>Understanding of small business operations and real-world constraints</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    <span>Clear communication without technical jargon</span>
+                  </li>
+                  <li className="flex items-start">
+                    <span className="text-purple-400 mr-2">•</span>
+                    <span>Commitment to long-term partnerships and ongoing support</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
+                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
+                  <Shield className="h-5 w-5 text-purple-400 mr-2" />
+                  Why Work With Me
+                </h3>
+                <p className="text-white/80 text-sm leading-relaxed mb-3">
+                  Every project gets my personal attention from initial consultation through to launch and beyond. I believe in building genuine relationships with clients and creating solutions that actually solve problems, not just check boxes.
+                </p>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Whether you're just starting out or looking to upgrade your existing digital presence, I'll guide you through the process with transparency, realistic timelines, and a focus on delivering value.
+                </p>
+              </div>
+
+              <div className="space-y-4 border-t border-white/10 pt-6">
+                <h3 className="text-lg font-semibold text-white mb-4">Contact Information</h3>
+
                 <div className="flex items-start space-x-3">
                   <Mail className="h-5 w-5 text-purple-400 mt-1" />
                   <div>
@@ -537,7 +590,7 @@ const ContactPage = () => {
                 <div className="flex items-start space-x-3">
                   <Clock className="h-5 w-5 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Response</p>
+                    <p className="text-white font-medium">Response Time</p>
                     <p className="text-white/80">{'Typically < 24h'}</p>
                   </div>
                 </div>
@@ -545,7 +598,7 @@ const ContactPage = () => {
                 <div className="flex items-start space-x-3">
                   <Calendar className="h-5 w-5 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Hours</p>
+                    <p className="text-white font-medium">Business Hours</p>
                     <p className="text-white/80">Mon–Fri 09:00–17:00 (UK)</p>
                   </div>
                 </div>
@@ -553,7 +606,7 @@ const ContactPage = () => {
                 <div className="flex items-start space-x-3">
                   <MapPin className="h-5 w-5 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Area</p>
+                    <p className="text-white font-medium">Service Area</p>
                     <p className="text-white/80">UK-wide • Hatfield & Sandy bases</p>
                   </div>
                 </div>
