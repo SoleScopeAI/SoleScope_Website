@@ -13,7 +13,7 @@
 /* PAGE: base deep space (Layer A) */
 .about-surface{ position:relative; min-height:100svh; color:#fff; }
 .about-surface::before{
-  content:""; position:fixed; inset:0; z-index:-2; pointer-events:none;
+  content:""; position:fixed; inset:0; z-index:-10; pointer-events:none;
   background:
     radial-gradient(1200px 800px at 18% 22%, var(--nebula-3), transparent 62%),
     radial-gradient(1000px 700px at 82% 74%, var(--nebula-2), transparent 60%),
@@ -24,7 +24,7 @@
 
 /* PAGE: parallax nebula + sparse stars (Layer B) */
 .about-surface::after{
-  content:""; position:fixed; inset:-5% -5%; z-index:-1; pointer-events:none;
+  content:""; position:fixed; inset:-5% -5%; z-index:-9; pointer-events:none;
   /* large faint nebula ribbons */
   background:
     radial-gradient(1400px 900px at 12% 18%, var(--nebula-1), transparent 65%),
@@ -46,6 +46,12 @@
   /* slow drift for depth (GPU-friendly) */
   animation: aboutDrift 60s linear infinite;
   transform: translate3d(0,0,0);
+}
+
+/* Ensure all direct children maintain proper stacking */
+.about-surface > *{
+  position: relative;
+  z-index: 1;
 }
 
 /* SECTION: brighter galaxy overlay behind business cards only */

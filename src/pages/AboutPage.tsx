@@ -149,9 +149,9 @@ const AboutPage = () => {
   ];
 
   return (
-    <main id="about" className="about-surface pt-24 pb-20">
+    <main id="about" className="about-surface pt-24 pb-16">
       {/* Hero Section - Founder Overview */}
-      <section className="py-16 md:py-24">
+      <section className="py-12 md:py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -224,7 +224,7 @@ const AboutPage = () => {
       </section>
 
       {/* Beyond the Basics - Expandable Insight */}
-      <section className="py-16">
+      <section className="py-12">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -284,7 +284,7 @@ const AboutPage = () => {
       </section>
 
       {/* Core Pillars Section */}
-      <section className="about-cards-surface py-20">
+      <section className="about-cards-surface py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -361,7 +361,7 @@ const AboutPage = () => {
       </section>
 
       {/* Professional Timeline */}
-      <section className="py-20">
+      <section className="py-16">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -492,7 +492,7 @@ const AboutPage = () => {
       </section>
 
       {/* Studio Values - Accordion */}
-      <section ref={ref} className="about-cards-surface py-20">
+      <section ref={ref} className="about-cards-surface py-16">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
@@ -550,7 +550,7 @@ const AboutPage = () => {
       </section>
 
       {/* Final CTA Section */}
-      <section className="py-20">
+      <section className="py-12">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
