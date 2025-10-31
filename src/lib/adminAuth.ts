@@ -115,6 +115,7 @@ export const adminAuth = {
     try {
       localStorage.removeItem('adminUser');
       localStorage.removeItem('adminSession');
+      localStorage.removeItem('userType');
     } catch (error) {
       console.error('Logout error:', error);
     }

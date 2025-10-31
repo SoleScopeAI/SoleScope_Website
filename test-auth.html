@@ -1,0 +1,261 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Auth Test - SoleScope</title>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, sans-serif;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 20px;
+      background: #0a0a0a;
+      color: #fff;
+    }
+    .test-section {
+      background: #1a1a1a;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 8px;
+      border: 1px solid #333;
+    }
+    button {
+      background: #7c3aed;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 6px;
+      cursor: pointer;
+      margin: 5px;
+    }
+    button:hover {
+      background: #6d28d9;
+    }
+    .result {
+      background: #0a0a0a;
+      padding: 15px;
+      margin-top: 10px;
+      border-radius: 6px;
+      border: 1px solid #333;
+      font-family: monospace;
+      font-size: 14px;
+      white-space: pre-wrap;
+      overflow-x: auto;
+    }
+    .success { color: #10b981; }
+    .error { color: #ef4444; }
+    .info { color: #3b82f6; }
+    input {
+      background: #0a0a0a;
+      border: 1px solid #333;
+      color: white;
+      padding: 8px 12px;
+      border-radius: 6px;
+      width: 300px;
+      margin: 5px 0;
+    }
+    h1 { color: #7c3aed; }
+    h2 { color: #a78bfa; }
+  </style>
+</head>
+<body>
+  <h1>🔐 SoleScope Auth Test</h1>
+  <p>This page tests the authentication flow for the client portal.</p>
+
+  <div class="test-section">
+    <h2>1. Database Connection Test</h2>
+    <button onclick="testConnection()">Test Connection</button>
+    <div id="connectionResult" class="result"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>2. Admin User Test</h2>
+    <input type="email" id="adminEmail" placeholder="Admin Email" value="Kevin@solescope.co.uk">
+    <input type="password" id="adminPassword" placeholder="Admin Password">
+    <br>
+    <button onclick="testAdminLogin()">Test Admin Login</button>
+    <div id="adminResult" class="result"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>3. Client User Test</h2>
+    <input type="email" id="clientEmail" placeholder="Client Email" value="kevin@ukbladesharpening.com">
+    <input type="password" id="clientPassword" placeholder="Client Password">
+    <br>
+    <button onclick="testClientLogin()">Test Client Login</button>
+    <div id="clientResult" class="result"></div>
+  </div>
+
+  <div class="test-section">
+    <h2>4. LocalStorage Test</h2>
+    <button onclick="checkLocalStorage()">Check LocalStorage</button>
+    <button onclick="clearLocalStorage()">Clear All LocalStorage</button>
+    <div id="storageResult" class="result"></div>
+  </div>
+
+  <script>
+    const SUPABASE_URL = 'https://truohfrncofsutgdqlxz.supabase.co';
+    const SUPABASE_KEY = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6InRydW9oZnJuY29mc3V0Z2RxbHh6Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3NjEyMjk1MzYsImV4cCI6MjA3NjgwNTUzNn0.SdxiLORd4db_y1AtVA_TPGHxeVr7RdSTdBvR2zIpcD0';
+
+    const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+
+    function log(elementId, message, type = 'info') {
+      const element = document.getElementById(elementId);
+      const className = type === 'success' ? 'success' : type === 'error' ? 'error' : 'info';
+      const timestamp = new Date().toLocaleTimeString();
+      element.innerHTML = `<span class="${className}">[${timestamp}] ${message}</span>`;
+    }
+
+    async function testConnection() {
+      try {
+        log('connectionResult', 'Testing connection...', 'info');
+
+        const { data, error } = await supabase
+          .from('admin_users')
+          .select('count')
+          .limit(1);
+
+        if (error) {
+          log('connectionResult', `❌ Connection failed: ${error.message}`, 'error');
+        } else {
+          log('connectionResult', '✅ Connection successful! Database is reachable.', 'success');
+        }
+      } catch (err) {
+        log('connectionResult', `❌ Error: ${err.message}`, 'error');
+      }
+    }
+
+    async function testAdminLogin() {
+      try {
+        const email = document.getElementById('adminEmail').value;
+        const password = document.getElementById('adminPassword').value;
+
+        if (!email || !password) {
+          log('adminResult', '⚠️ Please enter both email and password', 'error');
+          return;
+        }
+
+        log('adminResult', 'Testing admin login...', 'info');
+
+        const { data, error } = await supabase
+          .from('admin_users')
+          .select('id, email, full_name, role, is_active')
+          .ilike('email', email)
+          .eq('is_active', true)
+          .maybeSingle();
+
+        if (error) {
+          log('adminResult', `❌ Query error: ${error.message}`, 'error');
+          return;
+        }
+
+        if (!data) {
+          log('adminResult', '❌ No admin user found with that email', 'error');
+          return;
+        }
+
+        log('adminResult',
+          `✅ Admin user found!\n` +
+          `ID: ${data.id}\n` +
+          `Email: ${data.email}\n` +
+          `Name: ${data.full_name}\n` +
+          `Role: ${data.role}\n` +
+          `Active: ${data.is_active}\n\n` +
+          `Note: Password verification happens in the app with bcrypt.`,
+          'success'
+        );
+      } catch (err) {
+        log('adminResult', `❌ Error: ${err.message}`, 'error');
+      }
+    }
+
+    async function testClientLogin() {
+      try {
+        const email = document.getElementById('clientEmail').value;
+        const password = document.getElementById('clientPassword').value;
+
+        if (!email || !password) {
+          log('clientResult', '⚠️ Please enter both email and password', 'error');
+          return;
+        }
+
+        log('clientResult', 'Testing client login...', 'info');
+
+        const { data, error } = await supabase
+          .from('client_users')
+          .select(`
+            id,
+            email,
+            full_name,
+            client_id,
+            is_active,
+            clients (
+              company_name,
+              status
+            )
+          `)
+          .eq('email', email)
+          .eq('is_active', true)
+          .maybeSingle();
+
+        if (error) {
+          log('clientResult', `❌ Query error: ${error.message}`, 'error');
+          return;
+        }
+
+        if (!data) {
+          log('clientResult', '❌ No client user found with that email', 'error');
+          return;
+        }
+
+        log('clientResult',
+          `✅ Client user found!\n` +
+          `ID: ${data.id}\n` +
+          `Email: ${data.email}\n` +
+          `Name: ${data.full_name}\n` +
+          `Client ID: ${data.client_id}\n` +
+          `Active: ${data.is_active}\n` +
+          `Company: ${data.clients?.company_name || 'N/A'}\n\n` +
+          `Note: Password verification happens in the app with bcrypt.`,
+          'success'
+        );
+      } catch (err) {
+        log('clientResult', `❌ Error: ${err.message}`, 'error');
+      }
+    }
+
+    function checkLocalStorage() {
+      const items = {
+        adminUser: localStorage.getItem('adminUser'),
+        adminSession: localStorage.getItem('adminSession'),
+        clientUser: localStorage.getItem('clientUser'),
+        clientSession: localStorage.getItem('clientSession'),
+        userType: localStorage.getItem('userType')
+      };
+
+      let output = 'LocalStorage Contents:\n\n';
+      for (const [key, value] of Object.entries(items)) {
+        if (value) {
+          output += `${key}: ${value.substring(0, 100)}${value.length > 100 ? '...' : ''}\n\n`;
+        } else {
+          output += `${key}: (not set)\n\n`;
+        }
+      }
+
+      log('storageResult', output, 'info');
+    }
+
+    function clearLocalStorage() {
+      localStorage.clear();
+      log('storageResult', '✅ All localStorage cleared!', 'success');
+      setTimeout(checkLocalStorage, 500);
+    }
+
+    window.addEventListener('load', () => {
+      checkLocalStorage();
+    });
+  </script>
+</body>
+</html>

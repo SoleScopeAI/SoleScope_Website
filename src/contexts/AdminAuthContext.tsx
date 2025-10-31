@@ -37,15 +37,20 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   const checkSession = async () => {
     setLoading(true);
     try {
-      if (adminAuth.isSessionValid()) {
+      const userType = localStorage.getItem('userType');
+
+      if (userType === 'admin' && adminAuth.isSessionValid()) {
         const user = await adminAuth.getCurrentUser();
         setAdminUser(user);
-      } else {
+      } else if (userType === 'admin') {
         await adminAuth.logout();
+        setAdminUser(null);
+      } else {
         setAdminUser(null);
       }
     } catch (error) {
-      console.error('Session check error:', error);
+      console.error('Admin session check error:', error);
+      await adminAuth.logout();
       setAdminUser(null);
     } finally {
       setLoading(false);

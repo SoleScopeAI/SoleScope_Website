@@ -12,18 +12,26 @@ const ClientPortalPage = () => {
   const [rememberMe, setRememberMe] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
+  const [checkingAuth, setCheckingAuth] = useState(true);
 
-  const { clientUser, login: clientLogin } = useClientAuth();
-  const { adminUser, login: adminLogin } = useAdminAuth();
+  const { clientUser, login: clientLogin, loading: clientLoading } = useClientAuth();
+  const { adminUser, login: adminLogin, loading: adminLoading } = useAdminAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
+    if (clientLoading || adminLoading) {
+      setCheckingAuth(true);
+      return;
+    }
+
+    setCheckingAuth(false);
+
     if (clientUser) {
       navigate('/client/dashboard', { replace: true });
     } else if (adminUser) {
       navigate('/admin/dashboard', { replace: true });
     }
-  }, [clientUser, adminUser, navigate]);
+  }, [clientUser, adminUser, navigate, clientLoading, adminLoading]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -38,6 +46,7 @@ const ClientPortalPage = () => {
       if (adminResponse.success) {
         console.log('Admin login successful, navigating to dashboard');
         localStorage.setItem('userType', 'admin');
+        navigate('/admin/dashboard', { replace: true });
         return;
       }
 
@@ -46,6 +55,8 @@ const ClientPortalPage = () => {
 
       if (clientResponse.success) {
         console.log('Client login successful, navigating to dashboard');
+        localStorage.setItem('userType', 'client');
+        navigate('/client/dashboard', { replace: true });
         return;
       }
 
@@ -57,6 +68,17 @@ const ClientPortalPage = () => {
       setIsLoading(false);
     }
   };
+
+  if (checkingAuth) {
+    return (
+      <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c] flex items-center justify-center">
+        <div className="text-center">
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mb-4"></div>
+          <p className="text-gray-400">Loading portal...</p>
+        </div>
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c] relative overflow-hidden">
