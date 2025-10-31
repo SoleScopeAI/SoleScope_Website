@@ -141,7 +141,7 @@ const ClientDashboardPage = () => {
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.2 }}
+          transition={{ delay: 0.25 }}
           className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
         >
           <div className="flex items-center justify-between mb-4">
@@ -183,6 +183,17 @@ const ClientDashboardPage = () => {
             {clientUser?.client_data?.company_name}
           </p>
           <p className="text-gray-400 text-sm capitalize">{clientUser?.client_data?.status || 'Active'}</p>
+        </motion.div>
+      </div>
+
+      <div className="space-y-8">
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.5 }}
+        >
+          <h2 className="text-2xl font-bold text-white mb-6">Your Products & Services</h2>
+          <ProductDashboards subscriptions={subscriptions} />
         </motion.div>
       </div>
 

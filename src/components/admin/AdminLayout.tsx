@@ -14,7 +14,8 @@ import {
   ChevronLeft,
   Bell,
   Search,
-  User
+  User,
+  Package
 } from 'lucide-react';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
 
@@ -28,6 +29,7 @@ const navItems: NavItem[] = [
   { name: 'Dashboard', path: '/admin/dashboard', icon: LayoutDashboard },
   { name: 'Clients', path: '/admin/clients', icon: Users },
   { name: 'Projects', path: '/admin/projects', icon: FolderKanban },
+  { name: 'Products', path: '/admin/products', icon: Package },
   { name: 'Invoices', path: '/admin/invoices', icon: FileText },
   { name: 'Analytics', path: '/admin/analytics', icon: BarChart3 },
   { name: 'Settings', path: '/admin/settings', icon: Settings },

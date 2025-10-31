@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion } from 'framer-motion';
-import { Users, Plus, Search, Filter, Mail, Phone, Building, MoreVertical, Edit, Trash2, Eye } from 'lucide-react';
+import { Users, Plus, Search, Filter, Mail, Phone, Building, MoreVertical, Edit, Trash2, Eye, Package, X } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
 
@@ -16,6 +16,34 @@ interface Client {
   created_at: string;
 }
 
+interface Product {
+  id: string;
+  name: string;
+  slug: string;
+  category: string;
+  base_price: number;
+  billing_type: string;
+}
+
+interface ProductPackage {
+  id: string;
+  name: string;
+  price: number;
+  billing_cycle: string;
+}
+
+interface Subscription {
+  id: string;
+  product_id: string | null;
+  package_id: string | null;
+  status: string;
+  amount: number;
+  billing_cycle: string;
+  start_date: string;
+  product?: Product;
+  package?: ProductPackage;
+}
+
 const ClientsPage = () => {
   const [clients, setClients] = useState<Client[]>([]);
   const [filteredClients, setFilteredClients] = useState<Client[]>([]);
@@ -23,6 +51,11 @@ const ClientsPage = () => {
   const [searchTerm, setSearchTerm] = useState('');
   const [statusFilter, setStatusFilter] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
+  const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
+  const [selectedClient, setSelectedClient] = useState<Client | null>(null);
+  const [clientSubscriptions, setClientSubscriptions] = useState<Subscription[]>([]);
+  const [products, setProducts] = useState<Product[]>([]);
+  const [packages, setPackages] = useState<ProductPackage[]>([]);
   const { adminUser } = useAdminAuth();
 
   const [newClient, setNewClient] = useState({
@@ -40,6 +73,7 @@ const ClientsPage = () => {
 
   useEffect(() => {
     fetchClients();
+    fetchProductsAndPackages();
   }, []);
 
   useEffect(() => {
@@ -60,6 +94,74 @@ const ClientsPage = () => {
       console.error('Error fetching clients:', error);
     } finally {
       setLoading(false);
+    }
+  };
+
+  const fetchProductsAndPackages = async () => {
+    try {
+      const [productsRes, packagesRes] = await Promise.all([
+        supabase.from('products').select('id, name, slug, category, base_price, billing_type').eq('is_active', true),
+        supabase.from('packages').select('id, name, price, billing_cycle').eq('is_active', true),
+      ]);
+
+      if (productsRes.data) setProducts(productsRes.data);
+      if (packagesRes.data) setPackages(packagesRes.data);
+    } catch (error) {
+      console.error('Error fetching products/packages:', error);
+    }
+  };
+
+  const fetchClientSubscriptions = async (clientId: string) => {
+    try {
+      const { data, error } = await supabase
+        .from('client_subscriptions')
+        .select(`
+          *,
+          product:products(id, name, slug, category, base_price, billing_type),
+          package:packages(id, name, price, billing_cycle)
+        `)
+        .eq('client_id', clientId)
+        .order('created_at', { ascending: false });
+
+      if (error) throw error;
+      setClientSubscriptions(data || []);
+    } catch (error) {
+      console.error('Error fetching subscriptions:', error);
+    }
+  };
+
+  const handleManageSubscriptions = async (client: Client) => {
+    setSelectedClient(client);
+    await fetchClientSubscriptions(client.id);
+    setShowSubscriptionModal(true);
+  };
+
+  const handleAddSubscription = async (type: 'product' | 'package', id: string) => {
+    if (!selectedClient) return;
+
+    try {
+      const item = type === 'product'
+        ? products.find(p => p.id === id)
+        : packages.find(p => p.id === id);
+
+      if (!item) return;
+
+      const amount = 'base_price' in item ? item.base_price : item.price;
+      const billing_cycle = 'billing_type' in item ? item.billing_type : item.billing_cycle;
+
+      const { error } = await supabase.from('client_subscriptions').insert({
+        client_id: selectedClient.id,
+        [type === 'product' ? 'product_id' : 'package_id']: id,
+        status: 'active',
+        billing_cycle,
+        amount,
+        created_by: adminUser?.id,
+      });
+
+      if (error) throw error;
+      await fetchClientSubscriptions(selectedClient.id);
+    } catch (error) {
+      console.error('Error adding subscription:', error);
     }
   };
 
@@ -218,6 +320,13 @@ const ClientsPage = () => {
                     <td className="py-4 px-4 text-white font-medium">£{client.lifetime_value.toLocaleString()}</td>
                     <td className="py-4 px-4">
                       <div className="flex items-center justify-end space-x-2">
+                        <button
+                          onClick={() => handleManageSubscriptions(client)}
+                          className="p-2 hover:bg-purple-500/10 rounded-lg transition-colors text-gray-400 hover:text-purple-400"
+                          title="Manage Products"
+                        >
+                          <Package className="w-4 h-4" />
+                        </button>
                         <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
                           <Eye className="w-4 h-4" />
                         </button>
@@ -336,6 +445,93 @@ const ClientsPage = () => {
                 </button>
               </div>
             </form>
+          </motion.div>
+        </div>
+      )}
+
+      {showSubscriptionModal && selectedClient && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-black/90 border border-white/10 rounded-2xl p-8 max-w-4xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-white">Manage Products & Subscriptions</h2>
+                <p className="text-gray-400">{selectedClient.company_name}</p>
+              </div>
+              <button
+                onClick={() => setShowSubscriptionModal(false)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-lg font-bold text-white mb-4">Active Subscriptions</h3>
+              {clientSubscriptions.length === 0 ? (
+                <div className="text-center py-8 bg-white/5 rounded-xl border border-white/10">
+                  <Package className="w-12 h-12 text-gray-600 mx-auto mb-2" />
+                  <p className="text-gray-400">No active subscriptions</p>
+                </div>
+              ) : (
+                <div className="space-y-3">
+                  {clientSubscriptions.map((sub) => (
+                    <div key={sub.id} className="p-4 bg-white/5 rounded-xl border border-white/10 flex items-center justify-between">
+                      <div>
+                        <h4 className="text-white font-semibold">
+                          {sub.product?.name || sub.package?.name}
+                        </h4>
+                        <p className="text-sm text-gray-400">
+                          {sub.product?.category} • £{sub.amount.toLocaleString()} / {sub.billing_cycle}
+                        </p>
+                      </div>
+                      <span className={`px-3 py-1 rounded-lg text-xs font-medium border ${sub.status === 'active' ? 'bg-green-500/20 text-green-400 border-green-500/30' : 'bg-gray-500/20 text-gray-400 border-gray-500/30'}`}>
+                        {sub.status}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              )}
+            </div>
+
+            <div className="mb-8">
+              <h3 className="text-lg font-bold text-white mb-4">Add Product</h3>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                {products.map((product) => (
+                  <button
+                    key={product.id}
+                    onClick={() => handleAddSubscription('product', product.id)}
+                    className="text-left p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 rounded-xl transition-all"
+                  >
+                    <h4 className="text-white font-semibold mb-1">{product.name}</h4>
+                    <p className="text-sm text-gray-400">
+                      £{product.base_price.toLocaleString()} / {product.billing_type}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
+
+            <div>
+              <h3 className="text-lg font-bold text-white mb-4">Add Package</h3>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                {packages.map((pkg) => (
+                  <button
+                    key={pkg.id}
+                    onClick={() => handleAddSubscription('package', pkg.id)}
+                    className="text-left p-4 bg-white/5 hover:bg-white/10 border border-white/10 hover:border-purple-500/30 rounded-xl transition-all"
+                  >
+                    <h4 className="text-white font-semibold mb-1">{pkg.name}</h4>
+                    <p className="text-sm text-gray-400">
+                      £{pkg.price.toLocaleString()} / {pkg.billing_cycle}
+                    </p>
+                  </button>
+                ))}
+              </div>
+            </div>
           </motion.div>
         </div>
       )}
