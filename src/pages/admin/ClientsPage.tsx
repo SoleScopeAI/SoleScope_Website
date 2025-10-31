@@ -53,6 +53,9 @@ const ClientsPage = () => {
   const [statusFilter, setStatusFilter] = useState('all');
   const [showAddModal, setShowAddModal] = useState(false);
   const [showSubscriptionModal, setShowSubscriptionModal] = useState(false);
+  const [showViewModal, setShowViewModal] = useState(false);
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedClient, setSelectedClient] = useState<Client | null>(null);
   const [clientSubscriptions, setClientSubscriptions] = useState<Subscription[]>([]);
   const [products, setProducts] = useState<Product[]>([]);
@@ -84,6 +87,21 @@ const ClientsPage = () => {
 
   const [error, setError] = useState<string>('');
   const [submitting, setSubmitting] = useState(false);
+  const [actionLoading, setActionLoading] = useState<string | null>(null);
+  const [deleteSuccess, setDeleteSuccess] = useState(false);
+
+  const [editClient, setEditClient] = useState({
+    company_name: '',
+    contact_name: '',
+    email: '',
+    phone: '',
+    website: '',
+    address: '',
+    industry: '',
+    company_size: '',
+    notes: '',
+    status: 'prospect',
+  });
 
   useEffect(() => {
     fetchClients();
@@ -148,6 +166,133 @@ const ClientsPage = () => {
     setSelectedClient(client);
     await fetchClientSubscriptions(client.id);
     setShowSubscriptionModal(true);
+  };
+
+  const handleViewClient = (client: Client) => {
+    setSelectedClient(client);
+    setShowViewModal(true);
+  };
+
+  const handleEditClientOpen = (client: Client) => {
+    setSelectedClient(client);
+    setEditClient({
+      company_name: client.company_name,
+      contact_name: client.contact_name,
+      email: client.email,
+      phone: client.phone || '',
+      website: '',
+      address: '',
+      industry: client.industry || '',
+      company_size: '',
+      notes: '',
+      status: client.status,
+    });
+    setShowEditModal(true);
+  };
+
+  const handleUpdateClient = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setError('');
+    setSubmitting(true);
+
+    try {
+      if (!selectedClient) return;
+
+      const updateData = {
+        company_name: editClient.company_name.trim(),
+        contact_name: editClient.contact_name.trim(),
+        email: editClient.email.trim().toLowerCase(),
+        phone: editClient.phone.trim() || null,
+        website: editClient.website.trim() || null,
+        address: editClient.address.trim() || null,
+        industry: editClient.industry.trim() || null,
+        company_size: editClient.company_size.trim() || null,
+        notes: editClient.notes.trim() || null,
+        status: editClient.status,
+        updated_at: new Date().toISOString(),
+      };
+
+      const { error: updateError } = await supabase
+        .from('clients')
+        .update(updateData)
+        .eq('id', selectedClient.id);
+
+      if (updateError) {
+        setError(updateError.message || 'Failed to update client');
+        return;
+      }
+
+      if (adminUser?.id) {
+        await supabase.from('activity_logs').insert({
+          admin_user_id: adminUser.id,
+          action_type: 'client_updated',
+          entity_type: 'client',
+          entity_id: selectedClient.id,
+          description: `Updated client: ${editClient.company_name}`,
+          metadata: { client_name: editClient.company_name },
+        });
+      }
+
+      await fetchClients();
+      setShowEditModal(false);
+      setSelectedClient(null);
+    } catch (error) {
+      console.error('Error updating client:', error);
+      setError('An unexpected error occurred');
+    } finally {
+      setSubmitting(false);
+    }
+  };
+
+  const handleDeleteClientOpen = (client: Client) => {
+    setSelectedClient(client);
+    setShowDeleteModal(true);
+    setDeleteSuccess(false);
+  };
+
+  const handleDeleteClient = async () => {
+    if (!selectedClient) return;
+
+    setActionLoading('delete');
+    setError('');
+
+    try {
+      const { error: deleteError } = await supabase
+        .from('clients')
+        .delete()
+        .eq('id', selectedClient.id);
+
+      if (deleteError) {
+        setError(deleteError.message || 'Failed to delete client');
+        setActionLoading(null);
+        return;
+      }
+
+      if (adminUser?.id) {
+        await supabase.from('activity_logs').insert({
+          admin_user_id: adminUser.id,
+          action_type: 'client_deleted',
+          entity_type: 'client',
+          entity_id: selectedClient.id,
+          description: `Deleted client: ${selectedClient.company_name}`,
+          metadata: { client_name: selectedClient.company_name, client_email: selectedClient.email },
+        });
+      }
+
+      setDeleteSuccess(true);
+      await fetchClients();
+
+      setTimeout(() => {
+        setShowDeleteModal(false);
+        setSelectedClient(null);
+        setDeleteSuccess(false);
+      }, 1500);
+    } catch (error) {
+      console.error('Error deleting client:', error);
+      setError('An unexpected error occurred');
+    } finally {
+      setActionLoading(null);
+    }
   };
 
   const handleAddSubscription = async (type: 'product' | 'package', id: string) => {
@@ -431,13 +576,25 @@ const ClientsPage = () => {
                         >
                           <Package className="w-4 h-4" />
                         </button>
-                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                        <button
+                          onClick={() => handleViewClient(client)}
+                          className="p-2 hover:bg-blue-500/10 rounded-lg transition-colors text-gray-400 hover:text-blue-400"
+                          title="View Details"
+                        >
                           <Eye className="w-4 h-4" />
                         </button>
-                        <button className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white">
+                        <button
+                          onClick={() => handleEditClientOpen(client)}
+                          className="p-2 hover:bg-green-500/10 rounded-lg transition-colors text-gray-400 hover:text-green-400"
+                          title="Edit Client"
+                        >
                           <Edit className="w-4 h-4" />
                         </button>
-                        <button className="p-2 hover:bg-red-500/10 rounded-lg transition-colors text-gray-400 hover:text-red-400">
+                        <button
+                          onClick={() => handleDeleteClientOpen(client)}
+                          className="p-2 hover:bg-red-500/10 rounded-lg transition-colors text-gray-400 hover:text-red-400"
+                          title="Delete Client"
+                        >
                           <Trash2 className="w-4 h-4" />
                         </button>
                       </div>
@@ -721,6 +878,275 @@ const ClientsPage = () => {
                 </div>
               )}
             </form>
+          </motion.div>
+        </div>
+      )}
+
+      {showViewModal && selectedClient && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-black/90 border border-white/10 rounded-2xl p-8 max-w-3xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <div>
+                <h2 className="text-2xl font-bold text-white">Client Details</h2>
+                <p className="text-gray-400">{selectedClient.company_name}</p>
+              </div>
+              <button
+                onClick={() => setShowViewModal(false)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <div className="space-y-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h3 className="text-sm font-medium text-gray-400 mb-2">Company Information</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Company Name</p>
+                      <p className="text-white font-medium">{selectedClient.company_name}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Industry</p>
+                      <p className="text-white">{selectedClient.industry || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="text-sm font-medium text-gray-400 mb-2">Contact Information</h3>
+                  <div className="space-y-3">
+                    <div>
+                      <p className="text-xs text-gray-500">Contact Name</p>
+                      <p className="text-white font-medium">{selectedClient.contact_name}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Email</p>
+                      <p className="text-white">{selectedClient.email}</p>
+                    </div>
+                    <div>
+                      <p className="text-xs text-gray-500">Phone</p>
+                      <p className="text-white">{selectedClient.phone || 'N/A'}</p>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-white/10 pt-6">
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                  <div className="bg-white/5 rounded-xl p-4">
+                    <p className="text-xs text-gray-400 mb-1">Status</p>
+                    <span className={`inline-block px-3 py-1 rounded-lg text-xs font-medium border ${getStatusColor(selectedClient.status)}`}>
+                      {selectedClient.status}
+                    </span>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4">
+                    <p className="text-xs text-gray-400 mb-1">Lifetime Value</p>
+                    <p className="text-2xl font-bold text-white">£{selectedClient.lifetime_value.toLocaleString()}</p>
+                  </div>
+                  <div className="bg-white/5 rounded-xl p-4">
+                    <p className="text-xs text-gray-400 mb-1">Client Since</p>
+                    <p className="text-white font-medium">{new Date(selectedClient.created_at).toLocaleDateString()}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="flex justify-end mt-6">
+              <button
+                onClick={() => setShowViewModal(false)}
+                className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-all"
+              >
+                Close
+              </button>
+            </div>
+          </motion.div>
+        </div>
+      )}
+
+      {showEditModal && selectedClient && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-black/90 border border-white/10 rounded-2xl p-8 max-w-2xl w-full max-h-[90vh] overflow-y-auto"
+          >
+            <div className="flex items-center justify-between mb-6">
+              <h2 className="text-2xl font-bold text-white">Edit Client</h2>
+              <button
+                onClick={() => setShowEditModal(false)}
+                className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+              >
+                <X className="w-6 h-6" />
+              </button>
+            </div>
+
+            <form onSubmit={handleUpdateClient} className="space-y-4">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Company Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={editClient.company_name}
+                    onChange={(e) => setEditClient({ ...editClient, company_name: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Contact Name</label>
+                  <input
+                    type="text"
+                    required
+                    value={editClient.contact_name}
+                    onChange={(e) => setEditClient({ ...editClient, contact_name: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Email</label>
+                  <input
+                    type="email"
+                    required
+                    value={editClient.email}
+                    onChange={(e) => setEditClient({ ...editClient, email: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Phone</label>
+                  <input
+                    type="tel"
+                    value={editClient.phone}
+                    onChange={(e) => setEditClient({ ...editClient, phone: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Industry</label>
+                  <input
+                    type="text"
+                    value={editClient.industry}
+                    onChange={(e) => setEditClient({ ...editClient, industry: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-gray-300 mb-2">Status</label>
+                  <select
+                    value={editClient.status}
+                    onChange={(e) => setEditClient({ ...editClient, status: e.target.value })}
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500 [&>option]:bg-gray-900 [&>option]:text-white"
+                  >
+                    <option value="prospect">Prospect</option>
+                    <option value="lead">Lead</option>
+                    <option value="onboarding">Onboarding</option>
+                    <option value="active">Active</option>
+                    <option value="trial">Trial</option>
+                    <option value="inactive">Inactive</option>
+                    <option value="churned">Churned</option>
+                    <option value="archived">Archived</option>
+                  </select>
+                </div>
+              </div>
+
+              {error && (
+                <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
+                  <p className="text-red-400 text-sm">{error}</p>
+                </div>
+              )}
+
+              <div className="flex justify-end space-x-4 mt-6">
+                <button
+                  type="button"
+                  onClick={() => setShowEditModal(false)}
+                  className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-all"
+                >
+                  Cancel
+                </button>
+                <button
+                  type="submit"
+                  disabled={submitting}
+                  className="px-6 py-3 bg-gradient-to-r from-green-600 to-emerald-600 text-white rounded-xl hover:from-green-500 hover:to-emerald-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                >
+                  {submitting ? 'Updating...' : 'Update Client'}
+                </button>
+              </div>
+            </form>
+          </motion.div>
+        </div>
+      )}
+
+      {showDeleteModal && selectedClient && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-sm flex items-center justify-center z-50 p-4">
+          <motion.div
+            initial={{ opacity: 0, scale: 0.95 }}
+            animate={{ opacity: 1, scale: 1 }}
+            className="bg-black/90 border border-white/10 rounded-2xl p-8 max-w-md w-full"
+          >
+            {deleteSuccess ? (
+              <div className="text-center">
+                <div className="w-16 h-16 bg-green-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Check className="w-8 h-8 text-green-400" />
+                </div>
+                <h2 className="text-2xl font-bold text-white mb-2">Client Deleted</h2>
+                <p className="text-gray-400">The client has been successfully removed.</p>
+              </div>
+            ) : (
+              <>
+                <div className="flex items-center justify-between mb-6">
+                  <h2 className="text-2xl font-bold text-white">Delete Client</h2>
+                  <button
+                    onClick={() => setShowDeleteModal(false)}
+                    className="p-2 hover:bg-white/10 rounded-lg transition-colors text-gray-400 hover:text-white"
+                  >
+                    <X className="w-6 h-6" />
+                  </button>
+                </div>
+
+                <div className="mb-6">
+                  <div className="w-16 h-16 bg-red-500/20 rounded-full flex items-center justify-center mx-auto mb-4">
+                    <Trash2 className="w-8 h-8 text-red-400" />
+                  </div>
+                  <p className="text-gray-300 text-center mb-4">
+                    Are you sure you want to delete <span className="font-bold text-white">{selectedClient.company_name}</span>?
+                  </p>
+                  <div className="bg-yellow-500/10 border border-yellow-500/30 rounded-xl p-4">
+                    <p className="text-yellow-400 text-sm">
+                      <strong>Warning:</strong> This action cannot be undone. All associated data including projects, invoices, communications, and portal access will be permanently deleted.
+                    </p>
+                  </div>
+                </div>
+
+                {error && (
+                  <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl mb-4">
+                    <p className="text-red-400 text-sm">{error}</p>
+                  </div>
+                )}
+
+                <div className="flex justify-end space-x-4">
+                  <button
+                    onClick={() => setShowDeleteModal(false)}
+                    disabled={actionLoading === 'delete'}
+                    className="px-6 py-3 bg-white/5 border border-white/10 text-white rounded-xl hover:bg-white/10 transition-all disabled:opacity-50"
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleDeleteClient}
+                    disabled={actionLoading === 'delete'}
+                    className="px-6 py-3 bg-gradient-to-r from-red-600 to-red-700 text-white rounded-xl hover:from-red-500 hover:to-red-600 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
+                  >
+                    {actionLoading === 'delete' ? 'Deleting...' : 'Delete Client'}
+                  </button>
+                </div>
+              </>
+            )}
           </motion.div>
         </div>
       )}
