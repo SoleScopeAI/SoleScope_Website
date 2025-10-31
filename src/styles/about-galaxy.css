@@ -322,6 +322,24 @@
     transform: none !important;
     margin-top: 1.5rem !important;
     width: 100% !important;
+    max-width: 280px !important;
+    margin-left: auto !important;
+    margin-right: auto !important;
+    padding: 0 0.5rem !important;
+  }
+
+  /* Badge card itself - more compact on mobile */
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card {
+    padding: 0.875rem 1rem !important;
+  }
+
+  /* Badge text sizing for mobile */
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card p:first-of-type {
+    font-size: 0.8125rem !important;
+  }
+
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card p:last-of-type {
+    font-size: 0.6875rem !important;
   }
 
   /* Quick value indicators - better mobile grid */
@@ -609,6 +627,24 @@
 
   .metric-value {
     font-size: 1.5rem !important;
+  }
+
+  /* Further reduce badge size on extra small screens */
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type {
+    max-width: 260px !important;
+    padding: 0 0.75rem !important;
+  }
+
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card {
+    padding: 0.75rem 0.875rem !important;
+  }
+
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card p:first-of-type {
+    font-size: 0.75rem !important;
+  }
+
+  .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type .about-refined-card p:last-of-type {
+    font-size: 0.625rem !important;
   }
 }
 
