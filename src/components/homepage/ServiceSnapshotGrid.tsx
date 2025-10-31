@@ -254,7 +254,7 @@ const ServiceSnapshotGrid = () => {
                   <div className="relative z-10">
                     {/* Enhanced icon with pulsing glow */}
                     <motion.div
-                      className="relative mb-6"
+                      className="relative mb-6 mx-auto w-20"
                       animate={hoveredService === index ? {
                         scale: [1, 1.05, 1],
                       } : {}}
@@ -478,7 +478,7 @@ const ServiceSnapshotGrid = () => {
                     <div className="relative z-10">
                       {/* Enhanced icon with pulsing glow */}
                       <motion.div
-                        className="relative mb-6"
+                        className="relative mb-6 mx-auto w-20"
                         animate={hoveredService === index ? {
                           scale: [1, 1.05, 1],
                         } : {}}
