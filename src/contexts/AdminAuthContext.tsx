@@ -7,6 +7,9 @@ interface AdminAuthContextType {
   login: (email: string, password: string) => Promise<{ success: boolean; error?: string }>;
   logout: () => Promise<void>;
   refreshUser: () => Promise<void>;
+  isOwner: () => boolean;
+  canManageAdmins: () => boolean;
+  hasPermission: (permission: 'manage_admins' | 'manage_clients' | 'manage_projects' | 'view_analytics') => boolean;
 }
 
 const AdminAuthContext = createContext<AdminAuthContextType | undefined>(undefined);
@@ -88,8 +91,33 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
     }
   };
 
+  const isOwner = () => {
+    return adminUser?.role === 'owner';
+  };
+
+  const canManageAdmins = () => {
+    return adminUser?.role === 'owner';
+  };
+
+  const hasPermission = (permission: 'manage_admins' | 'manage_clients' | 'manage_projects' | 'view_analytics') => {
+    if (!adminUser || !adminUser.is_active) return false;
+
+    switch (permission) {
+      case 'manage_admins':
+        return adminUser.role === 'owner';
+      case 'manage_clients':
+        return ['owner', 'admin', 'manager'].includes(adminUser.role);
+      case 'manage_projects':
+        return ['owner', 'admin', 'manager'].includes(adminUser.role);
+      case 'view_analytics':
+        return ['owner', 'admin'].includes(adminUser.role);
+      default:
+        return false;
+    }
+  };
+
   return (
-    <AdminAuthContext.Provider value={{ adminUser, loading, login, logout, refreshUser }}>
+    <AdminAuthContext.Provider value={{ adminUser, loading, login, logout, refreshUser, isOwner, canManageAdmins, hasPermission }}>
       {children}
     </AdminAuthContext.Provider>
   );

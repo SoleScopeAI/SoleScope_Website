@@ -728,12 +728,21 @@ const ClientsPage = () => {
               )}
 
               <div className="border-t border-white/10 pt-6 mt-6">
+                <div className="p-4 bg-blue-500/10 border border-blue-500/30 rounded-xl mb-4">
+                  <div className="flex items-center space-x-2 mb-1">
+                    <UserPlus className="w-5 h-5 text-blue-400" />
+                    <h3 className="text-blue-400 font-semibold">Client Portal Access</h3>
+                  </div>
+                  <p className="text-sm text-blue-300">
+                    This creates a <strong>CLIENT</strong> portal account for this business to view their projects, invoices, and reports. This is NOT an admin account.
+                  </p>
+                </div>
+
                 <div className="flex items-center justify-between mb-4">
                   <div className="flex items-center space-x-3">
-                    <UserPlus className="w-5 h-5 text-purple-400" />
                     <div>
-                      <h3 className="text-white font-semibold">Create Portal Access</h3>
-                      <p className="text-sm text-gray-400">Allow client to access their portal</p>
+                      <h3 className="text-white font-semibold">Enable Client Portal Access</h3>
+                      <p className="text-sm text-gray-400">Allow this client to log in to their portal</p>
                     </div>
                   </div>
                   <button
