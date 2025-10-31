@@ -1,22 +1,25 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import {
-  Calendar,
-  Mail,
+import { 
+  Heart, 
+  Users, 
+  Zap, 
+  Target, 
+  Award, 
+  Clock,
   ChevronDown,
   ChevronUp,
-  Target,
-  Zap,
+  Calendar,
+  Mail,
+  ArrowRight,
+  CheckCircle,
   TrendingUp,
-  Award,
-  Users,
-  Brain,
   Shield,
   Lightbulb,
   Handshake,
-  CheckCircle,
-  ArrowRight
+  Settings,
+  Rocket
 } from 'lucide-react';
 import '../styles/about-galaxy.css';
 
@@ -26,189 +29,461 @@ const AboutPage = () => {
     triggerOnce: true,
   });
 
-  useEffect(() => {
-    document.title = "About Kevin Hannah | SoleScope Studio & Design — Boutique AI & Web for Real Businesses";
+  const [activeIndex, setActiveIndex] = useState<number | null>(null);
 
-    const metaDescription = document.querySelector('meta[name="description"]');
-    if (metaDescription) {
-      metaDescription.setAttribute('content', 'Meet Kevin Hannah, CMgr - Chartered Manager and founder of SoleScope Studio & Design. Blending 7+ years FMCG leadership with AI automation and modern web design for UK small businesses.');
-    }
-
-    return () => {
-      document.title = "SoleScope Studio & Design | AI-Powered Websites, Branding & Marketing";
-    };
-  }, []);
-
-  const [expandedInsight, setExpandedInsight] = useState(false);
-  const [expandedPillars, setExpandedPillars] = useState<number[]>([]);
-  const [expandedTimeline, setExpandedTimeline] = useState<number[]>([]);
-  const [activeValueIndex, setActiveValueIndex] = useState<number | null>(null);
-
-  const togglePillar = (index: number) => {
-    setExpandedPillars(prev =>
-      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
-    );
-  };
-
-  const toggleTimeline = (index: number) => {
-    setExpandedTimeline(prev =>
-      prev.includes(index) ? prev.filter(i => i !== index) : [...prev, index]
-    );
-  };
-
-  const toggleValue = (index: number) => {
-    setActiveValueIndex(activeValueIndex === index ? null : index);
-  };
-
-  const skillTags = [
-    "AI Strategy",
-    "Automation Workflows",
-    "Web Systems Design",
-    "Operational Leadership",
-    "CRM Integration",
-    "7+ Yrs FMCG",
-    "6× Founder",
-    "Chartered Manager"
-  ];
-
-  const corePillars = [
-    {
-      icon: Users,
-      title: "Human-Led Approach",
-      summary: "Every build begins with understanding your process, not replacing it.",
-      detail: "We start by listening to how you actually work. Our AI and web systems are designed to enhance your existing processes, not force you into rigid templates. The goal is technology that feels natural because it's built around your real workflow."
-    },
+  const quickFacts = [
     {
       icon: Target,
-      title: "Practical Automation",
-      summary: "We focus on what saves you real time and money — not just trends.",
-      detail: "Not every business needs cutting-edge AI. We implement automation where it creates measurable benefit: booking reminders that reduce no-shows, lead capture that actually converts, inbox triage that saves hours. If it doesn't deliver value, we don't build it."
+      title: "What we do",
+      description: "Practical AI + clean web builds that convert."
     },
     {
-      icon: TrendingUp,
-      title: "Scalable by Design",
-      summary: "Each solution grows with you — whether you're a one-person trade or a small office team.",
-      detail: "We build systems that start simple and expand as you grow. A sole trader gets streamlined booking automation. A growing team gets CRM integration and collaborative workflows. Your technology scales without requiring a complete rebuild."
+      icon: Users,
+      title: "Who we serve",
+      description: "Sole traders & small local services."
+    },
+    {
+      icon: Clock,
+      title: "Typical engagement",
+      description: "Focused site + 1–2 automations."
+    },
+    {
+      icon: Rocket,
+      title: "Onboarding",
+      description: "Discovery → scoped plan → staged delivery."
+    }
+  ];
+
+  const metrics = [
+    {
+      value: "2–4 weeks",
+      label: "Avg. Setup Time",
+      description: "from kickoff to live"
+    },
+    {
+      value: "99.9%",
+      label: "Automation Uptime",
+      description: "monitored workflows"
+    },
+    {
+      value: "+35–120%",
+      label: "Lead Lift",
+      description: "structured service pages + reviews"
+    },
+    {
+      value: "–40%",
+      label: "Missed Bookings",
+      description: "reminders + simplified steps"
+    },
+    {
+      value: "<24h",
+      label: "Response SLA",
+      description: "founder-led comms"
+    },
+    {
+      value: "↓ admin time",
+      label: "Owner Effort",
+      description: "inbox triage & CRM-lite"
+    }
+  ];
+
+  const services = [
+    {
+      title: "AI Application & Automation",
+      description: "Lead capture & qualification · Inbox triage · Light CRM & reminders · Niche chatbots/KBs · Reviews flows · Analytics hooks",
+      action: "See AI capabilities →",
+      path: "/services/custom-ai-automations"
+    },
+    {
+      title: "Modern Web Design",
+      description: "Fast, mobile-first builds · Service pages that convert · SEO foundations · Hosting & updates · Content guidance",
+      action: "See web design work →",
+      path: "/services/website-design"
+    }
+  ];
+
+  const differentiators = [
+    {
+      icon: Target,
+      title: "Small-Service Specialist",
+      description: "Built for real operators (groomers, trades, trainers, local pros)."
+    },
+    {
+      icon: Zap,
+      title: "Right-Sized AI",
+      description: "Tools/APIs + light custom code matched to workflow and budget."
+    },
+    {
+      icon: Shield,
+      title: "Ops Discipline",
+      description: "Plans that ship, handovers that stick, support that's clear."
+    },
+    {
+      icon: CheckCircle,
+      title: "Transparent & Affordable",
+      description: "Clear scope, staged delivery, no fluff."
+    },
+    {
+      icon: Settings,
+      title: "Automation-Ready",
+      description: "Booking, reminders, reviews, email where useful."
     },
     {
       icon: Award,
-      title: "Proven Management Backbone",
-      summary: "Built on seven years of operational leadership, ensuring structure and consistency.",
-      detail: "Our approach comes from real operational experience in high-volume environments. We understand project timelines, stakeholder communication, and delivering on commitments. You get boutique service with enterprise discipline."
+      title: "Own Your Assets",
+      description: "You keep your site, data, and access."
     }
   ];
 
-  const timeline = [
+  const steps = [
     {
-      year: "2017–2021",
-      title: "Leadership in FMCG Management",
-      summary: "Warburtons and operational excellence.",
-      detail: "Spent over seven years managing large-scale operations in the FMCG sector at Warburtons and similar organizations. Learned how small process improvements can transform results, managing teams, optimizing workflows, and delivering consistent performance under pressure."
+      number: "1",
+      title: "Discover",
+      description: "Clarify goals, customers, quick wins."
     },
     {
-      year: "2021–2024",
-      title: "Founder of Multiple Small Ventures",
-      summary: "Refining automation and web processes.",
-      detail: "Launched and grew six small businesses across different sectors. Each venture taught practical lessons about what local business owners actually need from technology: clarity, reliability, and systems that don't require a tech degree to operate."
+      number: "2",
+      title: "Design",
+      description: "Map UX, content, data-flow; confirm stack."
     },
     {
-      year: "2024–Present",
-      title: "Founder of SoleScope Studio & Design",
-      summary: "Building boutique AI and automation systems for UK SMEs.",
-      detail: "Combined operational discipline with hands-on technical skills to create SoleScope. Now helping small and medium-sized businesses deploy AI-driven systems, modern web platforms, and practical automation that actually gets used daily."
+      number: "3",
+      title: "Deploy",
+      description: "Launch site & automations with clean handover."
     },
     {
-      year: "Next",
-      title: "Expanding Scalable Frameworks",
-      summary: "Premium digital platforms for growing businesses.",
-      detail: "Building reusable automation frameworks and sophisticated digital platforms that help established businesses scale efficiently. Focusing on industries where technology can create competitive advantage without requiring dedicated IT teams."
+      number: "4",
+      title: "Improve",
+      description: "Track results, iterate, scale."
     }
   ];
 
-  const studioValues = [
+  const outcomes = [
     {
-      title: "Simplicity Wins",
-      description: "If it's not easy to use, it doesn't get used.",
-      detail: "We've seen expensive systems sit unused because they're too complicated. Every interface we design, every automation we build, goes through the 'would a non-technical owner use this?' test. Simplicity isn't about fewer features—it's about intuitive design."
+      title: "Inbound enquiries doubled after restructuring service pages and adding reviews flow.",
+      caseTitle: "Local Dog Grooming Service",
+      caseSummary: "Transformed booking process with automated reminders and review collection system.",
+      action: "Read more →"
     },
     {
-      title: "AI Where It Matters",
-      description: "We apply automation only where it creates measurable benefit.",
-      detail: "AI isn't magic—it's a tool. We implement it where it solves real problems: qualifying leads so you talk to serious prospects, automating appointment reminders to reduce no-shows, or organizing customer data so nothing falls through cracks. If traditional tools work better, we use those."
-    },
-    {
-      title: "Transparency",
-      description: "No jargon, no hidden retainers — clear systems you own.",
-      detail: "You'll understand exactly what you're getting, what it costs, and how it works. No surprise fees, no vendor lock-in, no technical jargon hiding simple concepts. You own your website, your data, and your systems. We're here to build and support, not control."
-    },
-    {
-      title: "Partnership Mindset",
-      description: "We work with your business, not just for it.",
-      detail: "Your success is our success. We're not order-takers who disappear after launch. We stay involved, monitor what's working, suggest improvements, and adapt as your business evolves. Think of us as your part-time technical team—invested in your growth."
+      title: "Missed bookings cut by 40% via reminders + simplified calendar steps.",
+      caseTitle: "Mobile Mechanic Business",
+      caseSummary: "Streamlined scheduling with AI-powered customer communication and follow-up automation.",
+      action: "Read more →"
     }
   ];
+
+  const faqs = [
+    {
+      question: "Do you work beyond sole traders?",
+      answer: "SMEs welcome; focus is micro/small services."
+    },
+    {
+      question: "Do you build custom AI from scratch?",
+      answer: "Right-sized blend of tools, APIs, and light custom code."
+    },
+    {
+      question: "How fast can we start?",
+      answer: "After discovery, most projects begin within 1–2 weeks."
+    },
+    {
+      question: "Can you host and maintain my site?",
+      answer: "Yes; tiered options; you own your assets."
+    }
+  ];
+
+  const toggleFaq = (index: number) => {
+    setActiveIndex(activeIndex === index ? null : index);
+  };
 
   return (
-    <main id="about" className="about-surface pt-24 pb-16">
-      {/* Hero Section - Founder Overview */}
-      <section className="py-12 md:py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+    <main id="about" className="about-surface pt-24 pb-20">
+      {/* Compact Page Header */}
+      <section className="py-16">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center"
+            className="text-center"
           >
-            {/* Founder Image */}
-            <div className="flex justify-center lg:justify-start order-1 lg:order-1">
-              <div className="w-80 h-80 rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
-                <img
-                  src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600"
-                  alt="Kevin Hannah, CMgr - Founder of SoleScope Studio & Design, Chartered Manager specializing in AI strategy and web systems design"
+            <h1 className="text-4xl sm:text-5xl font-bold text-white mb-6 leading-tight mobile-h1">
+              About SoleScope Studio & Design
+            </h1>
+            <p className="text-xl text-white max-w-4xl mx-auto leading-relaxed mobile-body-text">
+              SoleScope is a modern studio for applied AI and high-performance web design. We help under-served UK sole traders and small service businesses deploy right-sized automation and conversion-focused sites—fast, affordable, and actually used day-to-day.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+
+      {/* Business Overview Surface */}
+      <section className="about-cards-surface py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container space-y-20">
+          
+          {/* Quick Facts */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-double-col"
+          >
+            {quickFacts.map((fact, index) => (
+              <div key={fact.title} className="about-refined-card text-center">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                  <fact.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                  {fact.title}
+                </h3>
+                <p className="text-white text-sm leading-relaxed">
+                  {fact.description}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Metrics & Impact */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Metrics & Impact
+              </h2>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-double-col">
+              {metrics.map((metric, index) => (
+                <motion.div
+                  key={metric.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card metric-card"
+                >
+                  <div className="metric-value">{metric.value}</div>
+                  <div className="metric-label">{metric.label}</div>
+                  <div className="metric-description">{metric.description}</div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-center text-white text-sm mt-8 opacity-60">
+              Figures reflect typical ranges; results vary by scope & baseline.
+            </p>
+          </div>
+
+          {/* Services at a Glance */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Services at a Glance
+              </h2>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="about-refined-card"
+                >
+                  <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">
+                    {service.title}
+                  </h3>
+                  <p className="text-white mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <a
+                    href={service.path}
+                    className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium"
+                  >
+                    {service.action}
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Why SoleScope */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Why SoleScope
+              </h2>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-single-col">
+              {differentiators.map((diff, index) => (
+                <motion.div
+                  key={diff.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card text-center"
+                >
+                  <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                    <diff.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                    {diff.title}
+                  </h3>
+                  <p className="text-white text-sm leading-relaxed">
+                    {diff.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* How We Work */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                How We Work
+              </h2>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-single-col">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card step-card text-center"
+                >
+                  <div className="step-number">{step.number}</div>
+                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                    {step.title}
+                  </h3>
+                  <p className="text-white text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Outcomes & Case Highlights */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Outcomes & Case Highlights
+              </h2>
+            </motion.div>
+            
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+              {outcomes.map((outcome, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="about-refined-card"
+                >
+                  <blockquote className="text-lg font-medium text-white mb-6 leading-relaxed">
+                    "{outcome.title}"
+                  </blockquote>
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="font-semibold text-white mb-2 uppercase tracking-wide">
+                      {outcome.caseTitle}
+                    </h4>
+                    <p className="text-white text-sm mb-4 leading-relaxed">
+                      {outcome.caseSummary}
+                    </p>
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium text-sm"
+                    >
+                      {outcome.action}
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Founder Section */}
+      <section className="py-20">
+        <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mobile-single-col"
+          >
+            {/* Portrait */}
+            <div className="text-center lg:text-left mobile-centered">
+              <div className="w-64 h-64 mx-auto lg:mx-0 rounded-2xl overflow-hidden border-2 border-white/20 mb-6">
+                <img 
+                  src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=400"
+                  alt="Kevin Hannah, CMgr - Founder of SoleScope Studio & Design"
                   className="w-full h-full object-cover"
-                  loading="lazy"
                 />
               </div>
             </div>
 
             {/* Bio Content */}
-            <div className="order-2 lg:order-2">
-              <h1 className="text-4xl md:text-5xl font-bold text-white mb-3 leading-tight">
+            <div>
+              <h2 className="text-3xl font-bold text-white mb-2 uppercase tracking-wide">
                 Kevin Hannah, CMgr
-              </h1>
-              <p className="text-2xl text-white/90 mb-4 font-semibold">
-                Founder & Chartered Manager
+              </h2>
+              <p className="text-xl text-white mb-6 opacity-80">
+                Chartered Manager
               </p>
-              <p className="text-xl text-white/70 mb-8">
+              <p className="text-lg text-white mb-2 font-medium">
                 Founder, SoleScope Studio & Design
               </p>
+              
+              <p className="text-white mb-8 leading-relaxed">
+                I'm a Chartered Manager (CMgr) with 7 years' FMCG leadership, and I've run 6 small businesses. I specialise in AI application and web design for sole traders and small service teams—combining operational discipline with hands-on build skills to deliver solutions that actually get used.
+              </p>
 
-              <div className="text-white/90 mb-8 leading-relaxed space-y-4">
-                <p>
-                  I'm a Chartered Manager (CMgr) with over seven years of leadership in the UK's FMCG industry and a track record of founding and scaling multiple small businesses. My work now blends that operational discipline with advanced AI-driven systems design, automation, and modern web experiences for small to medium-sized organisations.
-                </p>
-                <p>
-                  At SoleScope Studio & Design, I focus on helping real businesses—not tech companies—benefit from the latest in AI, automation, and human-centred web design. The goal is simple: to deliver digital systems that work seamlessly, save time, and actually get used.
-                </p>
-              </div>
-
-              {/* Skill Tags */}
-              <div className="mb-8 flex flex-wrap gap-2">
-                {skillTags.map((skill) => (
-                  <span key={skill} className="credential-chip">
-                    {skill}
+              {/* Credential Chips */}
+              <div className="mb-8">
+                {['AI Solutions', 'Web Design', 'Automation & CRM-lite', 'Chartered Manager', '7 yrs FMCG', '6× Founder'].map((credential) => (
+                  <span key={credential} className="credential-chip">
+                    {credential}
                   </span>
                 ))}
               </div>
 
-              {/* CTA Buttons */}
+              {/* CTAs */}
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href="/contact"
                   className="about-btn-primary mobile-touch-target"
                 >
                   <Calendar className="h-5 w-5" />
-                  Book a Free 15-Min Discovery Call
+                  Book a Free 15-min Discovery Call
                 </a>
                 <a
                   href="mailto:contact@solescope.co.uk"
@@ -223,277 +498,9 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Beyond the Basics - Expandable Insight */}
-      <section className="py-12">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.2 }}
-            className="about-refined-card expandable-insight-card"
-          >
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-6 uppercase tracking-wide">
-              Beyond the Basics
-            </h2>
-
-            <div className="text-white/90 leading-relaxed space-y-4">
-              <p className="text-lg">
-                Blending management expertise with hands-on digital build skills, I help small and medium-sized businesses translate real-world operations into efficient automated systems.
-              </p>
-
-              {expandedInsight && (
-                <motion.div
-                  initial={{ opacity: 0, height: 0 }}
-                  animate={{ opacity: 1, height: 'auto' }}
-                  exit={{ opacity: 0, height: 0 }}
-                  transition={{ duration: 0.4 }}
-                  className="space-y-4 pt-4"
-                >
-                  <p>
-                    Before founding SoleScope Studio & Design, I spent over seven years managing large-scale operations in the FMCG sector, where I learned how small process improvements can transform results. Over time, I launched and grew multiple small ventures — learning firsthand what local business owners need from technology: clarity, reliability, and practical value.
-                  </p>
-                  <p>
-                    That experience shaped SoleScope's boutique model — a studio that combines the craft of web design with the power of AI and automation, delivered in a way that's genuinely human and accessible.
-                  </p>
-                  <p>
-                    Every project we take on aims to make technology feel natural — from smart client onboarding workflows to websites that convert better without endless maintenance. It's about giving businesses more control and less complexity.
-                  </p>
-                </motion.div>
-              )}
-            </div>
-
-            <button
-              onClick={() => setExpandedInsight(!expandedInsight)}
-              className="mt-6 flex items-center gap-2 text-white hover:text-purple-300 transition-colors font-medium"
-              aria-expanded={expandedInsight}
-            >
-              {expandedInsight ? (
-                <>
-                  <span>Show Less</span>
-                  <ChevronUp className="h-5 w-5" />
-                </>
-              ) : (
-                <>
-                  <span>Read More</span>
-                  <ChevronDown className="h-5 w-5" />
-                </>
-              )}
-            </button>
-          </motion.div>
-        </div>
-      </section>
-
-      {/* Core Pillars Section */}
-      <section className="about-cards-surface py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-              Core Pillars
-            </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              The principles that guide every project we build
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-            {corePillars.map((pillar, index) => (
-              <motion.div
-                key={pillar.title}
-                initial={{ opacity: 0, y: 30 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="about-refined-card pillar-card cursor-pointer"
-                onClick={() => togglePillar(index)}
-              >
-                <div className="flex items-start gap-4 mb-4">
-                  <div className="w-12 h-12 flex-shrink-0 flex items-center justify-center rounded-xl bg-white/5 border border-white/10">
-                    <pillar.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="text-xl font-semibold text-white mb-2 uppercase tracking-wide">
-                      {pillar.title}
-                    </h3>
-                    <p className="text-white/80 leading-relaxed">
-                      {pillar.summary}
-                    </p>
-                  </div>
-                </div>
-
-                {expandedPillars.includes(index) && (
-                  <motion.div
-                    initial={{ opacity: 0, height: 0 }}
-                    animate={{ opacity: 1, height: 'auto' }}
-                    exit={{ opacity: 0, height: 0 }}
-                    transition={{ duration: 0.3 }}
-                    className="pt-4 border-t border-white/10"
-                  >
-                    <p className="text-white/70 leading-relaxed">
-                      {pillar.detail}
-                    </p>
-                  </motion.div>
-                )}
-
-                <button
-                  className="mt-4 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium"
-                  aria-expanded={expandedPillars.includes(index)}
-                >
-                  {expandedPillars.includes(index) ? (
-                    <>
-                      <span>Show Less</span>
-                      <ChevronUp className="h-4 w-4" />
-                    </>
-                  ) : (
-                    <>
-                      <span>Learn More</span>
-                      <ChevronDown className="h-4 w-4" />
-                    </>
-                  )}
-                </button>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Professional Timeline */}
-      <section className="py-16">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="text-center mb-12"
-          >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-              Professional Timeline
-            </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              From operational excellence to boutique AI solutions
-            </p>
-          </motion.div>
-
-          {/* Desktop: Horizontal Timeline */}
-          <div className="hidden lg:block relative">
-            <div className="absolute top-24 left-0 right-0 h-0.5 bg-gradient-to-r from-transparent via-purple-500/30 to-transparent" />
-
-            <div className="grid grid-cols-4 gap-6">
-              {timeline.map((period, index) => (
-                <motion.div
-                  key={period.year}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="relative"
-                >
-                  <div className="about-refined-card timeline-card min-h-[320px] cursor-pointer" onClick={() => toggleTimeline(index)}>
-                    <div className="w-12 h-12 mx-auto mb-4 rounded-full bg-purple-500/20 border-2 border-purple-500/40 flex items-center justify-center text-white font-bold">
-                      {index + 1}
-                    </div>
-                    <p className="text-purple-300 font-semibold mb-2 text-center">{period.year}</p>
-                    <h3 className="text-lg font-bold text-white mb-2 text-center uppercase tracking-wide">
-                      {period.title}
-                    </h3>
-                    <p className="text-white/70 text-sm text-center mb-4">
-                      {period.summary}
-                    </p>
-
-                    {expandedTimeline.includes(index) && (
-                      <motion.div
-                        initial={{ opacity: 0, height: 0 }}
-                        animate={{ opacity: 1, height: 'auto' }}
-                        exit={{ opacity: 0, height: 0 }}
-                        transition={{ duration: 0.3 }}
-                        className="pt-4 border-t border-white/10"
-                      >
-                        <p className="text-white/60 text-sm leading-relaxed text-center">
-                          {period.detail}
-                        </p>
-                      </motion.div>
-                    )}
-
-                    <button
-                      className="mt-4 mx-auto flex items-center gap-1 text-white/50 hover:text-white transition-colors text-xs font-medium"
-                      aria-expanded={expandedTimeline.includes(index)}
-                    >
-                      {expandedTimeline.includes(index) ? <ChevronUp className="h-3 w-3" /> : <ChevronDown className="h-3 w-3" />}
-                    </button>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Mobile: Stacked Timeline */}
-          <div className="lg:hidden space-y-8">
-            {timeline.map((period, index) => (
-              <motion.div
-                key={period.year}
-                initial={{ opacity: 0, x: -30 }}
-                animate={{ opacity: 1, x: 0 }}
-                transition={{ duration: 0.6, delay: index * 0.1 }}
-                className="relative pl-8"
-              >
-                <div className="absolute left-0 top-0 w-8 h-8 rounded-full bg-purple-500/20 border-2 border-purple-500/40 flex items-center justify-center text-white font-bold text-sm">
-                  {index + 1}
-                </div>
-                {index < timeline.length - 1 && (
-                  <div className="absolute left-4 top-8 bottom-0 w-0.5 bg-purple-500/20" />
-                )}
-
-                <div className="about-refined-card cursor-pointer" onClick={() => toggleTimeline(index)}>
-                  <p className="text-purple-300 font-semibold mb-2">{period.year}</p>
-                  <h3 className="text-xl font-bold text-white mb-2 uppercase tracking-wide">
-                    {period.title}
-                  </h3>
-                  <p className="text-white/70 mb-4">
-                    {period.summary}
-                  </p>
-
-                  {expandedTimeline.includes(index) && (
-                    <motion.div
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.3 }}
-                      className="pt-4 border-t border-white/10"
-                    >
-                      <p className="text-white/60 leading-relaxed">
-                        {period.detail}
-                      </p>
-                    </motion.div>
-                  )}
-
-                  <button
-                    className="mt-4 flex items-center gap-2 text-white/60 hover:text-white transition-colors text-sm font-medium"
-                    aria-expanded={expandedTimeline.includes(index)}
-                  >
-                    {expandedTimeline.includes(index) ? (
-                      <>
-                        <span>Show Less</span>
-                        <ChevronUp className="h-4 w-4" />
-                      </>
-                    ) : (
-                      <>
-                        <span>Read More</span>
-                        <ChevronDown className="h-4 w-4" />
-                      </>
-                    )}
-                  </button>
-                </div>
-              </motion.div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Studio Values - Accordion */}
-      <section ref={ref} className="about-cards-surface py-16">
-        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+      {/* FAQ Section */}
+      <section ref={ref} className="py-20">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -501,15 +508,12 @@ const AboutPage = () => {
             className="text-center mb-12"
           >
             <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-              Studio Values
+              Frequently Asked Questions
             </h2>
-            <p className="text-xl text-white/80 max-w-3xl mx-auto">
-              The commitments we make to every client
-            </p>
           </motion.div>
 
           <div className="space-y-4">
-            {studioValues.map((value, index) => (
+            {faqs.map((faq, index) => (
               <motion.div
                 key={index}
                 initial={{ opacity: 0, y: 20 }}
@@ -518,21 +522,18 @@ const AboutPage = () => {
                 className="faq-item"
               >
                 <button
-                  onClick={() => toggleValue(index)}
+                  onClick={() => toggleFaq(index)}
                   className="faq-button mobile-touch-target"
-                  aria-expanded={activeValueIndex === index}
+                  aria-expanded={activeIndex === index}
                 >
-                  <div className="text-left pr-4">
-                    <h3 className="font-bold text-white text-lg mb-1">{value.title}</h3>
-                    <p className="text-white/70 text-sm">{value.description}</p>
-                  </div>
-                  {activeValueIndex === index ? (
+                  <span className="font-semibold text-white pr-4">{faq.question}</span>
+                  {activeIndex === index ? (
                     <ChevronUp className="h-5 w-5 text-white flex-shrink-0" />
                   ) : (
                     <ChevronDown className="h-5 w-5 text-white flex-shrink-0" />
                   )}
                 </button>
-                {activeValueIndex === index && (
+                {activeIndex === index && (
                   <motion.div
                     initial={{ opacity: 0, height: 0 }}
                     animate={{ opacity: 1, height: 'auto' }}
@@ -540,7 +541,7 @@ const AboutPage = () => {
                     transition={{ duration: 0.3 }}
                     className="faq-content"
                   >
-                    <p>{value.detail}</p>
+                    <p>{faq.answer}</p>
                   </motion.div>
                 )}
               </motion.div>
@@ -549,35 +550,32 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Final CTA Section */}
-      <section className="py-12">
+      {/* Final CTA */}
+      <section className="py-20">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={inView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8 }}
-            className="about-refined-card text-center py-12"
+            className="text-center"
           >
-            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight">
-              Ready to see what streamlined AI and modern web design can do for your business?
+            <h2 className="text-3xl sm:text-4xl font-bold text-white mb-6 leading-tight uppercase tracking-wide">
+              Ready to make AI and your website actually work for your business?
             </h2>
-            <p className="text-xl text-white/80 mb-8 max-w-2xl mx-auto leading-relaxed">
-              Let's discuss how boutique AI solutions and conversion-focused web design can help your business grow.
-            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <a
                 href="/contact"
                 className="about-btn-primary mobile-touch-target"
               >
                 <Calendar className="h-5 w-5" />
-                Book a Free 15-Min Discovery Call
+                Start a Discovery Call
               </a>
               <a
-                href="/services"
+                href="mailto:contact@solescope.co.uk"
                 className="about-btn-secondary mobile-touch-target"
               >
-                <ArrowRight className="h-5 w-5" />
-                View Our Work
+                <Mail className="h-5 w-5" />
+                Email Kevin
               </a>
             </div>
           </motion.div>
