@@ -217,220 +217,6 @@ const AboutPage = () => {
         </div>
       </section>
 
-      {/* Business Overview Surface */}
-      <section className="about-cards-surface py-20">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container space-y-20">
-          
-          {/* Quick Facts */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-double-col"
-          >
-            {quickFacts.map((fact, index) => (
-              <div key={fact.title} className="about-refined-card text-center">
-                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-                  <fact.icon className="h-6 w-6 text-white" />
-                </div>
-                <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
-                  {fact.title}
-                </h3>
-                <p className="text-white text-sm leading-relaxed">
-                  {fact.description}
-                </p>
-              </div>
-            ))}
-          </motion.div>
-
-          {/* Metrics & Impact */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-                Metrics & Impact
-              </h2>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-double-col">
-              {metrics.map((metric, index) => (
-                <motion.div
-                  key={metric.label}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="about-refined-card metric-card"
-                >
-                  <div className="metric-value">{metric.value}</div>
-                  <div className="metric-label">{metric.label}</div>
-                  <div className="metric-description">{metric.description}</div>
-                </motion.div>
-              ))}
-            </div>
-            <p className="text-center text-white text-sm mt-8 opacity-60">
-              Figures reflect typical ranges; results vary by scope & baseline.
-            </p>
-          </div>
-
-          {/* Services at a Glance */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.4 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-                Services at a Glance
-              </h2>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
-              {services.map((service, index) => (
-                <motion.div
-                  key={service.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="about-refined-card"
-                >
-                  <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">
-                    {service.title}
-                  </h3>
-                  <p className="text-white mb-6 leading-relaxed">
-                    {service.description}
-                  </p>
-                  <a
-                    href={service.path}
-                    className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium"
-                  >
-                    {service.action}
-                  </a>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Why SoleScope */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.6 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-                Why SoleScope
-              </h2>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-single-col">
-              {differentiators.map((diff, index) => (
-                <motion.div
-                  key={diff.title}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="about-refined-card text-center"
-                >
-                  <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
-                    <diff.icon className="h-6 w-6 text-white" />
-                  </div>
-                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
-                    {diff.title}
-                  </h3>
-                  <p className="text-white text-sm leading-relaxed">
-                    {diff.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* How We Work */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 0.8 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-                How We Work
-              </h2>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-single-col">
-              {steps.map((step, index) => (
-                <motion.div
-                  key={step.number}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.1 }}
-                  className="about-refined-card step-card text-center"
-                >
-                  <div className="step-number">{step.number}</div>
-                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
-                    {step.title}
-                  </h3>
-                  <p className="text-white text-sm leading-relaxed">
-                    {step.description}
-                  </p>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-
-          {/* Outcomes & Case Highlights */}
-          <div>
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.8, delay: 1.0 }}
-              className="text-center mb-12"
-            >
-              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
-                Outcomes & Case Highlights
-              </h2>
-            </motion.div>
-            
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
-              {outcomes.map((outcome, index) => (
-                <motion.div
-                  key={index}
-                  initial={{ opacity: 0, y: 30 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{ duration: 0.6, delay: index * 0.2 }}
-                  className="about-refined-card"
-                >
-                  <blockquote className="text-lg font-medium text-white mb-6 leading-relaxed">
-                    "{outcome.title}"
-                  </blockquote>
-                  <div className="border-t border-white/10 pt-4">
-                    <h4 className="font-semibold text-white mb-2 uppercase tracking-wide">
-                      {outcome.caseTitle}
-                    </h4>
-                    <p className="text-white text-sm mb-4 leading-relaxed">
-                      {outcome.caseSummary}
-                    </p>
-                    <a
-                      href="/contact"
-                      className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium text-sm"
-                    >
-                      {outcome.action}
-                    </a>
-                  </div>
-                </motion.div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
       {/* Founder Section */}
       <section className="py-20">
         <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
@@ -495,6 +281,220 @@ const AboutPage = () => {
               </div>
             </div>
           </motion.div>
+        </div>
+      </section>
+
+      {/* Business Overview Surface */}
+      <section className="about-cards-surface py-20">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container space-y-20">
+
+          {/* Quick Facts */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-double-col"
+          >
+            {quickFacts.map((fact, index) => (
+              <div key={fact.title} className="about-refined-card text-center">
+                <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                  <fact.icon className="h-6 w-6 text-white" />
+                </div>
+                <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                  {fact.title}
+                </h3>
+                <p className="text-white text-sm leading-relaxed">
+                  {fact.description}
+                </p>
+              </div>
+            ))}
+          </motion.div>
+
+          {/* Metrics & Impact */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Metrics & Impact
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-double-col">
+              {metrics.map((metric, index) => (
+                <motion.div
+                  key={metric.label}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card metric-card"
+                >
+                  <div className="metric-value">{metric.value}</div>
+                  <div className="metric-label">{metric.label}</div>
+                  <div className="metric-description">{metric.description}</div>
+                </motion.div>
+              ))}
+            </div>
+            <p className="text-center text-white text-sm mt-8 opacity-60">
+              Figures reflect typical ranges; results vary by scope & baseline.
+            </p>
+          </div>
+
+          {/* Services at a Glance */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.4 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Services at a Glance
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+              {services.map((service, index) => (
+                <motion.div
+                  key={service.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="about-refined-card"
+                >
+                  <h3 className="text-xl font-bold text-white mb-4 uppercase tracking-wide">
+                    {service.title}
+                  </h3>
+                  <p className="text-white mb-6 leading-relaxed">
+                    {service.description}
+                  </p>
+                  <a
+                    href={service.path}
+                    className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium"
+                  >
+                    {service.action}
+                  </a>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Why SoleScope */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.6 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Why SoleScope
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mobile-single-col">
+              {differentiators.map((diff, index) => (
+                <motion.div
+                  key={diff.title}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card text-center"
+                >
+                  <div className="w-12 h-12 mx-auto mb-4 flex items-center justify-center">
+                    <diff.icon className="h-6 w-6 text-white" />
+                  </div>
+                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                    {diff.title}
+                  </h3>
+                  <p className="text-white text-sm leading-relaxed">
+                    {diff.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* How We Work */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 0.8 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                How We Work
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mobile-single-col">
+              {steps.map((step, index) => (
+                <motion.div
+                  key={step.number}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.1 }}
+                  className="about-refined-card step-card text-center"
+                >
+                  <div className="step-number">{step.number}</div>
+                  <h3 className="text-lg font-semibold text-white mb-2 uppercase tracking-wide">
+                    {step.title}
+                  </h3>
+                  <p className="text-white text-sm leading-relaxed">
+                    {step.description}
+                  </p>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+
+          {/* Outcomes & Case Highlights */}
+          <div>
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              animate={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.8, delay: 1.0 }}
+              className="text-center mb-12"
+            >
+              <h2 className="text-3xl sm:text-4xl font-bold text-white mb-4 uppercase tracking-wide">
+                Outcomes & Case Highlights
+              </h2>
+            </motion.div>
+
+            <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 mobile-single-col">
+              {outcomes.map((outcome, index) => (
+                <motion.div
+                  key={index}
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.2 }}
+                  className="about-refined-card"
+                >
+                  <blockquote className="text-lg font-medium text-white mb-6 leading-relaxed">
+                    "{outcome.title}"
+                  </blockquote>
+                  <div className="border-t border-white/10 pt-4">
+                    <h4 className="font-semibold text-white mb-2 uppercase tracking-wide">
+                      {outcome.caseTitle}
+                    </h4>
+                    <p className="text-white text-sm mb-4 leading-relaxed">
+                      {outcome.caseSummary}
+                    </p>
+                    <a
+                      href="/contact"
+                      className="inline-flex items-center text-white hover:text-purple-300 transition-colors font-medium text-sm"
+                    >
+                      {outcome.action}
+                    </a>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
+          </div>
         </div>
       </section>
 
