@@ -19,6 +19,8 @@ export interface AdminLoginResponse {
 export const adminAuth = {
   async login(email: string, password: string): Promise<AdminLoginResponse> {
     try {
+      console.log('Admin login attempt for:', email);
+
       const { data: adminUser, error } = await supabase
         .from('admin_users')
         .select('*')
@@ -27,24 +29,39 @@ export const adminAuth = {
         .maybeSingle();
 
       if (error) {
-        console.error('Database error:', error);
-        return { success: false, error: 'Database error occurred' };
+        console.error('Database query error during login:', {
+          message: error.message,
+          details: error.details,
+          hint: error.hint,
+          code: error.code
+        });
+        return { success: false, error: 'Database error occurred. Please try again.' };
       }
 
       if (!adminUser) {
+        console.warn('Login failed: No active admin user found with email:', email);
         return { success: false, error: 'Invalid email or password' };
       }
+
+      console.log('Admin user found, verifying password...');
 
       const isPasswordValid = await bcrypt.compare(password, adminUser.password_hash);
 
       if (!isPasswordValid) {
+        console.warn('Login failed: Invalid password for email:', email);
         return { success: false, error: 'Invalid email or password' };
       }
 
-      await supabase
+      console.log('Password verified successfully, updating last login...');
+
+      const { error: updateError } = await supabase
         .from('admin_users')
         .update({ last_login: new Date().toISOString() })
         .eq('id', adminUser.id);
+
+      if (updateError) {
+        console.error('Failed to update last_login:', updateError);
+      }
 
       await this.logActivity(
         adminUser.id,
@@ -63,9 +80,13 @@ export const adminAuth = {
         last_login: adminUser.last_login,
       };
 
+      console.log('Login successful for admin:', user.email);
       return { success: true, user };
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('Unexpected login error:', error);
+      if (error instanceof Error) {
+        console.error('Error details:', error.message, error.stack);
+      }
       return { success: false, error: 'An error occurred during login' };
     }
   },
@@ -111,24 +132,7 @@ export const adminAuth = {
   },
 
   async setupInitialAdmin() {
-    try {
-      const { data: existingAdmin } = await supabase
-        .from('admin_users')
-        .select('id')
-        .eq('email', 'Kevin@solescope.co.uk')
-        .maybeSingle();
-
-      if (existingAdmin) {
-        const hashedPassword = await bcrypt.hash('RoxyRufus3586!', 10);
-
-        await supabase
-          .from('admin_users')
-          .update({ password_hash: hashedPassword })
-          .eq('email', 'Kevin@solescope.co.uk');
-      }
-    } catch (error) {
-      console.error('Setup initial admin error:', error);
-    }
+    console.log('Admin user is already configured in the database');
   },
 
   async logActivity(
