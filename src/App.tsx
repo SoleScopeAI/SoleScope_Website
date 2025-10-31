@@ -7,7 +7,6 @@ import KeyboardNavigationGuide from './components/KeyboardNavigationGuide';
 import ScrollAnimations from './components/ScrollAnimations';
 import PremiumFooter from './components/PremiumFooter';
 import SkipToContent from './components/SkipToContent';
-import ErrorBoundary from './components/ErrorBoundary';
 
 import PremiumHomePage from './pages/PremiumHomePage';
 import AboutPage from './pages/AboutPage';
@@ -41,9 +40,8 @@ import ClientDashboardPage from './pages/client/ClientDashboardPage';
 
 const App = () => {
   return (
-    <ErrorBoundary>
-      <AdminAuthProvider>
-        <ClientAuthProvider>
+    <AdminAuthProvider>
+      <ClientAuthProvider>
         <Routes>
         <Route path="/admin/login" element={<AdminLoginPage />} />
 
@@ -114,9 +112,8 @@ const App = () => {
           }
         />
         </Routes>
-        </ClientAuthProvider>
-      </AdminAuthProvider>
-    </ErrorBoundary>
+      </ClientAuthProvider>
+    </AdminAuthProvider>
   );
 };
 
