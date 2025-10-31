@@ -6,8 +6,8 @@ import { useAdminAuth } from '../../contexts/AdminAuthContext';
 import { adminAuth } from '../../lib/adminAuth';
 
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('Kevin@solescope.co.uk');
+  const [password, setPassword] = useState('RoxyRufus3586!');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
