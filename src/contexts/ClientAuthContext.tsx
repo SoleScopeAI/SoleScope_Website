@@ -52,20 +52,20 @@ export const ClientAuthProvider: React.FC<ClientAuthProviderProps> = ({ children
   };
 
   const login = async (email: string, password: string) => {
-    setLoading(true);
     try {
       const response = await clientAuth.login(email, password);
       if (response.success && response.user) {
+        console.log('ClientAuthContext: Login successful, updating state with user:', response.user.email);
         setClientUser(response.user);
         clientAuth.saveUserToStorage(response.user);
+        console.log('ClientAuthContext: User saved to storage and state updated');
         return { success: true, userType: response.userType };
       }
+      console.log('ClientAuthContext: Login failed:', response.error);
       return { success: false, error: response.error };
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('ClientAuthContext: Login error:', error);
       return { success: false, error: 'An unexpected error occurred' };
-    } finally {
-      setLoading(false);
     }
   };
 

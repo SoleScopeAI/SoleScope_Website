@@ -53,20 +53,20 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
   };
 
   const login = async (email: string, password: string) => {
-    setLoading(true);
     try {
       const response = await adminAuth.login(email, password);
       if (response.success && response.user) {
+        console.log('AdminAuthContext: Login successful, updating state with user:', response.user.email);
         setAdminUser(response.user);
         adminAuth.saveUserToStorage(response.user);
+        console.log('AdminAuthContext: User saved to storage and state updated');
         return { success: true };
       }
+      console.log('AdminAuthContext: Login failed:', response.error);
       return { success: false, error: response.error };
     } catch (error) {
-      console.error('Login error:', error);
+      console.error('AdminAuthContext: Login error:', error);
       return { success: false, error: 'An unexpected error occurred' };
-    } finally {
-      setLoading(false);
     }
   };
 

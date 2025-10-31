@@ -4,8 +4,6 @@ import { Mail, Lock, Eye, EyeOff, Shield, CheckCircle2, ArrowRight, AlertCircle 
 import { motion } from 'framer-motion';
 import { useClientAuth } from '../contexts/ClientAuthContext';
 import { useAdminAuth } from '../contexts/AdminAuthContext';
-import { adminAuth } from '../lib/adminAuth';
-import { clientAuth } from '../lib/clientAuth';
 
 const ClientPortalPage = () => {
   const [showPassword, setShowPassword] = useState(false);
@@ -15,15 +13,15 @@ const ClientPortalPage = () => {
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState('');
 
-  const { clientUser } = useClientAuth();
-  const { adminUser } = useAdminAuth();
+  const { clientUser, login: clientLogin } = useClientAuth();
+  const { adminUser, login: adminLogin } = useAdminAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
     if (clientUser) {
-      navigate('/client/dashboard');
+      navigate('/client/dashboard', { replace: true });
     } else if (adminUser) {
-      navigate('/admin/dashboard');
+      navigate('/admin/dashboard', { replace: true });
     }
   }, [clientUser, adminUser, navigate]);
 
@@ -33,20 +31,21 @@ const ClientPortalPage = () => {
     setIsLoading(true);
 
     try {
-      const adminResponse = await adminAuth.login(email, password);
+      console.log('Attempting login for:', email);
 
-      if (adminResponse.success && adminResponse.user) {
-        adminAuth.saveUserToStorage(adminResponse.user);
+      const adminResponse = await adminLogin(email, password);
+
+      if (adminResponse.success) {
+        console.log('Admin login successful, navigating to dashboard');
         localStorage.setItem('userType', 'admin');
-        navigate('/admin/dashboard');
         return;
       }
 
-      const clientResponse = await clientAuth.login(email, password);
+      console.log('Admin login failed, trying client login');
+      const clientResponse = await clientLogin(email, password);
 
-      if (clientResponse.success && clientResponse.user) {
-        clientAuth.saveUserToStorage(clientResponse.user);
-        navigate('/client/dashboard');
+      if (clientResponse.success) {
+        console.log('Client login successful, navigating to dashboard');
         return;
       }
 

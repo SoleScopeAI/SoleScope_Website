@@ -30,14 +30,22 @@ const AdminLoginPage = () => {
     setIsLoading(true);
 
     try {
+      console.log('AdminLoginPage: Starting login process');
       const response = await login(email, password);
+      console.log('AdminLoginPage: Login response:', response);
 
       if (response.success) {
-        navigate('/admin/dashboard');
+        console.log('AdminLoginPage: Login successful, waiting for state update...');
+        setTimeout(() => {
+          console.log('AdminLoginPage: Navigating to dashboard');
+          navigate('/admin/dashboard');
+        }, 100);
       } else {
+        console.error('AdminLoginPage: Login failed:', response.error);
         setError(response.error || 'Invalid credentials');
       }
     } catch (err) {
+      console.error('AdminLoginPage: Exception during login:', err);
       setError('An unexpected error occurred');
     } finally {
       setIsLoading(false);
