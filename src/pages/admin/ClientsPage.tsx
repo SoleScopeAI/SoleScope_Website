@@ -68,8 +68,11 @@ const ClientsPage = () => {
     industry: '',
     company_size: '',
     notes: '',
-    status: 'lead',
+    status: 'prospect',
   });
+
+  const [error, setError] = useState<string>('');
+  const [submitting, setSubmitting] = useState(false);
 
   useEffect(() => {
     fetchClients();
@@ -186,20 +189,47 @@ const ClientsPage = () => {
 
   const handleAddClient = async (e: React.FormEvent) => {
     e.preventDefault();
+    setError('');
+    setSubmitting(true);
+
     try {
-      const { data, error } = await supabase.from('clients').insert([
-        {
-          ...newClient,
-          created_by: adminUser?.id,
-          lifetime_value: 0,
-          tags: [],
-        },
-      ]);
+      if (!adminUser?.id) {
+        setError('You must be logged in to add a client');
+        return;
+      }
 
-      if (error) throw error;
+      const clientData = {
+        company_name: newClient.company_name.trim(),
+        contact_name: newClient.contact_name.trim(),
+        email: newClient.email.trim().toLowerCase(),
+        phone: newClient.phone.trim() || null,
+        website: newClient.website.trim() || null,
+        address: newClient.address.trim() || null,
+        industry: newClient.industry.trim() || null,
+        company_size: newClient.company_size.trim() || null,
+        notes: newClient.notes.trim() || null,
+        status: newClient.status,
+        created_by: adminUser.id,
+        lifetime_value: 0,
+        tags: [],
+      };
 
+      const { data, error } = await supabase
+        .from('clients')
+        .insert([clientData])
+        .select();
+
+      if (error) {
+        console.error('Supabase error:', error);
+        setError(error.message || 'Failed to add client. Please try again.');
+        return;
+      }
+
+      console.log('Client added successfully:', data);
       setShowAddModal(false);
-      fetchClients();
+      setError('');
+      await fetchClients();
+
       setNewClient({
         company_name: '',
         contact_name: '',
@@ -210,23 +240,34 @@ const ClientsPage = () => {
         industry: '',
         company_size: '',
         notes: '',
-        status: 'lead',
+        status: 'prospect',
       });
     } catch (error) {
       console.error('Error adding client:', error);
+      setError('An unexpected error occurred. Please try again.');
+    } finally {
+      setSubmitting(false);
     }
   };
 
   const getStatusColor = (status: string) => {
     switch (status) {
+      case 'prospect':
+        return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
+      case 'lead':
+        return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+      case 'onboarding':
+        return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'active':
         return 'bg-green-500/20 text-green-400 border-green-500/30';
-      case 'lead':
-        return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
+      case 'trial':
+        return 'bg-orange-500/20 text-orange-400 border-orange-500/30';
       case 'inactive':
         return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
-      case 'archived':
+      case 'churned':
         return 'bg-red-500/20 text-red-400 border-red-500/30';
+      case 'archived':
+        return 'bg-slate-500/20 text-slate-400 border-slate-500/30';
       default:
         return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
     }
@@ -266,9 +307,13 @@ const ClientsPage = () => {
             className="px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
           >
             <option value="all">All Status</option>
+            <option value="prospect">Prospects</option>
             <option value="lead">Leads</option>
+            <option value="onboarding">Onboarding</option>
             <option value="active">Active</option>
+            <option value="trial">Trial</option>
             <option value="inactive">Inactive</option>
+            <option value="churned">Churned</option>
             <option value="archived">Archived</option>
           </select>
         </div>
@@ -412,9 +457,14 @@ const ClientsPage = () => {
                     onChange={(e) => setNewClient({ ...newClient, status: e.target.value })}
                     className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-blue-500"
                   >
+                    <option value="prospect">Prospect</option>
                     <option value="lead">Lead</option>
+                    <option value="onboarding">Onboarding</option>
                     <option value="active">Active</option>
+                    <option value="trial">Trial</option>
                     <option value="inactive">Inactive</option>
+                    <option value="churned">Churned</option>
+                    <option value="archived">Archived</option>
                   </select>
                 </div>
               </div>
@@ -429,6 +479,12 @@ const ClientsPage = () => {
                 ></textarea>
               </div>
 
+              {error && (
+                <div className="p-4 bg-red-500/10 border border-red-500/30 rounded-xl">
+                  <p className="text-red-400 text-sm">{error}</p>
+                </div>
+              )}
+
               <div className="flex justify-end space-x-4 mt-6">
                 <button
                   type="button"
@@ -439,9 +495,10 @@ const ClientsPage = () => {
                 </button>
                 <button
                   type="submit"
-                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl hover:from-purple-500 hover:to-violet-500 transition-all"
+                  disabled={submitting}
+                  className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-xl hover:from-purple-500 hover:to-violet-500 transition-all disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  Add Client
+                  {submitting ? 'Adding Client...' : 'Add Client'}
                 </button>
               </div>
             </form>

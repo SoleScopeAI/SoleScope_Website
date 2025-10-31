@@ -47,7 +47,7 @@ export interface Database {
           phone: string | null;
           website: string | null;
           address: string | null;
-          status: 'lead' | 'active' | 'inactive' | 'archived';
+          status: 'prospect' | 'lead' | 'onboarding' | 'active' | 'trial' | 'inactive' | 'churned' | 'archived';
           industry: string | null;
           company_size: string | null;
           lifetime_value: number;
