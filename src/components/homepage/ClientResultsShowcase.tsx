@@ -577,13 +577,14 @@ const ClientResultsShowcase = () => {
             </div>
           </div>
         ) : (
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" style={{ position: 'relative', isolation: 'isolate' }}>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {filteredProjects.map((project, index) => (
               <motion.div
                 key={project.id}
                 initial={{ opacity: 0, y: 30 }}
                 animate={inView ? { opacity: 1, y: 0 } : {}}
                 transition={{ duration: 0.5, delay: index * 0.1 }}
+                className="h-full"
               >
                 <ProjectCard
                   project={project}
@@ -633,49 +634,39 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
 
   return (
     <motion.div
-      className={`relative rounded-3xl shadow-2xl ${
+      className={`relative rounded-3xl shadow-2xl overflow-hidden ${
         compact ? 'h-full' : ''
       }`}
-      style={{ position: 'relative', overflow: 'hidden', isolation: 'isolate' }}
       whileHover={{ y: -5, boxShadow: '0 25px 50px -12px rgba(139, 92, 246, 0.25)' }}
       transition={{ duration: 0.3 }}
     >
-      {/* L0: Background effects layer - positioned absolutely, z-index 0, no pointer events */}
+      <div className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md border border-white/10 rounded-3xl pointer-events-none" />
       <div
-        className="absolute inset-0 bg-gradient-to-br from-white/5 to-white/10 backdrop-blur-md border border-white/10 rounded-3xl"
-        style={{ zIndex: 0, pointerEvents: 'none' }}
-      />
-      <div
-        className={`absolute inset-0 bg-gradient-to-br ${colors.from} ${colors.to}`}
-        style={{ zIndex: 0, pointerEvents: 'none', opacity: 0.3 }}
+        className={`absolute inset-0 bg-gradient-to-br ${colors.from} ${colors.to} pointer-events-none`}
+        style={{ opacity: 0.2 }}
       />
 
-      {/* L2: Hover sheen layer - positioned absolutely, z-index 2, opacity controlled by hover */}
       <motion.div
-        className="absolute inset-0 rounded-3xl"
+        className="absolute inset-0 rounded-3xl pointer-events-none"
         style={{
-          zIndex: 2,
-          pointerEvents: 'none',
-          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.1) 0%, transparent 50%)'
+          background: 'linear-gradient(135deg, rgba(255, 255, 255, 0.08) 0%, transparent 50%)'
         }}
         initial={{ opacity: 0 }}
         whileHover={{ opacity: 1 }}
         transition={{ duration: 0.3 }}
       />
 
-      {/* L1: Content layer - positioned relative, z-index 1 */}
-      <div className="relative p-6 md:p-8" style={{ zIndex: 1 }}>
-        {/* Demo Case Study Badge */}
+      <div className="relative p-6 md:p-8">
         <div className="inline-block px-3 py-1 bg-yellow-600/20 border border-yellow-500/30 rounded-full mb-4">
           <span className="text-xs font-semibold text-yellow-300 uppercase tracking-wide">
             Demo Case Study
           </span>
         </div>
 
-        <div className="flex items-start justify-between mb-6">
-          <div className="flex items-center space-x-4">
+        <div className="flex items-start justify-between mb-5">
+          <div className="flex items-center space-x-4 flex-1 min-w-0">
             <div
-              className="w-16 h-16 rounded-xl p-2"
+              className="w-16 h-16 rounded-xl p-2 flex-shrink-0"
               style={{
                 background: 'rgba(255, 255, 255, 0.10)',
                 border: '1px solid rgba(255, 255, 255, 0.15)'
@@ -683,21 +674,22 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
             >
               <LogoComponent className="w-full h-full" />
             </div>
-            <div>
-              <h3 className="text-2xl font-bold text-white mb-1">{project.business_name}</h3>
+            <div className="flex-1 min-w-0">
+              <h3 className="text-xl md:text-2xl font-bold text-white mb-1 leading-tight">{project.business_name}</h3>
               <div className="flex items-center space-x-2 text-sm text-slate-300">
-                <MapPin className="h-4 w-4" />
-                <span>{project.location}</span>
+                <MapPin className="h-4 w-4 flex-shrink-0" />
+                <span className="truncate">{project.location}</span>
               </div>
             </div>
           </div>
           <button
             onClick={onExpand}
-            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all group"
+            className="w-10 h-10 rounded-full flex items-center justify-center hover:bg-purple-600/30 hover:border-purple-500/50 transition-all group flex-shrink-0 ml-3"
             style={{
               background: 'rgba(255, 255, 255, 0.10)',
               border: '1px solid rgba(255, 255, 255, 0.15)'
             }}
+            aria-label="Expand case study"
           >
             <ArrowUpRight className="h-5 w-5 text-white group-hover:scale-110 transition-transform" />
           </button>
@@ -713,23 +705,21 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
           <span className="text-sm font-semibold text-purple-200">{project.industry}</span>
         </div>
 
-        <p className="text-slate-300 mb-2 leading-relaxed">{project.tagline}</p>
-        <p className="text-xs text-slate-400/80 italic mb-6">
+        <p className="text-slate-300 mb-2 leading-relaxed line-clamp-2">{project.tagline}</p>
+        <p className="text-xs text-slate-400/80 italic mb-5">
           Example project — modelled performance metrics
         </p>
 
-        <div className={`mb-6 ${compact ? 'h-48' : 'h-64'}`}>
-          <MockupComponent className="w-full h-full" />
+        <div className={`mb-5 ${compact ? 'h-48' : 'h-64'} rounded-xl overflow-hidden bg-black/20`}>
+          <MockupComponent className="w-full h-full object-cover" />
         </div>
 
-
-        {/* Tag pills row with horizontal scroll */}
-        <div className="mb-4 overflow-x-auto scrollbar-hide">
-          <div className="flex gap-2 pb-2" style={{ minWidth: 'min-content' }}>
+        <div className="mb-5 overflow-x-auto scrollbar-hide">
+          <div className="flex gap-2 pb-1">
             {project.services_provided.slice(0, 3).map((service, idx) => (
               <span
                 key={idx}
-                className="px-3 py-1 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300 whitespace-nowrap flex-shrink-0"
+                className="px-3 py-1.5 bg-white/5 border border-white/10 rounded-full text-xs text-slate-300 whitespace-nowrap flex-shrink-0"
               >
                 {service}
               </span>
@@ -737,12 +727,11 @@ const ProjectCard: React.FC<ProjectCardProps> = ({ project, onExpand, compact = 
           </div>
         </div>
 
-        {/* CTA button in dedicated row */}
-        <div className="flex justify-end relative" style={{ zIndex: 10 }}>
+        <div className="flex justify-end">
           <button
             onClick={onExpand}
-            className="px-6 py-2 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 text-sm relative"
-            style={{ zIndex: 10 }}
+            className="px-6 py-2.5 bg-gradient-to-r from-purple-600 to-pink-600 text-white font-semibold rounded-xl hover:shadow-lg hover:shadow-purple-500/30 transition-all duration-300 hover:scale-105 text-sm"
+            aria-label="View full case study"
           >
             View Case Study
           </button>
