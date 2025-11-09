@@ -318,13 +318,11 @@
   .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type {
     position: relative !important;
     bottom: auto !important;
-    left: auto !important;
-    transform: none !important;
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     margin-top: 1.5rem !important;
-    width: 100% !important;
+    width: auto !important;
     max-width: 280px !important;
-    margin-left: auto !important;
-    margin-right: auto !important;
     padding: 0 0.5rem !important;
   }
 
@@ -631,6 +629,8 @@
 
   /* Further reduce badge size on extra small screens */
   .about-surface section:first-of-type .grid > div:first-of-type > div > div:last-of-type {
+    left: 50% !important;
+    transform: translateX(-50%) !important;
     max-width: 260px !important;
     padding: 0 0.75rem !important;
   }
