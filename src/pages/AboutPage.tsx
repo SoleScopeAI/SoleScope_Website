@@ -306,7 +306,7 @@ const AboutPage = () => {
                 >
                   <div className="relative w-full aspect-square rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
                     <img
-                      src="https://images.pexels.com/photos/2182970/pexels-photo-2182970.jpeg?auto=compress&cs=tinysrgb&w=600"
+                      src="/compressed_image.jpg"
                       alt="Kevin Hannah, CMgr - Founder of SoleScope Studio & Design"
                       className="w-full h-full object-cover"
                     />
