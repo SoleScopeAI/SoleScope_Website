@@ -509,8 +509,12 @@ const ContactPage = () => {
             >
               {/* Photo Placeholder */}
               <div className="flex justify-center mb-6">
-                <div className="w-24 h-24 bg-gradient-to-br from-purple-600/30 to-purple-700/30 border-2 border-white/20 rounded-full flex items-center justify-center">
-                  <User className="h-12 w-12 text-white/60" />
+                <div className="w-24 h-24 border-2 border-white/20 rounded-full overflow-hidden">
+                  <img
+                    src="/compressed_image_2.jpg"
+                    alt="Kevin Hannah - Founder of SoleScope"
+                    className="w-full h-full object-cover"
+                  />
                 </div>
               </div>
 
