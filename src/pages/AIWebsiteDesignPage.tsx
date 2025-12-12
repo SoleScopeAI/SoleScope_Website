@@ -66,7 +66,6 @@ const AIWebsiteDesignPage = () => {
       features: [
         "4-6 pages",
         "Custom brand styling",
-        "Blog setup & CMS",
         "Advanced SEO optimization",
         "Social media integration",
         "2 revision rounds",

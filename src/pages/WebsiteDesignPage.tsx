@@ -144,7 +144,6 @@ const WebsiteDesignPage = () => {
       mostPopular: true,
       features: [
         "Home, About, Services, Contact, Gallery",
-        "Blog setup & CMS",
         "Advanced contact forms",
         "Performance optimization",
         "3 revision rounds"
