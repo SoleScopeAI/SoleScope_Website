@@ -104,7 +104,8 @@ const BrandIdentityPage = () => {
     {
       id: 'logo-only',
       name: "Brand Essentials",
-      price: "From £199",
+      price: "£199",
+      pricePrefix: "from",
       description: "Perfect for startups and sole traders building their first professional image",
       features: [
         "Custom logo design",
@@ -120,7 +121,8 @@ const BrandIdentityPage = () => {
     {
       id: 'mini-kit',
       name: "Rebrand Package",
-      price: "From £499",
+      price: "£499",
+      pricePrefix: "from",
       description: "Ideal for growing small businesses ready to refresh their identity",
       features: [
         "Complete logo redesign",
@@ -137,7 +139,8 @@ const BrandIdentityPage = () => {
     {
       id: 'full-pack',
       name: "Full Rebrand Package",
-      price: "From £799",
+      price: "£799",
+      pricePrefix: "from",
       description: "Comprehensive branding for businesses expanding their reach",
       features: [
         "Full visual identity system",
@@ -399,6 +402,9 @@ const BrandIdentityPage = () => {
                   <div className="text-center mb-8 pt-2">
                     <h3 className="text-2xl font-bold text-white mb-3 uppercase tracking-wide">{plan.name}</h3>
                     <p className="text-white mb-6 leading-relaxed opacity-80">{plan.description}</p>
+                    {plan.pricePrefix && (
+                      <p className="text-xs text-white/40 mb-1 uppercase tracking-wider">{plan.pricePrefix}</p>
+                    )}
                     <div className="flex items-end justify-center space-x-1">
                       <span className="text-5xl font-bold text-white">{plan.price}</span>
                       <span className="text-white mb-2 text-sm opacity-60">+ VAT</span>
@@ -458,6 +464,9 @@ const BrandIdentityPage = () => {
                     <div className="text-center mb-6 pt-6">
                       <h3 className="text-xl font-bold text-white mb-3 uppercase tracking-wide">{plan.name}</h3>
                       <p className="text-white mb-4 text-sm leading-relaxed opacity-80">{plan.description}</p>
+                      {plan.pricePrefix && (
+                        <p className="text-xs text-white/40 mb-1 uppercase tracking-wider">{plan.pricePrefix}</p>
+                      )}
                       <div className="flex items-end justify-center space-x-1">
                         <span className="text-4xl font-bold text-white">{plan.price}</span>
                         <span className="text-white mb-2 text-sm opacity-60">+ VAT</span>

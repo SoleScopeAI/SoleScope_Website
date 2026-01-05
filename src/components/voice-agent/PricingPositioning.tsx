@@ -56,8 +56,10 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
     },
     {
       name: 'Premium',
-      setup: 'From £499.99',
-      monthly: 'From £199.99',
+      setup: '£499.99',
+      setupPrefix: 'from',
+      monthly: '£199.99',
+      monthlyPrefix: 'from',
       bestFor: 'Growing, high-volume, or complex businesses',
       features: [
         'Everything in Standard, plus:',
@@ -143,10 +145,16 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
 
                   <div className="mb-4">
                     <div className="flex items-baseline gap-2 mb-1">
+                      {tier.setupPrefix && (
+                        <span className="text-xs text-slate-500 uppercase tracking-wider">{tier.setupPrefix}</span>
+                      )}
                       <span className="text-3xl font-bold text-white">{tier.setup}</span>
                       <span className="text-slate-400 text-sm">setup</span>
                     </div>
                     <div className="flex items-baseline gap-2">
+                      {tier.monthlyPrefix && (
+                        <span className="text-xs text-slate-500 uppercase tracking-wider">{tier.monthlyPrefix}</span>
+                      )}
                       <span className="text-3xl font-bold text-white">{tier.monthly}</span>
                       <span className="text-slate-400 text-sm">/ month</span>
                     </div>
