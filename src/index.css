@@ -4,6 +4,55 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Modal Open State - Disable Background Interactions */
+html.modal-open,
+body.modal-open {
+  overflow: hidden !important;
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  overscroll-behavior: none;
+}
+
+body.modal-open #root > *:not([role="dialog"]):not([data-modal-overlay]) {
+  pointer-events: none;
+  user-select: none;
+}
+
+/* Ensure carousel and interactive elements are disabled when modal is open */
+.modal-open [id*="carousel"],
+.modal-open .pagination-icon,
+.modal-open [role="button"]:not([role="dialog"] [role="button"]) {
+  pointer-events: none !important;
+  cursor: default !important;
+}
+
+/* Prevent background content from being tabbable when modal is open */
+.modal-open #root > * {
+  visibility: visible;
+}
+
+.modal-open [role="dialog"] {
+  visibility: visible;
+}
+
+/* Ensure modal content is always visible and interactive */
+[role="dialog"],
+[role="dialog"] * {
+  pointer-events: auto !important;
+}
+
+/* Prevent layout shift from scrollbar */
+html {
+  scrollbar-gutter: stable;
+}
+
+/* Modal stacking context */
+[role="dialog"] {
+  isolation: isolate;
+  contain: layout style paint;
+}
+
 :root {
   /* Dark Theme Color Palette */
   --background: #0A0A0A;

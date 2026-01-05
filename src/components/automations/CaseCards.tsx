@@ -13,6 +13,7 @@ const CaseCards = () => {
     if (!carousel) return;
 
     const handleScroll = () => {
+      if (selectedCase !== null) return;
       const cardWidth = 280 + 16;
       const scrollLeft = carousel.scrollLeft;
       const newSlide = Math.round(scrollLeft / cardWidth);
@@ -21,9 +22,23 @@ const CaseCards = () => {
 
     carousel.addEventListener('scroll', handleScroll);
     return () => carousel.removeEventListener('scroll', handleScroll);
-  }, []);
+  }, [selectedCase]);
+
+  useEffect(() => {
+    const carousel = document.getElementById('cases-carousel');
+    if (!carousel) return;
+
+    if (selectedCase !== null) {
+      carousel.style.pointerEvents = 'none';
+      carousel.style.overflow = 'hidden';
+    } else {
+      carousel.style.pointerEvents = '';
+      carousel.style.overflow = '';
+    }
+  }, [selectedCase]);
 
   const goToSlide = (index: number) => {
+    if (selectedCase !== null) return;
     const carousel = document.getElementById('cases-carousel');
     if (carousel) {
       const cardWidth = 280 + 16;
@@ -176,7 +191,15 @@ const CaseCards = () => {
 
   return (
     <>
-      <section id="case-studies" className="py-20 premium-bg relative overflow-hidden">
+      <section
+        id="case-studies"
+        className="py-20 premium-bg relative overflow-hidden"
+        style={{
+          isolation: 'isolate',
+          position: 'relative',
+          zIndex: selectedCase !== null ? 1 : 'auto'
+        }}
+      >
         <div className="floating-particles"></div>
         <div className="pulse-glow pulse-glow-1"></div>
         <div className="pulse-glow pulse-glow-2"></div>

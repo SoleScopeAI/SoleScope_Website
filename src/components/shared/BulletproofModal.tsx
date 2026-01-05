@@ -70,10 +70,14 @@ const BulletproofModal: React.FC<BulletproofModalProps> = ({
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.2 }}
-          className="fixed inset-0 z-[90] bg-black/60 backdrop-blur-sm"
+          className="fixed inset-0 z-[9000] bg-black/70 backdrop-blur-md"
+          style={{
+            isolation: 'isolate',
+            overscrollBehavior: 'contain'
+          }}
           onClick={handleOverlayClick}
         >
-          <div className="fixed inset-0 z-[100] flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto">
+          <div className="fixed inset-0 z-[9100] flex items-start sm:items-center justify-center p-4 sm:p-6 overflow-y-auto" style={{ overscrollBehavior: 'contain' }}>
             <motion.div
               ref={focusTrapRef}
               initial={{ scale: 0.95, opacity: 0, y: 20 }}
@@ -83,9 +87,11 @@ const BulletproofModal: React.FC<BulletproofModalProps> = ({
               className={`relative w-full max-w-${maxWidth} rounded-2xl bg-slate-900 border border-white/10 shadow-2xl overflow-hidden`}
               style={{
                 isolation: 'isolate',
-                maxHeight: '80vh',
+                maxHeight: '90vh',
                 display: 'flex',
-                flexDirection: 'column'
+                flexDirection: 'column',
+                willChange: 'transform',
+                contain: 'layout style paint'
               }}
               onClick={(e) => e.stopPropagation()}
               role="dialog"
@@ -127,11 +133,12 @@ const BulletproofModal: React.FC<BulletproofModalProps> = ({
                 data-modal-body
                 className="flex-1 overflow-y-auto overflow-x-hidden px-6 sm:px-8 py-8"
                 style={{
-                  maxHeight: 'calc(80vh - 64px)',
+                  maxHeight: 'calc(90vh - 80px)',
                   scrollbarWidth: 'thin',
                   scrollbarColor: 'rgba(168, 85, 247, 0.4) rgba(255, 255, 255, 0.08)',
                   WebkitOverflowScrolling: 'touch',
-                  overscrollBehavior: 'contain'
+                  overscrollBehavior: 'contain',
+                  contain: 'layout style'
                 }}
               >
                 {children}
