@@ -14,48 +14,51 @@ const EcosystemIntegration = () => {
       icon: BarChart3,
       title: 'Dashboard',
       description: 'Command Centre',
-      gradient: 'from-blue-500/20 to-cyan-500/20',
-      borderColor: 'border-cyan-500/40',
-      iconColor: 'text-cyan-400',
+      gradient: 'from-purple-500/15 to-violet-500/15',
+      borderColor: 'border-purple-500/30',
+      iconColor: 'text-purple-400',
     },
     {
       icon: Zap,
       title: 'Automation',
       description: 'Workflows',
-      gradient: 'from-amber-500/20 to-orange-500/20',
-      borderColor: 'border-orange-500/40',
-      iconColor: 'text-orange-400',
+      gradient: 'from-violet-500/15 to-purple-500/15',
+      borderColor: 'border-violet-500/30',
+      iconColor: 'text-violet-400',
     },
     {
       icon: PhoneCall,
       title: 'AI Voice Agent',
       description: 'The Front Door',
-      gradient: 'from-emerald-500/30 to-teal-500/30',
-      borderColor: 'border-emerald-500/50',
-      iconColor: 'text-emerald-400',
+      gradient: 'from-purple-500/25 to-violet-600/25',
+      borderColor: 'border-purple-500/50',
+      iconColor: 'text-purple-300',
       isCentral: true,
     },
     {
       icon: Globe,
       title: 'Website',
       description: 'Digital Presence',
-      gradient: 'from-violet-500/20 to-indigo-500/20',
-      borderColor: 'border-indigo-500/40',
-      iconColor: 'text-indigo-400',
+      gradient: 'from-violet-600/15 to-purple-600/15',
+      borderColor: 'border-violet-500/30',
+      iconColor: 'text-violet-400',
     },
     {
       icon: TrendingUp,
       title: 'Growth',
       description: 'SEO & Marketing',
-      gradient: 'from-rose-500/20 to-pink-500/20',
-      borderColor: 'border-pink-500/40',
-      iconColor: 'text-pink-400',
+      gradient: 'from-purple-600/15 to-violet-500/15',
+      borderColor: 'border-purple-500/30',
+      iconColor: 'text-purple-400',
     },
   ];
 
   return (
-    <section ref={ref} className="py-20 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+    <section ref={ref} className="py-24 relative overflow-hidden">
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -64,11 +67,11 @@ const EcosystemIntegration = () => {
           transition={{ duration: 0.6 }}
           className="max-w-4xl mx-auto text-center mb-16"
         >
-          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-4">
-            Seamless Integration Ecosystem
+          <h2 className="text-4xl sm:text-5xl font-bold text-white mb-6">
+            The Front Door to Your Entire System
           </h2>
           <p className="text-xl text-slate-400">
-            Your AI Voice Agent connects everything together — creating a unified digital powerhouse
+            Your AI Voice Agent doesn't work in isolation — it's the entry point to your complete digital ecosystem
           </p>
         </motion.div>
 
@@ -89,11 +92,11 @@ const EcosystemIntegration = () => {
                 <div
                   className={`relative h-full p-6 bg-gradient-to-br ${item.gradient} backdrop-blur-sm
                     border-2 ${item.borderColor} rounded-2xl
-                    transition-all duration-300 hover:scale-105 hover:shadow-2xl
-                    ${item.isCentral ? 'ring-2 ring-emerald-500/30' : ''}`}
+                    transition-all duration-300 hover:scale-105 hover:shadow-2xl hover:border-purple-500/50
+                    ${item.isCentral ? 'ring-2 ring-purple-500/30 shadow-lg shadow-purple-500/20' : ''}`}
                 >
                   <div className="flex flex-col items-center text-center space-y-3">
-                    <div className={`p-4 bg-slate-900/80 rounded-xl ${item.isCentral ? 'ring-2 ring-emerald-400/50' : ''}`}>
+                    <div className={`p-4 bg-slate-900/80 rounded-xl ${item.isCentral ? 'ring-2 ring-purple-400/50' : ''}`}>
                       <item.icon className={`w-8 h-8 ${item.iconColor}`} />
                     </div>
                     <div>
@@ -119,32 +122,32 @@ const EcosystemIntegration = () => {
           transition={{ duration: 0.6, delay: 0.6 }}
           className="max-w-5xl mx-auto"
         >
-          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
-            <div className="p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-cyan-500/20 rounded-xl backdrop-blur-sm hover:border-cyan-500/40 transition-colors">
+          <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-5">
+            <div className="p-6 bg-slate-800/50 border border-purple-500/30 rounded-xl hover:border-purple-500/50 transition-colors">
               <h4 className="text-lg font-bold text-white mb-2">Capture</h4>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Voice agent captures every lead and interaction
+                AI Voice Agent captures every lead, call, and booking attempt
               </p>
             </div>
 
-            <div className="p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-indigo-500/20 rounded-xl backdrop-blur-sm hover:border-indigo-500/40 transition-colors">
+            <div className="p-6 bg-slate-800/50 border border-violet-500/30 rounded-xl hover:border-violet-500/50 transition-colors">
               <h4 className="text-lg font-bold text-white mb-2">Centralize</h4>
               <p className="text-slate-400 text-sm leading-relaxed">
-                All data flows to your unified dashboard
+                Everything flows to your dashboard for visibility and action
               </p>
             </div>
 
-            <div className="p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-orange-500/20 rounded-xl backdrop-blur-sm hover:border-orange-500/40 transition-colors">
+            <div className="p-6 bg-slate-800/50 border border-purple-500/30 rounded-xl hover:border-purple-500/50 transition-colors">
               <h4 className="text-lg font-bold text-white mb-2">Automate</h4>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Smart workflows trigger automatically
+                Workflows trigger automatically based on call outcomes
               </p>
             </div>
 
-            <div className="p-6 bg-gradient-to-br from-slate-800/60 to-slate-900/60 border border-pink-500/20 rounded-xl backdrop-blur-sm hover:border-pink-500/40 transition-colors">
+            <div className="p-6 bg-slate-800/50 border border-violet-500/30 rounded-xl hover:border-violet-500/50 transition-colors">
               <h4 className="text-lg font-bold text-white mb-2">Grow</h4>
               <p className="text-slate-400 text-sm leading-relaxed">
-                Insights fuel continuous improvement
+                Data feeds your marketing and SEO for continuous improvement
               </p>
             </div>
           </div>
@@ -154,12 +157,12 @@ const EcosystemIntegration = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-12 max-w-3xl mx-auto p-8 bg-gradient-to-r from-emerald-500/10 via-teal-500/10 to-cyan-500/10
-            border border-emerald-500/30 rounded-2xl text-center backdrop-blur-sm"
+          className="mt-12 max-w-3xl mx-auto p-8 bg-gradient-to-r from-purple-500/10 to-violet-500/10
+            border border-purple-500/30 rounded-xl text-center"
         >
           <p className="text-lg text-slate-300 leading-relaxed">
-            <span className="text-emerald-400 font-semibold">One powerful entry point.</span> Complete ecosystem integration.
-            <span className="text-emerald-400 font-semibold"> Unlimited possibilities.</span>
+            <span className="text-purple-400 font-semibold">One entry point.</span> Multiple systems.
+            <span className="text-purple-400 font-semibold"> Complete integration.</span>
           </p>
         </motion.div>
       </div>
