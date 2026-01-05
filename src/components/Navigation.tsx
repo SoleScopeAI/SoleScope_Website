@@ -379,7 +379,12 @@ const Navigation: React.FC<NavigationProps> = ({
               to="/client-portal"
               role="button"
               aria-label="Go to client portal"
-              className="btn-secondary text-sm px-6 py-3 focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black rounded-lg flex items-center space-x-2 ml-4 min-h-[44px]"
+              aria-current={location.pathname === '/client-portal' ? "page" : undefined}
+              className={`group relative flex items-center space-x-2 px-4 py-3 font-medium text-sm tracking-wide uppercase transition-all duration-300 rounded-lg min-h-[44px] ml-4 ${
+                location.pathname === '/client-portal'
+                  ? 'text-purple-400 bg-purple-400/10 shadow-sm'
+                  : 'text-gray-300 hover:text-white hover:bg-white/5'
+              } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
             >
               <span>Client Portal</span>
             </Link>
