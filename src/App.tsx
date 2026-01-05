@@ -19,6 +19,7 @@ import AIDashboardsPage from './pages/AIDashboardsPage';
 import BrandIdentityPage from './pages/BrandIdentityPage';
 import CustomAIAutomationsPage from './pages/CustomAIAutomationsPage';
 import ClientPortalPage from './pages/ClientPortalPage';
+import AIVoiceAgentPage from './pages/AIVoiceAgentPage';
 
 import { AdminAuthProvider } from './contexts/AdminAuthContext';
 import { ClientAuthProvider } from './contexts/ClientAuthContext';
@@ -96,6 +97,7 @@ const App = () => {
                   <Route path="/services/ai-dashboards" element={<AIDashboardsPage />} />
                   <Route path="/services/brand-identity" element={<BrandIdentityPage />} />
                   <Route path="/services/custom-ai-automations" element={<CustomAIAutomationsPage />} />
+                  <Route path="/products/ai-voice-agent" element={<AIVoiceAgentPage />} />
                 </Routes>
               </main>
 

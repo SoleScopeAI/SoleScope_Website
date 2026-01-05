@@ -31,6 +31,7 @@ const PremiumNavbar = () => {
         { name: 'Custom AI Automations', path: '/services/custom-ai-automations' }
       ]
     },
+    { name: 'AI Voice Agent', path: '/products/ai-voice-agent', flagship: true },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
   ];
@@ -72,10 +73,14 @@ const PremiumNavbar = () => {
                   aria-expanded={item.submenu && servicesOpen ? "true" : "false"}
                   style={{ WebkitTapHighlightColor: 'transparent' }}
                   className={`relative px-4 py-2 font-medium text-sm tracking-wide uppercase transition-all duration-300 ${
-                    location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
+                    (item as any).flagship
+                      ? location.pathname === item.path
+                        ? 'text-cyan-400 bg-cyan-500/10 border border-cyan-500/30 rounded-lg'
+                        : 'text-cyan-300 hover:text-cyan-200 border border-cyan-500/20 hover:border-cyan-500/40 rounded-lg hover:bg-cyan-500/5'
+                      : location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
                       ? 'text-purple-400'
                       : 'text-gray-300 hover:text-white'
-                  } focus:outline-none focus-visible:ring-1 focus-visible:ring-purple-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black rounded-lg active:scale-100`}
+                  } focus:outline-none focus-visible:ring-1 focus-visible:ring-purple-400 focus-visible:ring-offset-1 focus-visible:ring-offset-black ${!(item as any).flagship ? 'rounded-lg' : ''} active:scale-100`}
                   onMouseEnter={() => {
                     if (item.submenu) {
                       if (submenuTimeoutRef.current) {
@@ -266,7 +271,11 @@ const PremiumNavbar = () => {
                         role="menuitem"
                         onClick={() => setIsOpen(false)}
                         className={`flex items-center h-12 px-6 text-sm font-medium tracking-wide uppercase transition-colors border-b border-white/5 ${
-                          location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
+                          (item as any).flagship
+                            ? location.pathname === item.path
+                              ? 'text-cyan-400 bg-cyan-500/20'
+                              : 'text-cyan-300 hover:text-white hover:bg-cyan-500/10'
+                            : location.pathname === item.path || (item.submenu && item.submenu.some(sub => location.pathname === sub.path))
                             ? 'text-purple-400 bg-purple-600/20'
                             : 'text-gray-300 hover:text-white hover:bg-white/5'
                         }`}
