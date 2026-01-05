@@ -66,7 +66,7 @@ const EcosystemIntegration = () => {
         </motion.div>
 
         <div className="max-w-6xl mx-auto mb-16">
-          <div className="relative min-h-[600px] flex items-center justify-center">
+          <div className="relative min-h-[750px] flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -79,8 +79,6 @@ const EcosystemIntegration = () => {
                 <div className="relative p-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-3xl shadow-2xl">
                   <PhoneCall className="w-16 h-16 text-white" />
                 </div>
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full animate-ping" />
-                <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full" />
               </div>
               <div className="text-center mt-6 min-w-[200px]">
                 <div className="text-2xl font-bold text-white whitespace-nowrap">AI Voice Agent</div>
@@ -146,7 +144,7 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute bottom-0 right-1/4 transform translate-x-1/2 hidden md:block"
+              className="absolute bottom-12 right-1/4 transform translate-x-1/2 hidden md:block"
             >
               <div className="flex flex-col items-center">
                 <ArrowRight className="w-6 h-6 text-purple-400 rotate-[135deg] mb-4" />
