@@ -183,12 +183,6 @@ const InteractiveHero = () => {
           transition={{ duration: 0.8 }}
           className="text-center"
         >
-          <div className="mb-5 flex justify-end">
-            <span className="inline-flex items-center rounded-full border border-white/10 bg-purple-600/15 px-3 py-1 text-xs font-medium text-purple-200">
-              Limited capacity: accepting up to 2 new projects this month
-            </span>
-          </div>
-
           <motion.div
             className="mt-2"
             initial={{ opacity: 0, scale: 0.9 }}
