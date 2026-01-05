@@ -16,7 +16,7 @@ const UseCaseCards = () => {
       problem: 'Calls come in while you\'re mid-groom, unable to answer. Lost bookings pile up.',
       solution: 'AI agent answers every call, checks availability, and books appointments directly into your calendar.',
       outcome: 'Zero missed bookings. Full calendar. Happier customers.',
-      gradient: 'from-cyan-500 to-blue-500',
+      gradient: 'from-purple-500 to-violet-500',
     },
     {
       icon: Wrench,
@@ -24,7 +24,7 @@ const UseCaseCards = () => {
       problem: 'On-site all day. Phone constantly ringing. Can\'t quote while on a ladder.',
       solution: 'AI agent handles initial enquiries, captures job details, and schedules site visits.',
       outcome: 'More jobs booked. Less phone juggling. Professional image maintained.',
-      gradient: 'from-blue-500 to-slate-500',
+      gradient: 'from-violet-500 to-slate-500',
     },
     {
       icon: Heart,
@@ -32,7 +32,7 @@ const UseCaseCards = () => {
       problem: 'Reception overwhelmed. Patients on hold. After-hours calls going to voicemail.',
       solution: 'AI agent handles routine bookings, prescription requests, and emergency triage.',
       outcome: 'Reduced wait times. Better patient experience. Staff focused on care.',
-      gradient: 'from-slate-500 to-cyan-500',
+      gradient: 'from-slate-500 to-purple-500',
     },
     {
       icon: Zap,
@@ -40,13 +40,16 @@ const UseCaseCards = () => {
       problem: 'Volume of calls exceeds capacity. Good leads lost in the noise.',
       solution: 'AI agent qualifies every enquiry, prioritizes hot leads, and captures all details.',
       outcome: 'Higher conversion. Better lead quality. Nothing falls through cracks.',
-      gradient: 'from-cyan-400 to-blue-400',
+      gradient: 'from-purple-400 to-violet-400',
     },
   ];
 
   return (
     <section ref={ref} className="py-24 relative">
-      <div className="absolute inset-0 bg-slate-800" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -72,9 +75,9 @@ const UseCaseCards = () => {
               transition={{ duration: 0.6, delay: 0.2 + index * 0.1 }}
               className="group relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 to-blue-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-500/5 to-violet-500/5 rounded-xl opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
 
-              <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl hover:border-cyan-500/50 transition-all duration-300 h-full">
+              <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl hover:border-purple-500/50 transition-all duration-300 h-full">
                 <div className={`inline-flex p-4 bg-gradient-to-br ${useCase.gradient} rounded-lg mb-6`}>
                   <useCase.icon className="w-8 h-8 text-white" />
                 </div>
@@ -90,7 +93,7 @@ const UseCaseCards = () => {
                   </div>
 
                   <div>
-                    <div className="text-sm font-semibold text-cyan-400 mb-2">The Solution</div>
+                    <div className="text-sm font-semibold text-purple-400 mb-2">The Solution</div>
                     <p className="text-slate-400 leading-relaxed">{useCase.solution}</p>
                   </div>
 

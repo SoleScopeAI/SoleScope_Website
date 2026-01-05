@@ -15,27 +15,30 @@ const DifferentiationGrid = () => {
       title: 'Bespoke Control Centre',
       description: 'One custom dashboard',
       details: 'Built specifically for each business. No generic templates. Your operations, your way.',
-      gradient: 'from-cyan-500 to-blue-500',
+      gradient: 'from-purple-500 to-violet-500',
     },
     {
       icon: Database,
       title: 'Unified Data Funnel',
       description: 'Everything in one place',
       details: 'Calls, leads, transcripts, bookings, and follow-ups. All flowing to your central command.',
-      gradient: 'from-blue-500 to-slate-400',
+      gradient: 'from-violet-500 to-slate-400',
     },
     {
       icon: Briefcase,
       title: 'Built for Real Businesses',
       description: 'Real-world solutions',
       details: 'Handles missed calls, after-hours enquiries, and high-volume demand without breaking a sweat.',
-      gradient: 'from-slate-400 to-cyan-400',
+      gradient: 'from-slate-400 to-purple-400',
     },
   ];
 
   return (
     <section ref={ref} className="py-24 relative">
-      <div className="absolute inset-0 bg-slate-800" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-1/3 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/3 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -61,9 +64,9 @@ const DifferentiationGrid = () => {
               transition={{ duration: 0.6, delay: 0.2 + index * 0.15 }}
               className="group relative"
             >
-              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 from-cyan-500/10 to-blue-500/10 rounded-xl transition-opacity duration-300" />
+              <div className="absolute inset-0 bg-gradient-to-br opacity-0 group-hover:opacity-100 from-purple-500/10 to-violet-500/10 rounded-xl transition-opacity duration-300" />
 
-              <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl hover:border-cyan-500/50 transition-all duration-300 h-full">
+              <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border border-slate-700 rounded-xl hover:border-purple-500/50 transition-all duration-300 h-full">
                 <div className={`inline-flex p-4 bg-gradient-to-br ${feature.gradient} rounded-lg mb-6`}>
                   <feature.icon className="w-8 h-8 text-white" />
                 </div>
@@ -72,7 +75,7 @@ const DifferentiationGrid = () => {
                   {feature.title}
                 </h3>
 
-                <p className="text-cyan-400 font-semibold mb-4">
+                <p className="text-purple-400 font-semibold mb-4">
                   {feature.description}
                 </p>
 
@@ -80,7 +83,7 @@ const DifferentiationGrid = () => {
                   {feature.details}
                 </p>
 
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-cyan-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-purple-500/50 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
               </div>
             </motion.div>
           ))}
@@ -94,7 +97,7 @@ const DifferentiationGrid = () => {
         >
           <p className="text-lg text-slate-300 leading-relaxed">
             While others sell voice bots, we build
-            <span className="text-cyan-400 font-semibold"> complete communication systems </span>
+            <span className="text-purple-400 font-semibold"> complete communication systems </span>
             that become the front door to your entire business.
           </p>
         </motion.div>

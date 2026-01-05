@@ -25,7 +25,7 @@ const AIVoiceAgentPage = () => {
   };
 
   return (
-    <main className="min-h-screen bg-slate-900">
+    <main className="voice-agent-unified-surface min-h-screen overflow-hidden" role="document" aria-label="AI Voice Agent Page">
       <FlagshipHero onBookDemo={handleBookDemo} onSeeDemo={handleSeeDemo} />
 
       <ProductClarity />

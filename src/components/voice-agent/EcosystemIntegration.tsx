@@ -45,7 +45,10 @@ const EcosystemIntegration = () => {
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -68,20 +71,20 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="absolute"
+              className="absolute hidden md:block"
               style={{ top: '50%', left: '50%', transform: 'translate(-50%, -50%)' }}
             >
               <div className="relative">
-                <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 to-blue-500/30 rounded-full blur-3xl animate-pulse" />
-                <div className="relative p-12 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-3xl shadow-2xl">
+                <div className="absolute inset-0 bg-gradient-to-br from-purple-500/30 to-violet-500/30 rounded-full blur-3xl animate-pulse" />
+                <div className="relative p-12 bg-gradient-to-br from-purple-500 to-violet-600 rounded-3xl shadow-2xl">
                   <PhoneCall className="w-16 h-16 text-white" />
                 </div>
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full animate-ping" />
                 <div className="absolute -top-2 -right-2 w-6 h-6 bg-green-400 rounded-full" />
               </div>
-              <div className="text-center mt-6">
-                <div className="text-2xl font-bold text-white">AI Voice Agent</div>
-                <div className="text-cyan-400 font-semibold">The Front Door</div>
+              <div className="text-center mt-6 min-w-[200px]">
+                <div className="text-2xl font-bold text-white whitespace-nowrap">AI Voice Agent</div>
+                <div className="text-purple-400 font-semibold">The Front Door</div>
               </div>
             </motion.div>
 
@@ -89,17 +92,17 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, y: -50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.4 }}
-              className="absolute top-0 left-1/2 transform -translate-x-1/2"
+              className="absolute top-0 left-1/2 transform -translate-x-1/2 hidden md:block"
             >
               <div className="flex flex-col items-center">
-                <div className="p-6 bg-slate-800 border-2 border-cyan-500/50 rounded-xl">
-                  <BarChart3 className="w-10 h-10 text-cyan-400" />
+                <div className="p-6 bg-slate-800 border-2 border-purple-500/50 rounded-xl">
+                  <BarChart3 className="w-10 h-10 text-purple-400" />
                 </div>
-                <div className="text-center mt-3">
-                  <div className="text-lg font-bold text-white">Dashboard</div>
+                <div className="text-center mt-3 min-w-[120px]">
+                  <div className="text-lg font-bold text-white whitespace-nowrap">Dashboard</div>
                   <div className="text-sm text-slate-400">Command Centre</div>
                 </div>
-                <ArrowRight className="w-6 h-6 text-cyan-400 rotate-90 my-4" />
+                <ArrowRight className="w-6 h-6 text-purple-400 rotate-90 my-4" />
               </div>
             </motion.div>
 
@@ -107,16 +110,16 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, x: 50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.5 }}
-              className="absolute top-1/2 right-0 transform -translate-y-1/2"
+              className="absolute top-1/2 right-0 transform -translate-y-1/2 hidden lg:block"
             >
               <div className="flex items-center">
-                <ArrowRight className="w-6 h-6 text-cyan-400 mx-4" />
-                <div className="p-6 bg-slate-800 border-2 border-blue-500/50 rounded-xl">
-                  <Globe className="w-10 h-10 text-blue-400" />
+                <ArrowRight className="w-6 h-6 text-purple-400 mx-4" />
+                <div className="p-6 bg-slate-800 border-2 border-violet-500/50 rounded-xl">
+                  <Globe className="w-10 h-10 text-violet-400" />
                 </div>
               </div>
-              <div className="text-center mt-3">
-                <div className="text-lg font-bold text-white">Website</div>
+              <div className="text-center mt-3 min-w-[120px]">
+                <div className="text-lg font-bold text-white whitespace-nowrap">Website</div>
                 <div className="text-sm text-slate-400">Digital Presence</div>
               </div>
             </motion.div>
@@ -125,16 +128,16 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, x: -50 }}
               animate={inView ? { opacity: 1, x: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.6 }}
-              className="absolute top-1/2 left-0 transform -translate-y-1/2"
+              className="absolute top-1/2 left-0 transform -translate-y-1/2 hidden lg:block"
             >
               <div className="flex items-center">
                 <div className="p-6 bg-slate-800 border-2 border-slate-500/50 rounded-xl">
                   <Zap className="w-10 h-10 text-slate-400" />
                 </div>
-                <ArrowRight className="w-6 h-6 text-cyan-400 rotate-180 mx-4" />
+                <ArrowRight className="w-6 h-6 text-purple-400 rotate-180 mx-4" />
               </div>
-              <div className="text-center mt-3">
-                <div className="text-lg font-bold text-white">Automation</div>
+              <div className="text-center mt-3 min-w-[120px]">
+                <div className="text-lg font-bold text-white whitespace-nowrap">Automation</div>
                 <div className="text-sm text-slate-400">Workflows</div>
               </div>
             </motion.div>
@@ -143,15 +146,15 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute bottom-0 right-1/4 transform translate-x-1/2"
+              className="absolute bottom-0 right-1/4 transform translate-x-1/2 hidden md:block"
             >
               <div className="flex flex-col items-center">
-                <ArrowRight className="w-6 h-6 text-cyan-400 rotate-[135deg] mb-4" />
-                <div className="p-6 bg-slate-800 border-2 border-cyan-500/50 rounded-xl">
-                  <TrendingUp className="w-10 h-10 text-cyan-400" />
+                <ArrowRight className="w-6 h-6 text-purple-400 rotate-[135deg] mb-4" />
+                <div className="p-6 bg-slate-800 border-2 border-purple-500/50 rounded-xl">
+                  <TrendingUp className="w-10 h-10 text-purple-400" />
                 </div>
-                <div className="text-center mt-3">
-                  <div className="text-lg font-bold text-white">Growth</div>
+                <div className="text-center mt-3 min-w-[120px]">
+                  <div className="text-lg font-bold text-white whitespace-nowrap">Growth</div>
                   <div className="text-sm text-slate-400">SEO & Marketing</div>
                 </div>
               </div>
@@ -166,14 +169,14 @@ const EcosystemIntegration = () => {
           className="max-w-4xl mx-auto"
         >
           <div className="grid md:grid-cols-2 gap-6">
-            <div className="p-6 bg-slate-800/50 border border-cyan-500/30 rounded-xl">
+            <div className="p-6 bg-slate-800/50 border border-purple-500/30 rounded-xl">
               <h4 className="text-xl font-bold text-white mb-3">Capture</h4>
               <p className="text-slate-400 leading-relaxed">
                 AI Voice Agent captures every lead, call, and booking attempt
               </p>
             </div>
 
-            <div className="p-6 bg-slate-800/50 border border-blue-500/30 rounded-xl">
+            <div className="p-6 bg-slate-800/50 border border-violet-500/30 rounded-xl">
               <h4 className="text-xl font-bold text-white mb-3">Centralize</h4>
               <p className="text-slate-400 leading-relaxed">
                 Everything flows to your dashboard for visibility and action
@@ -187,7 +190,7 @@ const EcosystemIntegration = () => {
               </p>
             </div>
 
-            <div className="p-6 bg-slate-800/50 border border-cyan-500/30 rounded-xl">
+            <div className="p-6 bg-slate-800/50 border border-purple-500/30 rounded-xl">
               <h4 className="text-xl font-bold text-white mb-3">Grow</h4>
               <p className="text-slate-400 leading-relaxed">
                 Data feeds your marketing and SEO for continuous improvement
@@ -200,11 +203,11 @@ const EcosystemIntegration = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1.2 }}
-          className="mt-12 max-w-3xl mx-auto p-8 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl text-center"
+          className="mt-12 max-w-3xl mx-auto p-8 bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/30 rounded-xl text-center"
         >
           <p className="text-lg text-slate-300 leading-relaxed">
-            <span className="text-cyan-400 font-semibold">One entry point.</span> Multiple systems.
-            <span className="text-cyan-400 font-semibold"> Complete integration.</span>
+            <span className="text-purple-400 font-semibold">One entry point.</span> Multiple systems.
+            <span className="text-purple-400 font-semibold"> Complete integration.</span>
           </p>
         </motion.div>
       </div>

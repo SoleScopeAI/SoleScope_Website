@@ -33,7 +33,10 @@ const ProductClarity = () => {
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/3 right-1/4 w-80 h-80 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/3 left-1/4 w-80 h-80 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -90,11 +93,11 @@ const ProductClarity = () => {
                   initial={{ opacity: 0, x: 20 }}
                   animate={inView ? { opacity: 1, x: 0 } : {}}
                   transition={{ duration: 0.4, delay: 0.3 + index * 0.1 }}
-                  className="p-6 bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-cyan-500/30 rounded-lg hover:border-cyan-500/50 transition-all duration-300"
+                  className="p-6 bg-gradient-to-br from-slate-800/50 to-slate-800/30 border border-purple-500/30 rounded-lg hover:border-purple-500/50 transition-all duration-300"
                 >
                   <div className="flex items-start gap-3">
-                    <div className="flex-shrink-0 w-8 h-8 bg-cyan-500/20 rounded-full flex items-center justify-center mt-1">
-                      <Check className="w-5 h-5 text-cyan-400" />
+                    <div className="flex-shrink-0 w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center mt-1">
+                      <Check className="w-5 h-5 text-purple-400" />
                     </div>
                     <div>
                       <h4 className="text-lg font-semibold text-white mb-2">{item.title}</h4>
@@ -111,11 +114,11 @@ const ProductClarity = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="mt-16 max-w-4xl mx-auto p-8 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl"
+          className="mt-16 max-w-4xl mx-auto p-8 bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/30 rounded-xl"
         >
           <p className="text-lg text-center text-slate-300 leading-relaxed">
             Every call, every lead, every booking flows through one unified system —
-            <span className="text-cyan-400 font-semibold"> purpose-built for your business</span>,
+            <span className="text-purple-400 font-semibold"> purpose-built for your business</span>,
             not adapted from someone else's.
           </p>
         </motion.div>

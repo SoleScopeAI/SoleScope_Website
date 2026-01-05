@@ -49,7 +49,10 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
 
   return (
     <section ref={ref} className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-800 to-slate-900" />
+      <div className="absolute inset-0 opacity-20">
+        <div className="absolute top-1/4 right-1/4 w-96 h-96 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 left-1/4 w-96 h-96 bg-violet-500/30 rounded-full blur-3xl" />
+      </div>
 
       <div className="relative z-10 container mx-auto px-4">
         <motion.div
@@ -73,10 +76,10 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
             transition={{ duration: 0.6, delay: 0.2 }}
             className="relative"
           >
-            <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/10 to-blue-500/10 rounded-2xl blur-xl" />
-            <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border-2 border-cyan-500/50 rounded-2xl">
+            <div className="absolute inset-0 bg-gradient-to-br from-purple-500/10 to-violet-500/10 rounded-2xl blur-xl" />
+            <div className="relative p-8 bg-slate-900/50 backdrop-blur-sm border-2 border-purple-500/50 rounded-2xl">
               <div className="flex items-center gap-3 mb-6">
-                <div className="p-3 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-lg">
+                <div className="p-3 bg-gradient-to-br from-purple-500 to-violet-600 rounded-lg">
                   <Star className="w-6 h-6 text-white" />
                 </div>
                 <h3 className="text-2xl font-bold text-white">What's Included</h3>
@@ -91,7 +94,7 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
                     transition={{ duration: 0.4, delay: 0.3 + index * 0.05 }}
                     className="flex items-start gap-3"
                   >
-                    <Check className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-1" />
+                    <Check className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
                     <span className="text-slate-300">{item}</span>
                   </motion.li>
                 ))}
@@ -114,13 +117,13 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
               </div>
 
               <div className="space-y-4">
-                <div className="p-4 bg-slate-800/50 border border-cyan-500/30 rounded-lg">
-                  <div className="text-sm font-semibold text-cyan-400 mb-1">Initial Setup</div>
+                <div className="p-4 bg-slate-800/50 border border-purple-500/30 rounded-lg">
+                  <div className="text-sm font-semibold text-purple-400 mb-1">Initial Setup</div>
                   <div className="text-slate-300">Bespoke development, training, and integration</div>
                 </div>
 
-                <div className="p-4 bg-slate-800/50 border border-blue-500/30 rounded-lg">
-                  <div className="text-sm font-semibold text-blue-400 mb-1">Monthly Platform</div>
+                <div className="p-4 bg-slate-800/50 border border-violet-500/30 rounded-lg">
+                  <div className="text-sm font-semibold text-violet-400 mb-1">Monthly Platform</div>
                   <div className="text-slate-300">Hosting, AI processing, and ongoing support</div>
                 </div>
 
@@ -131,11 +134,11 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
               </div>
             </div>
 
-            <div className="p-6 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl">
+            <div className="p-6 bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/30 rounded-xl">
               <div className="flex items-start gap-3">
-                <Zap className="w-5 h-5 text-cyan-400 flex-shrink-0 mt-1" />
+                <Zap className="w-5 h-5 text-purple-400 flex-shrink-0 mt-1" />
                 <p className="text-slate-300 leading-relaxed">
-                  <span className="text-cyan-400 font-semibold">Pricing is custom</span> based on your call volume,
+                  <span className="text-purple-400 font-semibold">Pricing is custom</span> based on your call volume,
                   integration requirements, and specific business needs.
                 </p>
               </div>
@@ -160,7 +163,7 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
                   <tr className="border-b border-slate-700">
                     <th className="text-left py-4 px-4 text-slate-400 font-semibold">Feature</th>
                     <th className="text-center py-4 px-4 text-slate-400 font-semibold">Generic Tools</th>
-                    <th className="text-center py-4 px-4 text-cyan-400 font-semibold">SoleScope</th>
+                    <th className="text-center py-4 px-4 text-purple-400 font-semibold">SoleScope</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -169,7 +172,7 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
                       <td className="py-4 px-4 text-white font-medium">{row.feature}</td>
                       <td className="py-4 px-4 text-center text-slate-500">{row.generic}</td>
                       <td className="py-4 px-4 text-center">
-                        <span className="inline-flex items-center gap-2 text-cyan-400 font-semibold">
+                        <span className="inline-flex items-center gap-2 text-purple-400 font-semibold">
                           <Check className="w-4 h-4" />
                           {row.solescope}
                         </span>
@@ -190,7 +193,7 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
         >
           <button
             onClick={onBookDemo}
-            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-cyan-500 to-blue-500 text-white text-lg font-semibold rounded-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 hover:scale-105"
+            className="inline-flex items-center gap-3 px-10 py-5 bg-gradient-to-r from-purple-500 to-violet-600 text-white text-lg font-semibold rounded-lg hover:from-purple-400 hover:to-violet-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/50 hover:scale-105"
           >
             Get Your Custom Quote
           </button>

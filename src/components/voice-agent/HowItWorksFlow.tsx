@@ -14,13 +14,13 @@ const HowItWorksFlow = () => {
       icon: Phone,
       title: 'Customer Calls Your Business',
       description: 'A potential customer dials your number, any time of day or night.',
-      color: 'cyan',
+      color: 'purple',
     },
     {
       icon: MessageCircle,
       title: 'AI Agent Answers Naturally',
       description: 'Your AI voice agent picks up instantly, speaking naturally and professionally.',
-      color: 'blue',
+      color: 'violet',
     },
     {
       icon: FileCheck,
@@ -32,23 +32,21 @@ const HowItWorksFlow = () => {
       icon: Calendar,
       title: 'Takes Bookings or Captures Leads',
       description: 'Books appointments directly into your calendar or captures full lead details.',
-      color: 'cyan',
+      color: 'purple',
     },
     {
       icon: BarChart3,
       title: 'Syncs to Central Dashboard',
       description: 'Everything flows to your custom control centre for review and action.',
-      color: 'blue',
+      color: 'violet',
     },
   ];
 
   return (
     <section ref={ref} id="how-it-works" className="py-24 relative overflow-hidden">
-      <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-800" />
-
       <div className="absolute inset-0 opacity-20">
-        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-cyan-500/30 rounded-full blur-3xl" />
-        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-blue-500/30 rounded-full blur-3xl" />
+        <div className="absolute top-1/4 left-1/4 w-64 h-64 bg-purple-500/30 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-64 h-64 bg-violet-500/30 rounded-full blur-3xl" />
       </div>
 
       <div className="relative z-10 container mx-auto px-4">
@@ -83,8 +81,8 @@ const HowItWorksFlow = () => {
 
                 <div className="flex-grow pt-2">
                   <div className="flex items-center gap-3 mb-2">
-                    <span className="text-cyan-400 font-bold text-lg">Step {index + 1}</span>
-                    <div className="h-px flex-grow bg-gradient-to-r from-cyan-500/50 to-transparent" />
+                    <span className="text-purple-400 font-bold text-lg">Step {index + 1}</span>
+                    <div className="h-px flex-grow bg-gradient-to-r from-purple-500/50 to-transparent" />
                   </div>
                   <h3 className="text-2xl font-bold text-white mb-3">
                     {step.title}
@@ -103,9 +101,9 @@ const HowItWorksFlow = () => {
                   className="flex justify-center my-4 origin-top"
                 >
                   <div className="flex flex-col items-center">
-                    <div className="w-px h-8 bg-gradient-to-b from-cyan-500 to-blue-500" />
-                    <ArrowDown className="w-6 h-6 text-cyan-400 animate-bounce" />
-                    <div className="w-px h-8 bg-gradient-to-b from-blue-500 to-transparent" />
+                    <div className="w-px h-8 bg-gradient-to-b from-purple-500 to-violet-500" />
+                    <ArrowDown className="w-6 h-6 text-purple-400 animate-bounce" />
+                    <div className="w-px h-8 bg-gradient-to-b from-violet-500 to-transparent" />
                   </div>
                 </motion.div>
               )}
@@ -117,11 +115,11 @@ const HowItWorksFlow = () => {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.6, delay: 1 }}
-          className="mt-16 max-w-3xl mx-auto p-8 bg-gradient-to-r from-cyan-500/10 to-blue-500/10 border border-cyan-500/30 rounded-xl text-center"
+          className="mt-16 max-w-3xl mx-auto p-8 bg-gradient-to-r from-purple-500/10 to-violet-500/10 border border-purple-500/30 rounded-xl text-center"
         >
           <p className="text-lg text-slate-300 leading-relaxed">
             From first ring to final booking —
-            <span className="text-cyan-400 font-semibold"> fully automated, completely natural, entirely yours.</span>
+            <span className="text-purple-400 font-semibold"> fully automated, completely natural, entirely yours.</span>
           </p>
         </motion.div>
       </div>

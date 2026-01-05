@@ -125,7 +125,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
 
               <div className="p-8">
                 <div className="text-center mb-8">
-                  <div className="inline-flex p-4 bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full mb-4">
+                  <div className="inline-flex p-4 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full mb-4">
                     <Phone className="w-8 h-8 text-white" />
                   </div>
                   <h2 className="text-3xl font-bold text-white mb-2">Book Your Live Demo</h2>
@@ -160,7 +160,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                           value={formData.name}
                           onChange={handleChange}
                           required
-                          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                          className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                           placeholder="John Smith"
                         />
                       </div>
@@ -178,7 +178,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                             value={formData.businessName}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                             placeholder="Your Business Ltd"
                           />
                         </div>
@@ -199,7 +199,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                             value={formData.email}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                             placeholder="john@business.com"
                           />
                         </div>
@@ -218,7 +218,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                             value={formData.phone}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent"
                             placeholder="07XXX XXXXXX"
                           />
                         </div>
@@ -238,7 +238,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                             value={formData.industry}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent appearance-none"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none"
                           >
                             <option value="">Select your industry</option>
                             {industries.map((industry) => (
@@ -262,7 +262,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                             value={formData.bestTime}
                             onChange={handleChange}
                             required
-                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent appearance-none"
+                            className="w-full pl-11 pr-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent appearance-none"
                           >
                             <option value="">Select a time</option>
                             {bestTimes.map((time) => (
@@ -285,7 +285,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                         value={formData.message}
                         onChange={handleChange}
                         rows={4}
-                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-cyan-500 focus:border-transparent resize-none"
+                        className="w-full px-4 py-3 bg-slate-800 border border-slate-700 rounded-lg text-white placeholder-slate-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
                         placeholder="Tell us about your business and what you're looking for..."
                       />
                     </div>
@@ -300,7 +300,7 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                     <button
                       type="submit"
                       disabled={isSubmitting}
-                      className="w-full py-4 bg-gradient-to-r from-cyan-500 to-blue-500 text-white font-semibold rounded-lg hover:from-cyan-400 hover:to-blue-400 transition-all duration-300 shadow-lg hover:shadow-cyan-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
+                      className="w-full py-4 bg-gradient-to-r from-purple-500 to-violet-600 text-white font-semibold rounded-lg hover:from-purple-400 hover:to-violet-500 transition-all duration-300 shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed"
                     >
                       {isSubmitting ? 'Submitting...' : 'Request Demo'}
                     </button>
