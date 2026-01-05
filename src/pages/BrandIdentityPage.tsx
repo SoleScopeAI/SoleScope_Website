@@ -104,7 +104,7 @@ const BrandIdentityPage = () => {
     {
       id: 'logo-only',
       name: "Brand Essentials",
-      price: "£149–£249",
+      price: "From £199",
       description: "Perfect for startups and sole traders building their first professional image",
       features: [
         "Custom logo design",
@@ -120,7 +120,7 @@ const BrandIdentityPage = () => {
     {
       id: 'mini-kit',
       name: "Rebrand Package",
-      price: "£349–£549",
+      price: "From £499",
       description: "Ideal for growing small businesses ready to refresh their identity",
       features: [
         "Complete logo redesign",
@@ -136,8 +136,8 @@ const BrandIdentityPage = () => {
     },
     {
       id: 'full-pack',
-      name: "Full Brand System",
-      price: "£649–£899",
+      name: "Full Rebrand Package",
+      price: "From £799",
       description: "Comprehensive branding for businesses expanding their reach",
       features: [
         "Full visual identity system",
@@ -155,7 +155,7 @@ const BrandIdentityPage = () => {
     {
       id: 'hero-photo-pack',
       name: "Visual Assets Pack",
-      price: "£199–£349",
+      price: "£249",
       description: "Custom marketing visuals to complement your brand identity",
       features: [
         "3-5 custom hero visuals",
