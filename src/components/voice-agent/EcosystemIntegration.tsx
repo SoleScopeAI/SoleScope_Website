@@ -66,7 +66,7 @@ const EcosystemIntegration = () => {
         </motion.div>
 
         <div className="max-w-6xl mx-auto mb-16">
-          <div className="relative min-h-[900px] flex items-center justify-center">
+          <div className="relative min-h-[1000px] flex items-center justify-center">
             <motion.div
               initial={{ opacity: 0, scale: 0.8 }}
               animate={inView ? { opacity: 1, scale: 1 } : {}}
@@ -144,7 +144,7 @@ const EcosystemIntegration = () => {
               initial={{ opacity: 0, y: 50 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.7 }}
-              className="absolute bottom-4 right-1/4 transform translate-x-1/2 hidden md:block"
+              className="absolute bottom-0 right-1/4 transform translate-x-1/2 hidden md:block"
             >
               <div className="flex flex-col items-center">
                 <ArrowRight className="w-6 h-6 text-purple-400 rotate-[135deg] mb-4" />
