@@ -105,15 +105,21 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             onClick={onClose}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-[9000]"
+            style={{ top: 0, left: 0, right: 0, bottom: 0, isolation: 'isolate' }}
           />
 
-          <div className="fixed inset-0 flex items-center justify-center z-50 p-4 overflow-y-auto">
+          <div className="fixed inset-0 flex items-center justify-center z-[9100] p-4 overflow-y-auto" style={{ top: 0, left: 0, right: 0, bottom: 0 }}>
             <motion.div
               initial={{ opacity: 0, scale: 0.9, y: 20 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               exit={{ opacity: 0, scale: 0.9, y: 20 }}
+              role="dialog"
+              aria-modal="true"
+              aria-labelledby="demo-modal-title"
               className="relative w-full max-w-2xl bg-slate-900 border border-slate-700 rounded-2xl shadow-2xl my-8"
+              style={{ isolation: 'isolate', contain: 'layout style paint' }}
+              onClick={(e) => e.stopPropagation()}
             >
               <button
                 onClick={onClose}
@@ -123,12 +129,12 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
                 <X className="w-6 h-6" />
               </button>
 
-              <div className="p-8">
+              <div className="p-6 sm:p-8">
                 <div className="text-center mb-8">
                   <div className="inline-flex p-4 bg-gradient-to-br from-purple-500 to-violet-600 rounded-full mb-4">
                     <Phone className="w-8 h-8 text-white" />
                   </div>
-                  <h2 className="text-3xl font-bold text-white mb-2">Book Your Live Demo</h2>
+                  <h2 id="demo-modal-title" className="text-2xl sm:text-3xl font-bold text-white mb-2">Book Your Live Demo</h2>
                   <p className="text-slate-400">
                     See the AI Voice Agent in action. We'll walk you through exactly how it works for your business.
                   </p>

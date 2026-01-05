@@ -129,6 +129,18 @@ const Navigation: React.FC<NavigationProps> = ({
     return () => document.removeEventListener('keydown', handleEscape);
   }, []);
 
+  // Lock body scroll when mobile menu is open
+  useEffect(() => {
+    if (isOpen) {
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.style.overflow = '';
+    }
+    return () => {
+      document.body.style.overflow = '';
+    };
+  }, [isOpen]);
+
   const handleSubmenuEnter = (itemTitle: string) => {
     if (submenuTimeoutRef.current) {
       clearTimeout(submenuTimeoutRef.current);
@@ -374,7 +386,13 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
 
           {/* Mobile menu button */}
-          <div className="lg:hidden">
+          <div className="lg:hidden flex items-center gap-3">
+            <Link
+              to="/client-portal"
+              className="inline-flex items-center gap-1 h-7 px-3 text-xs font-medium rounded-full bg-purple-600/80 hover:bg-purple-600 text-white border border-white/10 transition-all duration-300"
+            >
+              Portal
+            </Link>
             <button
               onClick={() => setIsOpen(!isOpen)}
               aria-expanded={isOpen}
@@ -397,117 +415,72 @@ const Navigation: React.FC<NavigationProps> = ({
           </div>
         </div>
 
-        {/* Mobile Navigation */}
+        {/* Mobile Navigation - Fixed Overlay */}
         <AnimatePresence>
           {isOpen && (
-            <motion.div
-              initial={{ opacity: 0, height: 0 }}
-              animate={{ opacity: 1, height: 'auto' }}
-              exit={{ opacity: 0, height: 0 }}
-              transition={{ duration: 0.3, ease: "easeInOut" }}
-              id="mobile-menu"
-              ref={menuRef}
-              role="menu"
-              aria-label="Mobile navigation menu"
-              className="lg:hidden bg-black/95 backdrop-blur-xl border-t border-gray-800 rounded-b-xl shadow-2xl"
-            >
-              <div className="px-4 py-6 space-y-2 max-h-[70vh] overflow-y-auto">
-                {navigationData.primary.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: index * 0.1 }}
-                  >
-                    {/* Main menu item */}
-                    <Link
-                      to={item.path}
-                      role="menuitem"
-                      aria-describedby={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                      aria-current={isActiveRoute(item) ? "page" : undefined}
-                      onClick={(e) => handleLinkClick(e, item)}
-                      className={`group flex items-center space-x-3 px-4 py-4 text-base font-medium transition-all duration-300 rounded-xl min-h-[44px] ${
-                        isActiveRoute(item)
-                          ? 'text-purple-400 bg-purple-400/10 border border-purple-400/20'
-                          : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
-                      } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
-                    >
-                      <div className="flex-1">
-                        <div className="font-semibold">{item.title}</div>
-                        <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
-                          {item.description}
-                        </div>
-                      </div>
-                      {item.children && (
-                        <ChevronDown className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                      )}
-                    </Link>
-                    
-                    <span id={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`} className="sr-only">
-                      {item.description}
-                    </span>
+            <>
+              {/* Backdrop */}
+              <motion.div
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                exit={{ opacity: 0 }}
+                onClick={() => setIsOpen(false)}
+                className="lg:hidden fixed inset-0 bg-black/70 backdrop-blur-sm z-[60]"
+                style={{ top: 0, left: 0, right: 0, bottom: 0 }}
+              />
 
-                    {/* Mobile submenu */}
-                    {item.children && (
-                      <div className="ml-8 mt-2 space-y-1" role="group" aria-label={`${item.title} submenu`}>
-                        {item.children.map((subItem) => (
-                          <Link
-                            key={subItem.title}
-                            to={subItem.path}
-                            role="menuitem"
-                            aria-current={location.pathname === subItem.path ? "page" : undefined}
-                            onClick={() => setIsOpen(false)}
-                            className={`block px-4 py-3 text-sm transition-all duration-300 rounded-lg ml-4 min-h-[44px] flex items-center ${
-                              location.pathname === subItem.path
-                                ? 'text-purple-400 bg-purple-400/10 border-l-2 border-purple-400'
-                                : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-purple-400/50'
-                            } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
-                          >
-                            <div className="flex-1">
-                              <div className="font-medium mb-1">{subItem.title}</div>
-                              <div className="text-xs text-gray-500">{subItem.description}</div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
-                  </motion.div>
-                ))}
-                
-                {/* Mobile Secondary Navigation */}
-                {navigationData.secondary.map((item, index) => (
-                  <motion.div
-                    key={item.title}
-                    initial={{ opacity: 0, x: -20 }}
-                    animate={{ opacity: 1, x: 0 }}
-                    transition={{ duration: 0.3, delay: (navigationData.primary.length + index) * 0.1 }}
+              {/* Drawer */}
+              <motion.div
+                initial={{ x: '100%' }}
+                animate={{ x: 0 }}
+                exit={{ x: '100%' }}
+                transition={{ type: 'tween', duration: 0.3 }}
+                id="mobile-menu"
+                ref={menuRef}
+                role="menu"
+                aria-label="Mobile navigation menu"
+                className="lg:hidden fixed inset-y-0 right-0 w-[86%] max-w-sm bg-black/98 backdrop-blur-xl border-l border-white/10 z-[70] overflow-y-auto"
+                style={{ top: 0, bottom: 0 }}
+              >
+                {/* Drawer Header */}
+                <div className="flex items-center justify-between p-4 border-b border-white/10 sticky top-0 bg-black/98 z-10">
+                  <div className="flex items-center space-x-3">
+                    <div className="w-8 h-8">
+                      <img
+                        src="/edited-photo.png"
+                        alt="SoleScope Logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </div>
+                    <span className="text-base font-bold text-white">SoleScope</span>
+                  </div>
+                  <button
+                    onClick={() => setIsOpen(false)}
+                    aria-label="Close menu"
+                    className="p-2 text-gray-300 hover:text-white transition-colors min-h-[44px] min-w-[44px] flex items-center justify-center rounded-lg hover:bg-white/5"
                   >
-                    {item.external ? (
-                      <a
-                        href={item.path}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        role="menuitem"
-                        aria-describedby={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        className="group flex items-center space-x-3 px-4 py-4 text-base font-medium transition-all duration-300 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black min-h-[44px]"
-                      >
-                        <div className="flex-1">
-                          <div className="font-semibold">{item.title}</div>
-                          <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
-                            {item.description}
-                          </div>
-                        </div>
-                        <ExternalLink className="h-4 w-4 text-gray-400" aria-hidden="true" />
-                      </a>
-                    ) : (
+                    <X size={24} />
+                  </button>
+                </div>
+
+                {/* Drawer Navigation Items */}
+                <div className="px-4 py-6 space-y-2">
+                  {navigationData.primary.map((item, index) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: index * 0.05 }}
+                    >
+                      {/* Main menu item */}
                       <Link
                         to={item.path}
                         role="menuitem"
                         aria-describedby={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
-                        aria-current={location.pathname === item.path ? "page" : undefined}
-                        onClick={() => setIsOpen(false)}
+                        aria-current={isActiveRoute(item) ? "page" : undefined}
+                        onClick={(e) => handleLinkClick(e, item)}
                         className={`group flex items-center space-x-3 px-4 py-4 text-base font-medium transition-all duration-300 rounded-xl min-h-[44px] ${
-                          location.pathname === item.path
+                          isActiveRoute(item)
                             ? 'text-purple-400 bg-purple-400/10 border border-purple-400/20'
                             : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
                         } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
@@ -518,16 +491,97 @@ const Navigation: React.FC<NavigationProps> = ({
                             {item.description}
                           </div>
                         </div>
+                        {item.children && (
+                          <ChevronDown className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                        )}
                       </Link>
-                    )}
-                    
-                    <span id={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`} className="sr-only">
-                      {item.description}
-                    </span>
-                  </motion.div>
-                ))}
-              </div>
-            </motion.div>
+
+                      <span id={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`} className="sr-only">
+                        {item.description}
+                      </span>
+
+                      {/* Mobile submenu */}
+                      {item.children && (
+                        <div className="ml-4 mt-2 space-y-1" role="group" aria-label={`${item.title} submenu`}>
+                          {item.children.map((subItem) => (
+                            <Link
+                              key={subItem.title}
+                              to={subItem.path}
+                              role="menuitem"
+                              aria-current={location.pathname === subItem.path ? "page" : undefined}
+                              onClick={() => setIsOpen(false)}
+                              className={`block px-4 py-3 text-sm transition-all duration-300 rounded-lg min-h-[44px] flex items-center ${
+                                location.pathname === subItem.path
+                                  ? 'text-purple-400 bg-purple-400/10 border-l-2 border-purple-400'
+                                  : 'text-gray-400 hover:text-white hover:bg-white/5 border-l-2 border-transparent hover:border-purple-400/50'
+                              } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
+                            >
+                              <div className="flex-1">
+                                <div className="font-medium mb-1">{subItem.title}</div>
+                                <div className="text-xs text-gray-500">{subItem.description}</div>
+                              </div>
+                            </Link>
+                          ))}
+                        </div>
+                      )}
+                    </motion.div>
+                  ))}
+
+                  {/* Mobile Secondary Navigation */}
+                  {navigationData.secondary.map((item, index) => (
+                    <motion.div
+                      key={item.title}
+                      initial={{ opacity: 0, x: -20 }}
+                      animate={{ opacity: 1, x: 0 }}
+                      transition={{ duration: 0.3, delay: (navigationData.primary.length + index) * 0.05 }}
+                    >
+                      {item.external ? (
+                        <a
+                          href={item.path}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          role="menuitem"
+                          aria-describedby={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                          className="group flex items-center space-x-3 px-4 py-4 text-base font-medium transition-all duration-300 rounded-xl text-gray-300 hover:text-white hover:bg-white/5 border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black min-h-[44px]"
+                        >
+                          <div className="flex-1">
+                            <div className="font-semibold">{item.title}</div>
+                            <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
+                              {item.description}
+                            </div>
+                          </div>
+                          <ExternalLink className="h-4 w-4 text-gray-400" aria-hidden="true" />
+                        </a>
+                      ) : (
+                        <Link
+                          to={item.path}
+                          role="menuitem"
+                          aria-describedby={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`}
+                          aria-current={location.pathname === item.path ? "page" : undefined}
+                          onClick={() => setIsOpen(false)}
+                          className={`group flex items-center space-x-3 px-4 py-4 text-base font-medium transition-all duration-300 rounded-xl min-h-[44px] ${
+                            location.pathname === item.path
+                              ? 'text-purple-400 bg-purple-400/10 border border-purple-400/20'
+                              : 'text-gray-300 hover:text-white hover:bg-white/5 border border-transparent'
+                          } focus:outline-none focus:ring-2 focus:ring-purple-400 focus:ring-offset-2 focus:ring-offset-black`}
+                        >
+                          <div className="flex-1">
+                            <div className="font-semibold">{item.title}</div>
+                            <div className="text-xs text-gray-400 group-hover:text-gray-300 transition-colors">
+                              {item.description}
+                            </div>
+                          </div>
+                        </Link>
+                      )}
+
+                      <span id={`mobile-desc-${item.title.toLowerCase().replace(/\s+/g, '-')}`} className="sr-only">
+                        {item.description}
+                      </span>
+                    </motion.div>
+                  ))}
+                </div>
+              </motion.div>
+            </>
           )}
         </AnimatePresence>
       </div>

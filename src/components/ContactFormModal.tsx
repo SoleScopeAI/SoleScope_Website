@@ -188,7 +188,8 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) 
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
           transition={{ duration: 0.3 }}
-          className="fixed inset-0 z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 z-[9000] flex items-center justify-center p-4"
+          style={{ top: 0, left: 0, right: 0, bottom: 0 }}
           onClick={onClose}
         >
           <motion.div
@@ -196,6 +197,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) 
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             className="absolute inset-0 bg-black/80 backdrop-blur-md"
+            style={{ isolation: 'isolate' }}
           />
 
           <motion.div
@@ -204,9 +206,14 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) 
             exit={{ opacity: 0, scale: 0.9, y: 20 }}
             transition={{ duration: 0.3, ease: [0.25, 0.46, 0.45, 0.94] }}
             onClick={(e) => e.stopPropagation()}
+            role="dialog"
+            aria-modal="true"
+            aria-labelledby="contact-modal-title"
             className="relative w-full max-w-4xl max-h-[90vh] overflow-y-auto bg-gradient-to-br from-slate-900/95 via-purple-900/90 to-slate-900/95 backdrop-blur-xl border border-white/10 rounded-3xl shadow-2xl"
             style={{
-              boxShadow: '0 0 60px rgba(168, 85, 247, 0.3), 0 0 100px rgba(34, 211, 238, 0.2)'
+              boxShadow: '0 0 60px rgba(168, 85, 247, 0.3), 0 0 100px rgba(34, 211, 238, 0.2)',
+              isolation: 'isolate',
+              contain: 'layout style paint'
             }}
           >
             <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/5 via-purple-500/10 to-emerald-500/5 rounded-3xl pointer-events-none" />
@@ -258,7 +265,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) 
                     >
                       <MessageSquare className="h-8 w-8 text-white" />
                     </motion.div>
-                    <h2 className="text-3xl md:text-4xl font-bold text-white mb-3 uppercase tracking-wide">
+                    <h2 id="contact-modal-title" className="text-3xl md:text-4xl font-bold text-white mb-3 uppercase tracking-wide">
                       Get In Touch
                     </h2>
                     <p className="text-white/70 text-lg">
