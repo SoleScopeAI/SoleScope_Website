@@ -159,6 +159,7 @@ const BrandIdentityPage = () => {
       id: 'hero-photo-pack',
       name: "Visual Assets Pack",
       price: "£249",
+      pricePrefix: "from",
       description: "Custom marketing visuals to complement your brand identity",
       features: [
         "3-5 custom hero visuals",
