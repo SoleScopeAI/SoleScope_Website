@@ -26,7 +26,7 @@ const HowItWorksFlow = () => {
       icon: FileCheck,
       title: 'Gathers Information',
       description: 'Asks the right questions, understands responses, and captures key details.',
-      color: 'slate',
+      color: 'purple',
     },
     {
       icon: Calendar,
