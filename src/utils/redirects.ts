@@ -9,16 +9,12 @@ export const redirectMap: Record<string, string> = {
   '/custom-ai-automations': '/services/ai-automations',
   
   // Legacy resource paths
-  '/blog': '/resources/blog',
   '/case-studies': '/resources/case-studies',
   '/guides': '/resources/guides',
-  
+
   // SEO and marketing legacy paths
   '/seo': '/services/website-design',
-  '/digital-marketing': '/services/ai-automations',
-  
-  // Other legacy paths
-  '/faq': '/resources/guides'
+  '/digital-marketing': '/services/ai-automations'
 };
 
 // Function to handle redirects

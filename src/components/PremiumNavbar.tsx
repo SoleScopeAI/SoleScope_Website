@@ -20,8 +20,8 @@ const PremiumNavbar = () => {
 
   const navItems = [
     { name: 'Home', path: '/' },
-    { 
-      name: 'Services', 
+    {
+      name: 'Services',
       path: '/services',
       submenu: [
         { name: 'Website Design & Hosting', path: '/services/website-design' },
@@ -33,8 +33,6 @@ const PremiumNavbar = () => {
     },
     { name: 'About', path: '/about' },
     { name: 'Contact', path: '/contact' },
-    { name: 'FAQs', path: '/faq' },
-    { name: 'Blog', path: '/blog' },
   ];
 
   return (

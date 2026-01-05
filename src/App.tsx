@@ -11,8 +11,6 @@ import SkipToContent from './components/SkipToContent';
 import PremiumHomePage from './pages/PremiumHomePage';
 import AboutPage from './pages/AboutPage';
 import ServicesPage from './pages/ServicesPage';
-import FAQPage from './pages/FAQPage';
-import BlogPage from './pages/BlogPage';
 import ContactPage from './pages/ContactPage';
 import AIWebsiteDesignPage from './pages/AIWebsiteDesignPage';
 import WebsiteDesignPage from './pages/WebsiteDesignPage';
@@ -90,8 +88,6 @@ const App = () => {
                   <Route path="/" element={<PremiumHomePage />} />
                   <Route path="/about" element={<AboutPage />} />
                   <Route path="/services" element={<ServicesPage />} />
-                  <Route path="/faq" element={<FAQPage />} />
-                  <Route path="/blog" element={<BlogPage />} />
                   <Route path="/contact" element={<ContactPage />} />
                   <Route path="/client-portal" element={<ClientPortalPage />} />
                   <Route path="/services/ai-website-design" element={<AIWebsiteDesignPage />} />

@@ -101,16 +101,6 @@ const PremiumFooter = () => {
                     </Link>
                   </li>
                   <li>
-                    <Link to="/faq" className="dark-link">
-                      FAQs
-                    </Link>
-                  </li>
-                  <li>
-                    <Link to="/blog" className="dark-link">
-                      Blog
-                    </Link>
-                  </li>
-                  <li>
                     <Link to="/client-portal" className="dark-link">
                       Client Portal
                     </Link>
@@ -169,12 +159,6 @@ const PremiumFooter = () => {
                     </Link>
                     <Link to="/contact" className="block dark-link text-sm">
                       Contact
-                    </Link>
-                    <Link to="/faq" className="block dark-link text-sm">
-                      FAQs
-                    </Link>
-                    <Link to="/blog" className="block dark-link text-sm">
-                      Blog
                     </Link>
                     <Link to="/client-portal" className="block dark-link text-sm">
                       Client Portal
