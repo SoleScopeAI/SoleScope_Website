@@ -49,21 +49,16 @@ const PremiumNavbar = () => {
 
   return (
     <motion.nav
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
+      initial={{ y: -100 }}
+      animate={{ y: 0 }}
       role="navigation"
       aria-label="Main navigation"
-      className={`fixed top-0 left-0 right-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed w-full z-50 transition-all duration-300 ${
         scrolled ? 'nav-blur' : 'bg-transparent'
       }`}
-      style={{
-        WebkitBackfaceVisibility: 'hidden',
-        backfaceVisibility: 'hidden',
-        willChange: 'transform'
-      }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center py-4">
+        <div className="flex justify-between items-center py-4 md:h-auto h-14">
           {/* Logo */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="w-10 h-10 relative">
@@ -243,8 +238,7 @@ const PremiumNavbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsOpen(false)}
-                className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
-                style={{ top: 0, left: 0, right: 0, bottom: 0 }}
+                className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-60"
               />
 
               {/* Drawer */}
@@ -256,8 +250,7 @@ const PremiumNavbar = () => {
                 id="mobile-menu"
                 role="menu"
                 aria-label="Mobile navigation menu"
-                className="lg:hidden fixed inset-y-0 right-0 w-[86%] bg-black/98 backdrop-blur-xl border-l border-white/10 z-[120] overflow-y-auto"
-                style={{ top: 0, bottom: 0 }}
+                className="lg:hidden fixed inset-y-0 right-0 w-[86%] bg-black/98 backdrop-blur-xl border-l border-white/10 z-70 overflow-y-auto"
               >
                 {/* Drawer Header */}
                 <div className="flex items-center justify-between p-4 border-b border-white/10">
