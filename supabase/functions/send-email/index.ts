@@ -1,7 +1,7 @@
 import { corsHeaders } from '../_shared/cors.ts';
 
 interface EmailRequest {
-  type: 'contact' | 'proposal' | 'newsletter';
+  type: 'contact' | 'proposal' | 'newsletter' | 'demo';
   data: any;
 }
 
@@ -99,12 +99,14 @@ Deno.serve(async (req: Request) => {
                   </div>
                 </div>
 
-                ${data.business ? `
+                ${data.company || data.phone ? `
                 <div class="field-grid">
+                  ${data.company ? `
                   <div class="field-group">
-                    <label class="field-label">Business Name</label>
-                    <p class="field-value">${data.business}</p>
+                    <label class="field-label">Company Name</label>
+                    <p class="field-value">${data.company}</p>
                   </div>
+                  ` : '<div></div>'}
                   ${data.phone ? `
                   <div class="field-group">
                     <label class="field-label">Phone Number</label>
@@ -114,17 +116,27 @@ Deno.serve(async (req: Request) => {
                 </div>
                 ` : ''}
 
-                ${data.service ? `
+                ${data.projectType ? `
                 <div class="field-group">
-                  <label class="field-label">Service of Interest</label>
-                  <p class="field-value">${data.service}</p>
+                  <label class="field-label">Project Type</label>
+                  <p class="field-value">${data.projectType}</p>
                 </div>
                 ` : ''}
 
-                ${data.callbackRequested ? `
-                <div class="highlight-box">
-                  <strong style="color: #0ea5e9; font-size: 16px;">📞 CALLBACK REQUESTED</strong>
-                  ${data.preferredTime ? `<p style="margin: 10px 0 0 0; color: #1a1a1a;"><strong>Preferred Time:</strong> ${data.preferredTime}</p>` : ''}
+                ${data.budget || data.timeline ? `
+                <div class="field-grid">
+                  ${data.budget ? `
+                  <div class="field-group">
+                    <label class="field-label">Budget Range</label>
+                    <p class="field-value">${data.budget}</p>
+                  </div>
+                  ` : '<div></div>'}
+                  ${data.timeline ? `
+                  <div class="field-group">
+                    <label class="field-label">Timeline</label>
+                    <p class="field-value">${data.timeline}</p>
+                  </div>
+                  ` : '<div></div>'}
                 </div>
                 ` : ''}
 
@@ -294,7 +306,7 @@ Deno.serve(async (req: Request) => {
               <div class="content">
                 <div class="priority-badge" style="background-color: #22c55e;">NEW SUBSCRIBER</div>
                 <h2 class="form-title">Newsletter Subscription</h2>
-                
+
                 <div class="field-group">
                   <label class="field-label">Email Address</label>
                   <p class="field-value"><a href="mailto:${data.email}" style="color: #6C3EF0; text-decoration: none;">${data.email}</a></p>
@@ -311,8 +323,97 @@ Deno.serve(async (req: Request) => {
               <div class="footer">
                 <p class="footer-text">
                   This subscription was submitted via the SoleScope Studio & Design blog page.<br>
-                  <a href="https://solescope.co.uk" class="footer-link">solescope.co.uk</a> | 
+                  <a href="https://solescope.co.uk" class="footer-link">solescope.co.uk</a> |
                   <a href="mailto:hello@solescope.ai" class="footer-link">hello@solescope.ai</a>
+                </p>
+              </div>
+            </div>
+          </body>
+          </html>
+        `;
+        break;
+
+      case 'demo':
+        subject = `📞 New AI Voice Agent Demo Request from ${data.name}`;
+        htmlContent = `
+          <!DOCTYPE html>
+          <html>
+          <head>
+            <meta charset="utf-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>New Voice Agent Demo Request</title>
+            ${emailStyles}
+          </head>
+          <body>
+            <div class="email-container">
+              <!-- Header -->
+              <div class="header">
+                <div class="logo" style="width: 40px; height: 40px; margin: 0 auto 15px auto; background-color: rgba(255,255,255,0.2); border-radius: 8px; display: flex; align-items: center; justify-content: center;">
+                  <span style="color: #ffffff; font-size: 20px; font-weight: bold;">SS</span>
+                </div>
+                <h1 class="company-name">SoleScope Studio & Design</h1>
+              </div>
+
+              <!-- Content -->
+              <div class="content">
+                <div class="priority-badge" style="background-color: #8b5cf6;">VOICE AGENT DEMO REQUEST</div>
+                <h2 class="form-title">AI Voice Agent Demo Booking</h2>
+
+                <div class="field-grid">
+                  <div class="field-group">
+                    <label class="field-label">Full Name</label>
+                    <p class="field-value">${data.name}</p>
+                  </div>
+                  <div class="field-group">
+                    <label class="field-label">Email Address</label>
+                    <p class="field-value"><a href="mailto:${data.email}" style="color: #6C3EF0; text-decoration: none;">${data.email}</a></p>
+                  </div>
+                </div>
+
+                <div class="field-grid">
+                  <div class="field-group">
+                    <label class="field-label">Business Name</label>
+                    <p class="field-value">${data.businessName}</p>
+                  </div>
+                  ${data.phone ? `
+                  <div class="field-group">
+                    <label class="field-label">Phone Number</label>
+                    <p class="field-value"><a href="tel:${data.phone}" style="color: #6C3EF0; text-decoration: none;">${data.phone}</a></p>
+                  </div>
+                  ` : '<div></div>'}
+                </div>
+
+                ${data.industry ? `
+                <div class="field-group">
+                  <label class="field-label">Industry</label>
+                  <p class="field-value">${data.industry}</p>
+                </div>
+                ` : ''}
+
+                ${data.bestTime ? `
+                <div class="highlight-box">
+                  <strong style="color: #8b5cf6; font-size: 16px;">📅 PREFERRED DEMO TIME</strong>
+                  <p style="margin: 10px 0 0 0; color: #1a1a1a; font-size: 16px;">${data.bestTime}</p>
+                </div>
+                ` : ''}
+
+                ${data.message ? `
+                <div class="divider"></div>
+                <div class="field-group">
+                  <label class="field-label">Additional Information</label>
+                  <div class="message-field">
+                    <p class="message-text">${data.message}</p>
+                  </div>
+                </div>
+                ` : ''}
+              </div>
+
+              <!-- Footer -->
+              <div class="footer">
+                <p class="footer-text">
+                  This demo request was submitted via the SoleScope AI Voice Agent page.<br>
+                  <a href="https://solescope.co.uk" class="footer-link">solescope.co.uk</a> |
+                  <a href="mailto:kevin@solescope.co.uk" class="footer-link">kevin@solescope.co.uk</a>
                 </p>
               </div>
             </div>

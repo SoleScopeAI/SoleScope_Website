@@ -65,6 +65,26 @@ const DemoBookingModal: React.FC<DemoBookingModalProps> = ({ isOpen, onClose }) 
 
       if (error) throw error;
 
+      await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-email`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'demo',
+          data: {
+            name: formData.name,
+            businessName: formData.businessName,
+            email: formData.email,
+            phone: formData.phone,
+            industry: formData.industry,
+            bestTime: formData.bestTime,
+            message: formData.message,
+          }
+        })
+      });
+
       setSubmitStatus('success');
       setFormData({
         name: '',
