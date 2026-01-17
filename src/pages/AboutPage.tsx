@@ -302,7 +302,7 @@ const AboutPage = () => {
                   initial={{ scale: 0.9, opacity: 0 }}
                   animate={{ scale: 1, opacity: 1 }}
                   transition={{ duration: 1, delay: 0.3 }}
-                  className="relative"
+                  className="relative w-full"
                 >
                   <div className="relative w-full aspect-square rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
                     <img
@@ -315,21 +315,22 @@ const AboutPage = () => {
                   </div>
 
                   {/* Floating Badge */}
-                  <motion.div
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={{ opacity: 1, y: 0 }}
-                    transition={{ duration: 0.8, delay: 0.6 }}
-                    className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-auto"
-                  >
-                    <div className="about-refined-card text-center py-4 px-6 shadow-xl whitespace-nowrap">
-                      <p className="text-sm font-semibold text-white mb-1">
-                        Kevin Hannah, CMgr
-                      </p>
-                      <p className="text-xs text-white/70">
-                        Chartered Manager • Founder
-                      </p>
-                    </div>
-                  </motion.div>
+                  <div className="absolute -bottom-6 left-0 right-0 flex justify-center">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                      <div className="about-refined-card text-center py-4 px-6 shadow-xl whitespace-nowrap">
+                        <p className="text-sm font-semibold text-white mb-1">
+                          Kevin Hannah, CMgr
+                        </p>
+                        <p className="text-xs text-white/70">
+                          Chartered Manager • Founder
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
                 </motion.div>
 
                 {/* Quick Value Indicators */}
