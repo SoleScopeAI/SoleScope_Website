@@ -37,8 +37,8 @@ const PremiumFooter = () => {
               </div>
               <div className="flex items-center space-x-3">
                 <Phone className="h-5 w-5 text-accent-primary" />
-                <a href="tel:+442012345678" className="dark-link">
-                  +44 20 1234 5678
+                <a href="tel:07447180903" className="dark-link">
+                  07447 180903
                 </a>
               </div>
               <div className="flex items-center space-x-3">

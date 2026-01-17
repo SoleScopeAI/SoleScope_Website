@@ -338,7 +338,7 @@ const ContactFormModal: React.FC<ContactFormModalProps> = ({ isOpen, onClose }) 
                             value={formData.phone}
                             onChange={handleChange}
                             className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-white/40 focus:outline-none focus:border-purple-400/50 focus:bg-white/10 transition-all duration-300"
-                            placeholder="+44 20 1234 5678"
+                            placeholder="07447 180903"
                           />
                         </div>
                       </div>
