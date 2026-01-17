@@ -60,25 +60,10 @@ const ScrollAnimations: React.FC<ScrollAnimationsProps> = ({ children }) => {
     // Throttled scroll listener with passive option for better performance
     window.addEventListener('scroll', requestParallaxUpdate, { passive: true });
 
-    // Enhanced navbar scroll effect
-    const navbar = document.querySelector('nav');
-    const handleNavbarScroll = () => {
-      if (navbar) {
-        if (window.scrollY > 50) {
-          navbar.classList.add('nav-blur');
-        } else {
-          navbar.classList.remove('nav-blur');
-        }
-      }
-    };
-
-    window.addEventListener('scroll', handleNavbarScroll, { passive: true });
-
     // Cleanup
     return () => {
       observer.disconnect();
       window.removeEventListener('scroll', requestParallaxUpdate);
-      window.removeEventListener('scroll', handleNavbarScroll);
     };
   }, []);
 
