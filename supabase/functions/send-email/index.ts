@@ -19,8 +19,8 @@ Deno.serve(async (req: Request) => {
     
     // Get environment variables
     const POSTMARK_API_TOKEN = Deno.env.get('POSTMARK_API_TOKEN');
-    const RECIPIENT_EMAIL = 'kevin@solescope.co.uk';
-    
+    const RECIPIENT_EMAILS = 'kevin@solescope.co.uk,vlad@solescope.co.uk';
+
     if (!POSTMARK_API_TOKEN) {
       throw new Error('Postmark API token not configured');
     }
@@ -435,8 +435,8 @@ Deno.serve(async (req: Request) => {
         'X-Postmark-Server-Token': POSTMARK_API_TOKEN,
       },
       body: JSON.stringify({
-        From: 'kevin@solescope.co.uk',
-        To: RECIPIENT_EMAIL,
+        From: 'hello@solescope.co.uk',
+        To: RECIPIENT_EMAILS,
         Subject: subject,
         HtmlBody: htmlContent,
         MessageStream: 'outbound'
