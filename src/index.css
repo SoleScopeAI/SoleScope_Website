@@ -709,7 +709,7 @@ html {
     top: 0 !important;
     left: 0 !important;
     right: 0 !important;
-    z-index: 50 !important;
+    z-index: 100 !important;
     transform: none !important;
     -webkit-transform: none !important;
   }
@@ -723,7 +723,7 @@ html {
   /* Ensure navbar is always above page content on mobile */
   header[role="banner"] {
     position: relative;
-    z-index: 50;
+    z-index: 100;
   }
 }
 
