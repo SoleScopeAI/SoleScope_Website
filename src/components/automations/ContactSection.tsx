@@ -15,6 +15,8 @@ const ContactSection = () => {
   });
   const [fileName, setFileName] = useState('');
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState(false);
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -26,10 +28,56 @@ const ContactSection = () => {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
-    setTimeout(() => setSubmitted(false), 5000);
+    setIsSubmitting(true);
+    setSubmitError(false);
+
+    try {
+      const response = await fetch(`${import.meta.env.VITE_SUPABASE_URL}/functions/v1/send-email`, {
+        method: 'POST',
+        headers: {
+          'Authorization': `Bearer ${import.meta.env.VITE_SUPABASE_ANON_KEY}`,
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          type: 'contact',
+          data: {
+            name: formData.fullName,
+            email: formData.email,
+            phone: formData.phone,
+            company: formData.businessName,
+            projectType: `${formData.serviceInterest} - Company Size: ${formData.companySize}`,
+            message: formData.message,
+          }
+        })
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        setSubmitted(true);
+        setFormData({
+          fullName: '',
+          businessName: '',
+          email: '',
+          phone: '',
+          companySize: '',
+          serviceInterest: '',
+          message: ''
+        });
+        setFileName('');
+        setTimeout(() => setSubmitted(false), 5000);
+      } else {
+        throw new Error(result.error || 'Failed to send message');
+      }
+    } catch (error) {
+      console.error('Error submitting contact form:', error);
+      setSubmitError(true);
+      setTimeout(() => setSubmitError(false), 5000);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -182,9 +230,10 @@ const ContactSection = () => {
 
               <button
                 type="submit"
-                className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-300 shadow-lg"
+                disabled={isSubmitting}
+                className="w-full inline-flex items-center justify-center px-8 py-4 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-300 shadow-lg disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                Send Message
+                {isSubmitting ? 'Sending...' : 'Send Message'}
                 <Send className="ml-2 h-5 w-5" />
               </button>
 
@@ -195,6 +244,16 @@ const ContactSection = () => {
                   className="p-4 bg-purple-500/20 border border-purple-500/30 rounded-lg text-center"
                 >
                   <p className="text-white font-semibold">Thank you! We'll be in touch shortly.</p>
+                </motion.div>
+              )}
+
+              {submitError && (
+                <motion.div
+                  initial={{ opacity: 0, y: -10 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  className="p-4 bg-red-500/20 border border-red-500/30 rounded-lg text-center"
+                >
+                  <p className="text-white font-semibold">There was an error sending your message. Please try again.</p>
                 </motion.div>
               )}
             </form>
