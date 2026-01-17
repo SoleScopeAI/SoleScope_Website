@@ -243,7 +243,7 @@ const PremiumNavbar = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 onClick={() => setIsOpen(false)}
-                className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[60]"
+                className="lg:hidden fixed inset-0 bg-black/60 backdrop-blur-sm z-[110]"
                 style={{ top: 0, left: 0, right: 0, bottom: 0 }}
               />
 
@@ -256,7 +256,7 @@ const PremiumNavbar = () => {
                 id="mobile-menu"
                 role="menu"
                 aria-label="Mobile navigation menu"
-                className="lg:hidden fixed inset-y-0 right-0 w-[86%] bg-black/98 backdrop-blur-xl border-l border-white/10 z-[70] overflow-y-auto"
+                className="lg:hidden fixed inset-y-0 right-0 w-[86%] bg-black/98 backdrop-blur-xl border-l border-white/10 z-[120] overflow-y-auto"
                 style={{ top: 0, bottom: 0 }}
               >
                 {/* Drawer Header */}
