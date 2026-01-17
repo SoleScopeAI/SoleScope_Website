@@ -319,7 +319,7 @@ const AboutPage = () => {
                     initial={{ opacity: 0, y: 20 }}
                     animate={{ opacity: 1, y: 0 }}
                     transition={{ duration: 0.8, delay: 0.6 }}
-                    className="absolute -bottom-6 left-1/2 transform -translate-x-1/2 w-auto"
+                    className="absolute -bottom-6 left-1/2 -translate-x-1/2 w-auto"
                   >
                     <div className="about-refined-card text-center py-4 px-6 shadow-xl whitespace-nowrap">
                       <p className="text-sm font-semibold text-white mb-1">
