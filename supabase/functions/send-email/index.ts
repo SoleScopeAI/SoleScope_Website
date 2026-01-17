@@ -435,7 +435,7 @@ Deno.serve(async (req: Request) => {
         'X-Postmark-Server-Token': POSTMARK_API_TOKEN,
       },
       body: JSON.stringify({
-        From: 'noreply@solescope.co.uk',
+        From: 'kevin@solescope.co.uk',
         To: RECIPIENT_EMAIL,
         Subject: subject,
         HtmlBody: htmlContent,
