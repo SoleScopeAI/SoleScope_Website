@@ -507,111 +507,97 @@ const ContactPage = () => {
               transition={{ duration: 0.8, delay: 0.2 }}
               className="contact-refined-card"
             >
-              {/* Photo Placeholder */}
-              <div className="flex justify-center mb-6">
-                <div className="w-24 h-24 border-2 border-white/20 rounded-full overflow-hidden">
-                  <img
-                    src="/compressed_image_2.jpg"
-                    alt="Kevin Hannah - Founder of SoleScope"
-                    className="w-full h-full object-cover"
-                  />
-                </div>
-              </div>
-
               <div className="flex items-center space-x-3 mb-6">
-                <User className="h-6 w-6 text-white" />
+                <Users className="h-6 w-6 text-white" />
                 <h2 className="text-2xl font-bold text-white uppercase tracking-wide">
-                  You'll reach Kevin Hannah
+                  Meet the Team
                 </h2>
               </div>
 
-              <p className="text-white/90 mb-6 leading-relaxed">
-                Founder of SoleScope, specialising in practical AI and modern web design for UK sole traders and small service businesses.
-              </p>
-
-              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
-                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
-                  <Target className="h-5 w-5 text-purple-400 mr-2" />
-                  My Approach
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed mb-3">
-                  I work directly with you to understand your unique business challenges and create tailored digital solutions that deliver real results. No sales teams, no middlemen—just straightforward expertise and honest guidance.
-                </p>
+              {/* Kevin Hannah */}
+              <div className="mb-6 pb-6 border-b border-white/10">
+                <div className="flex items-center space-x-4 mb-3">
+                  <div className="w-16 h-16 border-2 border-white/20 rounded-full overflow-hidden flex-shrink-0">
+                    <img
+                      src="/compressed_image_2.jpg"
+                      alt="Kevin Hannah - Founder of SoleScope"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Kevin Hannah, CMgr</h3>
+                    <p className="text-sm text-white/70">Founder & Strategic Director</p>
+                  </div>
+                </div>
                 <p className="text-white/80 text-sm leading-relaxed">
-                  With a background in software engineering and a passion for emerging AI technologies, I help small businesses leverage modern tools without the complexity or enterprise-level costs.
+                  Chartered Manager with 7 years FMCG leadership. Specializing in practical AI solutions and business-focused web design for UK sole traders and SMEs.
                 </p>
               </div>
 
-              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
-                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
-                  <Zap className="h-5 w-5 text-purple-400 mr-2" />
-                  What I Bring
-                </h3>
-                <ul className="space-y-2 text-white/80 text-sm">
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">•</span>
-                    <span>Hands-on technical expertise in web development and AI integration</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">•</span>
-                    <span>Understanding of small business operations and real-world constraints</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">•</span>
-                    <span>Clear communication without technical jargon</span>
-                  </li>
-                  <li className="flex items-start">
-                    <span className="text-purple-400 mr-2">•</span>
-                    <span>Commitment to long-term partnerships and ongoing support</span>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="mb-8 p-4 bg-white/5 border border-white/10 rounded-lg">
-                <h3 className="text-lg font-semibold text-white mb-3 flex items-center">
-                  <Shield className="h-5 w-5 text-purple-400 mr-2" />
-                  Why Work With Me
-                </h3>
-                <p className="text-white/80 text-sm leading-relaxed mb-3">
-                  Every project gets my personal attention from initial consultation through to launch and beyond. I believe in building genuine relationships with clients and creating solutions that actually solve problems, not just check boxes.
-                </p>
+              {/* Vladimir Nguyen Hung */}
+              <div className="mb-6 pb-6 border-b border-white/10">
+                <div className="flex items-center space-x-4 mb-3">
+                  <div className="w-16 h-16 border-2 border-white/20 rounded-full overflow-hidden flex-shrink-0">
+                    <img
+                      src="/generated-1768680821202.jpg"
+                      alt="Vladimir Nguyen Hung - Co-Founder of SoleScope"
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div>
+                    <h3 className="text-lg font-bold text-white">Vladimir Nguyen Hung</h3>
+                    <p className="text-sm text-white/70">Co-Founder & Technical Director</p>
+                  </div>
+                </div>
                 <p className="text-white/80 text-sm leading-relaxed">
-                  Whether you're just starting out or looking to upgrade your existing digital presence, I'll guide you through the process with transparency, realistic timelines, and a focus on delivering value.
+                  DipHE Computer Science with 13 years production management. Architecting enterprise-grade platforms, AI integration, and scalable custom applications.
                 </p>
               </div>
 
-              <div className="space-y-4 border-t border-white/10 pt-6">
-                <h3 className="text-lg font-semibold text-white mb-4">Contact Information</h3>
+              {/* Our Approach */}
+              <div className="mb-6 p-4 bg-white/5 border border-white/10 rounded-lg">
+                <h3 className="text-base font-semibold text-white mb-2 flex items-center">
+                  <Target className="h-4 w-4 text-purple-400 mr-2" />
+                  Our Approach
+                </h3>
+                <p className="text-white/80 text-sm leading-relaxed">
+                  Direct founder-led communication. No sales teams—just straightforward technical expertise and honest guidance tailored to your business needs.
+                </p>
+              </div>
+
+              {/* Contact Information */}
+              <div className="space-y-3">
+                <h3 className="text-base font-semibold text-white mb-3">Contact Information</h3>
 
                 <div className="flex items-start space-x-3">
-                  <Mail className="h-5 w-5 text-purple-400 mt-1" />
+                  <Mail className="h-4 w-4 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Email</p>
-                    <a href="mailto:contact@solescope.co.uk" className="channel-link">contact@solescope.co.uk</a>
+                    <p className="text-white font-medium text-sm">Email</p>
+                    <a href="mailto:contact@solescope.co.uk" className="channel-link text-sm">contact@solescope.co.uk</a>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <Clock className="h-5 w-5 text-purple-400 mt-1" />
+                  <Clock className="h-4 w-4 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Response Time</p>
-                    <p className="text-white/80">{'Typically < 24h'}</p>
+                    <p className="text-white font-medium text-sm">Response Time</p>
+                    <p className="text-white/80 text-sm">{'Typically < 24h'}</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <Calendar className="h-5 w-5 text-purple-400 mt-1" />
+                  <Calendar className="h-4 w-4 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Business Hours</p>
-                    <p className="text-white/80">Mon–Fri 09:00–17:00 (UK)</p>
+                    <p className="text-white font-medium text-sm">Business Hours</p>
+                    <p className="text-white/80 text-sm">Mon–Fri 09:00–17:00 (UK)</p>
                   </div>
                 </div>
 
                 <div className="flex items-start space-x-3">
-                  <MapPin className="h-5 w-5 text-purple-400 mt-1" />
+                  <MapPin className="h-4 w-4 text-purple-400 mt-1" />
                   <div>
-                    <p className="text-white font-medium">Service Area</p>
-                    <p className="text-white/80">UK-wide • Hatfield & Sandy bases</p>
+                    <p className="text-white font-medium text-sm">Service Area</p>
+                    <p className="text-white/80 text-sm">UK-wide • Hatfield & Sandy bases</p>
                   </div>
                 </div>
               </div>
