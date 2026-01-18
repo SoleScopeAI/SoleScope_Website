@@ -13,6 +13,7 @@ import {
   ChevronUp,
   Calendar,
   User,
+  Users,
   Building,
   Zap,
   Target,
