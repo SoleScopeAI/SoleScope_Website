@@ -456,6 +456,147 @@ const AboutPage = () => {
         </div>
       </section>
 
+      {/* Co-Founder Section - Vladimir */}
+      <section className="relative py-20 md:py-28 overflow-hidden border-t border-white/10">
+        <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+
+            {/* Left Column - Content */}
+            <motion.div
+              initial={{ opacity: 0, x: -50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="order-2 lg:order-1"
+            >
+              {/* Badge */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.9 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ duration: 0.5, delay: 0.2 }}
+                className="mb-6"
+              >
+                <span className="inline-flex items-center rounded-full border border-blue-400/30 bg-blue-500/10 px-4 py-2 text-sm font-medium text-blue-200">
+                  Co-Founder & Technical Director
+                </span>
+              </motion.div>
+
+              <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-white mb-6 leading-tight">
+                Vladimir Nguyen Hung
+              </h2>
+
+              <p className="text-lg text-white/90 mb-6 leading-relaxed">
+                With 13 years of production management experience leading cross-functional teams and a DipHE in Computer Science from the University of London, I serve as Technical Director specializing in bespoke application development and AI integration.
+              </p>
+
+              <p className="text-base text-white/80 mb-6 leading-relaxed">
+                I architect custom solutions—from intelligent automation systems to enterprise-grade web platforms—that align precisely with your operational requirements. My approach combines strategic leadership with advanced technical capabilities to deliver scalable, high-performance solutions that generate quantifiable business value.
+              </p>
+
+              {/* Credential Chips */}
+              <div className="mb-10">
+                {['Production Management', 'Computer Science', 'Technical Architecture', 'AI Integration', 'Enterprise Solutions', 'Cross-Functional Leadership'].map((credential, index) => (
+                  <motion.span
+                    key={credential}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.3, delay: 0.4 + index * 0.1 }}
+                    className="credential-chip"
+                  >
+                    {credential}
+                  </motion.span>
+                ))}
+              </div>
+
+              {/* CTA Button */}
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+              >
+                <a
+                  href="/contact"
+                  className="about-btn-primary mobile-touch-target group inline-flex"
+                >
+                  <Calendar className="h-5 w-5" />
+                  Discuss Your Technical Requirements
+                  <ArrowRight className="h-4 w-4 ml-2 group-hover:translate-x-1 transition-transform" />
+                </a>
+              </motion.div>
+            </motion.div>
+
+            {/* Right Column - Profile Photo */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+              className="relative order-1 lg:order-2"
+            >
+              <div className="relative max-w-md mx-auto lg:mx-0">
+                {/* Glow Effect Behind Photo */}
+                <div className="absolute inset-0 bg-gradient-to-br from-blue-500/30 via-cyan-500/20 to-teal-500/30 blur-3xl opacity-60 animate-pulse"></div>
+
+                {/* Profile Photo Container */}
+                <motion.div
+                  initial={{ scale: 0.9, opacity: 0 }}
+                  animate={{ scale: 1, opacity: 1 }}
+                  transition={{ duration: 1, delay: 0.3 }}
+                  className="relative w-full"
+                >
+                  <div className="relative w-full aspect-square rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
+                    <img
+                      src="/generated-1768680821202.jpg"
+                      alt="Vladimir Nguyen Hung - Co-Founder & Technical Director of SoleScope Studio & Design"
+                      className="w-full h-full object-cover"
+                    />
+                    {/* Subtle Overlay Gradient */}
+                    <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent"></div>
+                  </div>
+
+                  {/* Floating Badge */}
+                  <div className="absolute -bottom-6 left-0 right-0 flex justify-center">
+                    <motion.div
+                      initial={{ opacity: 0, y: 20 }}
+                      animate={{ opacity: 1, y: 0 }}
+                      transition={{ duration: 0.8, delay: 0.6 }}
+                    >
+                      <div className="about-refined-card text-center py-4 px-6 shadow-xl whitespace-nowrap">
+                        <p className="text-sm font-semibold text-white mb-1">
+                          Vladimir Nguyen Hung
+                        </p>
+                        <p className="text-xs text-white/70">
+                          Technical Director • Co-Founder
+                        </p>
+                      </div>
+                    </motion.div>
+                  </div>
+                </motion.div>
+
+                {/* Quick Value Indicators */}
+                <motion.div
+                  initial={{ opacity: 0, y: 30 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.8, delay: 0.9 }}
+                  className="mt-16 grid grid-cols-3 gap-4"
+                >
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">13yrs</div>
+                    <div className="text-xs text-white/70">Production Mgmt</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">DipHE</div>
+                    <div className="text-xs text-white/70">Comp Sci</div>
+                  </div>
+                  <div className="text-center">
+                    <div className="text-2xl font-bold text-white mb-1">Tech</div>
+                    <div className="text-xs text-white/70">Director</div>
+                  </div>
+                </motion.div>
+              </div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
       {/* Business Overview Surface */}
       <section className="about-cards-surface py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 mobile-container space-y-20">
