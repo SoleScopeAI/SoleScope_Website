@@ -87,7 +87,7 @@ const PricingPositioning: React.FC<PricingPositioningProps> = ({ onBookDemo }) =
   ];
 
   const handleContactClick = () => {
-    window.location.href = '/contact';
+    window.location.href = '/contact?service=AI Voice Agent#contact-form';
   };
 
   return (

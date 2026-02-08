@@ -96,7 +96,7 @@ const PackagesTiers = () => {
               </ul>
 
               <Link
-                to="/contact"
+                to="/contact?service=Custom AI Automations#contact-form"
                 className="block w-full text-center px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-700 text-white font-semibold rounded-lg hover:from-purple-500 hover:to-purple-600 transition-all duration-300 shadow-lg"
               >
                 Get Started

@@ -424,12 +424,15 @@ const BrandIdentityPage = () => {
                     ))}
                   </ul>
 
-                  <button className={`w-full mt-auto services-btn-primary ${
-                    plan.popular ? '' : 'services-btn-secondary'
-                  }`}>
+                  <Link
+                    to="/contact?service=Brand Identity %26 Visuals#contact-form"
+                    className={`w-full mt-auto services-btn-primary ${
+                      plan.popular ? '' : 'services-btn-secondary'
+                    }`}
+                  >
                     GET STARTED
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -486,12 +489,15 @@ const BrandIdentityPage = () => {
                       ))}
                     </ul>
 
-                    <button className={`w-full mt-auto services-btn-primary text-sm ${
-                      'services-btn-secondary'
-                    }`}>
+                    <Link
+                      to="/contact?service=Brand Identity %26 Visuals#contact-form"
+                      className={`w-full mt-auto services-btn-primary text-sm ${
+                        'services-btn-secondary'
+                      }`}
+                    >
                       GET STARTED
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
+                    </Link>
                   </div>
                 ))}
               </div>

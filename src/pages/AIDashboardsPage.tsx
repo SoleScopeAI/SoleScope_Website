@@ -398,12 +398,15 @@ const AIDashboardsPage = () => {
                     ))}
                   </ul>
 
-                  <button className={`w-full mt-auto services-btn-primary ${
-                    plan.popular ? '' : 'services-btn-secondary'
-                  }`}>
+                  <Link
+                    to="/contact?service=AI Dashboards %26 Analytics#contact-form"
+                    className={`w-full mt-auto services-btn-primary ${
+                      plan.popular ? '' : 'services-btn-secondary'
+                    }`}
+                  >
                     GET STARTED
                     <ArrowRight className="ml-2 h-5 w-5" />
-                  </button>
+                  </Link>
                 </div>
               ))}
             </div>
@@ -458,12 +461,15 @@ const AIDashboardsPage = () => {
                       ))}
                     </ul>
 
-                    <button className={`w-full mt-auto services-btn-primary text-sm ${
-                      'services-btn-secondary'
-                    }`}>
+                    <Link
+                      to="/contact?service=AI Dashboards %26 Analytics#contact-form"
+                      className={`w-full mt-auto services-btn-primary text-sm ${
+                        'services-btn-secondary'
+                      }`}
+                    >
                       GET STARTED
                       <ArrowRight className="ml-2 h-4 w-4" />
-                    </button>
+                    </Link>
                   </div>
                 ))}
               </div>

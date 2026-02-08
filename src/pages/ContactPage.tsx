@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useLocation, useSearchParams } from 'react-router-dom';
 import {
   Mail,
   Phone,
@@ -27,12 +28,15 @@ import InteractiveMap from '../components/InteractiveMap';
 import '../styles/contact-galaxy.css';
 
 const ContactPage = () => {
+  const location = useLocation();
+  const [searchParams] = useSearchParams();
+
   const [formData, setFormData] = useState({
     name: '',
     email: '',
     phone: '',
     company: '',
-    projectType: '',
+    projectType: searchParams.get('service') || '',
     budget: '',
     timeline: '',
     message: '',
@@ -53,6 +57,18 @@ const ContactPage = () => {
       document.body.classList.remove('page-contact');
     };
   }, []);
+
+  // Smooth scroll to form if hash is present
+  useEffect(() => {
+    if (location.hash === '#contact-form') {
+      setTimeout(() => {
+        const formElement = document.getElementById('contact-form');
+        if (formElement) {
+          formElement.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      }, 100);
+    }
+  }, [location.hash]);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -258,6 +274,7 @@ const ContactPage = () => {
           <div className="contact-grid mobile-single-col">
             {/* Contact Form */}
             <motion.div
+              id="contact-form"
               initial={{ opacity: 0, x: -50 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
