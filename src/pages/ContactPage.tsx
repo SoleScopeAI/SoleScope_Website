@@ -200,9 +200,9 @@ const ContactPage = () => {
     {
       icon: Phone,
       title: "Phone",
-      value: "07447 180903",
+      value: "+44 20 3375 6616",
       description: "Mon–Fri 09:00–17:00 (UK)",
-      link: "tel:07447180903"
+      link: "tel:+442033756616"
     },
     {
       icon: Calendar,
@@ -350,7 +350,7 @@ const ContactPage = () => {
                           value={formData.phone}
                           onChange={handleChange}
                           className="field-input mobile-touch-target"
-                          placeholder="07447 180903"
+                          placeholder="+44 20 3375 6616"
                         />
                       </div>
 
