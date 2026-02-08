@@ -544,7 +544,7 @@ const AboutPage = () => {
                 >
                   <div className="relative w-full aspect-square rounded-3xl overflow-hidden border-2 border-white/20 shadow-2xl">
                     <img
-                      src="/generated-1768680821202.jpg"
+                      src="/vladnewimage.jpg"
                       alt="Vladimir Nguyen Hung - Co-Founder & Technical Director of SoleScope Studio & Design"
                       className="w-full h-full object-cover"
                     />
