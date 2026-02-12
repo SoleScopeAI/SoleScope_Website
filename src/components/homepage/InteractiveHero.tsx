@@ -145,7 +145,7 @@ const InteractiveHero = () => {
       {portfolioImages.map((example) => (
         <motion.div
           key={example.id}
-          className={`absolute ${example.size} opacity-20 pointer-events-none z-0`}
+          className={`hidden md:block absolute ${example.size} opacity-20 pointer-events-none z-0`}
           style={{
             ...example.position,
             transform: `rotate(${example.rotation})`,
@@ -205,20 +205,122 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80"
+            className="mt-3 max-w-2xl md:max-w-3xl mx-auto text-base md:text-lg text-white/80 hidden md:block"
           >
             We combine handcrafted web design with intelligent automation — connecting bookings, CRM, team workflows, and business processes into scalable systems. From sole traders to growing SMEs, we deliver solutions that evolve with your business.
           </motion.p>
 
           <motion.div
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            className="mt-8 md:hidden relative mx-auto w-full max-w-md"
+          >
+            <div className="relative aspect-[4/3] w-full">
+              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/40 via-cyan-500/30 to-purple-600/40 blur-3xl animate-pulse"></div>
+
+              <motion.div
+                animate={{
+                  scale: [1, 1.05, 1],
+                  rotate: [0, 2, 0, -2, 0],
+                }}
+                transition={{
+                  duration: 6,
+                  repeat: Infinity,
+                  ease: "easeInOut"
+                }}
+                className="relative z-10 w-full h-full flex items-center justify-center"
+              >
+                <div className="relative w-full h-full flex items-center justify-center">
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-xl"></div>
+
+                  <svg
+                    viewBox="0 0 400 300"
+                    className="w-full h-full relative z-10"
+                    xmlns="http://www.w3.org/2000/svg"
+                  >
+                    <defs>
+                      <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                        <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+                        <stop offset="50%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
+                        <stop offset="100%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+                      </linearGradient>
+
+                      <filter id="glow">
+                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
+                        <feMerge>
+                          <feMergeNode in="coloredBlur"/>
+                          <feMergeNode in="SourceGraphic"/>
+                        </feMerge>
+                      </filter>
+                    </defs>
+
+                    <g filter="url(#glow)">
+                      <ellipse cx="200" cy="120" rx="100" ry="80" fill="none" stroke="url(#brainGradient)" strokeWidth="3" opacity="0.8" />
+                      <ellipse cx="180" cy="100" rx="40" ry="35" fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.6" />
+                      <ellipse cx="220" cy="100" rx="40" ry="35" fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.6" />
+
+                      <path d="M 160 120 Q 150 140 160 160 Q 170 180 180 160 Q 190 140 180 120"
+                            fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.7" />
+                      <path d="M 220 120 Q 230 140 220 160 Q 210 180 200 160 Q 190 140 200 120"
+                            fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.7" />
+
+                      <line x1="150" y1="80" x2="120" y2="50" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
+                      <line x1="250" y1="80" x2="280" y2="50" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
+                      <line x1="130" y1="140" x2="90" y2="160" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
+                      <line x1="270" y1="140" x2="310" y2="160" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
+
+                      <circle cx="120" cy="50" r="4" fill="#06b6d4" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="280" cy="50" r="4" fill="#8b5cf6" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="90" cy="160" r="4" fill="#06b6d4" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" />
+                      </circle>
+                      <circle cx="310" cy="160" r="4" fill="#8b5cf6" opacity="0.8">
+                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite" />
+                      </circle>
+
+                      <g transform="translate(100, 200)">
+                        <circle cx="0" cy="0" r="15" fill="none" stroke="#06b6d4" strokeWidth="2" opacity="0.6" />
+                        <circle cx="0" cy="0" r="8" fill="#06b6d4" opacity="0.3" />
+                        <line x1="-10" y1="0" x2="10" y2="0" stroke="#06b6d4" strokeWidth="1.5" />
+                        <line x1="0" y1="-10" x2="0" y2="10" stroke="#06b6d4" strokeWidth="1.5" />
+                      </g>
+
+                      <g transform="translate(300, 200)">
+                        <circle cx="0" cy="0" r="15" fill="none" stroke="#8b5cf6" strokeWidth="2" opacity="0.6" />
+                        <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="#8b5cf6" strokeWidth="1.5" />
+                      </g>
+
+                      <g transform="translate(200, 240)">
+                        <rect x="-12" y="-12" width="24" height="24" fill="none" stroke="#06b6d4" strokeWidth="2" opacity="0.6" />
+                        <circle cx="0" cy="0" r="5" fill="#06b6d4" opacity="0.5">
+                          <animate attributeName="r" values="3;7;3" dur="1.8s" repeatCount="indefinite" />
+                        </circle>
+                      </g>
+                    </g>
+
+                    <text x="200" y="280" textAnchor="middle" fill="url(#brainGradient)" fontSize="12" opacity="0.6" fontWeight="600">
+                      AI-Powered Intelligence
+                    </text>
+                  </svg>
+                </div>
+              </motion.div>
+            </div>
+          </motion.div>
+
+          <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.6 }}
-            className="mt-7 flex flex-col sm:flex-row sm:items-center gap-3 justify-center"
+            className="mt-7 flex flex-col md:flex-row md:items-center gap-3 justify-center"
           >
             <Link
               to="/contact"
-              className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-105 transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30"
+              className="group bg-[#6C3EF0] text-white px-10 py-4 text-lg font-semibold rounded-full hover:bg-[#5A33C8] hover:scale-105 transition-all duration-300 flex items-center justify-center shadow-lg shadow-purple-500/30 w-full md:w-auto"
             >
               <span>Book a 15-min Fit Call</span>
               <ArrowRight className="ml-2 h-5 w-5 group-hover:translate-x-1 transition-transform" />
@@ -226,7 +328,7 @@ const InteractiveHero = () => {
 
             <Link
               to="/services"
-              className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center"
+              className="group bg-transparent text-white border-2 border-white/40 px-10 py-4 text-lg font-semibold rounded-full hover:bg-white hover:text-black hover:border-white transition-all duration-300 flex items-center justify-center w-full md:w-auto"
             >
               View Case Demos
               <Play className="ml-2 h-5 w-5" />
@@ -277,7 +379,7 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 1.2 }}
-            className="max-w-6xl mx-auto mt-8"
+            className="max-w-6xl mx-auto mt-8 hidden md:block"
           >
             <p className="text-sm text-slate-400 mb-4 uppercase tracking-wide">Our Services</p>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
