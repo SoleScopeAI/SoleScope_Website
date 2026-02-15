@@ -214,101 +214,281 @@ const InteractiveHero = () => {
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="mt-8 md:hidden relative mx-auto w-full max-w-md"
+            className="mt-8 md:hidden relative mx-auto w-full max-w-md overflow-hidden"
           >
             <div className="relative aspect-[4/3] w-full">
-              <div className="absolute inset-0 bg-gradient-to-br from-purple-600/40 via-cyan-500/30 to-purple-600/40 blur-3xl animate-pulse"></div>
-
-              <motion.div
-                animate={{
-                  scale: [1, 1.05, 1],
-                  rotate: [0, 2, 0, -2, 0],
-                }}
-                transition={{
-                  duration: 6,
-                  repeat: Infinity,
-                  ease: "easeInOut"
-                }}
-                className="relative z-10 w-full h-full flex items-center justify-center"
+              <svg
+                viewBox="0 0 800 600"
+                className="w-full h-full relative z-10"
+                xmlns="http://www.w3.org/2000/svg"
               >
-                <div className="relative w-full h-full flex items-center justify-center">
-                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/20 via-purple-500/20 to-cyan-500/20 rounded-3xl blur-xl"></div>
+                <defs>
+                  <linearGradient id="humanGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#22d3ee', stopOpacity: 1 }} />
+                  </linearGradient>
 
-                  <svg
-                    viewBox="0 0 400 300"
-                    className="w-full h-full relative z-10"
-                    xmlns="http://www.w3.org/2000/svg"
+                  <linearGradient id="robotGradient" x1="0%" y1="0%" x2="100%" y2="100%">
+                    <stop offset="0%" style={{ stopColor: '#a855f7', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#ec4899', stopOpacity: 1 }} />
+                    <stop offset="100%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
+                  </linearGradient>
+
+                  <radialGradient id="glowGradient">
+                    <stop offset="0%" style={{ stopColor: '#ffffff', stopOpacity: 1 }} />
+                    <stop offset="50%" style={{ stopColor: '#06b6d4', stopOpacity: 0.8 }} />
+                    <stop offset="100%" style={{ stopColor: '#a855f7', stopOpacity: 0 }} />
+                  </radialGradient>
+
+                  <filter id="glow">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+
+                  <filter id="strongGlow">
+                    <feGaussianBlur stdDeviation="8" result="coloredBlur"/>
+                    <feMerge>
+                      <feMergeNode in="coloredBlur"/>
+                      <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                  </filter>
+                </defs>
+
+                <rect width="800" height="600" fill="#1e1b4b" />
+
+                {Array.from({ length: 40 }).map((_, i) => (
+                  <circle
+                    key={`star-${i}`}
+                    cx={Math.random() * 800}
+                    cy={Math.random() * 600}
+                    r={Math.random() * 1.5 + 0.5}
+                    fill="#ffffff"
+                    opacity="0.6"
                   >
-                    <defs>
-                      <linearGradient id="brainGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                        <stop offset="0%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
-                        <stop offset="50%" style={{ stopColor: '#8b5cf6', stopOpacity: 1 }} />
-                        <stop offset="100%" style={{ stopColor: '#06b6d4', stopOpacity: 1 }} />
-                      </linearGradient>
+                    <animate
+                      attributeName="opacity"
+                      values="0.2;0.8;0.2"
+                      dur={`${Math.random() * 3 + 2}s`}
+                      repeatCount="indefinite"
+                    />
+                  </circle>
+                ))}
 
-                      <filter id="glow">
-                        <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                        <feMerge>
-                          <feMergeNode in="coloredBlur"/>
-                          <feMergeNode in="SourceGraphic"/>
-                        </feMerge>
-                      </filter>
-                    </defs>
+                <g id="humanHand" filter="url(#glow)">
+                  <path
+                    d="M 150,400 Q 130,350 140,300 L 160,250 Q 165,230 175,240 L 180,290 Q 182,250 190,240 Q 195,235 200,245 L 205,290 Q 208,250 218,245 Q 223,242 228,250 L 230,295 Q 235,260 245,255 Q 250,253 255,265 L 255,320 Q 258,360 270,390 L 290,420 Q 295,430 285,435 L 260,440 Q 240,442 220,435 L 180,420 Q 165,413 150,400 Z"
+                    fill="none"
+                    stroke="url(#humanGradient)"
+                    strokeWidth="2.5"
+                    opacity="0.9"
+                  />
 
-                    <g filter="url(#glow)">
-                      <ellipse cx="200" cy="120" rx="100" ry="80" fill="none" stroke="url(#brainGradient)" strokeWidth="3" opacity="0.8" />
-                      <ellipse cx="180" cy="100" rx="40" ry="35" fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.6" />
-                      <ellipse cx="220" cy="100" rx="40" ry="35" fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.6" />
+                  {[
+                    'M 180,240 L 180,290',
+                    'M 200,240 L 205,290',
+                    'M 228,245 L 230,295',
+                    'M 255,260 L 255,320',
+                  ].map((d, i) => (
+                    <path key={`finger-${i}`} d={d} stroke="url(#humanGradient)" strokeWidth="2" opacity="0.7" fill="none" />
+                  ))}
 
-                      <path d="M 160 120 Q 150 140 160 160 Q 170 180 180 160 Q 190 140 180 120"
-                            fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.7" />
-                      <path d="M 220 120 Q 230 140 220 160 Q 210 180 200 160 Q 190 140 200 120"
-                            fill="none" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.7" />
-
-                      <line x1="150" y1="80" x2="120" y2="50" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
-                      <line x1="250" y1="80" x2="280" y2="50" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
-                      <line x1="130" y1="140" x2="90" y2="160" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
-                      <line x1="270" y1="140" x2="310" y2="160" stroke="url(#brainGradient)" strokeWidth="2" opacity="0.5" />
-
-                      <circle cx="120" cy="50" r="4" fill="#06b6d4" opacity="0.8">
-                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2s" repeatCount="indefinite" />
+                  {[
+                    [160, 300], [170, 270], [180, 250], [200, 300], [210, 280],
+                    [230, 310], [240, 290], [255, 330], [220, 360], [200, 380],
+                    [180, 400], [240, 380]
+                  ].map((pos, i) => (
+                    <g key={`node-${i}`}>
+                      <circle cx={pos[0]} cy={pos[1]} r="3" fill="#06b6d4" opacity="0.8">
+                        <animate
+                          attributeName="opacity"
+                          values="0.4;1;0.4"
+                          dur={`${2 + (i % 3)}s`}
+                          repeatCount="indefinite"
+                        />
                       </circle>
-                      <circle cx="280" cy="50" r="4" fill="#8b5cf6" opacity="0.8">
-                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2.5s" repeatCount="indefinite" />
-                      </circle>
-                      <circle cx="90" cy="160" r="4" fill="#06b6d4" opacity="0.8">
-                        <animate attributeName="opacity" values="0.3;1;0.3" dur="3s" repeatCount="indefinite" />
-                      </circle>
-                      <circle cx="310" cy="160" r="4" fill="#8b5cf6" opacity="0.8">
-                        <animate attributeName="opacity" values="0.3;1;0.3" dur="2.2s" repeatCount="indefinite" />
-                      </circle>
-
-                      <g transform="translate(100, 200)">
-                        <circle cx="0" cy="0" r="15" fill="none" stroke="#06b6d4" strokeWidth="2" opacity="0.6" />
-                        <circle cx="0" cy="0" r="8" fill="#06b6d4" opacity="0.3" />
-                        <line x1="-10" y1="0" x2="10" y2="0" stroke="#06b6d4" strokeWidth="1.5" />
-                        <line x1="0" y1="-10" x2="0" y2="10" stroke="#06b6d4" strokeWidth="1.5" />
-                      </g>
-
-                      <g transform="translate(300, 200)">
-                        <circle cx="0" cy="0" r="15" fill="none" stroke="#8b5cf6" strokeWidth="2" opacity="0.6" />
-                        <path d="M -8,-8 L 8,8 M -8,8 L 8,-8" stroke="#8b5cf6" strokeWidth="1.5" />
-                      </g>
-
-                      <g transform="translate(200, 240)">
-                        <rect x="-12" y="-12" width="24" height="24" fill="none" stroke="#06b6d4" strokeWidth="2" opacity="0.6" />
-                        <circle cx="0" cy="0" r="5" fill="#06b6d4" opacity="0.5">
-                          <animate attributeName="r" values="3;7;3" dur="1.8s" repeatCount="indefinite" />
-                        </circle>
-                      </g>
+                      <circle cx={pos[0]} cy={pos[1]} r="6" fill="none" stroke="#06b6d4" strokeWidth="1" opacity="0.4" />
                     </g>
+                  ))}
 
-                    <text x="200" y="280" textAnchor="middle" fill="url(#brainGradient)" fontSize="12" opacity="0.6" fontWeight="600">
-                      AI-Powered Intelligence
-                    </text>
-                  </svg>
-                </div>
-              </motion.div>
+                  {[
+                    'M 160,300 L 170,270 L 180,250',
+                    'M 200,300 L 210,280 L 200,240',
+                    'M 230,310 L 240,290 L 228,245',
+                    'M 255,330 L 255,320',
+                    'M 220,360 L 200,380 L 180,400',
+                  ].map((d, i) => (
+                    <path
+                      key={`circuit-${i}`}
+                      d={d}
+                      stroke="#06b6d4"
+                      strokeWidth="1"
+                      opacity="0.5"
+                      fill="none"
+                      strokeDasharray="3,3"
+                    >
+                      <animate
+                        attributeName="stroke-dashoffset"
+                        from="0"
+                        to="12"
+                        dur="2s"
+                        repeatCount="indefinite"
+                      />
+                    </path>
+                  ))}
+                </g>
+
+                <g id="robotHand" filter="url(#glow)">
+                  <path
+                    d="M 650,400 Q 670,350 660,300 L 640,250 Q 635,230 625,240 L 620,290 Q 618,250 610,240 Q 605,235 600,245 L 595,290 Q 592,250 582,245 Q 577,242 572,250 L 570,295 Q 565,260 555,255 Q 550,253 545,265 L 545,320 Q 542,360 530,390 L 510,420 Q 505,430 515,435 L 540,440 Q 560,442 580,435 L 620,420 Q 635,413 650,400 Z"
+                    fill="none"
+                    stroke="url(#robotGradient)"
+                    strokeWidth="3"
+                    opacity="0.9"
+                  />
+
+                  {[
+                    { cx: 580, cy: 290, r: 25, innerR: 15 },
+                    { cx: 540, cy: 340, r: 30, innerR: 18 },
+                    { cx: 600, cy: 360, r: 22, innerR: 13 },
+                    { cx: 570, cy: 400, r: 18, innerR: 10 },
+                    { cx: 620, cy: 320, r: 20, innerR: 12 },
+                  ].map((gear, i) => (
+                    <g key={`gear-${i}`}>
+                      <circle
+                        cx={gear.cx}
+                        cy={gear.cy}
+                        r={gear.r}
+                        fill="none"
+                        stroke="url(#robotGradient)"
+                        strokeWidth="2.5"
+                        opacity="0.8"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from={`0 ${gear.cx} ${gear.cy}`}
+                          to={`${i % 2 === 0 ? 360 : -360} ${gear.cx} ${gear.cy}`}
+                          dur={`${8 + i * 2}s`}
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+
+                      {Array.from({ length: 8 }).map((_, j) => {
+                        const angle = (j * 45 * Math.PI) / 180;
+                        const x1 = gear.cx + Math.cos(angle) * gear.innerR;
+                        const y1 = gear.cy + Math.sin(angle) * gear.innerR;
+                        const x2 = gear.cx + Math.cos(angle) * gear.r;
+                        const y2 = gear.cy + Math.sin(angle) * gear.r;
+                        return (
+                          <line
+                            key={`tooth-${j}`}
+                            x1={x1}
+                            y1={y1}
+                            x2={x2}
+                            y2={y2}
+                            stroke="url(#robotGradient)"
+                            strokeWidth="2"
+                            opacity="0.7"
+                          >
+                            <animateTransform
+                              attributeName="transform"
+                              type="rotate"
+                              from={`0 ${gear.cx} ${gear.cy}`}
+                              to={`${i % 2 === 0 ? 360 : -360} ${gear.cx} ${gear.cy}`}
+                              dur={`${8 + i * 2}s`}
+                              repeatCount="indefinite"
+                            />
+                          </line>
+                        );
+                      })}
+
+                      <circle
+                        cx={gear.cx}
+                        cy={gear.cy}
+                        r={gear.innerR}
+                        fill="none"
+                        stroke="url(#robotGradient)"
+                        strokeWidth="1.5"
+                        opacity="0.6"
+                      >
+                        <animateTransform
+                          attributeName="transform"
+                          type="rotate"
+                          from={`0 ${gear.cx} ${gear.cy}`}
+                          to={`${i % 2 === 0 ? 360 : -360} ${gear.cx} ${gear.cy}`}
+                          dur={`${8 + i * 2}s`}
+                          repeatCount="indefinite"
+                        />
+                      </circle>
+
+                      <circle cx={gear.cx} cy={gear.cy} r="4" fill="#a855f7" opacity="0.8" />
+                    </g>
+                  ))}
+
+                  {[
+                    'M 580,290 L 540,340',
+                    'M 540,340 L 570,400',
+                    'M 600,360 L 580,290',
+                    'M 620,320 L 600,360',
+                  ].map((d, i) => (
+                    <path
+                      key={`robot-circuit-${i}`}
+                      d={d}
+                      stroke="#a855f7"
+                      strokeWidth="1.5"
+                      opacity="0.4"
+                      fill="none"
+                    />
+                  ))}
+                </g>
+
+                <g id="connectionPoint" filter="url(#strongGlow)">
+                  <circle cx="400" cy="350" r="40" fill="url(#glowGradient)" opacity="0.3">
+                    <animate attributeName="r" values="40;50;40" dur="2s" repeatCount="indefinite" />
+                    <animate attributeName="opacity" values="0.3;0.6;0.3" dur="2s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle cx="400" cy="350" r="20" fill="url(#glowGradient)" opacity="0.6">
+                    <animate attributeName="r" values="20;25;20" dur="1.5s" repeatCount="indefinite" />
+                  </circle>
+
+                  <circle cx="400" cy="350" r="8" fill="#ffffff" opacity="1">
+                    <animate attributeName="opacity" values="0.8;1;0.8" dur="1s" repeatCount="indefinite" />
+                  </circle>
+
+                  <line x1="290" y1="350" x2="380" y2="350" stroke="#06b6d4" strokeWidth="3" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
+                  </line>
+
+                  <line x1="420" y1="350" x2="510" y2="350" stroke="#a855f7" strokeWidth="3" opacity="0.8">
+                    <animate attributeName="opacity" values="0.4;0.9;0.4" dur="2s" repeatCount="indefinite" />
+                  </line>
+
+                  {[0, 45, 90, 135, 180, 225, 270, 315].map((angle, i) => (
+                    <line
+                      key={`ray-${i}`}
+                      x1="400"
+                      y1="350"
+                      x2={400 + Math.cos((angle * Math.PI) / 180) * 60}
+                      y2={350 + Math.sin((angle * Math.PI) / 180) * 60}
+                      stroke="#ffffff"
+                      strokeWidth="1"
+                      opacity="0.3"
+                    >
+                      <animate
+                        attributeName="opacity"
+                        values="0;0.6;0"
+                        dur="3s"
+                        begin={`${i * 0.2}s`}
+                        repeatCount="indefinite"
+                      />
+                    </line>
+                  ))}
+                </g>
+              </svg>
             </div>
           </motion.div>
 
