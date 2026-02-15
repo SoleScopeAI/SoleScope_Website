@@ -11,8 +11,8 @@ const PremiumHomePage = () => {
   return (
     <div className="homepage-unified-surface overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
       <InteractiveHero />
-      <WhyChooseSoleScope />
       <ServiceSnapshotGrid />
+      <WhyChooseSoleScope />
       <ClientResultsShowcase />
       <ProcessStepper />
       <FinalCallToAction />
