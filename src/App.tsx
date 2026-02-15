@@ -26,6 +26,7 @@ import { ClientAuthProvider } from './contexts/ClientAuthContext';
 import ProtectedAdminRoute from './components/admin/ProtectedAdminRoute';
 import ProtectedClientRoute from './components/client/ProtectedClientRoute';
 import AdminLoginPage from './pages/admin/AdminLoginPage';
+import SetupAdminPage from './pages/SetupAdminPage';
 import AdminLayout from './components/admin/AdminLayout';
 import AdminDashboardPage from './pages/admin/AdminDashboardPage';
 import ClientsPage from './pages/admin/ClientsPage';
@@ -46,6 +47,7 @@ const App = () => {
     <AdminAuthProvider>
       <ClientAuthProvider>
         <Routes>
+        <Route path="/setup-admin" element={<SetupAdminPage />} />
         <Route path="/admin/login" element={<AdminLoginPage />} />
 
         <Route

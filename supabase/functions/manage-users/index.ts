@@ -20,19 +20,94 @@ Deno.serve(async (req: Request) => {
       { auth: { autoRefreshToken: false, persistSession: false } }
     );
 
+    const { action, ...payload } = await req.json();
+
     const authHeader = req.headers.get("Authorization");
-    if (!authHeader) {
+    let callerUser = null;
+
+    if (authHeader && authHeader !== "Bearer null") {
+      const {
+        data: { user },
+      } = await supabaseAdmin.auth.getUser(authHeader.replace("Bearer ", ""));
+      callerUser = user;
+    }
+
+    if (action === "migrate_user") {
+      const { email, password, user_type, profile_id } = payload;
+
+      if (!email || !password || !user_type || !profile_id) {
+        return new Response(
+          JSON.stringify({ error: "Missing required fields for migration" }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      if (user_type === "admin") {
+        const { data: existingAdmin } = await supabaseAdmin
+          .from("admin_users")
+          .select("id, role, auth_id")
+          .eq("id", profile_id)
+          .maybeSingle();
+
+        if (!existingAdmin) {
+          return new Response(
+            JSON.stringify({ error: "Admin user not found" }),
+            { status: 404, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+
+        if (existingAdmin.auth_id) {
+          return new Response(
+            JSON.stringify({ error: "User already migrated" }),
+            { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+          );
+        }
+      }
+
+      const { data: authUser, error: createError } =
+        await supabaseAdmin.auth.admin.createUser({
+          email,
+          password,
+          email_confirm: true,
+          user_metadata: { user_type },
+        });
+
+      if (createError) {
+        return new Response(
+          JSON.stringify({ error: createError.message }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      const table = user_type === "admin" ? "admin_users" : "client_users";
+      const { error: linkError } = await supabaseAdmin
+        .from(table)
+        .update({
+          auth_id: authUser.user.id,
+          password_hash: "SUPABASE_AUTH"
+        })
+        .eq("id", profile_id);
+
+      if (linkError) {
+        await supabaseAdmin.auth.admin.deleteUser(authUser.user.id);
+        return new Response(
+          JSON.stringify({ error: linkError.message }),
+          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+        );
+      }
+
+      return new Response(
+        JSON.stringify({ user_id: authUser.user.id, migrated: true }),
+        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
+      );
+    }
+
+    if (!callerUser && action !== "migrate_user") {
       return new Response(
         JSON.stringify({ error: "Missing authorization header" }),
         { status: 401, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
-
-    const {
-      data: { user: callerUser },
-    } = await supabaseAdmin.auth.getUser(authHeader.replace("Bearer ", ""));
-
-    const { action, ...payload } = await req.json();
 
     if (action === "create_user") {
       const { email, password, full_name, user_type, role, client_id } = payload;
@@ -138,51 +213,6 @@ Deno.serve(async (req: Request) => {
 
       return new Response(
         JSON.stringify({ user_id: authUser.user.id, email: authUser.user.email }),
-        { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-      );
-    }
-
-    if (action === "migrate_user") {
-      const { email, password, user_type, profile_id } = payload;
-
-      if (!email || !password || !user_type || !profile_id) {
-        return new Response(
-          JSON.stringify({ error: "Missing required fields for migration" }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      const { data: authUser, error: createError } =
-        await supabaseAdmin.auth.admin.createUser({
-          email,
-          password,
-          email_confirm: true,
-          user_metadata: { user_type },
-        });
-
-      if (createError) {
-        return new Response(
-          JSON.stringify({ error: createError.message }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      const table = user_type === "admin" ? "admin_users" : "client_users";
-      const { error: linkError } = await supabaseAdmin
-        .from(table)
-        .update({ auth_id: authUser.user.id })
-        .eq("id", profile_id);
-
-      if (linkError) {
-        await supabaseAdmin.auth.admin.deleteUser(authUser.user.id);
-        return new Response(
-          JSON.stringify({ error: linkError.message }),
-          { status: 400, headers: { ...corsHeaders, "Content-Type": "application/json" } }
-        );
-      }
-
-      return new Response(
-        JSON.stringify({ user_id: authUser.user.id, migrated: true }),
         { status: 200, headers: { ...corsHeaders, "Content-Type": "application/json" } }
       );
     }
