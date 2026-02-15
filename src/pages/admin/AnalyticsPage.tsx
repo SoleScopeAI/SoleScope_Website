@@ -77,7 +77,7 @@ const AnalyticsPage = () => {
   const totalStatusCount = statusBreakdown.reduce((s, b) => s + b.count, 0);
 
   if (loading) {
-    return <div className="flex items-center justify-center h-full"><div className="text-center"><div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" /><p className="text-gray-400">Loading analytics...</p></div></div>;
+    return <div className="flex items-center justify-center h-full"><div className="text-center"><div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" /><p className="text-gray-400">Loading analytics...</p></div></div>;
   }
 
   return (
@@ -111,7 +111,7 @@ const AnalyticsPage = () => {
             {monthlyData.map((m) => (
               <div key={m.month} className="flex-1 flex flex-col items-center">
                 <div className="w-full flex justify-center mb-2">
-                  <div className="w-full max-w-[40px] bg-gradient-to-t from-teal-500 to-cyan-400 rounded-t-lg transition-all hover:from-teal-400 hover:to-cyan-300" style={{ height: `${Math.max((m.revenue / maxRevenue) * 140, 4)}px` }} title={`£${m.revenue.toLocaleString()}`} />
+                  <div className="w-full max-w-[40px] bg-gradient-to-t from-purple-500 to-violet-400 rounded-t-lg transition-all hover:from-purple-400 hover:to-violet-300" style={{ height: `${Math.max((m.revenue / maxRevenue) * 140, 4)}px` }} title={`£${m.revenue.toLocaleString()}`} />
                 </div>
                 <span className="text-xs text-gray-400 mt-1">{m.month}</span>
               </div>
@@ -146,7 +146,7 @@ const AnalyticsPage = () => {
               {topClients.map((client, i) => (
                 <div key={client.name} className="flex items-center justify-between p-3 bg-white/5 rounded-xl">
                   <div className="flex items-center space-x-3">
-                    <span className="w-8 h-8 bg-teal-500/20 rounded-full flex items-center justify-center text-teal-400 font-bold text-sm">{i + 1}</span>
+                    <span className="w-8 h-8 bg-purple-500/20 rounded-full flex items-center justify-center text-purple-400 font-bold text-sm">{i + 1}</span>
                     <div><p className="text-white font-medium text-sm">{client.name}</p><p className="text-xs text-gray-400">{client.projects} project{client.projects !== 1 ? 's' : ''}</p></div>
                   </div>
                   <span className="text-white font-semibold">£{client.revenue.toLocaleString()}</span>
@@ -164,7 +164,7 @@ const AnalyticsPage = () => {
             <div className="space-y-3 max-h-[400px] overflow-y-auto">
               {recentLogs.map((log) => (
                 <div key={log.id} className="flex items-start space-x-3 p-3 bg-white/5 rounded-xl">
-                  <Activity className="w-4 h-4 text-teal-400 mt-0.5 flex-shrink-0" />
+                  <Activity className="w-4 h-4 text-purple-400 mt-0.5 flex-shrink-0" />
                   <div className="flex-1 min-w-0">
                     <p className="text-sm text-white truncate">{log.description}</p>
                     <p className="text-xs text-gray-500 mt-1">{new Date(log.created_at).toLocaleString()}</p>

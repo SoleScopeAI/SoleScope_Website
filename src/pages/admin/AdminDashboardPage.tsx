@@ -132,7 +132,7 @@ const AdminDashboardPage = () => {
   };
 
   const getActivityColor = (actionType: string) => {
-    if (actionType.includes('created')) return 'bg-teal-500/20 text-teal-400';
+    if (actionType.includes('created')) return 'bg-purple-500/20 text-purple-400';
     if (actionType.includes('updated') || actionType.includes('activated')) return 'bg-blue-500/20 text-blue-400';
     if (actionType.includes('deleted') || actionType.includes('deactivated')) return 'bg-red-500/20 text-red-400';
     if (actionType.includes('paid')) return 'bg-green-500/20 text-green-400';
@@ -154,8 +154,8 @@ const AdminDashboardPage = () => {
   };
 
   const statCards = [
-    { title: 'Total Clients', value: stats.totalClients.toString(), change: stats.clientsChange, icon: Users, link: '/admin/clients', color: 'from-teal-500/20 to-cyan-500/20 border-teal-500/30 text-teal-400' },
-    { title: 'Active Projects', value: stats.activeProjects.toString(), change: stats.projectsChange, icon: FolderKanban, link: '/admin/projects', color: 'from-blue-500/20 to-sky-500/20 border-blue-500/30 text-blue-400' },
+    { title: 'Total Clients', value: stats.totalClients.toString(), change: stats.clientsChange, icon: Users, link: '/admin/clients', color: 'from-purple-500/20 to-violet-500/20 border-purple-500/30 text-purple-400' },
+    { title: 'Active Projects', value: stats.activeProjects.toString(), change: stats.projectsChange, icon: FolderKanban, link: '/admin/projects', color: 'from-indigo-500/20 to-purple-500/20 border-indigo-500/30 text-indigo-400' },
     { title: 'Pending Invoices', value: stats.pendingInvoices.toString(), change: -2.1, icon: FileText, link: '/admin/invoices', color: 'from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-400' },
     { title: 'Monthly Revenue', value: `£${stats.monthlyRevenue.toLocaleString()}`, change: stats.revenueChange, icon: DollarSign, link: '/admin/analytics', color: 'from-emerald-500/20 to-green-500/20 border-emerald-500/30 text-emerald-400' },
   ];
@@ -164,7 +164,7 @@ const AdminDashboardPage = () => {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading dashboard...</p>
         </div>
       </div>
@@ -212,7 +212,7 @@ const AdminDashboardPage = () => {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Recent Activity</h2>
-              <Link to="/admin/analytics" className="text-sm text-teal-400 hover:text-teal-300 transition-colors">
+              <Link to="/admin/analytics" className="text-sm text-purple-400 hover:text-purple-300 transition-colors">
                 View All
               </Link>
             </div>
@@ -253,12 +253,12 @@ const AdminDashboardPage = () => {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
             <div className="space-y-3">
-              <Link to="/admin/clients" className="flex items-center justify-between p-3 bg-teal-500/10 border border-teal-500/30 rounded-xl hover:bg-teal-500/20 transition-colors group">
+              <Link to="/admin/clients" className="flex items-center justify-between p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl hover:bg-purple-500/20 transition-colors group">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-teal-400" />
+                  <Users className="w-5 h-5 text-purple-400" />
                   <span className="text-white font-medium">Add Client</span>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
               <Link to="/admin/projects" className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/30 rounded-xl hover:bg-blue-500/20 transition-colors group">
                 <div className="flex items-center space-x-3">
@@ -279,7 +279,7 @@ const AdminDashboardPage = () => {
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <Clock className="w-5 h-5 text-teal-400" />
+              <Clock className="w-5 h-5 text-purple-400" />
               <h3 className="text-lg font-semibold text-white">Upcoming Deadlines</h3>
             </div>
             {upcomingDeadlines.length === 0 ? (

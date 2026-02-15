@@ -39,7 +39,7 @@ const SettingsPage = () => {
                   onClick={() => setActiveTab(tab.id)}
                   className={`w-full flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                     activeTab === tab.id
-                      ? 'bg-gradient-to-r from-teal-600/20 to-cyan-600/20 text-white border border-teal-500/30'
+                      ? 'bg-gradient-to-r from-purple-600/20 to-violet-600/20 text-white border border-purple-500/30'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -112,7 +112,7 @@ const ProfileTab = () => {
             type="text"
             value={fullName}
             onChange={(e) => setFullName(e.target.value)}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
         <div>
@@ -121,7 +121,7 @@ const ProfileTab = () => {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500"
+            className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500"
           />
         </div>
         <div>
@@ -152,7 +152,7 @@ const ProfileTab = () => {
           <button
             onClick={handleSave}
             disabled={saving}
-            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
           >
             <Save className="w-5 h-5" />
             <span>{saving ? 'Saving...' : 'Save Changes'}</span>
@@ -213,7 +213,7 @@ const SecurityTab = () => {
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               placeholder="Min 8 characters"
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 pr-12"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 pr-12"
             />
             <button onClick={() => setShowNew(!showNew)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
               {showNew ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -228,7 +228,7 @@ const SecurityTab = () => {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               placeholder="Re-enter password"
-              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 pr-12"
+              className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 pr-12"
             />
             <button onClick={() => setShowConfirm(!showConfirm)} className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-400 hover:text-white">
               {showConfirm ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
@@ -253,7 +253,7 @@ const SecurityTab = () => {
           <button
             onClick={handleChangePassword}
             disabled={saving || !newPassword || !confirmPassword}
-            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+            className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
           >
             <Key className="w-5 h-5" />
             <span>{saving ? 'Updating...' : 'Update Password'}</span>
@@ -305,7 +305,7 @@ const TeamTab = () => {
   const getRoleBadgeColor = (role: string) => {
     switch (role) {
       case 'owner': return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
-      case 'admin': return 'bg-teal-500/20 text-teal-400 border-teal-500/30';
+      case 'admin': return 'bg-purple-500/20 text-purple-400 border-purple-500/30';
       case 'manager': return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       default: return 'bg-gray-500/20 text-gray-400 border-gray-500/30';
     }
@@ -321,7 +321,7 @@ const TeamTab = () => {
         {isOwner() && (
           <button
             onClick={() => setShowAddModal(true)}
-            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all"
+            className="flex items-center space-x-2 px-4 py-2 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all"
           >
             <Plus className="w-5 h-5" />
             <span>Add Admin</span>
@@ -350,7 +350,7 @@ const TeamTab = () => {
 
       {loading ? (
         <div className="text-center py-12">
-          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading team members...</p>
         </div>
       ) : adminUsers.length === 0 ? (
@@ -368,8 +368,8 @@ const TeamTab = () => {
                     user.role === 'owner'
                       ? 'bg-gradient-to-r from-yellow-500 to-orange-500'
                       : user.role === 'admin'
-                      ? 'bg-gradient-to-r from-teal-500 to-cyan-500'
-                      : 'bg-gradient-to-r from-blue-500 to-cyan-500'
+                      ? 'bg-gradient-to-r from-purple-500 to-violet-500'
+                      : 'bg-gradient-to-r from-blue-500 to-violet-500'
                   }`}>
                     {user.role === 'owner' ? <Crown className="w-6 h-6 text-white" /> : <User className="w-6 h-6 text-white" />}
                   </div>
@@ -399,7 +399,7 @@ const TeamTab = () => {
                       value={user.role}
                       onChange={(e) => handleRoleChange(user.id, e.target.value as 'owner' | 'admin' | 'manager')}
                       disabled={changingRoleId === user.id}
-                      className="px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500 [&>option]:bg-gray-900 disabled:opacity-50"
+                      className="px-3 py-2 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500 [&>option]:bg-gray-900 disabled:opacity-50"
                     >
                       <option value="owner">Owner</option>
                       <option value="admin">Admin</option>
@@ -495,7 +495,7 @@ const NotificationsTab = () => {
             <button
               onClick={() => setPrefs({ ...prefs, [item.key]: !prefs[item.key as keyof typeof prefs] })}
               className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors ${
-                prefs[item.key as keyof typeof prefs] ? 'bg-teal-600' : 'bg-gray-600'
+                prefs[item.key as keyof typeof prefs] ? 'bg-purple-600' : 'bg-gray-600'
               }`}
             >
               <span className={`inline-block h-4 w-4 transform rounded-full bg-white transition-transform ${
@@ -516,7 +516,7 @@ const NotificationsTab = () => {
       <button
         onClick={handleSave}
         disabled={saving}
-        className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
+        className="flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50"
       >
         <Save className="w-5 h-5" />
         <span>{saving ? 'Saving...' : 'Save Preferences'}</span>
@@ -590,8 +590,8 @@ const DataExportTab = () => {
         ))}
       </div>
 
-      <div className="p-5 bg-teal-500/10 border border-teal-500/30 rounded-xl">
-        <p className="text-teal-400 font-medium">Automatic Backups</p>
+      <div className="p-5 bg-purple-500/10 border border-purple-500/30 rounded-xl">
+        <p className="text-purple-400 font-medium">Automatic Backups</p>
         <p className="text-sm text-gray-300 mt-1">Your data is stored securely on Supabase with automatic backups enabled.</p>
       </div>
     </div>

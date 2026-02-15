@@ -57,7 +57,7 @@ const AdminLoginPage = () => {
             <div className="mb-8 text-center">
               <div className="w-20 h-20 mx-auto mb-6 relative">
                 <img src="/edited-photo.png" alt="SoleScope Admin" className="w-full h-full object-contain" />
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full flex items-center justify-center">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -88,7 +88,7 @@ const AdminLoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@solescope.co.uk"
                     required
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                 </div>
               </div>
@@ -104,7 +104,7 @@ const AdminLoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     required
-                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                   <button
                     type="button"
@@ -119,7 +119,7 @@ const AdminLoginPage = () => {
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-teal-500/30 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full py-3.5 px-6 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/30 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 {isLoading ? (
                   <>
@@ -146,7 +146,7 @@ const AdminLoginPage = () => {
             </div>
 
             <div className="mt-6 text-center">
-              <a href="/" className="text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium">
+              <a href="/" className="text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium">
                 Return to main website
               </a>
             </div>

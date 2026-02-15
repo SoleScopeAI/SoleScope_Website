@@ -51,7 +51,7 @@ const ClientDocumentsPage = () => {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading documents...</p>
         </div>
       </div>
@@ -85,8 +85,8 @@ const ClientDocumentsPage = () => {
                 className="bg-white/5 border border-white/10 rounded-2xl p-5 hover:bg-white/[0.07] transition-all group"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center">
-                    <FileIcon className="w-6 h-6 text-teal-400" />
+                  <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center">
+                    <FileIcon className="w-6 h-6 text-purple-400" />
                   </div>
                   {doc.file_url && (
                     <a

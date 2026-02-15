@@ -114,7 +114,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
       >
         <div className="flex items-center justify-between mb-6">
           <div className="flex items-center space-x-3">
-            <div className="w-10 h-10 bg-gradient-to-r from-teal-600 to-cyan-600 rounded-lg flex items-center justify-center">
+            <div className="w-10 h-10 bg-gradient-to-r from-purple-600 to-violet-600 rounded-lg flex items-center justify-center">
               <UserCog className="w-6 h-6 text-white" />
             </div>
             <div>
@@ -163,7 +163,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                   <button
                     type="button"
                     onClick={() => copyToClipboard(generatedPassword)}
-                    className="p-3 bg-teal-600 hover:bg-teal-500 rounded-lg transition-colors"
+                    className="p-3 bg-purple-600 hover:bg-purple-500 rounded-lg transition-colors"
                     title="Copy to clipboard"
                   >
                     {passwordCopied ? (
@@ -182,7 +182,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
             <button
               type="button"
               onClick={handleSuccessClose}
-              className="w-full px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all"
+              className="w-full px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all"
             >
               Done
             </button>
@@ -204,7 +204,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                   value={fullName}
                   onChange={(e) => setFullName(e.target.value)}
                   placeholder="John Smith"
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
 
@@ -222,7 +222,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
                   placeholder="john@solescope.co.uk"
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
                 />
               </div>
             </div>
@@ -238,7 +238,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                 value={role}
                 disabled={!isOwner()}
                 onChange={(e) => setRole(e.target.value as 'admin' | 'manager')}
-                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 [&>option]:bg-gray-900 [&>option]:text-white disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 [&>option]:bg-gray-900 [&>option]:text-white disabled:opacity-50 disabled:cursor-not-allowed"
               >
                 <option value="admin">Admin</option>
                 <option value="manager">Manager</option>
@@ -260,7 +260,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                     if (useCustomPassword) setCustomPassword('');
                   }}
                   className={`relative inline-flex h-6 w-11 items-center rounded-full transition-colors disabled:opacity-50 disabled:cursor-not-allowed ${
-                    useCustomPassword ? 'bg-teal-600' : 'bg-gray-600'
+                    useCustomPassword ? 'bg-purple-600' : 'bg-gray-600'
                   }`}
                 >
                   <span
@@ -278,7 +278,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
                     value={customPassword}
                     onChange={(e) => setCustomPassword(e.target.value)}
                     placeholder="Enter temporary password (min 8 chars)"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 disabled:opacity-50 disabled:cursor-not-allowed"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 disabled:opacity-50 disabled:cursor-not-allowed"
                   />
                   <p className="text-xs text-gray-400 mt-2">
                     Password must be at least 8 characters with uppercase, lowercase, number, and symbol
@@ -311,7 +311,7 @@ const AddAdminUserModal: React.FC<AddAdminUserModalProps> = ({ isOpen, onClose, 
               <button
                 type="submit"
                 disabled={submitting || !isOwner()}
-                className="px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
+                className="px-6 py-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all disabled:opacity-50 disabled:cursor-not-allowed flex items-center space-x-2"
               >
                 {submitting ? (
                   <>

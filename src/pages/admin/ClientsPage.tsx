@@ -469,7 +469,7 @@ const ClientsPage = () => {
       case 'prospect':
         return 'bg-blue-500/20 text-blue-400 border-blue-500/30';
       case 'lead':
-        return 'bg-cyan-500/20 text-cyan-400 border-cyan-500/30';
+        return 'bg-violet-500/20 text-violet-400 border-violet-500/30';
       case 'onboarding':
         return 'bg-yellow-500/20 text-yellow-400 border-yellow-500/30';
       case 'active':

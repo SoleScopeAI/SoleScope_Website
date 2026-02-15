@@ -57,7 +57,7 @@ const ClientProjectsPage = () => {
     const configs: Record<string, { color: string; bg: string; border: string }> = {
       planning: { color: 'text-blue-400', bg: 'bg-blue-500/10', border: 'border-blue-500/20' },
       in_progress: { color: 'text-yellow-400', bg: 'bg-yellow-500/10', border: 'border-yellow-500/20' },
-      review: { color: 'text-cyan-400', bg: 'bg-cyan-500/10', border: 'border-cyan-500/20' },
+      review: { color: 'text-violet-400', bg: 'bg-violet-500/10', border: 'border-violet-500/20' },
       completed: { color: 'text-green-400', bg: 'bg-green-500/10', border: 'border-green-500/20' },
       on_hold: { color: 'text-gray-400', bg: 'bg-gray-500/10', border: 'border-gray-500/20' },
     };
@@ -68,7 +68,7 @@ const ClientProjectsPage = () => {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading projects...</p>
         </div>
       </div>
@@ -125,7 +125,7 @@ const ClientProjectsPage = () => {
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-2.5">
                       <div
-                        className="bg-gradient-to-r from-teal-500 to-cyan-400 h-2.5 rounded-full transition-all duration-700"
+                        className="bg-gradient-to-r from-purple-500 to-violet-400 h-2.5 rounded-full transition-all duration-700"
                         style={{ width: `${project.progress_percentage}%` }}
                       />
                     </div>

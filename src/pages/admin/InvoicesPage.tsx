@@ -166,7 +166,7 @@ const InvoicesPage = () => {
 
       <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
         {loading ? (
-          <div className="text-center py-12"><div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" /><p className="text-gray-400">Loading...</p></div>
+          <div className="text-center py-12"><div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" /><p className="text-gray-400">Loading...</p></div>
         ) : invoices.length === 0 ? (
           <div className="text-center py-12"><FileText className="w-16 h-16 text-gray-600 mx-auto mb-4" /><p className="text-gray-400 mb-4">No invoices yet</p><button onClick={openCreate} className="px-6 py-3 bg-gradient-to-r from-emerald-600 to-green-600 text-white rounded-xl">Create Your First Invoice</button></div>
         ) : (
@@ -218,32 +218,32 @@ const InvoicesPage = () => {
 
               <div className="space-y-4">
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Client *</label><select value={form.client_id} onChange={(e) => { setForm({ ...form, client_id: e.target.value, project_id: '' }); loadClientProjects(e.target.value); }} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 appearance-none"><option value="" className="bg-gray-900">Select client</option>{clients.map((c) => <option key={c.id} value={c.id} className="bg-gray-900">{c.company_name}</option>)}</select></div>
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Project</label><select value={form.project_id} onChange={(e) => setForm({ ...form, project_id: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 appearance-none"><option value="" className="bg-gray-900">None</option>{clientProjects.map((p) => <option key={p.id} value={p.id} className="bg-gray-900">{p.project_name}</option>)}</select></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Client *</label><select value={form.client_id} onChange={(e) => { setForm({ ...form, client_id: e.target.value, project_id: '' }); loadClientProjects(e.target.value); }} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none"><option value="" className="bg-gray-900">Select client</option>{clients.map((c) => <option key={c.id} value={c.id} className="bg-gray-900">{c.company_name}</option>)}</select></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Project</label><select value={form.project_id} onChange={(e) => setForm({ ...form, project_id: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none"><option value="" className="bg-gray-900">None</option>{clientProjects.map((p) => <option key={p.id} value={p.id} className="bg-gray-900">{p.project_name}</option>)}</select></div>
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Status</label><select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as Invoice['status'] })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 appearance-none">{(['draft', 'sent', 'paid', 'overdue', 'cancelled'] as const).map((s) => <option key={s} value={s} className="bg-gray-900">{s}</option>)}</select></div>
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Issue Date</label><input type="date" value={form.issue_date} onChange={(e) => setForm({ ...form, issue_date: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500" /></div>
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Due Date</label><input type="date" value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500" /></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Status</label><select value={form.status} onChange={(e) => setForm({ ...form, status: e.target.value as Invoice['status'] })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none">{(['draft', 'sent', 'paid', 'overdue', 'cancelled'] as const).map((s) => <option key={s} value={s} className="bg-gray-900">{s}</option>)}</select></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Issue Date</label><input type="date" value={form.issue_date} onChange={(e) => setForm({ ...form, issue_date: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Due Date</label><input type="date" value={form.due_date} onChange={(e) => setForm({ ...form, due_date: e.target.value })} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
                 </div>
 
                 <div>
                   <label className="block text-sm font-medium text-gray-300 mb-2">Stripe Payment Link</label>
                   <div className="relative">
                     <ExternalLink className="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-gray-400" />
-                    <input type="url" value={form.stripe_payment_link} onChange={(e) => setForm({ ...form, stripe_payment_link: e.target.value })} placeholder="https://buy.stripe.com/..." className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500" />
+                    <input type="url" value={form.stripe_payment_link} onChange={(e) => setForm({ ...form, stripe_payment_link: e.target.value })} placeholder="https://buy.stripe.com/..." className="w-full pl-12 pr-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500" />
                   </div>
                 </div>
 
                 <div>
-                  <div className="flex justify-between items-center mb-3"><label className="text-sm font-medium text-gray-300">Line Items</label><button type="button" onClick={() => setForm({ ...form, line_items: [...form.line_items, { ...emptyLine }] })} className="text-sm text-teal-400 hover:text-teal-300">+ Add Line</button></div>
+                  <div className="flex justify-between items-center mb-3"><label className="text-sm font-medium text-gray-300">Line Items</label><button type="button" onClick={() => setForm({ ...form, line_items: [...form.line_items, { ...emptyLine }] })} className="text-sm text-purple-400 hover:text-purple-300">+ Add Line</button></div>
                   <div className="space-y-3">
                     {form.line_items.map((line, idx) => (
                       <div key={idx} className="grid grid-cols-12 gap-3 items-start">
-                        <div className="col-span-6"><input type="text" value={line.description} onChange={(e) => updateLine(idx, 'description', e.target.value)} placeholder="Description" className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" /></div>
-                        <div className="col-span-2"><input type="number" min="1" value={line.quantity} onChange={(e) => updateLine(idx, 'quantity', parseInt(e.target.value) || 1)} className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" /></div>
-                        <div className="col-span-3"><input type="number" min="0" step="0.01" value={line.unit_price} onChange={(e) => updateLine(idx, 'unit_price', parseFloat(e.target.value) || 0)} placeholder="£0.00" className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-teal-500" /></div>
+                        <div className="col-span-6"><input type="text" value={line.description} onChange={(e) => updateLine(idx, 'description', e.target.value)} placeholder="Description" className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
+                        <div className="col-span-2"><input type="number" min="1" value={line.quantity} onChange={(e) => updateLine(idx, 'quantity', parseInt(e.target.value) || 1)} className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
+                        <div className="col-span-3"><input type="number" min="0" step="0.01" value={line.unit_price} onChange={(e) => updateLine(idx, 'unit_price', parseFloat(e.target.value) || 0)} placeholder="£0.00" className="w-full px-3 py-2.5 bg-white/5 border border-white/10 rounded-lg text-white text-sm focus:outline-none focus:ring-2 focus:ring-purple-500" /></div>
                         <div className="col-span-1 flex items-center justify-center pt-1">{form.line_items.length > 1 && <button type="button" onClick={() => setForm({ ...form, line_items: form.line_items.filter((_, i) => i !== idx) })} className="p-1.5 hover:bg-red-500/10 rounded text-gray-400 hover:text-red-400"><X className="w-4 h-4" /></button>}</div>
                       </div>
                     ))}
@@ -251,7 +251,7 @@ const InvoicesPage = () => {
                 </div>
 
                 <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Notes</label><textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={3} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none" /></div>
+                  <div><label className="block text-sm font-medium text-gray-300 mb-2">Notes</label><textarea value={form.notes} onChange={(e) => setForm({ ...form, notes: e.target.value })} rows={3} className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none" /></div>
                   <div className="bg-white/5 border border-white/10 rounded-xl p-4 space-y-3">
                     <div className="flex justify-between"><span className="text-gray-400">Subtotal</span><span className="text-white">£{calcSubtotal().toFixed(2)}</span></div>
                     <div className="flex justify-between items-center"><span className="text-gray-400">VAT</span><div className="flex items-center space-x-2"><input type="number" min="0" max="100" value={form.tax_rate} onChange={(e) => setForm({ ...form, tax_rate: parseFloat(e.target.value) || 0 })} className="w-16 px-2 py-1 bg-white/5 border border-white/10 rounded text-white text-sm text-center" /><span className="text-gray-400">%</span><span className="text-white">£{calcTax().toFixed(2)}</span></div></div>

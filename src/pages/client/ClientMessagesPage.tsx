@@ -89,7 +89,7 @@ const ClientMessagesPage = () => {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
+          <div className="w-12 h-12 border-4 border-purple-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading messages...</p>
         </div>
       </div>
@@ -126,7 +126,7 @@ const ClientMessagesPage = () => {
                   <div className={`max-w-[70%] ${isClient ? 'order-2' : ''}`}>
                     <div className={`px-4 py-3 rounded-2xl ${
                       isClient
-                        ? 'bg-gradient-to-r from-teal-600 to-cyan-600 text-white rounded-br-md'
+                        ? 'bg-gradient-to-r from-purple-600 to-violet-600 text-white rounded-br-md'
                         : 'bg-white/10 text-white rounded-bl-md'
                     }`}>
                       <p className="text-sm whitespace-pre-wrap">{msg.message}</p>
@@ -151,12 +151,12 @@ const ClientMessagesPage = () => {
               onKeyDown={handleKeyDown}
               placeholder="Type your message..."
               rows={1}
-              className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 resize-none"
+              className="flex-1 px-4 py-3 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 resize-none"
             />
             <button
               onClick={handleSend}
               disabled={sending || !newMessage.trim()}
-              className="p-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 rounded-xl transition-all disabled:opacity-50"
+              className="p-3 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 rounded-xl transition-all disabled:opacity-50"
             >
               <Send className="w-5 h-5 text-white" />
             </button>
