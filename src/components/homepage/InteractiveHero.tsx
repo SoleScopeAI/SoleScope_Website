@@ -58,7 +58,7 @@ const InteractiveHero = () => {
     },
     {
       id: 2,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Design K9 Training",
       service: "Web Development",
       position: { top: '25%', right: '10%' },
@@ -88,7 +88,7 @@ const InteractiveHero = () => {
     },
     {
       id: 5,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Client Work",
       service: "AI Dashboard",
       position: { top: '45%', left: '12%' },

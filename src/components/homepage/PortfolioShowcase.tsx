@@ -42,7 +42,7 @@ const PortfolioShowcase = () => {
       title: 'Design K9 Training',
       category: 'webapp',
       industry: 'Training Services',
-      image: '/assets/carousel/Design K9 Home Page.png',
+      image: '/assets/carousel/Design_K9_Home_Page.png',
       description: 'Custom web application for training management with progress tracking and scheduling',
       results: [
         'Automated client progress tracking and reporting',
@@ -87,7 +87,7 @@ const PortfolioShowcase = () => {
       title: 'Elite Fitness Studio',
       category: 'website',
       industry: 'Legal Services',
-      image: '/assets/carousel/Design K9 Home Page.png',
+      image: '/assets/carousel/Design_K9_Home_Page.png',
       description: 'Professional website with SEO optimization and integrated consultation booking',
       results: [
         'Modern, mobile-responsive design',

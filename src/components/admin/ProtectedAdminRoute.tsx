@@ -10,10 +10,7 @@ interface ProtectedAdminRouteProps {
 const ProtectedAdminRoute: React.FC<ProtectedAdminRouteProps> = ({ children }) => {
   const { adminUser, loading } = useAdminAuth();
 
-  console.log('ProtectedAdminRoute: loading=', loading, 'adminUser=', adminUser ? adminUser.email : 'null');
-
   if (loading) {
-    console.log('ProtectedAdminRoute: Still loading, showing loader');
     return (
       <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c] flex items-center justify-center">
         <div className="text-center">
@@ -25,11 +22,9 @@ const ProtectedAdminRoute: React.FC<ProtectedAdminRouteProps> = ({ children }) =
   }
 
   if (!adminUser) {
-    console.log('ProtectedAdminRoute: No admin user, redirecting to login');
     return <Navigate to="/admin/login" replace />;
   }
 
-  console.log('ProtectedAdminRoute: Admin user authenticated, rendering protected content');
   return <>{children}</>;
 };
 

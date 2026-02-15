@@ -3,22 +3,18 @@ import { useNavigate } from 'react-router-dom';
 import { motion } from 'framer-motion';
 import { Mail, Lock, Eye, EyeOff, Shield, AlertCircle, ArrowRight } from 'lucide-react';
 import { useAdminAuth } from '../../contexts/AdminAuthContext';
-import { adminAuth } from '../../lib/adminAuth';
 
 const AdminLoginPage = () => {
-  const [email, setEmail] = useState('Kevin@solescope.co.uk');
-  const [password, setPassword] = useState('RoxyRufus3586!');
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState('');
   const [isLoading, setIsLoading] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
 
   const { login, adminUser } = useAdminAuth();
   const navigate = useNavigate();
 
   useEffect(() => {
-    adminAuth.setupInitialAdmin();
-
     if (adminUser) {
       navigate('/admin/dashboard');
     }
@@ -30,22 +26,13 @@ const AdminLoginPage = () => {
     setIsLoading(true);
 
     try {
-      console.log('AdminLoginPage: Starting login process');
       const response = await login(email, password);
-      console.log('AdminLoginPage: Login response:', response);
-
       if (response.success) {
-        console.log('AdminLoginPage: Login successful, waiting for state update...');
-        setTimeout(() => {
-          console.log('AdminLoginPage: Navigating to dashboard');
-          navigate('/admin/dashboard');
-        }, 100);
+        navigate('/admin/dashboard');
       } else {
-        console.error('AdminLoginPage: Login failed:', response.error);
         setError(response.error || 'Invalid credentials');
       }
-    } catch (err) {
-      console.error('AdminLoginPage: Exception during login:', err);
+    } catch {
       setError('An unexpected error occurred');
     } finally {
       setIsLoading(false);
@@ -55,9 +42,8 @@ const AdminLoginPage = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c] relative overflow-hidden">
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-[15%] left-[5%] w-[700px] h-[700px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(168, 85, 247, 0.16)' }}></div>
-        <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(217, 70, 239, 0.11)', animationDelay: '1s' }}></div>
-        <div className="absolute top-[50%] right-[20%] w-[500px] h-[500px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(124, 58, 237, 0.09)', animationDelay: '2s' }}></div>
+        <div className="absolute top-[15%] left-[5%] w-[700px] h-[700px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(20, 184, 166, 0.12)' }} />
+        <div className="absolute bottom-[10%] right-[5%] w-[600px] h-[600px] rounded-full blur-3xl animate-pulse" style={{ background: 'rgba(6, 182, 212, 0.08)', animationDelay: '1s' }} />
       </div>
 
       <div className="relative z-10 min-h-screen flex items-center justify-center px-4 py-12">
@@ -70,12 +56,8 @@ const AdminLoginPage = () => {
           <div className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-3xl p-8 sm:p-12 shadow-2xl">
             <div className="mb-8 text-center">
               <div className="w-20 h-20 mx-auto mb-6 relative">
-                <img
-                  src="/edited-photo.png"
-                  alt="SoleScope Admin"
-                  className="w-full h-full object-contain"
-                />
-                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full flex items-center justify-center">
+                <img src="/edited-photo.png" alt="SoleScope Admin" className="w-full h-full object-contain" />
+                <div className="absolute -bottom-1 -right-1 w-8 h-8 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
                   <Shield className="w-5 h-5 text-white" />
                 </div>
               </div>
@@ -96,9 +78,7 @@ const AdminLoginPage = () => {
 
             <form onSubmit={handleSubmit} className="space-y-6">
               <div>
-                <label htmlFor="admin-email" className="block text-sm font-medium text-gray-300 mb-2">
-                  Admin Email
-                </label>
+                <label htmlFor="admin-email" className="block text-sm font-medium text-gray-300 mb-2">Admin Email</label>
                 <div className="relative">
                   <Mail className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
@@ -108,15 +88,13 @@ const AdminLoginPage = () => {
                     onChange={(e) => setEmail(e.target.value)}
                     placeholder="admin@solescope.co.uk"
                     required
-                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-4 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                 </div>
               </div>
 
               <div>
-                <label htmlFor="admin-password" className="block text-sm font-medium text-gray-300 mb-2">
-                  Password
-                </label>
+                <label htmlFor="admin-password" className="block text-sm font-medium text-gray-300 mb-2">Password</label>
                 <div className="relative">
                   <Lock className="absolute left-4 top-1/2 transform -translate-y-1/2 w-5 h-5 text-gray-400" />
                   <input
@@ -126,43 +104,28 @@ const AdminLoginPage = () => {
                     onChange={(e) => setPassword(e.target.value)}
                     placeholder="Enter your password"
                     required
-                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
+                    className="w-full pl-12 pr-12 py-3.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all duration-200 hover:bg-white/10"
                   />
                   <button
                     type="button"
                     onClick={() => setShowPassword(!showPassword)}
                     className="absolute right-4 top-1/2 transform -translate-y-1/2 text-gray-400 hover:text-white transition-colors"
-                    aria-label={showPassword ? 'Hide password' : 'Show password'}
                   >
                     {showPassword ? <EyeOff className="w-5 h-5" /> : <Eye className="w-5 h-5" />}
                   </button>
                 </div>
               </div>
 
-              <div className="flex items-center justify-between">
-                <label className="flex items-center cursor-pointer group">
-                  <input
-                    type="checkbox"
-                    checked={rememberMe}
-                    onChange={(e) => setRememberMe(e.target.checked)}
-                    className="w-4 h-4 rounded border-white/20 bg-white/5 text-purple-600 focus:ring-2 focus:ring-purple-500 focus:ring-offset-0 cursor-pointer"
-                  />
-                  <span className="ml-2 text-sm text-gray-300 group-hover:text-white transition-colors">
-                    Remember me
-                  </span>
-                </label>
-              </div>
-
               <button
                 type="submit"
                 disabled={isLoading}
-                className="w-full py-3.5 px-6 bg-gradient-to-r from-purple-600 to-violet-600 hover:from-purple-500 hover:to-violet-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-purple-500/50 disabled:opacity-50 disabled:cursor-not-allowed group"
+                className="w-full py-3.5 px-6 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all duration-200 flex items-center justify-center space-x-2 shadow-lg hover:shadow-teal-500/30 disabled:opacity-50 disabled:cursor-not-allowed group"
               >
                 {isLoading ? (
                   <>
                     <svg className="animate-spin h-5 w-5 text-white" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
-                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4"></circle>
-                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                      <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+                      <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
                     </svg>
                     <span>Signing in...</span>
                   </>
@@ -178,15 +141,12 @@ const AdminLoginPage = () => {
             <div className="mt-8 pt-8 border-t border-white/10">
               <div className="flex items-center justify-center space-x-2 text-sm text-gray-500">
                 <Shield className="w-4 h-4" />
-                <span>Secure admin access with end-to-end encryption</span>
+                <span>Secured by Supabase Authentication</span>
               </div>
             </div>
 
             <div className="mt-6 text-center">
-              <a
-                href="/"
-                className="text-sm text-purple-400 hover:text-purple-300 transition-colors font-medium"
-              >
+              <a href="/" className="text-sm text-teal-400 hover:text-teal-300 transition-colors font-medium">
                 Return to main website
               </a>
             </div>

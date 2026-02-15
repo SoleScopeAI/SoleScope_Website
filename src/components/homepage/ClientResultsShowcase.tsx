@@ -144,7 +144,7 @@ const ClientResultsShowcase = () => {
         project_title: "Professional Training Platform",
         industry: "Dog Training Services",
         location: "London, UK",
-        featured_image_url: "/assets/carousel/Design K9 Home Page.png",
+        featured_image_url: "/assets/carousel/Design_K9_Home_Page.png",
         website_url: "https://designk9.co.uk",
         description: "Sophisticated web application for professional dog trainers with client progress tracking, training modules, and automated scheduling.",
         challenge: "Paper-based client records and manual scheduling creating inefficiencies. No way to track long-term training progress.",

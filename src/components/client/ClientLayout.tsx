@@ -37,8 +37,8 @@ const ClientLayout = () => {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#05050c] via-[#0c0816] to-[#05050c]">
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-purple-600/5 rounded-full blur-3xl"></div>
-        <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-pink-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute top-[10%] left-[5%] w-[600px] h-[600px] bg-teal-600/5 rounded-full blur-3xl"></div>
+        <div className="absolute bottom-[10%] right-[5%] w-[500px] h-[500px] bg-cyan-600/5 rounded-full blur-3xl"></div>
       </div>
 
       <div className="relative z-10 flex h-screen">
@@ -64,10 +64,10 @@ const ClientLayout = () => {
             </div>
 
             <div className="flex-1 overflow-y-auto px-4 py-6">
-              <div className="mb-6 p-4 bg-gradient-to-br from-purple-900/30 to-purple-800/20 rounded-xl border border-purple-500/20">
+              <div className="mb-6 p-4 bg-gradient-to-br from-teal-900/30 to-teal-800/20 rounded-xl border border-teal-500/20">
                 <div className="flex items-center space-x-3 mb-2">
-                  <div className="w-10 h-10 bg-purple-600/20 rounded-full flex items-center justify-center">
-                    <Building2 className="w-5 h-5 text-purple-400" />
+                  <div className="w-10 h-10 bg-teal-600/20 rounded-full flex items-center justify-center">
+                    <Building2 className="w-5 h-5 text-teal-400" />
                   </div>
                   <div className="flex-1 min-w-0">
                     <p className="text-sm font-semibold text-white truncate">
@@ -92,7 +92,7 @@ const ClientLayout = () => {
                         flex items-center space-x-3 px-4 py-3 rounded-xl transition-all duration-200
                         ${
                           isActive
-                            ? 'bg-gradient-to-r from-purple-600/20 to-purple-500/20 text-white border border-purple-500/30'
+                            ? 'bg-gradient-to-r from-teal-600/20 to-cyan-600/20 text-white border border-teal-500/30'
                             : 'text-gray-400 hover:text-white hover:bg-white/5'
                         }
                       `}

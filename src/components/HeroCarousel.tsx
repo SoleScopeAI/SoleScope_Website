@@ -28,7 +28,7 @@ const HeroCarousel = () => {
       id: 2,
       name: "Design K9 Training",
       services: ["Web Design", "Blog", "Branding"],
-      screenshot: "/assets/carousel/Design K9 Home Page.png",
+      screenshot: "/assets/carousel/Design_K9_Home_Page.png",
       cta: "View Site",
       alt: "Homepage for Design K9 Dog Training Website"
     },

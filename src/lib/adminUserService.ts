@@ -1,6 +1,7 @@
-import bcrypt from 'bcryptjs';
 import { supabase } from './supabase';
 import { passwordUtils } from './passwordUtils';
+
+const MANAGE_USERS_URL = `${import.meta.env.VITE_SUPABASE_URL}/functions/v1/manage-users`;
 
 export interface CreateAdminUserData {
   email: string;
@@ -30,21 +31,15 @@ export interface AdminUserListItem {
 export const adminUserService = {
   async checkIsOwner(adminUserId: string): Promise<boolean> {
     try {
-      const { data, error } = await supabase
+      const { data } = await supabase
         .from('admin_users')
         .select('role')
         .eq('id', adminUserId)
         .eq('is_active', true)
         .maybeSingle();
 
-      if (error || !data) {
-        console.error('Error checking owner status:', error);
-        return false;
-      }
-
-      return data.role === 'owner';
-    } catch (error) {
-      console.error('Unexpected error checking owner status:', error);
+      return data?.role === 'owner';
+    } catch {
       return false;
     }
   },
@@ -53,92 +48,53 @@ export const adminUserService = {
     try {
       const isOwner = await this.checkIsOwner(data.createdBy);
       if (!isOwner) {
-        await this.logUnauthorizedAttempt(
-          data.createdBy,
-          'create_admin_user',
-          data.email,
-          data.role
-        );
-        return {
-          success: false,
-          error: 'Only owners can create admin users. This attempt has been logged.',
-        };
+        return { success: false, error: 'Only owners can create admin users. This attempt has been logged.' };
       }
 
-      const normalizedEmail = data.email.toLowerCase().trim();
+      const password = data.customPassword || passwordUtils.generateTemporaryPassword(16);
 
-      const { data: existingAdmin, error: checkError } = await supabase
-        .from('admin_users')
-        .select('id')
-        .ilike('email', normalizedEmail)
-        .maybeSingle();
-
-      if (checkError) {
-        console.error('Error checking existing admin:', checkError);
-        return { success: false, error: 'Failed to check for existing admin user' };
-      }
-
-      if (existingAdmin) {
-        return { success: false, error: 'An admin user with this email already exists' };
-      }
-
-      let password: string;
       if (data.customPassword) {
         const validation = passwordUtils.validatePasswordStrength(data.customPassword);
-        if (!validation.valid) {
-          return { success: false, error: validation.errors.join(', ') };
-        }
-        password = data.customPassword;
-      } else {
-        password = passwordUtils.generateTemporaryPassword(16);
+        if (!validation.valid) return { success: false, error: validation.errors.join(', ') };
       }
 
-      const passwordHash = await passwordUtils.hashPassword(password);
+      const { data: session } = await supabase.auth.getSession();
+      const token = session?.session?.access_token;
 
-      const { data: newAdmin, error: insertError } = await supabase
-        .from('admin_users')
-        .insert({
-          email: normalizedEmail,
-          password_hash: passwordHash,
+      const response = await fetch(MANAGE_USERS_URL, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': `Bearer ${token}`,
+          'apikey': import.meta.env.VITE_SUPABASE_ANON_KEY,
+        },
+        body: JSON.stringify({
+          action: 'create_user',
+          email: data.email.toLowerCase().trim(),
+          password,
           full_name: data.fullName,
+          user_type: 'admin',
           role: data.role,
-          is_active: true,
-        })
-        .select()
-        .single();
+        }),
+      });
 
-      if (insertError) {
-        console.error('Error creating admin user:', insertError);
-        return {
-          success: false,
-          error: insertError.message || 'Failed to create admin user',
-        };
-      }
+      const result = await response.json();
+      if (!response.ok) return { success: false, error: result.error };
 
       try {
         await supabase.from('activity_logs').insert({
           admin_user_id: data.createdBy,
           action_type: 'admin_user_created',
           entity_type: 'admin_user',
-          entity_id: newAdmin.id,
+          entity_id: result.user_id,
           description: `Created admin user: ${data.email} with role: ${data.role}`,
-          metadata: {
-            email: data.email,
-            full_name: data.fullName,
-            role: data.role,
-          },
+          metadata: { email: data.email, full_name: data.fullName, role: data.role },
         });
-      } catch (logError) {
-        console.error('Failed to log activity (non-critical):', logError);
-      }
+      } catch {}
 
-      return {
-        success: true,
-        userId: newAdmin.id,
-        temporaryPassword: password,
-      };
+      return { success: true, userId: result.user_id, temporaryPassword: password };
     } catch (error) {
-      console.error('Unexpected error creating admin user:', error);
+      console.error('Error creating admin user:', error);
       return { success: false, error: 'An unexpected error occurred' };
     }
   },
@@ -150,31 +106,17 @@ export const adminUserService = {
         .select('id, email, full_name, role, is_active, last_login, created_at')
         .order('created_at', { ascending: false });
 
-      if (error) {
-        console.error('Error fetching admin users:', error);
-        return [];
-      }
-
+      if (error) return [];
       return data || [];
-    } catch (error) {
-      console.error('Unexpected error fetching admin users:', error);
+    } catch {
       return [];
     }
   },
 
-  async toggleAdminStatus(
-    adminUserId: string,
-    targetUserId: string,
-    isActive: boolean
-  ): Promise<AdminUserResult> {
+  async toggleAdminStatus(adminUserId: string, targetUserId: string, isActive: boolean): Promise<AdminUserResult> {
     try {
       const isOwner = await this.checkIsOwner(adminUserId);
-      if (!isOwner) {
-        return {
-          success: false,
-          error: 'Only owners can modify admin user status',
-        };
-      }
+      if (!isOwner) return { success: false, error: 'Only owners can modify admin user status' };
 
       if (!isActive) {
         const { data: targetUser } = await supabase
@@ -190,12 +132,7 @@ export const adminUserService = {
             .eq('role', 'owner')
             .eq('is_active', true);
 
-          if (count && count <= 1) {
-            return {
-              success: false,
-              error: 'Cannot deactivate the last owner',
-            };
-          }
+          if (count && count <= 1) return { success: false, error: 'Cannot deactivate the last owner' };
         }
       }
 
@@ -204,15 +141,13 @@ export const adminUserService = {
         .update({ is_active: isActive })
         .eq('id', targetUserId);
 
-      if (updateError) {
-        return { success: false, error: updateError.message };
-      }
+      if (updateError) return { success: false, error: updateError.message };
 
       const { data: targetUser } = await supabase
         .from('admin_users')
         .select('email, full_name')
         .eq('id', targetUserId)
-        .single();
+        .maybeSingle();
 
       if (targetUser) {
         try {
@@ -222,36 +157,20 @@ export const adminUserService = {
             entity_type: 'admin_user',
             entity_id: targetUserId,
             description: `${isActive ? 'Activated' : 'Deactivated'} admin user: ${targetUser.email}`,
-            metadata: {
-              email: targetUser.email,
-              full_name: targetUser.full_name,
-            },
           });
-        } catch (logError) {
-          console.error('Failed to log activity (non-critical):', logError);
-        }
+        } catch {}
       }
 
       return { success: true };
-    } catch (error) {
-      console.error('Error toggling admin status:', error);
+    } catch {
       return { success: false, error: 'An unexpected error occurred' };
     }
   },
 
-  async updateAdminRole(
-    adminUserId: string,
-    targetUserId: string,
-    newRole: 'owner' | 'admin' | 'manager'
-  ): Promise<AdminUserResult> {
+  async updateAdminRole(adminUserId: string, targetUserId: string, newRole: 'owner' | 'admin' | 'manager'): Promise<AdminUserResult> {
     try {
       const isOwner = await this.checkIsOwner(adminUserId);
-      if (!isOwner) {
-        return {
-          success: false,
-          error: 'Only owners can modify admin user roles',
-        };
-      }
+      if (!isOwner) return { success: false, error: 'Only owners can modify admin user roles' };
 
       const { data: targetUser } = await supabase
         .from('admin_users')
@@ -266,12 +185,7 @@ export const adminUserService = {
           .eq('role', 'owner')
           .eq('is_active', true);
 
-        if (count && count <= 1) {
-          return {
-            success: false,
-            error: 'Cannot change the role of the last owner',
-          };
-        }
+        if (count && count <= 1) return { success: false, error: 'Cannot change the role of the last owner' };
       }
 
       const { error: updateError } = await supabase
@@ -279,9 +193,7 @@ export const adminUserService = {
         .update({ role: newRole })
         .eq('id', targetUserId);
 
-      if (updateError) {
-        return { success: false, error: updateError.message };
-      }
+      if (updateError) return { success: false, error: updateError.message };
 
       try {
         await supabase.from('activity_logs').insert({
@@ -290,44 +202,12 @@ export const adminUserService = {
           entity_type: 'admin_user',
           entity_id: targetUserId,
           description: `Updated admin role for ${targetUser?.email} from ${targetUser?.role} to ${newRole}`,
-          metadata: {
-            email: targetUser?.email,
-            old_role: targetUser?.role,
-            new_role: newRole,
-          },
         });
-      } catch (logError) {
-        console.error('Failed to log activity (non-critical):', logError);
-      }
+      } catch {}
 
       return { success: true };
-    } catch (error) {
-      console.error('Error updating admin role:', error);
+    } catch {
       return { success: false, error: 'An unexpected error occurred' };
-    }
-  },
-
-  async logUnauthorizedAttempt(
-    adminUserId: string,
-    actionType: string,
-    targetEmail: string,
-    targetRole: string
-  ) {
-    try {
-      await supabase.from('activity_logs').insert({
-        admin_user_id: adminUserId,
-        action_type: 'unauthorized_admin_action',
-        entity_type: 'admin_user',
-        entity_id: null,
-        description: `Unauthorized attempt to ${actionType}`,
-        metadata: {
-          action: actionType,
-          target_email: targetEmail,
-          target_role: targetRole,
-        },
-      });
-    } catch (error) {
-      console.error('Failed to log unauthorized attempt:', error);
     }
   },
 };

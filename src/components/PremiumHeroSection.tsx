@@ -113,7 +113,7 @@ const PremiumHeroSection = () => {
     },
     {
       id: 2,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Design K9 Training",
       position: { top: '25%', right: '10%' },
       rotation: '8deg',
@@ -140,7 +140,7 @@ const PremiumHeroSection = () => {
     },
     {
       id: 5,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Client Work",
       position: { top: '45%', left: '12%' },
       rotation: '5deg',

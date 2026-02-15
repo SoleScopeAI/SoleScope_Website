@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { clientAuth, ClientUser } from '../lib/clientAuth';
+import { supabase, ClientUser } from '../lib/supabase';
+import { clientAuth } from '../lib/clientAuth';
 
 interface ClientAuthContextType {
   clientUser: ClientUser | null;
@@ -29,22 +30,27 @@ export const ClientAuthProvider: React.FC<ClientAuthProviderProps> = ({ children
 
   useEffect(() => {
     checkSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        setClientUser(null);
+      } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        (async () => {
+          const user = await clientAuth.getCurrentUser();
+          setClientUser(user);
+        })();
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const checkSession = async () => {
     setLoading(true);
     try {
-      const userType = clientAuth.getUserType();
-
-      if (userType === 'client' && clientAuth.isSessionValid()) {
-        const user = await clientAuth.getCurrentUser();
-        setClientUser(user);
-      } else {
-        await clientAuth.logout();
-        setClientUser(null);
-      }
-    } catch (error) {
-      console.error('Session check error:', error);
+      const user = await clientAuth.getCurrentUser();
+      setClientUser(user);
+    } catch {
       setClientUser(null);
     } finally {
       setLoading(false);
@@ -55,16 +61,11 @@ export const ClientAuthProvider: React.FC<ClientAuthProviderProps> = ({ children
     try {
       const response = await clientAuth.login(email, password);
       if (response.success && response.user) {
-        console.log('ClientAuthContext: Login successful, updating state with user:', response.user.email);
         setClientUser(response.user);
-        clientAuth.saveUserToStorage(response.user);
-        console.log('ClientAuthContext: User saved to storage and state updated');
         return { success: true, userType: response.userType };
       }
-      console.log('ClientAuthContext: Login failed:', response.error);
       return { success: false, error: response.error };
-    } catch (error) {
-      console.error('ClientAuthContext: Login error:', error);
+    } catch {
       return { success: false, error: 'An unexpected error occurred' };
     }
   };
@@ -74,20 +75,14 @@ export const ClientAuthProvider: React.FC<ClientAuthProviderProps> = ({ children
     try {
       await clientAuth.logout();
       setClientUser(null);
-    } catch (error) {
-      console.error('Logout error:', error);
     } finally {
       setLoading(false);
     }
   };
 
   const refreshUser = async () => {
-    try {
-      const user = await clientAuth.getCurrentUser();
-      setClientUser(user);
-    } catch (error) {
-      console.error('Refresh user error:', error);
-    }
+    const user = await clientAuth.getCurrentUser();
+    setClientUser(user);
   };
 
   return (

@@ -5,17 +5,14 @@ import {
   Users,
   FolderKanban,
   FileText,
-  TrendingUp,
   DollarSign,
   Clock,
-  CheckCircle,
-  AlertCircle,
   ArrowUpRight,
   ArrowDownRight,
-  Calendar,
-  Activity
+  Activity,
 } from 'lucide-react';
 import { supabase } from '../../lib/supabase';
+import type { ActivityLog } from '../../lib/supabase';
 
 interface DashboardStats {
   totalClients: number;
@@ -25,15 +22,6 @@ interface DashboardStats {
   clientsChange: number;
   projectsChange: number;
   revenueChange: number;
-}
-
-interface RecentActivity {
-  id: string;
-  type: string;
-  description: string;
-  time: string;
-  icon: React.ElementType;
-  color: string;
 }
 
 const AdminDashboardPage = () => {
@@ -47,7 +35,8 @@ const AdminDashboardPage = () => {
     revenueChange: 0,
   });
   const [loading, setLoading] = useState(true);
-  const [recentActivities, setRecentActivities] = useState<RecentActivity[]>([]);
+  const [activities, setActivities] = useState<ActivityLog[]>([]);
+  const [upcomingDeadlines, setUpcomingDeadlines] = useState<{ id: string; project_name: string; due_date: string; client_name: string }[]>([]);
 
   useEffect(() => {
     fetchDashboardData();
@@ -55,96 +44,78 @@ const AdminDashboardPage = () => {
 
   const fetchDashboardData = async () => {
     try {
-      const [clientsResult, projectsResult, invoicesResult] = await Promise.all([
+      const [clientsResult, projectsResult, invoicesResult, activitiesResult] = await Promise.all([
         supabase.from('clients').select('id, status, created_at'),
-        supabase.from('projects').select('id, status, created_at'),
+        supabase.from('projects').select('id, status, created_at, due_date, project_name, client_id, clients(company_name)'),
         supabase.from('invoices').select('id, status, total_amount, created_at, issue_date'),
+        supabase.from('activity_logs').select('*, admin_users(full_name)').order('created_at', { ascending: false }).limit(8),
       ]);
 
-      const totalClients = clientsResult.data?.length || 0;
-      const activeClients = clientsResult.data?.filter((c) => c.status === 'active').length || 0;
+      const clients = clientsResult.data || [];
+      const projects = projectsResult.data || [];
+      const invoices = invoicesResult.data || [];
 
-      const activeProjects =
-        projectsResult.data?.filter(
-          (p) => p.status === 'in_progress' || p.status === 'planning'
-        ).length || 0;
+      const totalClients = clients.length;
+      const activeProjects = projects.filter((p) => p.status === 'in_progress' || p.status === 'planning').length;
+      const pendingInvoices = invoices.filter((i) => i.status === 'sent' || i.status === 'overdue').length;
 
-      const pendingInvoices =
-        invoicesResult.data?.filter((i) => i.status === 'sent' || i.status === 'overdue')
-          .length || 0;
+      const now = new Date();
+      const currentMonth = now.getMonth();
+      const currentYear = now.getFullYear();
 
-      const currentMonth = new Date().getMonth();
-      const currentYear = new Date().getFullYear();
-
-      const monthlyRevenue =
-        invoicesResult.data
-          ?.filter((invoice) => {
-            const invoiceDate = new Date(invoice.issue_date);
-            return (
-              invoice.status === 'paid' &&
-              invoiceDate.getMonth() === currentMonth &&
-              invoiceDate.getFullYear() === currentYear
-            );
-          })
-          .reduce((sum, invoice) => sum + (invoice.total_amount || 0), 0) || 0;
+      const monthlyRevenue = invoices
+        .filter((inv) => {
+          const d = new Date(inv.issue_date);
+          return inv.status === 'paid' && d.getMonth() === currentMonth && d.getFullYear() === currentYear;
+        })
+        .reduce((sum, inv) => sum + (inv.total_amount || 0), 0);
 
       const thirtyDaysAgo = new Date();
       thirtyDaysAgo.setDate(thirtyDaysAgo.getDate() - 30);
+      const sixtyDaysAgo = new Date();
+      sixtyDaysAgo.setDate(sixtyDaysAgo.getDate() - 60);
 
-      const recentClients = clientsResult.data?.filter(
-        (c) => new Date(c.created_at) > thirtyDaysAgo
-      ).length || 0;
+      const recentClients = clients.filter((c) => new Date(c.created_at) > thirtyDaysAgo).length;
+      const prevClients = clients.filter((c) => { const d = new Date(c.created_at); return d > sixtyDaysAgo && d <= thirtyDaysAgo; }).length;
+      const clientsChange = prevClients > 0 ? ((recentClients - prevClients) / prevClients) * 100 : recentClients > 0 ? 100 : 0;
 
-      const recentProjects = projectsResult.data?.filter(
-        (p) => new Date(p.created_at) > thirtyDaysAgo
-      ).length || 0;
+      const recentProjects = projects.filter((p) => new Date(p.created_at) > thirtyDaysAgo).length;
+      const prevProjects = projects.filter((p) => { const d = new Date(p.created_at); return d > sixtyDaysAgo && d <= thirtyDaysAgo; }).length;
+      const projectsChange = prevProjects > 0 ? ((recentProjects - prevProjects) / prevProjects) * 100 : recentProjects > 0 ? 100 : 0;
+
+      const prevMonth = new Date(currentYear, currentMonth - 1, 1);
+      const prevMonthEnd = new Date(currentYear, currentMonth, 0);
+      const prevMonthRevenue = invoices
+        .filter((inv) => {
+          const d = new Date(inv.issue_date);
+          return inv.status === 'paid' && d >= prevMonth && d <= prevMonthEnd;
+        })
+        .reduce((sum, inv) => sum + (inv.total_amount || 0), 0);
+      const revenueChange = prevMonthRevenue > 0 ? ((monthlyRevenue - prevMonthRevenue) / prevMonthRevenue) * 100 : monthlyRevenue > 0 ? 100 : 0;
 
       setStats({
         totalClients,
         activeProjects,
         pendingInvoices,
         monthlyRevenue,
-        clientsChange: recentClients > 0 ? 12.5 : 0,
-        projectsChange: recentProjects > 0 ? 8.3 : 0,
-        revenueChange: monthlyRevenue > 0 ? 15.2 : 0,
+        clientsChange: Math.round(clientsChange * 10) / 10,
+        projectsChange: Math.round(projectsChange * 10) / 10,
+        revenueChange: Math.round(revenueChange * 10) / 10,
       });
 
-      const activities: RecentActivity[] = [
-        {
-          id: '1',
-          type: 'client',
-          description: 'New client inquiry received',
-          time: '10 minutes ago',
-          icon: Users,
-          color: 'blue',
-        },
-        {
-          id: '2',
-          type: 'project',
-          description: 'Project milestone completed',
-          time: '1 hour ago',
-          icon: CheckCircle,
-          color: 'green',
-        },
-        {
-          id: '3',
-          type: 'invoice',
-          description: 'Invoice payment received',
-          time: '3 hours ago',
-          icon: DollarSign,
-          color: 'cyan',
-        },
-        {
-          id: '4',
-          type: 'project',
-          description: 'New project created',
-          time: '5 hours ago',
-          icon: FolderKanban,
-          color: 'purple',
-        },
-      ];
+      setActivities(activitiesResult.data || []);
 
-      setRecentActivities(activities);
+      const deadlines = projects
+        .filter((p) => p.due_date && (p.status === 'in_progress' || p.status === 'planning') && new Date(p.due_date) >= now)
+        .sort((a, b) => new Date(a.due_date!).getTime() - new Date(b.due_date!).getTime())
+        .slice(0, 5)
+        .map((p) => ({
+          id: p.id,
+          project_name: p.project_name,
+          due_date: p.due_date!,
+          client_name: (p.clients as any)?.company_name || 'Unknown',
+        }));
+      setUpcomingDeadlines(deadlines);
     } catch (error) {
       console.error('Error fetching dashboard data:', error);
     } finally {
@@ -152,46 +123,48 @@ const AdminDashboardPage = () => {
     }
   };
 
+  const getActivityIcon = (actionType: string) => {
+    if (actionType.includes('client')) return Users;
+    if (actionType.includes('project')) return FolderKanban;
+    if (actionType.includes('invoice')) return FileText;
+    if (actionType.includes('admin')) return Users;
+    return Activity;
+  };
+
+  const getActivityColor = (actionType: string) => {
+    if (actionType.includes('created')) return 'bg-teal-500/20 text-teal-400';
+    if (actionType.includes('updated') || actionType.includes('activated')) return 'bg-blue-500/20 text-blue-400';
+    if (actionType.includes('deleted') || actionType.includes('deactivated')) return 'bg-red-500/20 text-red-400';
+    if (actionType.includes('paid')) return 'bg-green-500/20 text-green-400';
+    return 'bg-gray-500/20 text-gray-400';
+  };
+
+  const formatTimeAgo = (dateStr: string) => {
+    const d = new Date(dateStr);
+    const now = new Date();
+    const diff = now.getTime() - d.getTime();
+    const mins = Math.floor(diff / 60000);
+    if (mins < 1) return 'Just now';
+    if (mins < 60) return `${mins}m ago`;
+    const hours = Math.floor(mins / 60);
+    if (hours < 24) return `${hours}h ago`;
+    const days = Math.floor(hours / 24);
+    if (days < 7) return `${days}d ago`;
+    return d.toLocaleDateString();
+  };
+
   const statCards = [
-    {
-      title: 'Total Clients',
-      value: stats.totalClients.toString(),
-      change: stats.clientsChange,
-      icon: Users,
-      color: 'blue',
-      link: '/admin/clients',
-    },
-    {
-      title: 'Active Projects',
-      value: stats.activeProjects.toString(),
-      change: stats.projectsChange,
-      icon: FolderKanban,
-      color: 'purple',
-      link: '/admin/projects',
-    },
-    {
-      title: 'Pending Invoices',
-      value: stats.pendingInvoices.toString(),
-      change: -2.1,
-      icon: FileText,
-      color: 'orange',
-      link: '/admin/invoices',
-    },
-    {
-      title: 'Monthly Revenue',
-      value: `£${stats.monthlyRevenue.toLocaleString()}`,
-      change: stats.revenueChange,
-      icon: DollarSign,
-      color: 'green',
-      link: '/admin/analytics',
-    },
+    { title: 'Total Clients', value: stats.totalClients.toString(), change: stats.clientsChange, icon: Users, link: '/admin/clients', color: 'from-teal-500/20 to-cyan-500/20 border-teal-500/30 text-teal-400' },
+    { title: 'Active Projects', value: stats.activeProjects.toString(), change: stats.projectsChange, icon: FolderKanban, link: '/admin/projects', color: 'from-blue-500/20 to-sky-500/20 border-blue-500/30 text-blue-400' },
+    { title: 'Pending Invoices', value: stats.pendingInvoices.toString(), change: -2.1, icon: FileText, link: '/admin/invoices', color: 'from-amber-500/20 to-orange-500/20 border-amber-500/30 text-amber-400' },
+    { title: 'Monthly Revenue', value: `£${stats.monthlyRevenue.toLocaleString()}`, change: stats.revenueChange, icon: DollarSign, link: '/admin/analytics', color: 'from-emerald-500/20 to-green-500/20 border-emerald-500/30 text-emerald-400' },
   ];
 
   if (loading) {
     return (
       <div className="flex items-center justify-center h-full">
         <div className="text-center">
-          <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
+          <div className="w-12 h-12 border-4 border-teal-500 border-t-transparent rounded-full animate-spin mx-auto mb-4" />
           <p className="text-gray-400">Loading dashboard...</p>
         </div>
       </div>
@@ -209,36 +182,22 @@ const AdminDashboardPage = () => {
         {statCards.map((card, index) => {
           const Icon = card.icon;
           const isPositive = card.change >= 0;
+          const colorClasses = card.color.split(' ');
+          const iconColorClass = colorClasses[colorClasses.length - 1];
 
           return (
-            <motion.div
-              key={card.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3, delay: index * 0.1 }}
-            >
-              <Link
-                to={card.link}
-                className="block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all group"
-              >
+            <motion.div key={card.title} initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.3, delay: index * 0.1 }}>
+              <Link to={card.link} className="block bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6 hover:bg-white/10 transition-all group">
                 <div className="flex items-start justify-between mb-4">
-                  <div
-                    className={`p-3 bg-gradient-to-r from-purple-500/20 to-violet-500/20 rounded-xl border border-purple-500/30`}
-                  >
-                    <Icon className={`w-6 h-6 text-purple-400`} />
+                  <div className={`p-3 bg-gradient-to-r ${card.color.split(' ').slice(0, 3).join(' ')} rounded-xl border`}>
+                    <Icon className={`w-6 h-6 ${iconColorClass}`} />
                   </div>
-                  <div
-                    className={`flex items-center space-x-1 text-sm ${
-                      isPositive ? 'text-green-400' : 'text-red-400'
-                    }`}
-                  >
-                    {isPositive ? (
-                      <ArrowUpRight className="w-4 h-4" />
-                    ) : (
-                      <ArrowDownRight className="w-4 h-4" />
-                    )}
-                    <span>{Math.abs(card.change)}%</span>
-                  </div>
+                  {card.change !== 0 && (
+                    <div className={`flex items-center space-x-1 text-sm ${isPositive ? 'text-green-400' : 'text-red-400'}`}>
+                      {isPositive ? <ArrowUpRight className="w-4 h-4" /> : <ArrowDownRight className="w-4 h-4" />}
+                      <span>{Math.abs(card.change)}%</span>
+                    </div>
+                  )}
                 </div>
                 <h3 className="text-gray-400 text-sm mb-1">{card.title}</h3>
                 <p className="text-2xl font-bold text-white">{card.value}</p>
@@ -253,66 +212,62 @@ const AdminDashboardPage = () => {
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <div className="flex items-center justify-between mb-6">
               <h2 className="text-xl font-bold text-white">Recent Activity</h2>
-              <button className="text-sm text-blue-400 hover:text-blue-300 transition-colors">
+              <Link to="/admin/analytics" className="text-sm text-teal-400 hover:text-teal-300 transition-colors">
                 View All
-              </button>
+              </Link>
             </div>
 
-            <div className="space-y-4">
-              {recentActivities.map((activity) => {
-                const Icon = activity.icon;
-                return (
-                  <div
-                    key={activity.id}
-                    className="flex items-start space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
-                  >
-                    <div className={`p-2 bg-purple-500/20 rounded-lg`}>
-                      <Icon className={`w-5 h-5 text-purple-400`} />
+            {activities.length === 0 ? (
+              <div className="text-center py-12">
+                <Activity className="w-12 h-12 text-gray-600 mx-auto mb-3" />
+                <p className="text-gray-400">No activity yet</p>
+              </div>
+            ) : (
+              <div className="space-y-3">
+                {activities.map((activity) => {
+                  const Icon = getActivityIcon(activity.action_type);
+                  const colorClass = getActivityColor(activity.action_type);
+                  return (
+                    <div key={activity.id} className="flex items-start space-x-4 p-4 bg-white/5 rounded-xl hover:bg-white/10 transition-colors">
+                      <div className={`p-2 rounded-lg ${colorClass.split(' ')[0]}`}>
+                        <Icon className={`w-5 h-5 ${colorClass.split(' ')[1]}`} />
+                      </div>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-white font-medium text-sm truncate">{activity.description}</p>
+                        <div className="flex items-center space-x-2 mt-1">
+                          {activity.admin_users && (
+                            <span className="text-xs text-gray-500">{(activity.admin_users as any).full_name}</span>
+                          )}
+                          <span className="text-xs text-gray-600">{formatTimeAgo(activity.created_at)}</span>
+                        </div>
+                      </div>
                     </div>
-                    <div className="flex-1">
-                      <p className="text-white font-medium">{activity.description}</p>
-                      <p className="text-sm text-gray-400 mt-1">{activity.time}</p>
-                    </div>
-                  </div>
-                );
-              })}
-            </div>
+                  );
+                })}
+              </div>
+            )}
           </div>
         </div>
 
         <div className="space-y-6">
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
-            <div className="flex items-center justify-between mb-6">
-              <h2 className="text-xl font-bold text-white">Quick Actions</h2>
-            </div>
-
+            <h2 className="text-xl font-bold text-white mb-4">Quick Actions</h2>
             <div className="space-y-3">
-              <Link
-                to="/admin/clients?action=new"
-                className="flex items-center justify-between p-3 bg-purple-500/10 border border-purple-500/30 rounded-xl hover:bg-purple-500/20 transition-colors group"
-              >
+              <Link to="/admin/clients" className="flex items-center justify-between p-3 bg-teal-500/10 border border-teal-500/30 rounded-xl hover:bg-teal-500/20 transition-colors group">
                 <div className="flex items-center space-x-3">
-                  <Users className="w-5 h-5 text-purple-400" />
+                  <Users className="w-5 h-5 text-teal-400" />
                   <span className="text-white font-medium">Add Client</span>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-purple-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight className="w-5 h-5 text-teal-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-
-              <Link
-                to="/admin/projects?action=new"
-                className="flex items-center justify-between p-3 bg-violet-500/10 border border-violet-500/30 rounded-xl hover:bg-violet-500/20 transition-colors group"
-              >
+              <Link to="/admin/projects" className="flex items-center justify-between p-3 bg-blue-500/10 border border-blue-500/30 rounded-xl hover:bg-blue-500/20 transition-colors group">
                 <div className="flex items-center space-x-3">
-                  <FolderKanban className="w-5 h-5 text-violet-400" />
+                  <FolderKanban className="w-5 h-5 text-blue-400" />
                   <span className="text-white font-medium">New Project</span>
                 </div>
-                <ArrowUpRight className="w-5 h-5 text-violet-400 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <ArrowUpRight className="w-5 h-5 text-blue-400 opacity-0 group-hover:opacity-100 transition-opacity" />
               </Link>
-
-              <Link
-                to="/admin/invoices?action=new"
-                className="flex items-center justify-between p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl hover:bg-emerald-500/20 transition-colors group"
-              >
+              <Link to="/admin/invoices" className="flex items-center justify-between p-3 bg-emerald-500/10 border border-emerald-500/30 rounded-xl hover:bg-emerald-500/20 transition-colors group">
                 <div className="flex items-center space-x-3">
                   <FileText className="w-5 h-5 text-emerald-400" />
                   <span className="text-white font-medium">Create Invoice</span>
@@ -324,10 +279,24 @@ const AdminDashboardPage = () => {
 
           <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl p-6">
             <div className="flex items-center space-x-3 mb-4">
-              <Clock className="w-5 h-5 text-purple-400" />
+              <Clock className="w-5 h-5 text-teal-400" />
               <h3 className="text-lg font-semibold text-white">Upcoming Deadlines</h3>
             </div>
-            <p className="text-gray-400 text-sm">No upcoming deadlines</p>
+            {upcomingDeadlines.length === 0 ? (
+              <p className="text-gray-400 text-sm">No upcoming deadlines</p>
+            ) : (
+              <div className="space-y-3">
+                {upcomingDeadlines.map((dl) => (
+                  <div key={dl.id} className="p-3 bg-white/5 rounded-lg">
+                    <p className="text-white text-sm font-medium truncate">{dl.project_name}</p>
+                    <div className="flex items-center justify-between mt-1">
+                      <span className="text-xs text-gray-500">{dl.client_name}</span>
+                      <span className="text-xs text-amber-400">{new Date(dl.due_date).toLocaleDateString()}</span>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
           </div>
         </div>
       </div>

@@ -93,7 +93,7 @@ const ClientDashboardPage = () => {
     const colors: Record<string, string> = {
       planning: 'text-blue-400 bg-blue-500/10 border-blue-500/20',
       in_progress: 'text-yellow-400 bg-yellow-500/10 border-yellow-500/20',
-      review: 'text-purple-400 bg-purple-500/10 border-purple-500/20',
+      review: 'text-teal-400 bg-teal-500/10 border-teal-500/20',
       completed: 'text-green-400 bg-green-500/10 border-green-500/20',
       on_hold: 'text-gray-400 bg-gray-500/10 border-gray-500/20',
       draft: 'text-gray-400 bg-gray-500/10 border-gray-500/20',
@@ -119,7 +119,7 @@ const ClientDashboardPage = () => {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
         <div className="text-center">
-          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500 mb-4"></div>
+          <div className="inline-block animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-teal-500 mb-4"></div>
           <p className="text-gray-400">Loading dashboard...</p>
         </div>
       </div>
@@ -188,25 +188,14 @@ const ClientDashboardPage = () => {
           className="bg-black/40 backdrop-blur-xl border border-white/10 rounded-2xl p-6"
         >
           <div className="flex items-center justify-between mb-4">
-            <div className="w-12 h-12 bg-purple-500/10 rounded-xl flex items-center justify-center">
-              <Building2 className="w-6 h-6 text-purple-400" />
+            <div className="w-12 h-12 bg-teal-500/10 rounded-xl flex items-center justify-center">
+              <Building2 className="w-6 h-6 text-teal-400" />
             </div>
           </div>
           <p className="text-lg font-bold text-white mb-1 truncate">
             {clientUser?.client_data?.company_name}
           </p>
           <p className="text-gray-400 text-sm capitalize">{clientUser?.client_data?.status || 'Active'}</p>
-        </motion.div>
-      </div>
-
-      <div className="space-y-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ delay: 0.5 }}
-        >
-          <h2 className="text-2xl font-bold text-white mb-6">Your Products & Services</h2>
-          <ProductDashboards subscriptions={subscriptions} />
         </motion.div>
       </div>
 
@@ -221,7 +210,7 @@ const ClientDashboardPage = () => {
             <h2 className="text-2xl font-bold text-white">Recent Projects</h2>
             <Link
               to="/client/projects"
-              className="text-purple-400 hover:text-purple-300 text-sm font-medium flex items-center space-x-1 transition-colors"
+              className="text-teal-400 hover:text-teal-300 text-sm font-medium flex items-center space-x-1 transition-colors"
             >
               <span>View all</span>
               <ArrowRight className="w-4 h-4" />
@@ -238,7 +227,7 @@ const ClientDashboardPage = () => {
               {projects.map((project) => (
                 <div
                   key={project.id}
-                  className="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-all"
+                  className="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-teal-500/30 transition-all"
                 >
                   <div className="flex items-start justify-between mb-3">
                     <h3 className="text-white font-semibold">{project.project_name}</h3>
@@ -257,7 +246,7 @@ const ClientDashboardPage = () => {
                     </div>
                     <div className="w-full bg-white/10 rounded-full h-2">
                       <div
-                        className="bg-gradient-to-r from-purple-600 to-purple-400 h-2 rounded-full transition-all duration-500"
+                        className="bg-gradient-to-r from-teal-500 to-cyan-400 h-2 rounded-full transition-all duration-500"
                         style={{ width: `${project.progress_percentage}%` }}
                       />
                     </div>
@@ -284,7 +273,7 @@ const ClientDashboardPage = () => {
             <h2 className="text-2xl font-bold text-white">Recent Invoices</h2>
             <Link
               to="/client/invoices"
-              className="text-purple-400 hover:text-purple-300 text-sm font-medium flex items-center space-x-1 transition-colors"
+              className="text-teal-400 hover:text-teal-300 text-sm font-medium flex items-center space-x-1 transition-colors"
             >
               <span>View all</span>
               <ArrowRight className="w-4 h-4" />
@@ -301,7 +290,7 @@ const ClientDashboardPage = () => {
               {invoices.map((invoice) => (
                 <div
                   key={invoice.id}
-                  className="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-purple-500/30 transition-all"
+                  className="p-4 bg-white/5 rounded-xl border border-white/5 hover:border-teal-500/30 transition-all"
                 >
                   <div className="flex items-start justify-between mb-2">
                     <div>
@@ -335,7 +324,7 @@ const ClientDashboardPage = () => {
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ delay: 0.7 }}
-        className="bg-gradient-to-br from-purple-900/30 via-purple-800/20 to-transparent border border-purple-500/20 rounded-2xl p-8"
+        className="bg-gradient-to-br from-teal-900/30 via-teal-800/20 to-transparent border border-teal-500/20 rounded-2xl p-8"
       >
         <div className="flex items-start justify-between">
           <div>
@@ -346,7 +335,7 @@ const ClientDashboardPage = () => {
             <div className="flex flex-wrap gap-4">
               <Link
                 to="/client/messages"
-                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-purple-600 to-purple-500 hover:from-purple-500 hover:to-purple-400 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-purple-500/50"
+                className="inline-flex items-center space-x-2 px-6 py-3 bg-gradient-to-r from-teal-600 to-cyan-600 hover:from-teal-500 hover:to-cyan-500 text-white font-semibold rounded-xl transition-all duration-200 shadow-lg hover:shadow-teal-500/50"
               >
                 <MessageSquare className="w-5 h-5" />
                 <span>Send Message</span>

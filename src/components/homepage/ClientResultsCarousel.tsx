@@ -24,7 +24,7 @@ const ClientResultsCarousel = () => {
     },
     {
       id: 2,
-      image: '/assets/carousel/Design K9 Home Page.png',
+      image: '/assets/carousel/Design_K9_Home_Page.png',
       title: "Design K9 Training",
       industry: "Dog Training Services",
       result: "Fully automated booking system",

@@ -209,7 +209,7 @@ const AboutPage = () => {
     },
     {
       id: 2,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Design K9 Training",
       position: { top: '18%', right: '8%' },
       rotation: '12deg',
@@ -236,7 +236,7 @@ const AboutPage = () => {
     },
     {
       id: 5,
-      image: "/assets/carousel/Design K9 Home Page.png",
+      image: "/assets/carousel/Design_K9_Home_Page.png",
       title: "Portfolio Example",
       position: { top: '50%', left: '10%' },
       rotation: '-5deg',

@@ -36,6 +36,10 @@ import AnalyticsPage from './pages/admin/AnalyticsPage';
 import SettingsPage from './pages/admin/SettingsPage';
 import ClientLayout from './components/client/ClientLayout';
 import ClientDashboardPage from './pages/client/ClientDashboardPage';
+import ClientProjectsPage from './pages/client/ClientProjectsPage';
+import ClientInvoicesPage from './pages/client/ClientInvoicesPage';
+import ClientMessagesPage from './pages/client/ClientMessagesPage';
+import ClientDocumentsPage from './pages/client/ClientDocumentsPage';
 
 const App = () => {
   return (
@@ -70,6 +74,10 @@ const App = () => {
           }
         >
           <Route path="dashboard" element={<ClientDashboardPage />} />
+          <Route path="projects" element={<ClientProjectsPage />} />
+          <Route path="invoices" element={<ClientInvoicesPage />} />
+          <Route path="messages" element={<ClientMessagesPage />} />
+          <Route path="documents" element={<ClientDocumentsPage />} />
         </Route>
 
         <Route

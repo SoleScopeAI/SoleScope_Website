@@ -83,7 +83,7 @@ const AdminLayout = () => {
                   to={item.path}
                   className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                     isActive
-                      ? 'bg-gradient-to-r from-purple-600/20 to-violet-600/20 text-white border border-purple-500/30'
+                      ? 'bg-gradient-to-r from-teal-600/20 to-cyan-600/20 text-white border border-teal-500/30'
                       : 'text-gray-400 hover:text-white hover:bg-white/5'
                   }`}
                 >
@@ -146,7 +146,7 @@ const AdminLayout = () => {
                         onClick={() => setMobileMenuOpen(false)}
                         className={`flex items-center space-x-3 px-4 py-3 rounded-xl transition-all ${
                           isActive
-                            ? 'bg-gradient-to-r from-purple-600/20 to-violet-600/20 text-white border border-purple-500/30'
+                            ? 'bg-gradient-to-r from-teal-600/20 to-cyan-600/20 text-white border border-teal-500/30'
                             : 'text-gray-400 hover:text-white hover:bg-white/5'
                         }`}
                       >
@@ -190,7 +190,7 @@ const AdminLayout = () => {
                   <input
                     type="text"
                     placeholder="Search clients, projects, invoices..."
-                    className="w-full pl-12 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-transparent transition-all"
+                    className="w-full pl-12 pr-4 py-2.5 bg-white/5 border border-white/10 rounded-xl text-white placeholder-gray-500 focus:outline-none focus:ring-2 focus:ring-teal-500 focus:border-transparent transition-all"
                   />
                 </div>
               </div>
@@ -198,11 +198,11 @@ const AdminLayout = () => {
               <div className="flex items-center space-x-4">
                 <button className="relative p-2 hover:bg-white/5 rounded-lg transition-colors text-gray-400 hover:text-white">
                   <Bell className="w-6 h-6" />
-                  <span className="absolute top-1 right-1 w-2 h-2 bg-purple-500 rounded-full"></span>
+                  <span className="absolute top-1 right-1 w-2 h-2 bg-teal-500 rounded-full"></span>
                 </button>
 
                 <div className="flex items-center space-x-3 pl-4 border-l border-white/10">
-                  <div className="w-10 h-10 bg-gradient-to-r from-purple-500 to-violet-500 rounded-full flex items-center justify-center">
+                  <div className="w-10 h-10 bg-gradient-to-r from-teal-500 to-cyan-500 rounded-full flex items-center justify-center">
                     <User className="w-6 h-6 text-white" />
                   </div>
                   <div className="hidden sm:block">

@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect, ReactNode } from 'react';
-import { adminAuth, AdminUser } from '../lib/adminAuth';
+import { supabase, AdminUser } from '../lib/supabase';
+import { adminAuth } from '../lib/adminAuth';
 
 interface AdminAuthContextType {
   adminUser: AdminUser | null;
@@ -32,20 +33,27 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
 
   useEffect(() => {
     checkSession();
+
+    const { data: { subscription } } = supabase.auth.onAuthStateChange((event) => {
+      if (event === 'SIGNED_OUT') {
+        setAdminUser(null);
+      } else if (event === 'SIGNED_IN' || event === 'TOKEN_REFRESHED') {
+        (async () => {
+          const user = await adminAuth.getCurrentUser();
+          setAdminUser(user);
+        })();
+      }
+    });
+
+    return () => subscription.unsubscribe();
   }, []);
 
   const checkSession = async () => {
     setLoading(true);
     try {
-      if (adminAuth.isSessionValid()) {
-        const user = await adminAuth.getCurrentUser();
-        setAdminUser(user);
-      } else {
-        await adminAuth.logout();
-        setAdminUser(null);
-      }
-    } catch (error) {
-      console.error('Session check error:', error);
+      const user = await adminAuth.getCurrentUser();
+      setAdminUser(user);
+    } catch {
       setAdminUser(null);
     } finally {
       setLoading(false);
@@ -56,16 +64,11 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
     try {
       const response = await adminAuth.login(email, password);
       if (response.success && response.user) {
-        console.log('AdminAuthContext: Login successful, updating state with user:', response.user.email);
         setAdminUser(response.user);
-        adminAuth.saveUserToStorage(response.user);
-        console.log('AdminAuthContext: User saved to storage and state updated');
         return { success: true };
       }
-      console.log('AdminAuthContext: Login failed:', response.error);
       return { success: false, error: response.error };
-    } catch (error) {
-      console.error('AdminAuthContext: Login error:', error);
+    } catch {
       return { success: false, error: 'An unexpected error occurred' };
     }
   };
@@ -75,44 +78,27 @@ export const AdminAuthProvider: React.FC<AdminAuthProviderProps> = ({ children }
     try {
       await adminAuth.logout();
       setAdminUser(null);
-    } catch (error) {
-      console.error('Logout error:', error);
     } finally {
       setLoading(false);
     }
   };
 
   const refreshUser = async () => {
-    try {
-      const user = await adminAuth.getCurrentUser();
-      setAdminUser(user);
-    } catch (error) {
-      console.error('Refresh user error:', error);
-    }
+    const user = await adminAuth.getCurrentUser();
+    setAdminUser(user);
   };
 
-  const isOwner = () => {
-    return adminUser?.role === 'owner';
-  };
-
-  const canManageAdmins = () => {
-    return adminUser?.role === 'owner';
-  };
+  const isOwner = () => adminUser?.role === 'owner';
+  const canManageAdmins = () => adminUser?.role === 'owner';
 
   const hasPermission = (permission: 'manage_admins' | 'manage_clients' | 'manage_projects' | 'view_analytics') => {
     if (!adminUser || !adminUser.is_active) return false;
-
     switch (permission) {
-      case 'manage_admins':
-        return adminUser.role === 'owner';
-      case 'manage_clients':
-        return ['owner', 'admin', 'manager'].includes(adminUser.role);
-      case 'manage_projects':
-        return ['owner', 'admin', 'manager'].includes(adminUser.role);
-      case 'view_analytics':
-        return ['owner', 'admin'].includes(adminUser.role);
-      default:
-        return false;
+      case 'manage_admins': return adminUser.role === 'owner';
+      case 'manage_clients': return ['owner', 'admin', 'manager'].includes(adminUser.role);
+      case 'manage_projects': return ['owner', 'admin', 'manager'].includes(adminUser.role);
+      case 'view_analytics': return ['owner', 'admin'].includes(adminUser.role);
+      default: return false;
     }
   };
 
