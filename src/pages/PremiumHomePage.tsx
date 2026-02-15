@@ -1,6 +1,5 @@
 import React from 'react';
 import InteractiveHero from '../components/homepage/InteractiveHero';
-import MobileServicesPreview from '../components/homepage/MobileServicesPreview';
 import WhyChooseSoleScope from '../components/homepage/WhyChooseSoleScope';
 import ServiceSnapshotGrid from '../components/homepage/ServiceSnapshotGrid';
 import ClientResultsShowcase from '../components/homepage/ClientResultsShowcase';
@@ -12,7 +11,6 @@ const PremiumHomePage = () => {
   return (
     <div className="homepage-unified-surface overflow-hidden" role="document" aria-label="SoleScope Studio & Design Homepage">
       <InteractiveHero />
-      <MobileServicesPreview />
       <WhyChooseSoleScope />
       <ServiceSnapshotGrid />
       <ClientResultsShowcase />
